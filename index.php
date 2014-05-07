@@ -14,7 +14,7 @@
 	require ( LIBS . 'Functions.php');
 	require ( LANG . DEFAULT_LANGUAGE .'.php');	
 	
-	$app = new Bootstrap();
+	$app = new App();
 	
 	$app->init();	
 	
