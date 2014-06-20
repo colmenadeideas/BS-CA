@@ -6,8 +6,8 @@
 		private $_controller = null;
 		private $_helper = null;
 		
-		private $_controllerPath = 'app/controllers/';
-		private $_modelPath = 'app/models/';
+		private $_controllerPath = '../app/controllers/';
+		private $_modelPath = '../app/models/';
 		private $_errorFile = 'error.php';
 		private $_defaultFile = 'siteController';
 		

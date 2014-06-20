@@ -1,0 +1,18 @@
+// 20/06/14
+includes/libs/
+
+	- Views
+		revisar y reformular 
+		 -buildpage()
+		 -settings()
+		 
+		Evaluar si insert() es necesario en este sitio 
+		
+	-Email
+		evaluar buildNiceEmail() si es necesario en este sitio 
+
+	-Helper
+		revisar si los metodos de Database son seguros contra SQL injection
+		
+html/public/js
+	- definir un metodo similar al config php para separar la configuracion local/server
