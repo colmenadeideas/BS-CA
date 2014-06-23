@@ -6,18 +6,19 @@ require.config({
 	shim: {
 		'jquery': {
             exports: '$'
-        },
-        'bootstrap': {
+       },
+       'bootstrap': {
             deps: ['jquery'],
             exports: '$'
-        },
-        'bootstrap.min' : ['jquery'],
-        '../functions': ['jquery', '../config'],        
+       },
+       'bootstrap.min' : ['jquery'],
+       '../functions': ['jquery','bootstrap.min','jquery.validate.min','jquery.easing.min','all','../js/config'],
+       '../app/site': ['../functions'],   
        
 	}
 });
 
-require([ 'jquery',],
+require([ 'jquery','../app/site'],
     function($) {
     	console.log("All is loaded"); 
     }

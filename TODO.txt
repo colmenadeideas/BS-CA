@@ -16,3 +16,8 @@ includes/libs/
 		
 html/public/js
 	- definir un metodo similar al config php para separar la configuracion local/server
+	
+
+app/views/default
+	-head
+		llenar info de autor y description
