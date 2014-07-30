@@ -6,13 +6,11 @@
         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
       </div>
       <div class="modal-body">
-        <button class="btn-lg btn-default">Soy Medico</button>
-		<button class="btn-lg btn-default">Soy Paciente</button>
+        <button class="btn-lg btn-default" id="register_doctor">Soy Medico</button>
+		<button class="btn-lg btn-default" id="register_person">Soy Paciente</button>
+		<div id="person"><?php $this->render('site/form/register_person'); ?></div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+      
     </div>
   </div>
 </div>

@@ -8,6 +8,7 @@
       <div class="modal-body">
         <button class="btn-lg btn-default">Soy Medico</button>
 		<button class="btn-lg btn-default">Soy Paciente</button>
+		
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

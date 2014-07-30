@@ -54,3 +54,7 @@ padding:30px 15px;
 .site-head h1 { color: #FFF; font-size:400% }
 
 .btn-green { }
+
+#register_form{
+	display:none;
+}
