@@ -36,9 +36,15 @@
 					
 					if ($insert > 0) {
 						$id =  DB::insertId();
-						$array_profile['id_patient'] = $id;
+						
 						//Create and add Profile
-						$insert_profile = $this->helper->insert('patient', $array_profile);
+						if ("patient"==$role)
+							$array_profile['id_patient'] = $id;
+							
+						if ("doctor"==$role)
+							$array_profile['id_doctor'] = $id;
+						
+						$insert_profile = $this->helper->insert($role, $array_profile);
 						//Create Role Permissions for User
 			
 						
@@ -62,6 +68,147 @@
 					
 					
 					}
+		}
+
+
+public function authenticate($temp_password, $username) {
+			
+			$username = escape_value($username);
+			$password = escape_value($temp_password);			
+			
+			$validUser = $this->user->validateUsername($username);
+			
+			if(empty($validUser)){						
+				//echo "user";
+				echo ERROR_AUTHENTICATE;
+				exit;
+								
+			} else {
+				$validPass = $this->user->validatePassword($username, $password);
+				
+				if(empty($validPass)){
+					//echo "pass";	
+					echo ERROR_AUTHENTICATE;
+					exit;				
+				} else {
+					$role = escape_value($validUser[0]['role']);
+					$username = escape_value($validUser[0]['username']);
+					$this->user->init();
+			        $this->user->set('role', $role);
+					$this->user->set('loggedIn', true);
+			        $this->user->set('username', $username);
+			           
+					//echo 'welcome';
+					$this->firstlogin($password);					
+					exit;
+				}
+			}
+			
+			
+		} 
+		
+		public function signin() {
+			
+			$already_loggedin = User::get('role');
+			
+			if (empty($already_loggedin)) {
+				
+				$this->view->title = SITE_NAME. " | Entrar";						
+				$this->view->render('login/index');
+				
+			} else {
+				//Redirect		
+				$this->identify();
+			}
+		}
+		
+		
+			public function edit ($what, $old_password = ''){
+			
+			$this->view->userdata = $this->user->getUserdata();
+				
+			Auth::handleLogin('account');
+			
+			$this->view->page = "";
+
+			switch ($what) {
+				case 'password':
+					
+					$this->view->title = "Configuración | Clave";
+					$this->view->old_password =		$old_password;									
+					$this->view->buildpage('settings/password-change','settings');
+					break;
+					
+				case 'profile':
+							 			
+					$this->view->title = "Configuración | Mi perfil";
+					
+					$username 	= $this->user->get('username');
+					$role 		= $this->user->get('role');
+					$this->view->userdata = $this->user->getUserdata($role, $username);
+		
+					//Page
+					$this->view->buildpage('settings/profile','settings');
+				
+					break;	
+				
+			}			
+			
+		}
+		
+		public function login() {
+				
+			$array_datos = array();	
+			foreach ($_POST as $key => $value) {
+				$campo = escape_value($key);
+				$valor = escape_value($value);
+				
+				$data = "\$" . $campo . "='" . escape_value($valor) . "';";						
+				eval($data);
+			}
+			$username = $email;
+			$validUser = $this->user->validateUsername($username);
+			
+			if(empty($validUser)){
+				echo "error";
+			} else {
+				$validPass = $this->user->validatePassword($username, $password);
+				if(empty($validPass)){
+					echo "error";
+				} else {
+						$role = escape_value($validUser[0]['role']);
+						$username = escape_value($validUser[0]['username']);
+						$this->user->init();
+				        $this->user->set('role', $role);
+						$this->user->set('loggedIn', true);
+				        $this->user->set('username', $username);				           
+						echo 'welcome';					
+						exit;
+					}
+			}
+				
+		}
+		
+		public function logout() {			
+			
+			$this->user->destroy();
+			header('location: '. URL);		
+			//$this->signin();
+		} 
+		
+		public function identify () {
+				
+			User::checkSession();
+			//Auth::handleLogin('account');
+			User::gotoMainArea();			
+			
+		}
+		
+		//Settings
+		public function firstlogin($old_password= '') {
+				
+			$this->edit('password', $old_password);
+			
 		}
 	}
 		

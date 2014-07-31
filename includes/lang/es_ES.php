@@ -7,6 +7,8 @@ define ('PHONE','Teléfono');
 define ('EMAIL','E-MAIL');
 define ('USERNAME','Usuario');
 
+define ('PASSWORD','Contraseña');
+
 	define('SYSTEM_EMAIL_BGCOLOR', '#34AAAD');
 	define('SYSTEM_EMAIL_HEADCOLOR', '#FFF');
 	define('SYSTEM_EMAIL_BUTTONSCOLOR', '#5CB85C');

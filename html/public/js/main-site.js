@@ -11,13 +11,11 @@ require.config({
             deps: ['jquery'],
             exports: '$'
        },
-        'bootstrap-datepicker': {
-            deps: ['bootstrap'],
-            exports: '$'
-       },
+       
        'bootstrap.min' : ['jquery'],
-       '../functions': ['jquery','bootstrap.min','jquery.validate.min','jquery.easing.min','all','../js/config','jquery-ui.min'],
-       '../app/site': ['../functions',"../../data/especiality","bootstrap-datepicker"],   
+       'bootstrap-datetpicker':['jquery','bootstrap.min'],
+       '../functions': ['jquery','bootstrap.min','jquery.validate.min','jquery.easing.min','bootstrap-datepicker','all','../js/config','jquery-ui.min'],
+       '../app/site': ['../functions',"../../data/especiality"],   
        
 	}
 });

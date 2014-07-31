@@ -96,16 +96,19 @@
 			$role = $this->get('role');
 						
 			switch ($role) {
-				case 'estudiante':
-					$table = 'student_profile';
+				case 'doctor':
+					$table = 'doctor';
+					$field="id_medico";
 					break;
 				
 				default:
-					$table = 'user_profile';					
+						$field = 'id_patient';	
+						$table = 'patient';
+									
 					break;
 			}
 			
-			$field = 'username';					
+							
 			return DB::query("SELECT * FROM ". DB_PREFIX . $table ." WHERE ". $field ."=%s LIMIT 1", $user);
 			
 		
