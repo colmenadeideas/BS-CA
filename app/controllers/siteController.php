@@ -8,10 +8,13 @@
 		}
 	
 		public function index() {
-				
-			$this->view->buildpage('site/index');			
+			
+			$this->loadModel('doctor');
+			@$this->view->speciality = doctorModel::listSpeciality();
+			
 		
-		}
+			$this->view->buildpage('site/index');			
+			}
 	}
 		
 ?>

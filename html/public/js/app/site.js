@@ -17,24 +17,24 @@ $("input[name=specialty]").autocomplete({
 function register_person(){
 	
 	
-	$( "#register_doctor" ).click(function() {
+	$( "#register_doctor_button" ).click(function() {
 	  $( "#role" ).val("doctor");
-	  $( "#register_form" ).css("display","block");
+	  $( "#register_doctor" ).css("display","block");
 	
 	  $('#birth').datepicker({ format: "dd/mm/yyyy",
     language: "es",
     autoclose: true});
 	
-	  validate_register();
+	  validate_register_doctor();
 	});
-	$( "#register_person" ).click(function() {
-	   $( "#role" ).val("pacient");
-	     $( "#register_form" ).css("display","block");
-	     validate_register();
+	$( "#register_patient_button" ).click(function() {
+	   
+	     $( "#register_patient" ).css("display","block");
+	     validate_register_patient();
 	});
 }
-function validate_register(){	
-	$('#register_person_form').validate({
+function validate_register_patient(){	
+	$('#register_patient_form').validate({
 				
 	submitHandler: function(form) {
 			$('.send').attr('disabled', 'disabled'); //prevent double send
@@ -56,6 +56,32 @@ function validate_register(){
 	});
 	
 }
+
+function validate_register_doctor(){	
+	$('#register_doctor_form').validate({
+				
+	submitHandler: function(form) {
+			$('.send').attr('disabled', 'disabled'); //prevent double send
+			$.ajax({
+				type: "POST",
+				data: $(form).serialize(),
+				url: URL+"account/add/",				
+				timeout: 12000,
+				success: function(response) {
+						console.log("listo!"+response); 
+						
+						
+														   	
+				},
+				error: function(response) { console.log(response); }
+			});
+			return false;
+		}
+	});
+	
+}
+
+
 function validate_login(){
 	//console.log($('#login_form'));
 		$('#login_form').validate({

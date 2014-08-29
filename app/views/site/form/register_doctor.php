@@ -1,5 +1,5 @@
-<div id="register_form">
-	 <form id="register_person_form">
+<div id="register_doctor">
+	 <form id="register_doctor_form">
 	<div class="form-group">
 		<label for="name" class="hidden-xs col-sm-3 control-label"><? echo NAME; ?></label>
 		<div class="col-sm-9">
@@ -38,7 +38,18 @@
 			<input type="text" class="form-control" id="email" name="email" placeholder="email" required>
 		</div>
 	</div>
-	<input type="hidden"  id="role" name="role" placeholder="role" value="" required>
+	<div class="form-group">
+		<label for="mail" class="hidden-xs col-sm-3 control-label"><? echo ESPECIALITY; ?></label>
+		<div class="col-sm-9">
+	
+				<select class="form-control" id="especiality" name="especiality" placeholder="especiality" required>
+					<?  foreach ($this->speciality as $speciality){ ?>
+					<option value="<? echo $speciality["id"]; ?>"><? echo $speciality["name"];?></option>
+				<? } ?>	
+			</select>
+		</div>
+	</div>
+	<input type="hidden"  id="role" name="role" placeholder="role" value="doctor" required>
 	<div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary" >Save changes</button>
