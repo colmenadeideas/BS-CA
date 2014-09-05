@@ -13,6 +13,25 @@ $("input[name=specialty]").autocomplete({
    source: data
 });
 
+$('#searchform').validate({
+				
+	submitHandler: function(form) {
+			$('.send').attr('disabled', 'disabled'); //prevent double send
+			$.ajax({
+				type: "POST",
+				data: $(form).serialize(),
+				url: URL+"site/search/",				
+				timeout: 12000,
+				success: function(response) {
+						$('#searchform').html(response); 
+														   	
+				},
+				error: function(response) { console.log(response); }
+			});
+			return false;
+		}
+	});
+
 
 function register_person(){
 	
@@ -33,6 +52,8 @@ function register_person(){
 	     validate_register_patient();
 	});
 }
+
+
 function validate_register_patient(){	
 	$('#register_patient_form').validate({
 				
