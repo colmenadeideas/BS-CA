@@ -6,6 +6,9 @@ $(document).ready(function() {
     });
     register_person();
     validate_login();
+    search_location();
+    
+   
 });
 
 
@@ -32,7 +35,29 @@ $('#searchform').validate({
 		}
 	});
 
-
+function search_location(){
+	
+	$("input[name='city']").geocomplete()
+          .bind("geocode:result", function(event, result){
+            //$.log("Result: " + result.formatted_address);
+          })
+          .bind("geocode:error", function(event, status){
+           // $.log("ERROR: " + status);
+          })
+          .bind("geocode:multiple", function(event, results){
+         //   $.log("Multiple: " + results.length + " results found");
+          });
+        
+        $("#find").click(function(){
+          $("input[name='city']").trigger("geocode");
+        });
+        
+        
+        $("#examples a").click(function(){
+          $("input[name='city']").val($(this).text()).trigger("geocode");
+          return false;
+        });
+}
 function register_person(){
 	
 	
