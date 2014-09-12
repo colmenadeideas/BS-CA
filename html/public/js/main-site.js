@@ -5,7 +5,8 @@ require.config({
 	    },
 	shim: {
 		'jquery': {
-            exports: '$'
+            exports: '$',
+            
        },
        'bootstrap': {
             deps: ['jquery'],
@@ -15,7 +16,7 @@ require.config({
        'bootstrap.min' : ['jquery'],
        'bootstrap-datetpicker':['jquery','bootstrap.min'],
        '../functions': ['jquery','bootstrap.min','jquery.validate.min','jquery.easing.min','bootstrap-datepicker','all','../js/config','jquery-ui.min'],
-       '../app/site': ['../functions',"../../data/especiality",'jquery.geocomplete.min'],
+       '../app/site': ['../functions',"../../data/especiality",'jquery.geocomplete.min','jMonthCalendar.min','moment.min','fullcalendar',"fullcalendar-es"],
      
        
 	}
