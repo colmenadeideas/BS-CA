@@ -165,8 +165,8 @@ public function authenticate($temp_password, $username) {
 				$campo = escape_value($key);
 				$valor = escape_value($value);
 				
-				$data = "\$" . $campo . "='" . escape_value($valor) . "';";						
-				eval($data);
+			 	$data = "\$" . $campo . "='" . escape_value($valor) . "';";						
+				 eval($data);
 			}
 			$username = $email;
 			$validUser = $this->user->validateUsername($username);

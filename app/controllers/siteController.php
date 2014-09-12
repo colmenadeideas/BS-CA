@@ -35,6 +35,15 @@
 			}
 			$this->model->search_list();
 		}
+		
+		
+		public function calendar($practice){
+			$this->loadModel('doctor');
+			@$this->view->practice_days = doctorModel::list_avaliable_days($practice);
+			$this->view->practice=$practice;
+			//var_dump($this->view->horario);
+			$this->view->buildpage('site/calendar');
+		}
 	}
 		
 ?>
