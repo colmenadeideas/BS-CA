@@ -170,7 +170,7 @@ public function authenticate($temp_password, $username) {
 			}
 			$username = $email;
 			$validUser = $this->user->validateUsername($username);
-			
+			//aqui voy
 			if(empty($validUser)){
 				echo "error";
 			} else {

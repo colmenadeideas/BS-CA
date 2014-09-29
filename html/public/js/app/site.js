@@ -7,8 +7,15 @@ $(document).ready(function() {
     register_person();
     validate_login();
     search_location();
- //  load_calendar();
-   
+   load_calendar();
+
+//console.log(jsonsql.query("select id,type from datos  order by label asc limit 3",datos));
+			
+$('#search_doctor').click(function() {
+	
+ // search(type,value,location);
+});
+ 
    
    $('#login_form').validate({
 		messages : {
@@ -113,27 +120,17 @@ function load_calendar(){
 }
 
 $("input[name=specialty]").autocomplete({
-   source: data
+   source: datos,
+   // minLength:3 
 });
 
-$('#searchform').validate({
-				
-	submitHandler: function(form) {
-			$('.send').attr('disabled', 'disabled'); //prevent double send
-			$.ajax({
-				type: "POST",
-				data: $(form).serialize(),
-				url: URL+"site/search/",				
-				timeout: 12000,
-				success: function(response) {
-						$('#searchform').html(response); 
-														   	
-				},
-				error: function(response) { console.log(response); }
-			});
-			return false;
-		}
-	});
+$( "input[name=specialty]" ).on( "autocompleteselect", function( event, ui ) {
+
+location_f=$( "input[name=specialty]" ).val();
+search_doctor(ui.item.type,ui.item.value,location_f);
+
+} );
+
 
 function search_location(){
 	
@@ -286,4 +283,12 @@ function validate_login(){
 			return false;
 		}
 	});
+	
+	
+	
 }
+function search_doctor(type,value,location){
+		
+		doctores_list=jsonsql.query("select "+type+" from datos where "+ type+"="+value+" order by name asc limit 3",doctores);
+		console.log(doctores_list[0]);
+	}
