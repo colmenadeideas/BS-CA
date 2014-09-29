@@ -6,11 +6,9 @@ define ('SEX','Sexo');
 define ('PHONE','Teléfono');
 define ('EMAIL','E-MAIL');
 define ('USERNAME','Usuario');
-define ('ESPECIALITY','Especialidad');
-
 define ('PASSWORD','Contraseña');
 
-	define('SYSTEM_EMAIL_BGCOLOR', '#34AAAD');
+define('SYSTEM_EMAIL_BGCOLOR', '#34AAAD');
 	define('SYSTEM_EMAIL_HEADCOLOR', '#FFF');
 	define('SYSTEM_EMAIL_BUTTONSCOLOR', '#5CB85C');
 	
@@ -131,6 +129,4 @@ define('SYSTEM_SIMPLE_EMAIL_HEAD', '<table width="100%" height="100%" cellpaddin
 	define('REGISTRATION_MESSAGE_SUCCESS', '<div class="alert alert-success"><h3>¡Felicidades! te has registrado con éxito</h3><br> <h4>Revisa tu bandeja de correo y sigue las instrucciones que te hemos enviado para poder entrar al sistema</h4></div>');
 	
 	
-	//EMAIL COLORS
-
 ?>

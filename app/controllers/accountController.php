@@ -28,6 +28,7 @@
 					
 					
 					$array_user['role'] = escape_value($_POST['role']);
+					$role=$array_user['role'];
 					$temp_key = uniqid(rand(), true);				
 					$array_user['pass_hash'] = $this->user->create_hash($temp_key);
 					
@@ -41,9 +42,10 @@
 						if ("patient"==$role)
 							$array_profile['id_patient'] = $id;
 							
-						if ("doctor"==$role)
+						if ("doctor"==$role){
 							$array_profile['id_doctor'] = $id;
-						
+							$array_profile['especiality'] = escape_value($_POST['especiality']);
+					}
 						$insert_profile = $this->helper->insert($role, $array_profile);
 						//Create Role Permissions for User
 			
@@ -163,12 +165,12 @@ public function authenticate($temp_password, $username) {
 				$campo = escape_value($key);
 				$valor = escape_value($value);
 				
-				$data = "\$" . $campo . "='" . escape_value($valor) . "';";						
-				eval($data);
+			 	$data = "\$" . $campo . "='" . escape_value($valor) . "';";						
+				 eval($data);
 			}
 			$username = $email;
 			$validUser = $this->user->validateUsername($username);
-			
+			//aqui voy
 			if(empty($validUser)){
 				echo "error";
 			} else {

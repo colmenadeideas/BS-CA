@@ -1,0 +1,90 @@
+public class Agregar extends DAO {
+
+    private Statement _sql;
+    private ResultSet _resultado = null;
+ public boolean AgregarAlumno(Entidad objeto,double monto) throws Exception {
+
+        boolean agrego = false;
+        int id = 0;
+
+        try {
+            Conectar();
+            System.out.println(_conexion);
+            _sql = _conexion.createStatement();
+            _resultado = _sql.executeQuery("select max(id) from alumno");
+            while (_resultado.next()) {
+                id = _resultado.getInt(1) + 1;
+            }
+            System.out.println("insert into alumno("
+                    + "id,"
+                    + "nombre,"
+                    + "apellido,"
+                    + "fechanacimiento,"
+                    + "sexo,"
+                    + "direccion,"
+                    + "telefono,"
+                    + "peso,"
+                    + "estatura,"
+                    + "fechainscripcion,"
+                    + "cedula,"
+                    + "fkidrepresentante"
+                    + ") values("
+                    + id + ",
+                    + ((Alumno) objeto).getNombre() + ,
+                    + ((Alumno) objeto).getApellido() + ,
+                    + ((Alumno) objeto).getFechaNacimiento() + ,
+                    + ((Alumno) objeto).getSexo() + ,
+                    + ((Alumno) objeto).getDireccion() + ,"
+                    + ((Alumno) objeto).getTelefono() + ","
+                    + ((Alumno) objeto).getPeso() + ","
+                    + ((Alumno) objeto).getAltura() + ",
+                    + ((Alumno) objeto).getFechaIngreso() + ,"
+                    + ((Alumno) objeto).getCedula() + ","
+                    + ((Alumno) objeto).getRepresentante().getId()
+                    + ")");
+            int r = _sql.executeUpdate("insert into alumno("
+                    + "id,"
+                    + "nombre,"
+                    + "apellido,"
+                    + "fechanacimiento,"
+                    + "sexo,"
+                    + "direccion,"
+                    + "telefono,"
+                    + "peso,"
+                    + "estatura,"
+                    + "fechainscripcion,"
+                    + "cedula,"
+                    + "fkidrepresentante"
+                    + ") values("
+                    + id + ",
+                    + ((Alumno) objeto).getNombre() + ,
+                    + ((Alumno) objeto).getApellido() + ,
+                    + ((Alumno) objeto).getFechaNacimiento() + ,
+                    + ((Alumno) objeto).getSexo() + ,
+                    + ((Alumno) objeto).getDireccion() + ,"
+                    + ((Alumno) objeto).getTelefono() + ","
+                    + ((Alumno) objeto).getPeso() + ","
+                    + ((Alumno) objeto).getAltura() + ",
+                    + ((Alumno) objeto).getFechaIngreso() + ,"
+                    + ((Alumno) objeto).getCedula() + ","
+                    + ((Alumno) objeto).getRepresentante().getId()
+                    + ")");
+            _resultado = _sql.executeQuery("select max(id) from alumno");
+            while (_resultado.next()) {
+                id = _resultado.getInt(1);
+                System.out.println(id);
+            }
+            objeto.setId(id);
+            Calendar cal = Calendar.getInstance();
+            Calendar cal1 = Calendar.getInstance();
+            cal1.add(Calendar.MONTH, 1);
+              SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+            AgregarMensualidad(new Mensualidad(formatoFecha.format(cal1.getTime()),monto,formatoFecha.format(cal.getTime()),(Alumno)objeto,0,true));
+            agrego = true;
+        } catch (SQLException ex) {
+            throw new SQLException("No se pudo agregar", ex);
+        } finally {
+            Desconectar();
+        }
+        return agrego;
+    }

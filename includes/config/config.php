@@ -24,6 +24,7 @@
 	define ('MAIL_PORT', 587);	
 	define ( 'MAIL_PASSWORD', '$20BeE13$');
 	define ('MAIL_SECURE','tls'); //antes ssl
+	define("GOOGLE_APIKEY", "AIzaSyCZrOa5K7mow_tX5KP253wPifIs7qQ4y3k");
 	
 	//Hash definitions
 	define("PBKDF2_HASH_ALGORITHM", "sha256");

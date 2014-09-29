@@ -23,5 +23,37 @@
 		$data = str_replace(",", ".", $data);
 		return $data;	
 	}
+	
+	function email($value){
+		if (required($value)){	
+			$valid=filter_var($value,FILTER_VALIDATE_EMAIL);
+			return $valid;
+		}else{
+			return false;
+		 }
+	}
+	
+	function  integer($value){
+		if (required($value)){
+			return	$valid=is_int(intval($value) );
+		}else{
+			return false;
+		 }
+		
+	}
+	
+	function required($value){
+		$valid=!empty($value);
+		return $valid;
+	}
+	
+	function stringDate($date)
+	{	if (required($date)){
+	    	$d = DateTime::createFromFormat('Y-m-d', $date);
+	    	return $d && $d->format('Y-m-d') == $date;
+		}else{
+			return false;
+		 }
+	}
 
 ?>

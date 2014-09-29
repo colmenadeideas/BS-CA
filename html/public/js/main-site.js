@@ -1,11 +1,13 @@
 require.config({
-	baseUrl: URL+"public/js/assets/",
+	waitSeconds:12,
+	baseUrl: URL+'public/js/assets/',
 	paths: {
-	        jquery:['jquery.min','//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min'], 
+	        jquery:['jquery.min','https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min'], 
 	    },
 	shim: {
 		'jquery': {
-            exports: '$'
+            exports: '$',
+            
        },
        'bootstrap': {
             deps: ['jquery'],
@@ -15,14 +17,15 @@ require.config({
        'bootstrap.min' : ['jquery'],
        'bootstrap-datetpicker':['jquery','bootstrap.min'],
        '../functions': ['jquery','bootstrap.min','jquery.validate.min','jquery.easing.min','bootstrap-datepicker','all','../js/config','jquery-ui.min'],
-       '../app/site': ['../functions',"../../data/especiality"],   
+       '../app/site': ['../functions','../../data/ve/jsonload','../../data/ve/doctors', 'jquery.geocomplete.min','moment.min','fullcalendar.min','fullcalendar-es','jsonsql'],
+     
        
 	}
 });
 
-require([ 'jquery','../app/site'],
+require(['jquery','../app/site'],
     function($) {
-    	console.log("All is loaded"); 
+    	console.log("All is loadedk"); 
     }
 );
 

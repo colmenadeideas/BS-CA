@@ -55,6 +55,6 @@ padding:30px 15px;
 
 .btn-green { }
 
-#register_form{
+#register_doctor,#register_patient{
 	display:none;
 }

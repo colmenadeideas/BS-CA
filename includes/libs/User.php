@@ -98,7 +98,7 @@
 			switch ($role) {
 				case 'doctor':
 					$table = 'doctor';
-					$field="id_medico";
+					$field="id_doctor";
 					break;
 				
 				default:

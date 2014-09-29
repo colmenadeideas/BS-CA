@@ -6,9 +6,10 @@
         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
       </div>
       <div class="modal-body">
-        <button class="btn-lg btn-default" id="register_doctor">Soy Medico</button>
-		<button class="btn-lg btn-default" id="register_person">Soy Paciente</button>
-		<div id="person"><?php $this->render('site/form/register_person'); ?></div>
+        <button class="btn-lg btn-default" id="register_doctor_button">Soy Medico</button>
+		<button class="btn-lg btn-default" id="register_patient_button">Soy Paciente</button>
+		<div id="patient"><?php $this->render('site/form/register_patient'); ?></div>
+		<div id="doctor"><?php $this->render('site/form/register_doctor'); ?></div>
       </div>
       
     </div>
