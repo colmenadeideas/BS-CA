@@ -112,10 +112,6 @@
 				
 			$data  = User::get('username');
 			$role  = User::get('role');				
-			static function checkSession($controller=''){
-				
-			$data  = User::get('username');
-			$role  = User::get('role');				
 			
 			//Check if user valid
 			$usr = new User();
