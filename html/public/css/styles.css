@@ -58,3 +58,32 @@ padding:30px 15px;
 #register_doctor,#register_patient{
 	display:none;
 }
+
+/*slide  modal from bottom*/
+.modal.fade:not(.in) .modal-dialog {
+    -webkit-transform:  translate3d(0, 125%, 0);
+    transform:  translate3d(0, 125%, 0)
+}
+
+#signin .modal-dialog  { width: 400px }
+#signin .modal-content { border-radius: 0px; background-color: rgba(255,255,255,0.8); border:solid #FFF 2px; box-shadow:none; }
+#signin .modal-header  { padding:12px; border: none; }
+
+.btn-facebook {
+	border-color: #3b5998;
+	border-bottom-color: #263a63;
+	background-color: #3b5998;
+	color: #fff;
+}
+.btn-facebook:hover, .btn-facebook:focus {
+	border-color: #4568b2;
+	border-bottom-color: #2d4575;
+	background-color: #4568b2;
+	color: #fff;
+}
+
+#signin .btn { border-radius: 3px }
+
+.wraper { width:100%; position:absolute; top:0;left:0; overflow:hidden;}
+    	.mask 	{ width:500%;  }
+      	.masked-item { width:20%; height:100%; float:left;}

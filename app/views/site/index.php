@@ -1,4 +1,4 @@
- <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+<!--script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script-->
 
 <main class="site-head" id="content" role="main">
   <div class="container text-center">
@@ -9,7 +9,7 @@
     <h3>busca al médico que necesitas y solicita una cita con comodidad</h3>
     
     
-    <?php $this->render('site/form/search'); ?>
+    <?php $this->render('site/forms/search'); ?>
     
     
     
@@ -19,8 +19,8 @@
   </div>
 </main>
 
-<?php $this->render('site/form/register'); ?>
-<?php $this->render('site/form/login'); ?>
+<?php $this->render('site/forms/register'); ?>
+<?php $this->render('site/forms/login'); ?>
 
 
 
