@@ -47,6 +47,9 @@
 							$array_profile['especiality'] = escape_value($_POST['especiality']);
 					}
 						$insert_profile = $this->helper->insert($role, $array_profile);
+						
+						//aqui agregar creacion del json 
+						
 						//Create Role Permissions for User
 			
 						
@@ -210,6 +213,19 @@ public function authenticate($temp_password, $username) {
 		public function firstlogin($old_password= '') {
 				
 			$this->edit('password', $old_password);
+			
+		}
+		
+		public function crear_json($old_password= '') {
+			$this->loadModel('doctor');
+			@$this->view->doctores = doctorModel::listDoctor();
+			/*
+	 * inner join doctor_practice on doctor_practice.id_doctor=doctor.id_doctor
+inner join clinic on clinic.id=id_clinic
+inner join doctor_practice_schedule on doctor_practice_schedule.id_practice=doctor_practice.id
+	 * 
+	 * */	
+			createJsonDoctor();
 			
 		}
 	}

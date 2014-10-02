@@ -20,6 +20,11 @@
 			where day =DATE_FORMAT(%s,'%W') and id_practice=%i",$date,$practice);
 			
 		}
+		public function listDoctor($by='name', $order='ASC') {
+			return DB::queryFirstRow("SELECT * FROM doctor inner join speciality on speciality.id=doctor.especiality ORDER BY $by $order");
+			
+		}
+	
 	}
 
 ?>
