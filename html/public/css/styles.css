@@ -55,35 +55,79 @@ padding:30px 15px;
 
 .btn-green { }
 
-#register_doctor,#register_patient{
+#register_doctor, #register_patient{
 	display:none;
 }
+
+
+.modal-backdrop {background: none;}
+.temporaryfademe { transition: opacity 1s;}
+
+.inner-addon {     position: relative; }
+/* style icon */
+.inner-addon .glyphicon {  position: absolute;  padding: 14px;  pointer-events: none; opacity: 0.6; }
+
+/* align icon */
+.left-addon .glyphicon  { left:  15px;}
+.right-addon .glyphicon { right: 15px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  35px; }
+.right-addon input { padding-right: 30px; }
+
+
+label.error { /*font-family: 'Glyphicons Halflings';float: right;margin: -35px 10px 0 0;*/ color: #DD4B39; }
+input.error { background: #FFF url(../img/validation-sprites.png) no-repeat right -40px;}
+.form-control { box-shadow: none; border: solid 1px #FFF; }
 
 /*slide  modal from bottom*/
 .modal.fade:not(.in) .modal-dialog {
     -webkit-transform:  translate3d(0, 125%, 0);
     transform:  translate3d(0, 125%, 0)
 }
+.success-response, .alert-response { color: #FFF }
+.success-response h1, .alert-response h1 { font-size:300% }
+.success-response h2 { color:rgb(0, 169, 123); }
+.success-response h4, .alert-response h4 { color: #585858; font-weight: 200; line-height: 140%; }
 
-#signin .modal-dialog  { width: 400px }
-#signin .modal-content { border-radius: 0px; background-color: rgba(255,255,255,0.8); border:solid #FFF 2px; box-shadow:none; }
+.alert-response h1, .alert-response h2 { color:#DD4B39; }
+
+
+.back-close { background:rgba(255,255,255,0.7); height: 55px;
+padding: 20px; border-bottom: 1px solid #E3E3E3; }
+ 
+#registration-patient { padding: 10px }
+#response-registration{ padding: 20px } 
+
+#signin .modal-body { min-height: 460px; padding:0}
+#signin .modal-dialog  { width: 460px }
+#signin .modal-content { border-radius: 0px; background-color: rgba(255, 255, 255, 0.5); border:1px solid rgba(255, 255, 255, 0.8); 
+-webkit-box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.42);
+-moz-box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.42);
+box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.42);
+}
 #signin .modal-header  { padding:12px; border: none; }
-
-.btn-facebook {
-	border-color: #3b5998;
-	border-bottom-color: #263a63;
-	background-color: #3b5998;
-	color: #fff;
-}
-.btn-facebook:hover, .btn-facebook:focus {
-	border-color: #4568b2;
-	border-bottom-color: #2d4575;
-	background-color: #4568b2;
-	color: #fff;
-}
-
+#signin .btn { margin:3px; }
+.btn-facebook {	border-color: #3b5998;	border-bottom-color: #263a63;	background-color: #3b5998;	color: #FFF; }
+.btn-facebook:hover, .btn-facebook:focus {	border-color: #4568b2;	/*border-bottom-color: #2d4575;*/	background-color: #4568b2;	color: #FFF; }
+.btn-email { border-color:#7DFFE1; border-bottom-color: none;	background-color: none;	color: #333;}
+.btn-email i { color:#7DFFE1; }
+.btn-google {border-color:#dd4b39; border-bottom-color: #dd4b39;	background-color: #dd4b39;	color: #FFF;} }
+.btn-google i { color:#FFF; }
+.btn-facebook i, .btn-email i { padding-right: 10px;  border-right: 1px solid rgba(255,255,255,0.5); margin-right: 7px;}
+.btn-full { width: 100%}
 #signin .btn { border-radius: 3px }
-
+#signin .form-control { margin-bottom: 7px }
+#register-select { background: rgba(255,255,255,0.2); text-align: center;  /*position: relative;bottom: -100px; */}
+.padding-20 { padding:20px; }
+/*.content {
+				width:400px;
+				height:300px;
+				top:20%;
+				margin:0 auto;
+				background-color:#aaa;
+				position:relative;
+			}*/
 .wraper { width:100%; position:absolute; top:0;left:0; overflow:hidden;}
     	.mask 	{ width:500%;  }
       	.masked-item { width:20%; height:100%; float:left;}

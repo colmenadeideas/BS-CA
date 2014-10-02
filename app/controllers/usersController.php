@@ -17,7 +17,7 @@
 			$array_user['role'] = escape_value($data['role']);
 			$temp_key = uniqid(rand(), true);				
 			$array_user['pass_hash'] = $this->user->create_hash($temp_key);
-			
+			$table = $array_user['role'];		
 			
 			//Add User
 			if (isset($data['wakeup'])) {
@@ -30,13 +30,14 @@
 					$array_user['status'] = $data['status'];
 				}
 				// create user
+				
 				$insert = $this->helper->insert('users', $array_user);
 				$id =  DB::insertId();
 			}			
 			
 			if ($insert > 0) {				
 				
-				$this->create_profile($id,$data);
+				$this->create_profile($table,$id,$data);
 				$send_mail = 'Y';
 				//Si hay status ...
 				if (isset($data['status'])) {
@@ -68,27 +69,37 @@
 
 
 		// CREATE_PROFILE: Method called by ACCOUNTCONTROLLER or USERS to generate User Profile in Database separate table
-		public function create_profile($id, $data) {
+		public function create_profile($table,$id, $data) {
+			
+			//Only accepts registered tables
+			switch ($table) {
+				case 'patient': break;
+				case 'doctor': break;
+				case 'doctor_assistant': break;				
+				default: exit; break;
+			}
 			
 			$array_profile['id'] = $id;
 			//User Profile
-			$array_profile['username'] = escape_value($data['username']);
-			$array_profile['name'] = escape_value($data['name']);
-			$array_profile['email'] = escape_value($data['email']);
-			$array_profile['phone'] = escape_value($data['phone']);
-			$array_profile['id_card'] = escape_value($data['id_card']);
-			//$array_profile['data'] =	$data['data'];
+			$array_profile['username'] 	= escape_value($data['username']);
+			$array_profile['name'] 		= escape_value($data['name']);
+			$array_profile['lastname'] 	= escape_value($data['lastname']);
+			$array_profile['email'] 	= escape_value($data['email']);
+			$array_profile['birth'] 	= escape_value($data['birth']);
+			//$array_profile['phone'] 	= escape_value($data['phone']);
+			//$array_profile['id_card'] = escape_value($data['id_card']);
+			$array_profile['data']		=	$data['data'];
 			if (isset($data['status'])) {
 				$array_profile['status'] = escape_value($data['status']);
 			}			
 			//Create and add Profile			
 			if (isset($data['wakeup'])) {
 				//just update user
-				$insert = $this->helper->update('user_profile', $id, $array_profile);
+				$insert = $this->helper->update($table, $id, $array_profile);
 			} else {
-				// create user
-				$insert_profile = $this->helper->insert('user_profile', $array_profile);
-			}			
+				// create user profile
+				$insert_profile = $this->helper->insert($table, $array_profile);
+			}	
 			
 			
 		}		
