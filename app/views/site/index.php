@@ -1,7 +1,7 @@
 <!--script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script-->
 
 <main class="site-head" id="content" role="main">
-  <div class="container text-center">
+  <div class="container text-center temporaryfademe">
     
    
     <h1>Encontrar un <span class="rotate">Cardiólogo, Ginecólogo, Nutricionista, Veterinario, Odontólogo</span> </h1>

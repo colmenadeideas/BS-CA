@@ -1,10 +1,12 @@
 $(document).ready(function() {
+	$('.datetimepicker').datetimepicker({pickTime: false, });
+	
 	$(".rotate").textrotator({
         animation: "fade",
         separator: ",",
     	speed: 800
     });
-    register_person();
+    ///register_person();
     validate_login();
     search_location();
    load_calendar();
@@ -155,25 +157,7 @@ function search_location(){
           return false;
         });
 }
-function register_person(){
-	
-	
-	$( "#register_doctor_button" ).click(function() {
-	  $( "#role" ).val("doctor");
-	  $( "#register_doctor" ).css("display","block");
-	
-	  $('#birth').datepicker({ format: "dd/mm/yyyy",
-    language: "es",
-    autoclose: true});
-	
-	  validate_register_doctor();
-	});
-	$( "#register_patient_button" ).click(function() {
-	   
-	     $( "#register_patient" ).css("display","block");
-	     validate_register_patient();
-	});
-}
+
 
 
 function validate_register_patient(){	

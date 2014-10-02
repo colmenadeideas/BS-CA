@@ -34,8 +34,8 @@ require.config({
          //'paging': ['jquery','assets/jquery.dataTables.min'],
       	 'assets/fullcalendar.min': ['jquery'/*,'assets/fullcalendar-es'*/],
        	 'assets/jquery.geocomplete.min' : ['jquery'],
-       	 'assets/bootstrap-datepicker':['jquery','assets/bootstrap.min'],
-         'common': ['jquery','assets/jquery-ui.min','assets/bootstrap.min','assets/jquery.validate.min','assets/jquery.easing.min','assets/jquery.scrollTo.min','assets/bootstrap-datepicker','assets/jquery.geocomplete.min','../data/ve/jsonload','../data/ve/doctors','assets/moment.min','assets/fullcalendar.min','assets/jsonsql','assets/all','functions','config'],
+       	 'assets/bootstrap-datetimepicker':['jquery','assets/bootstrap.min'],
+         'common': ['jquery','assets/jquery-ui.min','assets/bootstrap.min','assets/jquery.validate.min','assets/jquery.easing.min','assets/jquery.scrollTo.min','assets/bootstrap-datetimepicker','assets/jquery.geocomplete.min','../data/ve/jsonload','../data/ve/doctors','assets/moment.min','assets/fullcalendar.min','assets/jsonsql','assets/all','functions','config'],
          'app/registration': ['jquery','common'],
          'app/site': ['common', 'app/registration'],
        

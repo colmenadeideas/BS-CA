@@ -1,13 +1,5 @@
 <?php
 //TODO This varss should be distribuited to different files
-define ('NAME','Nombre');
-define ('ID_CARD','Cedula');
-define ('BIRTH','Fecha de Nacimiento');
-define ('SEX','Sexo');
-define ('PHONE','Teléfono');
-define ('EMAIL','E-MAIL');
-define ('USERNAME','Usuario');
-define ('PASSWORD','Contraseña');
 
 
 

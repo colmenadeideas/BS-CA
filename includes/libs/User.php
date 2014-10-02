@@ -98,7 +98,7 @@
 			if (!empty($user)) {
 				$role = $this->get('role');
 			
-				$table = 'user_profile';
+				$table = $role; //'user_profile';
 				$field = 'username';
 									
 				return DB::query("SELECT * FROM ". DB_PREFIX . $table ." WHERE ". $field ."=%s LIMIT 1", $user);

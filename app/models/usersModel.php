@@ -15,8 +15,8 @@
 			return DB::query("SELECT * FROM " . DB_PREFIX . "users WHERE $by=%s LIMIT 1", $id);
 		}
 	
-		public function getUserProfile($id, $by = 'username') {
-			return DB::query("SELECT * FROM " . DB_PREFIX . "user_profile WHERE $by=%s LIMIT 1", $id);
+		public function getUserProfile($table, $id, $by = 'username') {
+			return DB::query("SELECT * FROM " . DB_PREFIX . "$table WHERE $by=%s LIMIT 1", $id);
 		}
 	
 	}
