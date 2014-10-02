@@ -6,7 +6,7 @@
 	date_default_timezone_set('America/Caracas');	
 	//Path info
 	define ('SITE_PATH', dirname(dirname(realpath(__FILE__))).'/'); 
-	define ('SITE_NAME', "BS-QB");
+	define ('SITE_NAME', "OKIDOC");
 	define ('PUBLIC_PATH', URL . 'public/');
 	define ('CSS', URL . 'public/css/'); 
 	define ('IMG', URL . 'public/img/'); 
@@ -18,13 +18,14 @@
 	define ('SIDEBARS', SITE_PATH . '/app/views/sidebars/'); 
 	
 	//Email Configuration
-	define ('SYSTEM_EMAIL', 'quinbi@besign.com.ve');
-	define ('MAIL_SERVER', 'smtp.gmail.com');
-	define ('MAIL_HOST', 'mail.besign.com.ve');
-	define ('MAIL_PORT', 587);	
-	define ( 'MAIL_PASSWORD', '$20BeE13$');
-	define ('MAIL_SECURE','tls'); //antes ssl
-	define("GOOGLE_APIKEY", "AIzaSyCZrOa5K7mow_tX5KP253wPifIs7qQ4y3k");
+	define ('SYSTEM_EMAIL', 'hello@okidoctor.com');
+	define ('MAIL_SERVER', 'smtp.zoho.com');
+	define ('MAIL_HOST', 'smtp.zoho.com');
+	define ('MAIL_PORT', 465);	
+	define ( 'MAIL_PASSWORD', 'Ker$wr543');
+	define ('MAIL_SECURE','ssl');
+	
+	define('GOOGLE_APIKEY', 'AIzaSyCZrOa5K7mow_tX5KP253wPifIs7qQ4y3k');
 	
 	//Hash definitions
 	define("PBKDF2_HASH_ALGORITHM", "sha256");
