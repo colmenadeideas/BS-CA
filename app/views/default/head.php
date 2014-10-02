@@ -11,10 +11,9 @@
     <title><?php echo $this->title; ?></title>
 	
 	<link href="<?php echo CSS; ?>bootstrap.min.css" rel="stylesheet">
-	<link href="<?php echo CSS; ?>styles.css" rel="stylesheet">
-	
-
 	<link href="<?php echo CSS; ?>fullcalendar.css" rel="stylesheet">
+	<link href="<?php echo CSS; ?>font-awesome.min.css" rel="stylesheet">
+	<link href="<?php echo CSS; ?>styles.css" rel="stylesheet">
 	
 	<!--link href="<?php echo CSS;?>all.css" rel="stylesheet"-->  
 	

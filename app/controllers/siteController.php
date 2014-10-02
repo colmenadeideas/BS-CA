@@ -14,6 +14,11 @@
 				
 			$this->view->buildpage('site/index');			
 		}
+		public function test() {			
+			
+			$this->view->render('default/head');		
+			$this->view->render('site/test');			
+		}
 		
 		public function search(){
 			
