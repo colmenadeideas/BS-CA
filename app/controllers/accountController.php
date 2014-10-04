@@ -1,4 +1,11 @@
 <?php 
+	 /**
+	 * AccountController handles:
+	 * - Creating users accounts
+	 * - Login & Sign Up
+	 * - Identifies users and redirects to proper site initialization
+	 * - First time login 
+	 */
 	
 	class accountController extends Controller {
 		
@@ -8,11 +15,27 @@
 		}
 	
 		public function index() {
-				
-		//	$this->view->buildpage('site/index');			
-		
+							
+			$this->signin();		
 		}
 		
+		// SIGNIN: verifies if User already logged in, if not shows login screen
+		public function signin() {
+			
+			 $already_loggedin = User::get('role');
+			
+			if (empty($already_loggedin)) {
+				
+				$this->view->title = SITE_NAME. " | " .SITE__SIGN_IN ;						
+				$this->view->render('login/index');
+				
+			} else {
+				//Redirect		
+				$this->identify();
+			}
+		}
+		
+<<<<<<< HEAD
 		public function add() {
 		
 					$user_email = escape_value($_POST['email']);
@@ -51,50 +74,67 @@
 						//aqui agregar creacion del json 
 						
 						//Create Role Permissions for User
+=======
+		// LOGIN: Method called by login form, process the form and returns authorization response from server
+		public function login() {
+				
+			$array_datos = array();	
+			foreach ($_POST as $key => $value) {
+				$campo = escape_value($key);
+				$valor = escape_value($value);
+				
+				$data = "\$" . $campo . "='" . escape_value($valor) . "';";						
+				eval($data);
+			}
+>>>>>>> origin/Login-and-Registration
 			
-						
-						//::::Log Action::::					
-						
-						
-						//Email User Activation
-						
-							//Email User Activation Notification
-							$message = SYSTEM_SIMPLE_EMAIL_HEAD;								
-							$message .= SYSTEM_EMAIL__USER_ACTIVATION_MESSAGE_PART1;
-							$message .= 'Su usuario es: '. $array_user['username'] .'<br><br>';
-							$message .= SYSTEM_EMAIL__USER_ACTIVATION_MESSAGE_PART2;
-							$message .= '<a href="'.URL.'account/authenticate/'.$temp_key.'/'.$array_user['username'].'" style="color: #ffffff; font-size:16px; font-weight: bold; font-family: Helvetica, Arial, sans-serif; text-decoration: none; line-height:40px; width:100%; display:inline-block">Activar Usuario</a>';				
-							$message .= SYSTEM_EMAIL__USER_ACTIVATION_MESSAGE_PART3;
-							$message .= SYSTEM_SIMPLE_EMAIL_FOOTER;
-							
-						//	$this->email->sendMail($user_email, SYSTEM_EMAIL, ACTIVATION_USER_SUBJECT , $message);						
-							
-						
-					
-					
+			$username = $email;
+			$validUser = $this->user->validateUsername($username);
+			
+			if(empty($validUser)){
+				echo "error";
+			} else {
+				$validPass = $this->user->validatePassword($username, $password);
+				if(empty($validPass)){
+					echo "error";
+				} else {
+						$role = escape_value($validUser[0]['role']);
+						$username = escape_value($validUser[0]['username']);
+						$this->user->init();
+				        $this->user->set('role', $role);
+						$this->user->set('loggedIn', true);
+				        $this->user->set('username', $username);				           
+						echo "welcome";					
+						exit;
 					}
+			}
+				
 		}
-
-
-public function authenticate($temp_password, $username) {
+		
+		
+		
+		
+		// AUTHENTICATE: Method called when user is verified via Email -after registration-, and is logging in for the first time	
+		public function authenticate($temp_password, $username) {
 			
 			$username = escape_value($username);
 			$password = escape_value($temp_password);			
 			
 			$validUser = $this->user->validateUsername($username);
 			
-			if(empty($validUser)){						
-				//echo "user";
-				echo ERROR_AUTHENTICATE;
+			if(empty($validUser)){	//Wrong User					
+			
+				echo ERROR_AUTHENTICATE_MESSAGE;
 				exit;
 								
 			} else {
 				$validPass = $this->user->validatePassword($username, $password);
 				
-				if(empty($validPass)){
-					//echo "pass";	
-					echo ERROR_AUTHENTICATE;
+				if(empty($validPass)){ //Wrong Password
+				
+					echo ERROR_AUTHENTICATE_MESSAGE;
 					exit;				
+					
 				} else {
 					$role = escape_value($validUser[0]['role']);
 					$username = escape_value($validUser[0]['username']);
@@ -103,32 +143,204 @@ public function authenticate($temp_password, $username) {
 					$this->user->set('loggedIn', true);
 			        $this->user->set('username', $username);
 			           
-					//echo 'welcome';
+					// Welcome
 					$this->firstlogin($password);					
 					exit;
 				}
 			}
 			
-			
 		} 
 		
-		public function signin() {
-			
-			$already_loggedin = User::get('role');
-			
-			if (empty($already_loggedin)) {
+		// IDENTIFY: verifies which session corresponds to user, and redirects them to appropiate area
+		public function identify () {
 				
-				$this->view->title = SITE_NAME. " | Entrar";						
-				$this->view->render('login/index');
-				
-			} else {
-				//Redirect		
-				$this->identify();
+			User::checkSession();
+			//Auth::handleLogin('account');
+			User::gotoMainArea();			
+			
+		}
+		
+		// LOGOUT: kills session and redirects user to home
+		public function logout() {			
+			
+			$this->user->destroy();
+			header('location: '. URL);	
+		} 
+		
+		
+		
+		/*
+		 * USER CREATION
+		 */
+		 
+		// SEARCHREGISTERED: Method called by form RECOVERY, to async check if user is in fact registered
+		function searchregistered( $field, $data){
+			$result = $this->model->getAccount( $data, $field);
+			echo json_encode($result);
+		}
+		
+		// CHECKREGISTERED: Method called by form REGISTRATION, to async check if user is already registered
+		function checkregistered($table, $what) {
+			
+			//Check if already exist in User database
+			switch ($what) {
+				case 'username':
+					$requested_data = escape_value($_POST['email']);
+					$already_registered =	$this->model->getAccount($table, $requested_data, 'username'); //checkRegistered
+					
+					if (!empty($already_registered)){
+						if ($already_registered[0]['status'] === 'sleep') {
+							$already_registered = '';
+						}	
+					}					
+					
+					break;
+				//TODO Change if need to check by other field
+				/*case 'rif':
+					$requested_data = escape_value($_POST['rifletter']).escape_value($_POST['rif']);
+					$already_registered =	$this->model->getAccount($requested_data, 'rif'); //checkRegistered
+					break;*/
+			}
+			
+			if (!empty($already_registered)) {
+			    echo 'false';
+			}
+			else {
+			    echo 'true';
 			}
 		}
 		
+		// RECAPTCHA: Method called by form to check if valid captcha was provided
+		function recaptcha() {
+			
+			$resp = recaptcha_check_answer (RECAPTCHA_PRIVATEKEY,
+			                                $_SERVER["REMOTE_ADDR"],
+			                                $_POST["recaptcha_challenge_field"],
+			                                $_POST["recaptcha_response_field"]);
+			
+			if (!$resp->is_valid) {
+			 	// die ("The reCAPTCHA wasn't entered correctly. Go back and try it again." . "(reCAPTCHA said: " . $resp->error . ")");
+				// echo 'false'; 
+				echo 'true';
+			} else {
+			    echo 'true';
+			}
+
+		}
 		
-			public function edit ($what, $old_password = ''){
+		
+		// PROCESS: Method called by form REGISTRATION, to process vars and create user
+		function process($table) {
+		
+			
+			$array_data = array();	
+			foreach ($_POST as $key => $value) {
+				$field = escape_value($key);
+				$field_data = escape_value($value);				
+				$array_data[$field] = $field_data;
+			}
+			
+			//unset($array_data['recaptcha_challenge_field']);
+			//unset($array_data['recaptcha_response_field']);			
+			
+			
+			// 1 -Creates User&Profile and Sends Authentication Link
+			$array_user['username'] 	= $array_data['email'];
+			$array_user['role'] 		= $array_data['role'];
+			$array_user['status'] 		= 'active';
+			//Data for Profile
+			$array_user['name'] 		= $array_data['name'];
+			$array_user['lastname'] 	= $array_data['lastname'];
+			$array_user['email'] 		= $array_data['email'];
+			$array_user['birth'] 		= $array_data['birth'];	
+			
+			//TODO Users registration will be a process of steps
+			//TODO REFACTOR Should 'sex' and 'birth' be located in fields or should they go to a json field DATA?
+			//$array_user['phone'] 		= $array_data['phone'];
+			//$array_user['id_card'] 		= $array_data['id_card'];				
+			//$array_profile['sex'] 		= $array_data['v'];
+			@$array_user['data'] 		= json_encode( array('creationdate'=> date("Y-m-d h:i:s")));
+			
+			//Check if already exist in User database
+			$already_registered =	$this->model->getAccount($table,$array_data['email'], 'username');
+			
+			if(!empty($already_registered)){
+					
+				if ($already_registered[0]['status'] === 'sleep'){
+					//si está sleep ->
+					$array_user['wakeup'] 	= $already_registered[0]['id'];
+					//Register User				
+					require_once('usersController.php');	
+					$users = new usersController;	
+					$create_user = $users->create($array_user);	
+						
+				}
+			} else if (empty($already_registered)) {
+					
+				//Register User				
+				require_once('usersController.php');	
+				$users = new usersController;	
+				$create_user = $users->create($array_user);	
+			}
+			
+			if ($create_user > 0) {								
+				echo REGISTRATION_MESSAGE_SUCCESS;		
+			} else {
+				echo REGISTRATION_MESSAGE_ERROR;
+			}
+			
+			
+		}
+		
+		
+		
+		
+		/*
+		 * SETTINGS methods
+		 */
+		 
+		// FIRSTLOGIN: takes user to inmediately set a password ( when coming from AUTHENTICATE from mail he doesn't have one);
+		public function firstlogin($old_password= '') {
+				
+			$this->edit('password', $old_password);
+			
+		}
+		// PROFILE: shows main Account area
+		public function profile () {
+			$this->edit('profile');
+		}
+		
+		// RECOVER: Method called by form, checks user and triggers recovery by email password process
+		function recover($what='password'){
+			
+			$username = escape_value($_POST['recover-password']);
+			//Check for username in Database
+			$already_registered =	$this->model->getAccount($username, 'username');
+			
+			if (empty($already_registered)) {
+				echo SYSTEM_USERNAME_NOT_EXISTS;
+			} else {
+				$temp_key = uniqid(rand(), true);	
+				$array_user['pass_hash'] = $this->user->create_hash($temp_key);
+				$insert = $this->helper->update('users', $already_registered[0]["id"], $array_user);
+				//Send Passwrod change email
+				$message =  SETTINGS_EMAIL_HEAD;								
+				$message .= PASSWORD_RECOVERY_MESSAGE_PART1;
+				$message .= PASSWORD_RECOVERY_MESSAGE_PART2;
+				$message .= '<a href="'.URL.'account/authenticate/'.$temp_key.'/'.$username.'" style="color: #ffffff; font-size:16px; font-weight: bold; font-family: Helvetica, Arial, sans-serif; text-decoration: none; line-height:40px; width:100%; display:inline-block">Cambiar Password</a>';				
+				$message .= PASSWORD_RECOVERY_MESSAGE_PART3;
+				$message .= SETTINGS_EMAIL_FOOTER;
+					
+				$this->email->sendMail($username, SYSTEM_EMAIL, PASSWORD_RECOVERY_SUBJECT , $message);
+				
+				echo PASSWORD_RECOVERY_SUCCESS_RESPONSE;
+			}
+			
+				
+		}
+		
+		// EDIT: Views to edit Password or Profile
+		public function edit ($what, $old_password = ''){
 			
 			$this->view->userdata = $this->user->getUserdata();
 				
@@ -161,60 +373,140 @@ public function authenticate($temp_password, $username) {
 			
 		}
 		
-		public function login() {
+
+
+		/*
+	 	* function register() {			
+			
+			$already_loggedin = User::get('role');
+			
+			if (empty($already_loggedin)) {
 				
-			$array_datos = array();	
-			foreach ($_POST as $key => $value) {
-				$campo = escape_value($key);
-				$valor = escape_value($value);
+				$this->view->title = "Registrarse |" . SITE_NAME;
+				$this->view->render('default/head');
+				$this->view->render('registration/public');
+				$this->view->render('default/footer');
 				
-			 	$data = "\$" . $campo . "='" . escape_value($valor) . "';";						
-				 eval($data);
-			}
-			$username = $email;
-			$validUser = $this->user->validateUsername($username);
-			//aqui voy
-			if(empty($validUser)){
-				echo "error";
 			} else {
-				$validPass = $this->user->validatePassword($username, $password);
-				if(empty($validPass)){
-					echo "error";
-				} else {
-						$role = escape_value($validUser[0]['role']);
-						$username = escape_value($validUser[0]['username']);
-						$this->user->init();
-				        $this->user->set('role', $role);
-						$this->user->set('loggedIn', true);
-				        $this->user->set('username', $username);				           
-						echo 'welcome';					
-						exit;
-					}
+				//Redirect		
+				$this->identify();
 			}
-				
-		}
-		
-		public function logout() {			
 			
-			$this->user->destroy();
-			header('location: '. URL);		
-			//$this->signin();
-		} 
-		
-		public function identify () {
-				
-			User::checkSession();
-			//Auth::handleLogin('account');
-			User::gotoMainArea();			
 			
-		}
+		}*/
 		
-		//Settings
-		public function firstlogin($old_password= '') {
-				
-			$this->edit('password', $old_password);
+		public function update($what) {
+			//TODO Auth this method  YES or NO? Make it private
+								
+			$username 	= $this->user->get('username');
+			$role 		= $this->user->get('role');
 			
+			$userdata 	= $this->user->getUserdata($role, $username);			
+			
+			if (empty($userdata)) {
+				exit;
+				
+			} else {
+				
+				$email 	= $userdata[0]['email'];
+								
+				$fields = '';
+				$values = '';
+				$array_datos = array();	
+				$array_datos['username'] = $username;
+				
+				foreach ($_POST as $key => $value) {
+							
+					if ($value === '') { // skips empty fields
+									
+					} else {
+								
+						$campo = escape_value($key);
+						$valor = escape_value($value);
+						
+						switch ($key) {
+											
+							case 'submit': //omitir campo
+								break;
+								
+							case 'password_confirm': //omitir campo
+								break;
+	
+							default:
+							
+							//Convert to $variables every filled field		
+						
+							$data = "\$" . $campo . "='" . $valor . "';";						
+							eval($data);
+					
+							$array_datos[$campo] = $valor;
+						
+						}
+								
+					}
+									
+				}
+					switch ($what) {
+						
+					case 'password':
+						
+						//Validate Data
+						$validPass = $this->user->validatePassword($username, $password_old);
+						
+						if(empty($validPass)){
+								
+							echo SYSTEM_INVALID_PASSWORD;					
+						
+						} else {
+								
+							//Previous Password Approved, move on						
+							$array_datos['pass_hash'] = $this->user->create_hash($password);
+							
+							//remove extra $_POST;
+							unset($array_datos['password_old'], $array_datos['password']);
+							 
+							//Update Data
+							$this->helper->update('users', $username, $array_datos, 'username', 1);
+							$updated_data = DB::affectedRows();
+							
+							if($updated_data !== 0)  {
+								
+								//Notificacion 
+								$message = SYSTEM_EMAIL__PASSWORD_CHANGE;
+				
+								$bodyuser = $this->email->buildNiceEmail('settings', SYSTEM_PASSWORD_CHANGE, $message);
+										
+								//Notificar registro
+								$this->email->sendMail($email, SYSTEM_EMAIL , SYSTEM_PASSWORD_CHANGE, $bodyuser);
+								
+								// Insertar registro de Session
+								User::logSession($username);						
+								
+								//Redirect	
+								$this->view->redirect_link = URL .'account/identify';
+								$this->view->response = SYSTEM_PASSWORD_CHANGE;
+								$this->view->render('redirect');						
+								
+							} 
+							
+												
+							
+						}				
+						
+						
+						break;
+					
+					default:
+						echo "def";
+						break;
+				}
+				
+			}				
+					
+			
+		
 		}
+<<<<<<< HEAD
 		
 		public function crear_json($old_password= '') {
 			$this->loadModel('doctor');
@@ -228,6 +520,12 @@ inner join doctor_practice_schedule on doctor_practice_schedule.id_practice=doct
 			createJsonDoctor();
 			
 		}
+=======
+			
+		
+		
+		
+>>>>>>> origin/Login-and-Registration
 	}
 		
 ?>

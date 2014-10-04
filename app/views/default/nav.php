@@ -1,4 +1,4 @@
-<header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+<header class="navbar navbar-fixed-top bs-docs-nav " id="top" role="banner">
   <div class="container">
     <div class="navbar-header">
       <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
@@ -7,16 +7,19 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="../" class="navbar-brand">CAPITÁN AMERICA PROJ</a>
+      <div class="col-lg-5 col-sm-5">
+      	<a href="<?php echo SITE_URL; ?>" class="navbar-brand"><img src="<?php echo IMG; ?>okidoc-logo-main.png" class="img-responsive"></a>
+      </div>
+      
     </div>
     <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
-        <li class="active">
+        <!--li class="active">
           <a href="#">Soy Médico</a>
         </li>
         <li>
           <a href="#">Soy Paciente</a>
-        </li>
+        </li-->
         </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#" data-toggle="modal" data-target="#signin">Registrarse</a></li>

@@ -1,86 +1,55 @@
 require.config({
-	waitSeconds:12,
-	baseUrl: URL+'public/js/assets/',
-	paths: {
-	        jquery:['jquery.min','https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min'], 
-	    },
-	shim: {
-		'jquery': {
-            exports: '$',
-            
-       },
-       'bootstrap': {
-            deps: ['jquery'],
-            exports: '$'
-       },
-       
-       'bootstrap.min' : ['jquery'],
-       'bootstrap-datetpicker':['jquery','bootstrap.min'],
-       '../functions': ['jquery','bootstrap.min','jquery.validate.min','jquery.easing.min','bootstrap-datepicker','all','../js/config','jquery-ui.min'],
-       '../app/site': ['../functions','../../data/ve/jsonload','../../data/ve/doctors', 'jquery.geocomplete.min','moment.min','fullcalendar.min','fullcalendar-es','jsonsql'],
-     
-       
-	}
-});
-
-require(['jquery','../app/site'],
-    function($) {
-    	console.log("All is loadedk"); 
-    }
-);
-
-/*
- * 
- require.config({
 	baseUrl: URL+"public/js",
 	requireDefine:true,
-	waitSeconds:7,
-		paths: {
-	        jquery:['jquery.min','//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min'], 
-	    },	
+	waitSeconds:0,
+	paths: {
+	        jquery:[  'assets/jquery.min', '//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min'], // 2.0.0
+			'async': 'assets/requirejs-plugins/async',
+	        
+	   },	
 	    
 	shim: {
 		'jquery': {
             exports: '$'
         },
+        
+        gmaps: {
+         	exports: 'google',
+        	exports: '$',
+        },
        
-        'bootstrap': {
+        'bootstrap.min': {
             deps: ['jquery'],
             exports: '$'
         },
-        'all.min': ['jquery'],
-        'assets/bootstrap.min' : ['jquery'],
-        'assets/bootstrap-editable.min': ['jquery', 'assets/bootstrap.min'],
-        'assets/jquery.validate.min': ['jquery'],
-        'assets/jquery.easing.min': ['jquery'],             
-        'assets/jquery.dataTables.min': ['jquery'],
-        'assets/jquery.maskedinput.min': ['jquery'],
-        'assets/dataTables.bootstrap': ['jquery', 'assets/bootstrap.min', 'assets/jquery.dataTables.min'], 
-        'paging': ['jquery','assets/jquery.dataTables.min'],
-        'common': ['jquery','assets/jquery.validate.min','assets/bootstrap-editable.min', 'assets/jquery.easing.min', 'assets/jquery-ui.min','assets/bootstrap-datetimepicker', 'config'],
-        'app/login': ['common'],
-        'app/registration': ['jquery','assets/bootstrap-datetimepicker','assets/jquery.maskedinput.min'],
-        'app/newsletter': ['assets/jquery.validate.min'],
-        'app/app': ['common', 'app/registration','app/newsletter'],
-        
+         'assets/all': ['jquery'],
+         'assets/bootstrap.min' : ['jquery'],
+         'assets/jquery.validate.min': ['jquery'],
+         'assets/jquery.easing.min': ['jquery'],   
+         'assets/jquery.scrollTo.min': ['jquery'], 
+         'assets/jquery.backstretch.min': ['jquery'],
+         'functions': ['jquery', 'assets/jquery.validate.min'],
+          //'assets/jquery.dataTables.min': ['jquery'],
+         //'assets/jquery.maskedinput.min': ['jquery'],
+         //'assets/dataTables.bootstrap': ['jquery', 'assets/bootstrap.min', 'assets/jquery.dataTables.min'], 
+         //'paging': ['jquery','assets/jquery.dataTables.min'],
+      	 'assets/fullcalendar.min': ['jquery'/*,'assets/fullcalendar-es'*/],
+       	 'assets/jquery.geocomplete.min' : ['jquery'],
+       	 'assets/bootstrap-datetimepicker':['jquery','assets/bootstrap.min'],
+         'common': ['jquery','assets/jquery-ui.min','assets/bootstrap.min','assets/jquery.validate.min','assets/jquery.easing.min','assets/jquery.scrollTo.min','assets/jquery.backstretch.min','assets/bootstrap-datetimepicker','assets/jquery.geocomplete.min','../data/ve/jsonload','../data/ve/doctors','assets/moment.min','assets/fullcalendar.min','assets/jsonsql','assets/all','functions','config'],
+         'app/registration': ['jquery','common'],
+         'app/site': ['common', 'app/registration'],
        
 	}
 });
-
 require([
         'jquery',
-        'app/login','app/app',
+        'async!https://maps.googleapis.com/maps/api/js?v=3&libraries=places&sensor=false',
+        'app/site'
     ],
-    function($, Login, App) {
-    	$('.datepicker').datepicker({
-	        format: 'dd/mm/yyyy',
-	        language: 'da',
-	        keyboardNavigation: false,
-	        autoclose: true
-	    });
-    	console.log("Loaded!s"); 
-    	Login.signin();
-    	//App.run();
-    	checkcurrentform();
+    function($) {    	
+    	$(document).ready(function () {
+   			console.log("Loaded :)"); 
+   	 	});
     }
-);*/
+);

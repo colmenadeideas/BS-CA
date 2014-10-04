@@ -1,1 +1,6 @@
 .project
+*local.php
+*main-site-backup.js
+*site.js
+*test.php
+*config.js
