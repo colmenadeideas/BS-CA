@@ -56,4 +56,15 @@
 		 }
 	}
 
+
+function createJsonDoctor($array_doctores){
+	 $archivo=DATA.COUNTRY."/doctors.js";
+	 $fp = fopen($archivo, "w+");
+	//selecionar cada doctor
+	
+	
+	 fwrite($fp, '1');
+	 fclose($fp);
+}
+
 ?>

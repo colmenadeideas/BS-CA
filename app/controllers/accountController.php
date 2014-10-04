@@ -26,7 +26,7 @@
 			
 			if (empty($already_loggedin)) {
 				
-				$this->view->title = SITE_NAME. " | " .SITE__SIGN_IN ;						
+				$this->view->title = SITE_NAME. " | " .SITE_NAME__SIGN_IN ;						
 				$this->view->render('login/index');
 				
 			} else {
@@ -133,19 +133,19 @@
 		 */
 		 
 		// SEARCHREGISTERED: Method called by form RECOVERY, to async check if user is in fact registered
-		function searchregistered( $field, $data){
-			$result = $this->model->getAccount( $data, $field);
+		function searchregistered($field, $data){
+			$result = $this->model->getAccount($data, $field);
 			echo json_encode($result);
 		}
 		
 		// CHECKREGISTERED: Method called by form REGISTRATION, to async check if user is already registered
-		function checkregistered($table, $what) {
+		function checkregistered($what) {
 			
 			//Check if already exist in User database
 			switch ($what) {
-				case 'username':
+				case 'user':
 					$requested_data = escape_value($_POST['email']);
-					$already_registered =	$this->model->getAccount($table, $requested_data, 'username'); //checkRegistered
+					$already_registered =	$this->model->getAccount($requested_data, 'username'); //checkRegistered
 					
 					if (!empty($already_registered)){
 						if ($already_registered[0]['status'] === 'sleep') {
@@ -189,8 +189,7 @@
 		
 		
 		// PROCESS: Method called by form REGISTRATION, to process vars and create user
-		function process($table) {
-		
+		function process() {
 			
 			$array_data = array();	
 			foreach ($_POST as $key => $value) {
@@ -199,8 +198,8 @@
 				$array_data[$field] = $field_data;
 			}
 			
-			//unset($array_data['recaptcha_challenge_field']);
-			//unset($array_data['recaptcha_response_field']);			
+			unset($array_data['recaptcha_challenge_field']);
+			unset($array_data['recaptcha_response_field']);			
 			
 			
 			// 1 -Creates User&Profile and Sends Authentication Link
@@ -209,19 +208,17 @@
 			$array_user['status'] 		= 'active';
 			//Data for Profile
 			$array_user['name'] 		= $array_data['name'];
-			$array_user['lastname'] 	= $array_data['lastname'];
 			$array_user['email'] 		= $array_data['email'];
-			$array_user['birth'] 		= $array_data['birth'];	
-			
+			$array_user['phone'] 		= $array_data['phone'];
 			//TODO Users registration will be a process of steps
 			//TODO REFACTOR Should 'sex' and 'birth' be located in fields or should they go to a json field DATA?
-			//$array_user['phone'] 		= $array_data['phone'];
-			//$array_user['id_card'] 		= $array_data['id_card'];				
+			//$array_user['id_card'] 		= $array_data['id_card'];
+			//$array_profile['birth'] 		= $array_data['birth'];		
 			//$array_profile['sex'] 		= $array_data['v'];
 			@$array_user['data'] 		= json_encode( array('creationdate'=> date("Y-m-d h:i:s")));
 			
 			//Check if already exist in User database
-			$already_registered =	$this->model->getAccount($table,$array_data['email'], 'username');
+			$already_registered =	$this->model->getAccount($array_data['email'], 'username');
 			
 			if(!empty($already_registered)){
 					

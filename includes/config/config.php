@@ -16,6 +16,7 @@
 	define ('LIBS', SITE_PATH . 'libs/');
 	define ('LANG', SITE_PATH . 'lang/'); 
 	define ('SIDEBARS', SITE_PATH . '/app/views/sidebars/'); 
+	define ('DATA', SITE_PATH . '../html/public/data/'); 
 	
 	//Email Configuration
 	define ('SYSTEM_EMAIL', 'hello@okidoctor.com');
@@ -38,6 +39,8 @@
 	define("HASH_ITERATION_INDEX", 1);
 	define("HASH_SALT_INDEX", 2);
 	define("HASH_PBKDF2_INDEX", 3);
+	
+	define("COUNTRY","ve");
 	
 	//TODO	//String mix for password hash
 	
