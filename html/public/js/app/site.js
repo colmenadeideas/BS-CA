@@ -6,8 +6,14 @@ $(document).ready(function() {
         separator: ",",
     	speed: 800
     });
-    ///register_person();
-    validate_login();
+
+	$.backstretch([
+	      URL+"public/images/backgrounds/01.jpg"
+	    , URL+"public/images/backgrounds/02.jpg"
+	  ], {duration: 3000, fade: 2000});
+	  
+   
+   $('#construccion').modal('show');	
     search_location();
    load_calendar();
 
