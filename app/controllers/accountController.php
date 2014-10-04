@@ -26,7 +26,7 @@
 			
 			if (empty($already_loggedin)) {
 				
-				$this->view->title = SITE_NAME. " | " .SITE__SIGN_IN ;						
+				$this->view->title = SITE_NAME. " | " .SITE_NAME__SIGN_IN ;						
 				$this->view->render('login/index');
 				
 			} else {
@@ -35,46 +35,6 @@
 			}
 		}
 		
-<<<<<<< HEAD
-		public function add() {
-		
-					$user_email = escape_value($_POST['email']);
-					//User Profile
-					$array_user['username'] = $user_email;
-					$array_profile['name'] = escape_value($_POST['name']);
-					//$array_profile['email'] = escape_value($_POST['email']);
-					$array_profile['phone'] = escape_value($_POST['phone']);
-					$array_profile['id_card'] = escape_value($_POST['id_card']);	
-					$array_profile['birth'] = escape_value($_POST['birth']);		
-					$array_profile['sex'] = escape_value($_POST['sex']);				
-					//User
-					
-					
-					$array_user['role'] = escape_value($_POST['role']);
-					$role=$array_user['role'];
-					$temp_key = uniqid(rand(), true);				
-					$array_user['pass_hash'] = $this->user->create_hash($temp_key);
-					
-					//Add User
-					 $insert = $this->helper->insert('users', $array_user);
-					
-					if ($insert > 0) {
-						$id =  DB::insertId();
-						
-						//Create and add Profile
-						if ("patient"==$role)
-							$array_profile['id_patient'] = $id;
-							
-						if ("doctor"==$role){
-							$array_profile['id_doctor'] = $id;
-							$array_profile['especiality'] = escape_value($_POST['especiality']);
-					}
-						$insert_profile = $this->helper->insert($role, $array_profile);
-						
-						//aqui agregar creacion del json 
-						
-						//Create Role Permissions for User
-=======
 		// LOGIN: Method called by login form, process the form and returns authorization response from server
 		public function login() {
 				
@@ -86,7 +46,6 @@
 				$data = "\$" . $campo . "='" . escape_value($valor) . "';";						
 				eval($data);
 			}
->>>>>>> origin/Login-and-Registration
 			
 			$username = $email;
 			$validUser = $this->user->validateUsername($username);
@@ -174,19 +133,19 @@
 		 */
 		 
 		// SEARCHREGISTERED: Method called by form RECOVERY, to async check if user is in fact registered
-		function searchregistered( $field, $data){
-			$result = $this->model->getAccount( $data, $field);
+		function searchregistered($field, $data){
+			$result = $this->model->getAccount($data, $field);
 			echo json_encode($result);
 		}
 		
 		// CHECKREGISTERED: Method called by form REGISTRATION, to async check if user is already registered
-		function checkregistered($table, $what) {
+		function checkregistered($what) {
 			
 			//Check if already exist in User database
 			switch ($what) {
-				case 'username':
+				case 'user':
 					$requested_data = escape_value($_POST['email']);
-					$already_registered =	$this->model->getAccount($table, $requested_data, 'username'); //checkRegistered
+					$already_registered =	$this->model->getAccount($requested_data, 'username'); //checkRegistered
 					
 					if (!empty($already_registered)){
 						if ($already_registered[0]['status'] === 'sleep') {
@@ -230,8 +189,7 @@
 		
 		
 		// PROCESS: Method called by form REGISTRATION, to process vars and create user
-		function process($table) {
-		
+		function process() {
 			
 			$array_data = array();	
 			foreach ($_POST as $key => $value) {
@@ -240,8 +198,8 @@
 				$array_data[$field] = $field_data;
 			}
 			
-			//unset($array_data['recaptcha_challenge_field']);
-			//unset($array_data['recaptcha_response_field']);			
+			unset($array_data['recaptcha_challenge_field']);
+			unset($array_data['recaptcha_response_field']);			
 			
 			
 			// 1 -Creates User&Profile and Sends Authentication Link
@@ -250,19 +208,17 @@
 			$array_user['status'] 		= 'active';
 			//Data for Profile
 			$array_user['name'] 		= $array_data['name'];
-			$array_user['lastname'] 	= $array_data['lastname'];
 			$array_user['email'] 		= $array_data['email'];
-			$array_user['birth'] 		= $array_data['birth'];	
-			
+			$array_user['phone'] 		= $array_data['phone'];
 			//TODO Users registration will be a process of steps
 			//TODO REFACTOR Should 'sex' and 'birth' be located in fields or should they go to a json field DATA?
-			//$array_user['phone'] 		= $array_data['phone'];
-			//$array_user['id_card'] 		= $array_data['id_card'];				
+			//$array_user['id_card'] 		= $array_data['id_card'];
+			//$array_profile['birth'] 		= $array_data['birth'];		
 			//$array_profile['sex'] 		= $array_data['v'];
 			@$array_user['data'] 		= json_encode( array('creationdate'=> date("Y-m-d h:i:s")));
 			
 			//Check if already exist in User database
-			$already_registered =	$this->model->getAccount($table,$array_data['email'], 'username');
+			$already_registered =	$this->model->getAccount($array_data['email'], 'username');
 			
 			if(!empty($already_registered)){
 					
@@ -506,26 +462,10 @@
 			
 		
 		}
-<<<<<<< HEAD
-		
-		public function crear_json($old_password= '') {
-			$this->loadModel('doctor');
-			@$this->view->doctores = doctorModel::listDoctor();
-			/*
-	 * inner join doctor_practice on doctor_practice.id_doctor=doctor.id_doctor
-inner join clinic on clinic.id=id_clinic
-inner join doctor_practice_schedule on doctor_practice_schedule.id_practice=doctor_practice.id
-	 * 
-	 * */	
-			createJsonDoctor();
-			
-		}
-=======
 			
 		
 		
 		
->>>>>>> origin/Login-and-Registration
 	}
 		
 ?>

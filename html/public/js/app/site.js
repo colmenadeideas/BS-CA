@@ -10,16 +10,17 @@ $(document).ready(function() {
 	load_calendar();
 
 	//console.log(jsonsql.query("select id,type from datos  order by label asc limit 3",datos));
-	/*
+	
 	 $('#search_options').click(function() {
-	 location=$('#city_value').val();
+	 event.preventDefault();
+	 location_f=$('#city_value').val();
 	 value=$( "input[name=specialty]" ).val();
 	 type=$( "input[name=type]" ).val();
-	 search_doctor(type,value,location);
+	 search_doctor(type,value,location_f);
 
-	 });*/
+	 });
 
-	$('#searchform').validate({
+	/*$('#searchform').validate({
 		messages : {
 			city : 'requerido',
 			speciality : 'requerido',
@@ -30,7 +31,7 @@ $(document).ready(function() {
 			type = $("input[name=type]").val();
 			search_doctor(type, value, location_f);
 		}
-	});
+	});*/
 
 	$('#login_form').validate({
 		messages : {
@@ -310,18 +311,17 @@ function validate_login() {
 
 function search_doctor(type, value, location_f) {
 	
-	doctores_list = jsonsql.query("select * from doctores where ("+type+"=='"+value+"' )  order by name asc ", doctores);
-		
+	doctores_list = jsonsql.query("select * from doctores where ("+type+"=='"+value+"' )  order by name asc ", doctores);		
 	
 	$.each(doctores_list, function (ind, elem) { 
 		
-	doctores_city=jsonsql.query("select * from doctores_list  where ("+elem.centros[0].direccion +"== direccion) order by name asc limit 3", elem.centros);
-		//console.log(doctores_city);
-			
-}); 
-$.each(doctores_city, function (ind, elem2) {
-	console.log(elem2.practice[0].id);
-	//reemplazar el 1 por el id verdadero de la practica que esta en el json
+		doctores_city=jsonsql.query("select * from doctores_list  where ("+elem.centros[0].direccion +"== direccion) order by name asc limit 3", elem.centros);
+		//console.log(doctores_city);		
+	}); 
+	
+	$.each(doctores_city, function (ind, elem2) {
+		console.log(elem2.practice[0].id);
+		//reemplazar el 1 por el id verdadero de la practica que esta en el json
 			 $( "#search_result" ).append( "<div>"+elem2.id+" "+elem2.name+" <br> "+elem2.centros[0].direccion+'<a class="btn btn-primary" href="site/calendar/'+elem2.practice[0].id+'">Ver </a></div>');
-		});
+	});
 }

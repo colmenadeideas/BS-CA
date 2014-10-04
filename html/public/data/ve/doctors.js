@@ -1,6 +1,6 @@
 var doctores = [
-		{"speciality" : "Cardiologo","id":"2","name":"yo"},
-		{"label" : "Nutricionista","id":"3","type":"speciality"},
-		{"label" : "Ginecologo","id":"1","type":"speciality"},
-		{"label" : "La viña","id":"1","type":"clinic"},
+		{"speciality" : "Cardiologo","id":"2","name":"yo","centros":[{"name":"la viña","direccion":"valencia"}],"practice":[{"id":"1"}]},
+		{"speciality" : "Nutricionista","id":"3","type":"speciality","name":"yo","centros":[{"name":"la viña","direccion":"valencia"}],"practice":[{"id":"1"}]},
+		{"speciality" : "Ginecologo","id":"1","type":"speciality","name":"yo","centros":[{"name":"la viña","direccion":"valencia"}],"practice":[{"id":"1"}]}
+	
 		];
