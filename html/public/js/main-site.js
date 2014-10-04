@@ -27,6 +27,7 @@ require.config({
          'assets/jquery.validate.min': ['jquery'],
          'assets/jquery.easing.min': ['jquery'],   
          'assets/jquery.scrollTo.min': ['jquery'], 
+         'assets/jquery.backstretch.min': ['jquery'],
          'functions': ['jquery', 'assets/jquery.validate.min'],
           //'assets/jquery.dataTables.min': ['jquery'],
          //'assets/jquery.maskedinput.min': ['jquery'],
@@ -35,7 +36,7 @@ require.config({
       	 'assets/fullcalendar.min': ['jquery'/*,'assets/fullcalendar-es'*/],
        	 'assets/jquery.geocomplete.min' : ['jquery'],
        	 'assets/bootstrap-datetimepicker':['jquery','assets/bootstrap.min'],
-         'common': ['jquery','assets/jquery-ui.min','assets/bootstrap.min','assets/jquery.validate.min','assets/jquery.easing.min','assets/jquery.scrollTo.min','assets/bootstrap-datetimepicker','assets/jquery.geocomplete.min','../data/ve/jsonload','../data/ve/doctors','assets/moment.min','assets/fullcalendar.min','assets/jsonsql','assets/all','functions','config'],
+         'common': ['jquery','assets/jquery-ui.min','assets/bootstrap.min','assets/jquery.validate.min','assets/jquery.easing.min','assets/jquery.scrollTo.min','assets/jquery.backstretch.min','assets/bootstrap-datetimepicker','assets/jquery.geocomplete.min','../data/ve/jsonload','../data/ve/doctors','assets/moment.min','assets/fullcalendar.min','assets/jsonsql','assets/all','functions','config'],
          'app/registration': ['jquery','common'],
          'app/site': ['common', 'app/registration'],
        

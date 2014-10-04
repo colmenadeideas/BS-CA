@@ -2,6 +2,8 @@ $('#register_with_email').click(function() {
 	$('#registration-panels').scrollTo($('#registration-emails'), 500);	
 	registerWithEmail();	
 });
+
+
 $('#signin .back').click(function() {
 	$('#registration-panels').scrollTo($('#register-select'), 500);	
 });

@@ -26,7 +26,7 @@
 			
 			if (empty($already_loggedin)) {
 				
-				$this->view->title = SITE_NAME. " | " .SITE_NAME__SIGN_IN ;						
+				$this->view->title = SITE_NAME. " | " .SITE__SIGN_IN ;						
 				$this->view->render('login/index');
 				
 			} else {
