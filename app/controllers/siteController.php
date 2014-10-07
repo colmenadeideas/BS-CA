@@ -49,6 +49,26 @@
 			//var_dump($this->view->horario);
 			$this->view->buildpage('site/calendar');
 		}
+		
+		public function crea_json_prueba(){
+			$this->loadModel('doctor');
+			@$array_doctores = doctorModel::listDoctor('doctor.name');
+			$i=0;
+			foreach( $array_doctores as $doctores){
+				$array_final[$i]["name"]=$doctores["name"];
+				$array_final[$i]["speciality"]=$doctores["speciality"];
+				$array_final[$i]["image"]=$doctores["image"];
+				$array_practicas = doctorModel::listDoctorPractice($doctores["id_doctor"]);
+			//	var_dump($array_practicas);
+				$array_final[$i]["practice"]=$array_practicas;
+				
+				
+				$i++;
+			}
+			//var_dump($array_final);
+			createJsonDoctor($array_final);
+		}
 	}
+	
 		
 ?>
