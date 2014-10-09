@@ -4,7 +4,6 @@ $(document).ready(function() {
 		separator : ",",
 		speed : 800
 	});
-
 	
 	$('.datetimepicker').datetimepicker({pickTime: false, });
 	
@@ -13,22 +12,17 @@ $(document).ready(function() {
 	    , URL+"public/images/backgrounds/02.jpg"
 	  ], {duration: 3000, fade: 2000});
 	  
-   
-   //$('#construccion').modal('show');	
-   
-
 	search_location();
 	load_calendar();
 
 	//console.log(jsonsql.query("select id,type from datos  order by label asc limit 3",datos));
 	
-	//init();
 	 $('#search_options').click(function() {
-		 event.preventDefault();
-		 location_f=$('#city_value').val();
-		 value=$( "input[name=specialty]" ).val();
-		 type=$( "input[name=type]" ).val();
-		 search_doctor(type,value,location_f);
+	 event.preventDefault();
+	 location_f=$('#city_value').val();
+	 value=$( "input[name=specialty]" ).val();
+	 type=$( "input[name=type]" ).val();
+	 search_doctor(type,value,location_f);
 
 	 });
 
@@ -44,7 +38,6 @@ $(document).ready(function() {
 			search_doctor(type, value, location_f);
 		}
 	});*/
-
 
 	$('#login_form').validate({
 		messages : {
@@ -152,7 +145,6 @@ function load_calendar() {
 $("input[name=specialty]").autocomplete({
 	source : datos,
 	// minLength:3
-<<<<<<< HEAD
 });
 
 $("input[name=specialty]").on("autocompleteselect", function(event, ui) {
@@ -183,44 +175,11 @@ function search_location() {
 		$("input[name='city']").trigger("geocode");
 	});
 
-/*=======*/
-});
-
-$("input[name=specialty]").on("autocompleteselect", function(event, ui) {
-
-	//location_f=$( "input[name=specialty]" ).val();
-	$("input[name=type]").val(ui.item.type);
-//	location_f = $('#city_value').val();
-			
-			//search_doctor(type, value, location);
-	//search_doctor(ui.item.type,ui.item.value,location_f);
-
-});
-
-function search_location() {
-
-	$("input[name='city']").geocomplete({
-		country : "ve"
-	}).bind("geocode:result", function(event, result) {
-
-		$("input[name='city_value']").val(result.name);
-	}).bind("geocode:error", function(event, status) {
-		// $.log("ERROR: " + status);
-	}).bind("geocode:multiple", function(event, results) {
-		//   $.log("Multiple: " + results.length + " results found");
-	});
-
-	$("#find").click(function() {
-		$("input[name='city']").trigger("geocode");
-	});
-
-/*>>>>>>> cferrer*/
 	$("#examples a").click(function() {
 		$("input[name='city']").val($(this).text()).trigger("geocode");
 		return false;
 	});
 }
-
 
 
 
@@ -287,8 +246,6 @@ function validate_login() {
 
 }
 
-<<<<<<< HEAD
-=======
 function search_doctor(type, value, location_f) {
 	
 	doctores_list = jsonsql.query("select * from doctores where ("+type+"=='"+value+"' )  order by name asc ", doctores);		
@@ -305,4 +262,3 @@ function search_doctor(type, value, location_f) {
 			 $( "#search_result" ).append( "<div>"+elem2.id+" "+elem2.name+" <br> "+elem2.centros[0].direccion+'<a class="btn btn-primary" href="site/calendar/'+elem2.practice[0].id+'">Ver </a></div>');
 	});
 }
->>>>>>> cferrer

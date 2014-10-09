@@ -21,11 +21,6 @@
 			
 		}
 		public function listDoctor($by='name', $order='ASC') {
-<<<<<<< HEAD
-			return DB::queryFirstRow("SELECT * FROM doctor inner join speciality on speciality.id=doctor.especiality ORDER BY $by $order");
-			
-		}
-=======
 			return DB::query("SELECT ". DB_PREFIX . "doctor.*," . DB_PREFIX . "speciality.name as speciality  FROM " . DB_PREFIX . "doctor inner join " . DB_PREFIX . "speciality on " . DB_PREFIX . "speciality.id=" . DB_PREFIX . "doctor.especiality ORDER BY $by $order");
 			
 		}
@@ -38,8 +33,8 @@
 			
 			return DB::queryFirstRow("select name,address from  " . DB_PREFIX . "clinic where id=%i",$id);
 		}
->>>>>>> cferrer
 	
 	}
+
 
 ?>
