@@ -58,12 +58,21 @@
 
 
 function createJsonDoctor($array_doctores){
+<<<<<<< HEAD
 	 $archivo=DATA.COUNTRY."/doctors.js";
 	 $fp = fopen($archivo, "w+");
 	//selecionar cada doctor
 	
 	
 	 fwrite($fp, '1');
+=======
+	 $archivo=DATA.COUNTRY."/doctors2.js";
+	 $fp = fopen($archivo, "w+");
+	//selecionar cada doctor
+	echo "holis";
+	
+	 fwrite($fp, "var doctores =".utf8_decode(json_encode($array_doctores).";"));
+>>>>>>> cferrer
 	 fclose($fp);
 }
 

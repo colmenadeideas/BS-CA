@@ -4,6 +4,7 @@ $(document).ready(function() {
 		separator : ",",
 		speed : 800
 	});
+<<<<<<< HEAD
 	
 	$('.datetimepicker').datetimepicker({pickTime: false, });
 	
@@ -15,12 +16,40 @@ $(document).ready(function() {
    
    $('#construccion').modal('show');	
    
+=======
+	register_person();
+	validate_login();
+>>>>>>> cferrer
 	search_location();
 	load_calendar();
 
 	//console.log(jsonsql.query("select id,type from datos  order by label asc limit 3",datos));
 	
+<<<<<<< HEAD
 	//init();
+=======
+	 $('#search_options').click(function() {
+	 event.preventDefault();
+	 location_f=$('#city_value').val();
+	 value=$( "input[name=specialty]" ).val();
+	 type=$( "input[name=type]" ).val();
+	 search_doctor(type,value,location_f);
+
+	 });
+
+	/*$('#searchform').validate({
+		messages : {
+			city : 'requerido',
+			speciality : 'requerido',
+		},
+		submitHandler : function(form) {
+			location_f = $('input[name=city_value]').val();
+			value = $("input[name=specialty]").val();
+			type = $("input[name=type]").val();
+			search_doctor(type, value, location_f);
+		}
+	});*/
+>>>>>>> cferrer
 
 	$('#login_form').validate({
 		messages : {
@@ -128,6 +157,7 @@ function load_calendar() {
 $("input[name=specialty]").autocomplete({
 	source : datos,
 	// minLength:3
+<<<<<<< HEAD
 });
 
 $("input[name=specialty]").on("autocompleteselect", function(event, ui) {
@@ -158,6 +188,38 @@ function search_location() {
 		$("input[name='city']").trigger("geocode");
 	});
 
+=======
+});
+
+$("input[name=specialty]").on("autocompleteselect", function(event, ui) {
+
+	//location_f=$( "input[name=specialty]" ).val();
+	$("input[name=type]").val(ui.item.type);
+//	location_f = $('#city_value').val();
+			
+			//search_doctor(type, value, location);
+	//search_doctor(ui.item.type,ui.item.value,location_f);
+
+});
+
+function search_location() {
+
+	$("input[name='city']").geocomplete({
+		country : "ve"
+	}).bind("geocode:result", function(event, result) {
+
+		$("input[name='city_value']").val(result.name);
+	}).bind("geocode:error", function(event, status) {
+		// $.log("ERROR: " + status);
+	}).bind("geocode:multiple", function(event, results) {
+		//   $.log("Multiple: " + results.length + " results found");
+	});
+
+	$("#find").click(function() {
+		$("input[name='city']").trigger("geocode");
+	});
+
+>>>>>>> cferrer
 	$("#examples a").click(function() {
 		$("input[name='city']").val($(this).text()).trigger("geocode");
 		return false;
@@ -165,6 +227,7 @@ function search_location() {
 }
 
 function register_person() {
+<<<<<<< HEAD
 
 	$("#register_doctor_button").click(function() {
 		$("#role").val("doctor");
@@ -185,6 +248,28 @@ function register_person() {
 	});
 }
 
+=======
+
+	$("#register_doctor_button").click(function() {
+		$("#role").val("doctor");
+		$("#register_doctor").css("display", "block");
+
+		$('#birth').datepicker({
+			format : "dd/mm/yyyy",
+			language : "es",
+			autoclose : true
+		});
+
+		validate_register_doctor();
+	});
+	$("#register_patient_button").click(function() {
+
+		$("#register_patient").css("display", "block");
+		validate_register_patient();
+	});
+}
+
+>>>>>>> cferrer
 function validate_register_patient() {
 	$('#register_patient_form').validate({
 
@@ -298,3 +383,22 @@ function validate_login() {
 
 }
 
+<<<<<<< HEAD
+=======
+function search_doctor(type, value, location_f) {
+	
+	doctores_list = jsonsql.query("select * from doctores where ("+type+"=='"+value+"' )  order by name asc ", doctores);		
+	
+	$.each(doctores_list, function (ind, elem) { 
+		
+		doctores_city=jsonsql.query("select * from doctores_list  where ("+elem.centros[0].direccion +"== direccion) order by name asc limit 3", elem.centros);
+		//console.log(doctores_city);		
+	}); 
+	
+	$.each(doctores_city, function (ind, elem2) {
+		console.log(elem2.practice[0].id);
+		//reemplazar el 1 por el id verdadero de la practica que esta en el json
+			 $( "#search_result" ).append( "<div>"+elem2.id+" "+elem2.name+" <br> "+elem2.centros[0].direccion+'<a class="btn btn-primary" href="site/calendar/'+elem2.practice[0].id+'">Ver </a></div>');
+	});
+}
+>>>>>>> cferrer
