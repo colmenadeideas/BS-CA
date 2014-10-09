@@ -18,8 +18,7 @@ $('#signin').on('hide.bs.modal', function (e) {
 
 function registerWithEmail() {
 
-	// $('#birth').datepicker({ format: "dd/mm/yyyy",  language: "es", autoclose: true });
-	 $('.datetimepicker').datetimepicker({pickTime: false, });
+	$('.datetimepicker').datetimepicker({pickTime: false, });
 	 
 	 
 	 //Validate Registry Form
@@ -68,20 +67,5 @@ function registerWithEmail() {
 			return false;
 		}
 	});
-    //form-registration-patient
-    
-/*	$( "#register_doctor_button" ).click(function() {
-	  $( "#role" ).val("doctor");
-	  $( "#register_doctor" ).css("display","block");
-	
-	 
-	
-	  validate_register_doctor();
-	});
-	$( "#register_patient_button" ).click(function() {
-	   
-	     $( "#register_patient" ).css("display","block");
-	     validate_register_patient();
-	});
-*/
+
 }

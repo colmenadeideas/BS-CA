@@ -72,6 +72,8 @@ padding:30px 15px;
 #register_doctor, #register_patient{
 	display:none;
 }
+.input-home-doctor 	 { min-width: 360px; }
+.input-home-location { }
 
 
 	

@@ -16,8 +16,10 @@
 		}
 		public function test() {			
 			
-			$this->view->render('default/head');		
-			$this->view->render('site/test');			
+			$this->view->render('default/head');	
+			$this->view->render('default/nav');	
+			$this->view->render('test');		
+			$this->view->render('footer');	
 		}
 		
 		public function search(){

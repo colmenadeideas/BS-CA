@@ -16,15 +16,13 @@
 	<link href="<?php echo CSS; ?>all.css" rel="stylesheet">
 	<link href="<?php echo CSS; ?>styles.css" rel="stylesheet">
 	
-	<!--link href="<?php echo CSS;?>all.css" rel="stylesheet"-->  
-	
 	<?php echo GOOGLE_FONTS; ?>
 	<?php echo GOOGLE_ANALYTICS; ?>
 
     <script src="<?php echo JS; ?>config.js"></script>
     <script data-main="<?php echo JS;?>main-site" src="<?php echo JS; ?>assets/require.js"></script>
-    
-
+   
 </head>
-<div class="container-fluid">
-    <div class="row">
+<body>
+	<div class="container-fluid">
+    		<div class="row">

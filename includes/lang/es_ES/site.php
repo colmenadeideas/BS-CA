@@ -24,5 +24,8 @@ define ('SITE__FORM_PASSWORD','Contraseña');
 
 define ('SITE__FORM_PASSWORD','Contraseña');
 
+define ('SITE__SEARCH_BUTTON','BUSCAR');
+
+
 	
 ?>
