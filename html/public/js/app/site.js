@@ -4,7 +4,7 @@ $(document).ready(function() {
 		separator : ",",
 		speed : 800
 	});
-<<<<<<< HEAD
+
 	
 	$('.datetimepicker').datetimepicker({pickTime: false, });
 	
@@ -14,26 +14,21 @@ $(document).ready(function() {
 	  ], {duration: 3000, fade: 2000});
 	  
    
-   $('#construccion').modal('show');	
+   //$('#construccion').modal('show');	
    
-=======
-	register_person();
-	validate_login();
->>>>>>> cferrer
+
 	search_location();
 	load_calendar();
 
 	//console.log(jsonsql.query("select id,type from datos  order by label asc limit 3",datos));
 	
-<<<<<<< HEAD
 	//init();
-=======
 	 $('#search_options').click(function() {
-	 event.preventDefault();
-	 location_f=$('#city_value').val();
-	 value=$( "input[name=specialty]" ).val();
-	 type=$( "input[name=type]" ).val();
-	 search_doctor(type,value,location_f);
+		 event.preventDefault();
+		 location_f=$('#city_value').val();
+		 value=$( "input[name=specialty]" ).val();
+		 type=$( "input[name=type]" ).val();
+		 search_doctor(type,value,location_f);
 
 	 });
 
@@ -49,7 +44,7 @@ $(document).ready(function() {
 			search_doctor(type, value, location_f);
 		}
 	});*/
->>>>>>> cferrer
+
 
 	$('#login_form').validate({
 		messages : {
@@ -188,7 +183,7 @@ function search_location() {
 		$("input[name='city']").trigger("geocode");
 	});
 
-=======
+/*=======*/
 });
 
 $("input[name=specialty]").on("autocompleteselect", function(event, ui) {
@@ -219,106 +214,15 @@ function search_location() {
 		$("input[name='city']").trigger("geocode");
 	});
 
->>>>>>> cferrer
+/*>>>>>>> cferrer*/
 	$("#examples a").click(function() {
 		$("input[name='city']").val($(this).text()).trigger("geocode");
 		return false;
 	});
 }
 
-function register_person() {
-<<<<<<< HEAD
 
-	$("#register_doctor_button").click(function() {
-		$("#role").val("doctor");
-		$("#register_doctor").css("display", "block");
 
-		$('#birth').datepicker({
-			format : "dd/mm/yyyy",
-			language : "es",
-			autoclose : true
-		});
-
-		validate_register_doctor();
-	});
-	$("#register_patient_button").click(function() {
-
-		$("#register_patient").css("display", "block");
-		validate_register_patient();
-	});
-}
-
-=======
-
-	$("#register_doctor_button").click(function() {
-		$("#role").val("doctor");
-		$("#register_doctor").css("display", "block");
-
-		$('#birth').datepicker({
-			format : "dd/mm/yyyy",
-			language : "es",
-			autoclose : true
-		});
-
-		validate_register_doctor();
-	});
-	$("#register_patient_button").click(function() {
-
-		$("#register_patient").css("display", "block");
-		validate_register_patient();
-	});
-}
-
->>>>>>> cferrer
-function validate_register_patient() {
-	$('#register_patient_form').validate({
-
-		submitHandler : function(form) {
-			$('.send').attr('disabled', 'disabled');
-			//prevent double send
-			$.ajax({
-				type : "POST",
-				data : $(form).serialize(),
-				url : URL + "account/add/",
-				timeout : 12000,
-				success : function(response) {
-					console.log("listo!" + response);
-
-				},
-				error : function(response) {
-					console.log(response);
-				}
-			});
-			return false;
-		}
-	});
-
-}
-
-function validate_register_doctor() {
-	$('#register_doctor_form').validate({
-
-		submitHandler : function(form) {
-			$('.send').attr('disabled', 'disabled');
-			//prevent double send
-			$.ajax({
-				type : "POST",
-				data : $(form).serialize(),
-				url : URL + "account/add/",
-				timeout : 12000,
-				success : function(response) {
-					console.log("listo!" + response);
-
-				},
-				error : function(response) {
-					console.log(response);
-				}
-			});
-			return false;
-		}
-	});
-
-}
 
 function validate_login() {
 	//console.log($('#login_form'));
