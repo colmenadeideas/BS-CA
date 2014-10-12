@@ -25,7 +25,8 @@ define ('SITE__FORM_PASSWORD','Contraseña');
 define ('SITE__FORM_PASSWORD','Contraseña');
 
 define ('SITE__SEARCH_BUTTON','BUSCAR');
-
+define ('SITE__BOOK_APPOINTMENT', 'PEDIR CITA');
+define ('SITE__SEE_MORE', 'VER');
 
 	
 ?>

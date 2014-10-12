@@ -142,44 +142,6 @@ function load_calendar() {
 }
 
 
-$("input[name=specialty]").autocomplete({
-	source : datos,
-	// minLength:3
-});
-
-$("input[name=specialty]").on("autocompleteselect", function(event, ui) {
-
-	//location_f=$( "input[name=specialty]" ).val();
-	$("input[name=type]").val(ui.item.type);
-//	location_f = $('#city_value').val();
-			
-			//search_doctor(type, value, location);
-	//search_doctor(ui.item.type,ui.item.value,location_f);
-
-});
-
-function search_location() {
-
-	$("input[name='city']").geocomplete({
-		country : "ve"
-	}).bind("geocode:result", function(event, result) {
-
-		$("input[name='city_value']").val(result.name);
-	}).bind("geocode:error", function(event, status) {
-		// $.log("ERROR: " + status);
-	}).bind("geocode:multiple", function(event, results) {
-		//   $.log("Multiple: " + results.length + " results found");
-	});
-
-	$("#find").click(function() {
-		$("input[name='city']").trigger("geocode");
-	});
-
-	$("#examples a").click(function() {
-		$("input[name='city']").val($(this).text()).trigger("geocode");
-		return false;
-	});
-}
 
 
 
@@ -244,21 +206,4 @@ function validate_login() {
 		}
 	});
 
-}
-
-function search_doctor(type, value, location_f) {
-	
-	doctores_list = jsonsql.query("select * from doctores where ("+type+"=='"+value+"' )  order by name asc ", doctores);		
-	
-	$.each(doctores_list, function (ind, elem) { 
-		
-		doctores_city=jsonsql.query("select * from doctores_list  where ("+elem.centros[0].direccion +"== direccion) order by name asc limit 3", elem.centros);
-		//console.log(doctores_city);		
-	}); 
-	
-	$.each(doctores_city, function (ind, elem2) {
-		console.log(elem2.practice[0].id);
-		//reemplazar el 1 por el id verdadero de la practica que esta en el json
-			 $( "#search_result" ).append( "<div>"+elem2.id+" "+elem2.name+" <br> "+elem2.centros[0].direccion+'<a class="btn btn-primary" href="site/calendar/'+elem2.practice[0].id+'">Ver </a></div>');
-	});
 }

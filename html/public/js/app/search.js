@@ -1,12 +1,37 @@
+//Autocomplete Main Fields
+$("input[name=search_term]").autocomplete({
+        source: URL+"api/autocomplete/",
+        minLength: 2,
+      /*  select: function(event, ui) {
+        	
+            var url = ui.item.name;
+            if(url != '#') {
+                location.href = '/blog/' + url;
+            }
+        },*/
+        html: true,
+      // optional (if other layers overlap autocomplete list)
+        open: function(event, ui) {
+            $(".ui-autocomplete").css("z-index", 1000);
+           //$(".ui-autocomplete").css("background", 'red');
+        }
+});
+
+
+$("input[name=search_term]").on("autocompleteselect", function(event, ui) {
+	$("input[name=type]").val(ui.item.type);
+});
+
+
 var sendbutton = $('#form-search-doctor .send');
 //Home  Main form Validate and send
 $('#form-search-doctor').validate({
 	submitHandler : function(form) {
-		sendbutton.attr('disabled', 'disabled');
+		//sendbutton.attr('disabled', 'disabled');
 		
 		//Get Form Vars
 		location_f = $('input[name=city_value]').val();
-		value = $("input[name=specialty]").val();
+		value = $("input[name=search_term]").val();
 		type = $("input[name=type]").val();
 		
 		searchDoctor(type, value, location_f);
@@ -32,34 +57,64 @@ $('#form-search-doctor').validate({
 	}
 });
 
+
 function searchDoctor(type, value, location_f) {
 	
-	doctores_list = jsonsql.query("select * from doctores where ("+type+"=='"+value+"' )  order by name asc ", doctores);		
+	var template = document.getElementById("item-card-list").firstChild.textContent;
+		
+	var searchterms = value.match(/\S+/g); //value.split(/\b\s+(?!$)/);
+	console.log ("SpliT: "+ searchterms);
 	
-	$.each(doctores_list, function (ind, elem) { 
-		
-		doctores_city=jsonsql.query("select * from doctores_list  where ("+elem.centros[0].direccion +"== direccion) order by name asc limit 3", elem.centros);
-		//console.log(doctores_city);		
-		
-		
-	}); 
+	if (!type) { type = 'all';} 
 	
-	$.each(doctores_city, function (ind, elem2) {
-		console.log(elem2.practice[0].id);
-		//reemplazar el 1 por el id verdadero de la practica que esta en el json
-			 $( "#search_result" ).append( "<div>"+elem2.id+" "+elem2.name+" <br> "+elem2.centros[0].direccion+'<a class="btn btn-primary" href="site/calendar/'+elem2.practice[0].id+'">Ver </a></div>');
+	var context = $.getJSON(URL+"api/search/"+type+"/"+searchterms ,function(data) { 
+		console.log(data);
+		
+		var context = data;
+		$.each( data, function(key, val) {	  
+		  // items.push( "<li id='" + key + "'>" + val + "</li>" );
+		});	
+		
+		$("#results").html(Mark.up(template, context));
+		
+		$('.site-head').css({
+			'margin-top':'70px',
+			'min-height': '200px'
+		});
+		$('.site-head h1').fadeOut();
+		//fade each result
+		$('.item-card').css('opacity','0');
+		$('.item-card').each(function(i) {
+			$(this).delay((i++) * 300).fadeTo(500, 1); 
+		});	
+		//Activate Rating	
+		$(".rating").rating(); 	
 	});
 	
-	
-		var context = {
-		    name: "John Doe",
-		    colors: ["Red", "Blue", "Green"]
-		};
-		
-		//var template = "Favorite color: {{colors.0}}";
-		//var result = Mark.up(template, context);
-		//var template = myapp.templates.user_sidebar;
-		var template = document.getElementById("item-card-list").firstChild.textContent;
-		$("#results").html(Mark.up(template, context));
+	return false;
+}
 
+
+
+
+function search_location() {
+
+	$("input[name='city']").geocomplete({
+	//	country : "ve"
+	}).bind("geocode:result", function(event, result) {
+		$("input[name='city_value']").val(result.name);
+	}).bind("geocode:error", function(event, status) {
+		// $.log("ERROR: " + status);
+	}).bind("geocode:multiple", function(event, results) {
+		//   $.log("Multiple: " + results.length + " results found");
+	});
+
+	$("#find").click(function() {
+		$("input[name='city']").trigger("geocode");
+	});
+
+	/*$("#examples a").click(function() {
+		$("input[name='city']").val($(this).text()).trigger("geocode");
+		return false;
+	});*/
 }

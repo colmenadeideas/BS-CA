@@ -36,7 +36,10 @@ require.config({
       	 'assets/fullcalendar.min': ['jquery'/*,'assets/fullcalendar-es'*/],
        	 'assets/jquery.geocomplete.min' : ['jquery'],
        	 'assets/bootstrap-datetimepicker':['jquery','assets/bootstrap.min'],
-         'common': ['jquery','assets/all','assets/jquery-ui.min','assets/bootstrap.min','assets/jquery.validate.min','assets/jquery.easing.min','assets/jquery.scrollTo.min','assets/jquery.backstretch.min','assets/bootstrap-datetimepicker','assets/jquery.geocomplete.min','../data/ve/jsonload','../data/ve/doctors','assets/moment.min','assets/fullcalendar.min','assets/jsonsql','functions','config'],
+       	 //DATA TO PRELOAD
+       //	 'assets/jsonsql': ['../../data/ve/jsonload'],
+         //
+         'common': ['jquery','assets/all','assets/jquery-ui.min','assets/bootstrap.min','assets/jquery.validate.min','assets/jquery.easing.min','assets/jquery.scrollTo.min','assets/jquery.backstretch.min','assets/bootstrap-datetimepicker','assets/jquery.geocomplete.min','assets/moment.min','assets/fullcalendar.min','assets/jsonsql','functions','config'],
          'app/registration': ['jquery','common'],
          'app/search': ['jquery','common'],
          'app/site': ['common', 'app/registration', 'app/search'],

@@ -10,7 +10,7 @@
 		public function index() {
 			
 			$this->loadModel('doctor');
-			@$this->view->speciality = doctorModel::listSpeciality();
+			@$this->view->specialty = doctorModel::listSpecialty();
 				
 			$this->view->buildpage('site/index');			
 		}
@@ -58,7 +58,7 @@
 			$i=0;
 			foreach( $array_doctores as $doctores){
 				$array_final[$i]["name"]=$doctores["name"];
-				$array_final[$i]["speciality"]=$doctores["speciality"];
+				$array_final[$i]["specialty"]=$doctores["specialty"];
 				$array_final[$i]["image"]=$doctores["image"];
 				$array_practicas = doctorModel::listDoctorPractice($doctores["id_doctor"]);
 			//	var_dump($array_practicas);

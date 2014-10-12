@@ -1,3 +1,14 @@
+//Show hide evreything else
+$('#signin').on('show.bs.modal', function (e) {
+	$('.site-head .temporaryfademe').css('opacity','0');
+});
+$('#signin').on('hide.bs.modal', function (e) {
+	$('.site-head .temporaryfademe').css('opacity','1');
+});
+
+
+
+
 $('#register_with_email').click(function() {
 	$('#registration-panels').scrollTo($('#registration-emails'), 500);	
 	registerWithEmail();	
@@ -8,13 +19,7 @@ $('#signin .back').click(function() {
 	$('#registration-panels').scrollTo($('#register-select'), 500);	
 });
 
-//Show hide evreything else
-$('#signin').on('show.bs.modal', function (e) {
-	$('.site-head .temporaryfademe').css('opacity','0');
-});
-$('#signin').on('hide.bs.modal', function (e) {
-	$('.site-head .temporaryfademe').css('opacity','1');
-});
+
 
 function registerWithEmail() {
 

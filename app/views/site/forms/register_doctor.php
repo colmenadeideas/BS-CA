@@ -39,12 +39,12 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="mail" class="hidden-xs col-sm-3 control-label"><? echo ESPECIALITY; ?></label>
+		<label for="mail" class="hidden-xs col-sm-3 control-label"><? echo SPECIALTY; ?></label>
 		<div class="col-sm-9">
 	
-				<select class="form-control" id="especiality" name="especiality" placeholder="especiality" required>
-					<?  foreach ($this->speciality as $speciality){ ?>
-					<option value="<? echo $speciality["id"]; ?>"><? echo $speciality["name"];?></option>
+				<select class="form-control" id="specialty" name="specialty" placeholder="specialty" required>
+					<?  foreach ($this->specialty as $specialty){ ?>
+					<option value="<? echo $speciality["id"]; ?>"><? echo $specialty["name"];?></option>
 				<? } ?>	
 			</select>
 		</div>
