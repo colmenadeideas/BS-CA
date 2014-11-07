@@ -1,18 +1,23 @@
 <div id="registration-patient">		
 	<form id="form-registration-patient" action="" novalidate="novalidate" method="post">
-		<div class="col-sm-12 col-lg-12">
-			<input type="text" name="name" placeholder="<?php echo SITE__FORM_NAME; ?>" required="required" class="form-control input-lg">
+		
+		<div class="field-wrapper col-sm-12 col-lg-12">
+			<label for="name" class="placeholder"><?php echo SITE__FORM_NAME; ?></label>
+			<input type="text" name="name" placeholder="<?php echo SITE__FORM_NAME; ?>" required="required" class="form-control input-lg signinput">
 		</div>
-		<div class="col-sm-12 col-lg-12">
-			<input type="text" name="lastname" placeholder="<?php echo SITE__FORM_LASTNAME; ?>" required="required" class="form-control input-lg">
+		<div class="field-wrapper col-sm-12 col-lg-12">
+			<label for="lastname" class="placeholder"><?php echo SITE__FORM_LASTNAME; ?></label>
+			<input type="text" name="lastname" placeholder="<?php echo SITE__FORM_LASTNAME; ?>" required="required" class="form-control input-lg signinput">
 		</div>
-		<div class="col-sm-12 col-lg-12 inner-addon left-addon">
+		<div class="col-sm-12 col-lg-12 inner-addon left-addon field-wrapper">
+			<label for="email" class="placeholder"><?php echo SITE__FORM_EMAIL; ?></label>
 		    <i class="glyphicon glyphicon-envelope"></i>
-		    <input type="text" name="email" placeholder="<?php echo SITE__FORM_EMAIL; ?>" required="required" class="form-control input-lg">
+		    <input type="text" name="email" placeholder="<?php echo SITE__FORM_EMAIL; ?>" required="required" class="form-control input-lg signinput">
 		</div>
-		<div class="col-sm-12 col-lg-12 inner-addon left-addon">
+		<div class="col-sm-12 col-lg-12 inner-addon left-addon field-wrapper">
+			<label for="birth" class="placeholder"><?php echo SITE__FORM_BIRTH; ?></label>
 		    <i class="glyphicon glyphicon-calendar"></i>
-			<input type="text" name="birth" placeholder="<?php echo SITE__FORM_BIRTH; ?>" data-date-format="DD/MM/YYYY" required class="form-control input-lg datetimepicker left"/>
+			<input type="text" name="birth" placeholder="<?php echo SITE__FORM_BIRTH; ?>" data-date-format="DD/MM/YYYY" required class="signinput form-control input-lg datetimepicker left"/>
 			
 		</div>
 		<!--extra system vars-->

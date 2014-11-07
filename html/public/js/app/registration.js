@@ -1,7 +1,39 @@
 //Show hide evreything else
-$('#signin').on('show.bs.modal', function (e) {
-	$('.site-head .temporaryfademe').css('opacity','0');
+$('#signin').on('shown.bs.modal', function (e) {
+	//$('.site-head .temporaryfademe').css('opacity','0');
+	/*$('.modal-backdrop').css('opacity','1');
+	$('.modal-backdrop').css('background','#3898f9');
+	*/ $('.modal-backdrop').addClass('backdrop-signin');
+	//Floatlabel
+ 	//$('input, textarea').jvFloat();
+ 	floatinput();
+	
 });
+
+
+function floatinput (){
+  var onClass = "on";
+  var showClass = "show";
+  
+  $("input").bind("checkval",function(){
+    var label = $(this).prev("label");
+    if(this.value !== ""){
+      label.addClass(showClass);
+    } else {
+      label.removeClass(showClass);
+    }
+  }).on("keyup",function(){
+    $(this).trigger("checkval");
+  }).on("focus",function(){
+    $(this).prev("label").addClass(onClass);
+  }).on("blur",function(){
+      $(this).prev("label").removeClass(onClass);
+  }).trigger("checkval");
+};
+
+
+	
+
 $('#signin').on('hide.bs.modal', function (e) {
 	$('.site-head .temporaryfademe').css('opacity','1');
 });
@@ -33,7 +65,7 @@ function registerWithEmail() {
 	        	required: true,
 	            email: true,
 	            remote: {
-	            	url: URL+'account/checkregistered/patient/username',
+	            	url: URL+'account/checkregistered/username/',
 	                type: 'post'
 	            }
 	       	},

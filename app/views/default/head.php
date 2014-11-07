@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Besign Colmena de ideas - besign.com.ve">
-    <link rel="shortcut icon" href="<?php echo IMG; ?>favicon.gif">
+    <link rel="shortcut icon" href="<?php echo IMG; ?>favico.png">
     
     <title><?php echo $this->title; ?></title>
 	

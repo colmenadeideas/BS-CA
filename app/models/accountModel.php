@@ -9,7 +9,7 @@
 		
 		public function getAccount($table, $data, $by='id') {
 			
-			if ($table == '') {
+			if ($table == "") {
 				$table = 'patient';				
 				$result = DB::query("SELECT * FROM " . DB_PREFIX . "$table WHERE $by=%s LIMIT 1", $data);
 				

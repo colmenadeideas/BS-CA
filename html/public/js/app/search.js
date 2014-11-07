@@ -1,7 +1,13 @@
 //Autocomplete Main Fields
+search_location();
 $("input[name=search_term]").autocomplete({
         source: URL+"api/autocomplete/",
         minLength: 2,
+        delay: 100,
+        messages: {
+	        noResults: '',
+	        results: function() {}
+	    },
       /*  select: function(event, ui) {
         	
             var url = ui.item.name;
@@ -10,11 +16,21 @@ $("input[name=search_term]").autocomplete({
             }
         },*/
         html: true,
+/*        appendTo: '#specialty-input',*/
       // optional (if other layers overlap autocomplete list)
         open: function(event, ui) {
             $(".ui-autocomplete").css("z-index", 1000);
            //$(".ui-autocomplete").css("background", 'red');
-        }
+        },
+        
+        
+        /*close : function (event, ui) {
+        val = $("input[name=search_term]").val();
+         $("input[name=search_term]").autocomplete( "search", val ); //keep autocomplete open by 
+         //searching the same input again
+         $("input[name=search_term]").focus();
+        return false;  
+    }*/
 });
 
 
@@ -57,31 +73,36 @@ $('#form-search-doctor').validate({
 	}
 });
 
-
+/*
+ 
+ * jQuery('.servicios').on('show.bs.modal', function (e) {		 	
+		 		jQuery('.blurme').toggleClass('blured');		 	
+		 	});
+		 	jQuery('.servicios').on('hidden.bs.modal', function (e) {		 	
+		 		jQuery('.blurme').removeClass('blured');
+		 	});
+ * 
+ * */
 function searchDoctor(type, value, location_f) {
 	
-	var template = document.getElementById("item-card-list").firstChild.textContent;
-		
-	var searchterms = value.match(/\S+/g); //value.split(/\b\s+(?!$)/);
-	console.log ("SpliT: "+ searchterms);
+	window.location.hash = '#search'; //for binding to back state TODO could add to url params for refreshing maybe
 	
-	if (!type) { type = 'all';} 
+	Mark.includes.template_cards = document.getElementById("template-search-filters").firstChild.textContent;
+	Mark.includes.template_items = document.getElementById("item-card-list").firstChild.textContent;
+	template = "{{template_cards}}{{template_items}}";
+	var searchterms = value.match(/\S+/g); //value.split(/\b\s+(?!$)/);
+
+	if (!type) { type = 'all'; } 
 	
 	var context = $.getJSON(URL+"api/search/"+type+"/"+searchterms ,function(data) { 
 		console.log(data);
 		
 		var context = data;
-		$.each( data, function(key, val) {	  
-		  // items.push( "<li id='" + key + "'>" + val + "</li>" );
-		});	
+		$('#results').html(Mark.up(template, context));
+				
+		//transform or not the Main Form if in details View
+		checkSearchView();
 		
-		$("#results").html(Mark.up(template, context));
-		
-		$('.site-head').css({
-			'margin-top':'70px',
-			'min-height': '200px'
-		});
-		$('.site-head h1').fadeOut();
 		//fade each result
 		$('.item-card').css('opacity','0');
 		$('.item-card').each(function(i) {
@@ -95,6 +116,27 @@ function searchDoctor(type, value, location_f) {
 }
 
 
+
+
+
+
+function checkSearchView() {
+	
+	var currentHash= window.location.hash;
+	var hashCheck = currentHash.split('/');
+	console.log("Hash check:" +currentHash);
+	
+	//TODO Check for something else in case of #search, otherwise it will trigger the miniform with no results
+	if (hashCheck[0] == '#search' || hashCheck[0] == '#doctor') {
+		//Set Minimum Form
+		$('.site-head').css({
+			'margin-top':'70px',
+			'min-height': '200px'
+		});
+		$('.site-head h1').fadeOut();
+	}
+	
+}
 
 
 function search_location() {

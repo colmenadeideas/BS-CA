@@ -142,10 +142,10 @@
 		function checkregistered($what) {
 			
 			//Check if already exist in User database
-			switch ($what) {
-				case 'user':
-					$requested_data = escape_value($_POST['email']);
-					$already_registered =	$this->model->getAccount($requested_data, 'username'); //checkRegistered
+			switch (escape_value($what)) {
+				case 'username':
+					$requested_data = escape_value($_POST['email']);					
+					$already_registered =	$this->model->getAccount("", $requested_data, "username"); //checkRegistered
 					
 					if (!empty($already_registered)){
 						if ($already_registered[0]['status'] === 'sleep') {
@@ -218,7 +218,7 @@
 			@$array_user['data'] 		= json_encode( array('creationdate'=> date("Y-m-d h:i:s")));
 			
 			//Check if already exist in User database
-			$already_registered =	$this->model->getAccount($array_data['email'], 'username');
+			$already_registered =	$this->model->getAccount("",$array_data['email'], 'username');
 			
 			if(!empty($already_registered)){
 					

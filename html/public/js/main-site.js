@@ -42,14 +42,16 @@ require.config({
          'common': ['jquery','assets/all','assets/jquery-ui.min','assets/bootstrap.min','assets/jquery.validate.min','assets/jquery.easing.min','assets/jquery.scrollTo.min','assets/jquery.backstretch.min','assets/bootstrap-datetimepicker','assets/jquery.geocomplete.min','assets/moment.min','assets/fullcalendar.min','assets/jsonsql','functions','config'],
          'app/registration': ['jquery','common'],
          'app/search': ['jquery','common'],
-         'app/site': ['common', 'app/registration', 'app/search'],
+         'app/doctor': ['jquery','common','app/search'],
+         'app/site': ['jquery','common','app/search'],
+         'app/site-start': ['common', 'app/registration', 'app/search', 'app/site'],
        
 	}
 });
 require([
         'jquery',
         'async!https://maps.googleapis.com/maps/api/js?v=3&libraries=places&sensor=false',
-        'app/site'
+        'app/site-start'
     ],
     function($) {    	
     	$(document).ready(function () {

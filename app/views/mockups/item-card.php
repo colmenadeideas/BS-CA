@@ -1,5 +1,5 @@
 <script id="item-card-list" type="text/template">
-	<div class="results-wrapper">	
+	<div id="search" class="results-wrapper">	
 		<div class="container cards-list">
 				{{doctors}}
 			<div class="col-lg-4 col-md-4 columna">
@@ -49,8 +49,9 @@
 					<div class="col-lg-5 col-md-5">
 						<input id="doctor-rating-{{#}}" class="rating" data-min="0" data-max="5" data-step="1" data-size="xs" data-show-clear="false" data-show-caption="false">
 					</div>
-					<div class="col-lg-7 col-md-7 text-right">
-							<a class="btn btn-default btn-moreinfo right" href="calendar/{{id}}">
+					<div class="col-lg-7 col-md-7 text-right">					
+						
+							<a class="btn btn-default btn-moreinfo right" href="#doctor/details/{{id}}">
 								<?php echo SITE__SEE_MORE; ?> <i class="fa fa-plus"></i>
 							</a>
 							<button type="button" class="btn btn-default btn-book right">

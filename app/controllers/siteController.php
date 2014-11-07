@@ -9,11 +9,19 @@
 	
 		public function index() {
 			
-			$this->loadModel('doctor');
-			@$this->view->specialty = doctorModel::listSpecialty();
+			$this->view->title = SITE_NAME;
 				
 			$this->view->buildpage('site/index');			
 		}
+		
+		public function login() {
+			
+			$this->view->title = SITE_NAME;	
+			$this->view->render('default/head');
+			$this->view->render('login/index');		
+			$this->view->render('footer');				
+		}
+		
 		public function test() {			
 			
 			$this->view->render('default/head');	
@@ -70,7 +78,26 @@
 			//var_dump($array_final);
 			createJsonDoctor($array_final);
 		}
+		
+		function redirect($controller, $method) {
+								
+			//Auth::handleLogin($controller);	
+			
+			if(!empty($method)) {
+				$full_url = $controller."/".$method;
+			} else {
+				$full_url = $controller;
+			}
+			header('location: '.URL.$full_url);
+				
+		}
+		
+		function doctor($method='') {			
+			$controller = 'doctor';
+			$this->redirect($controller, $method);							
+		}
+		
+		
 	}
-	
 		
 ?>

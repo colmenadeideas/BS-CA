@@ -21,12 +21,13 @@ define ('SITE__FORM_PHONE','Teléfono');
 define ('SITE__FORM_EMAIL','E-mail');
 define ('SITE__FORM_USERNAME','Usuario');
 define ('SITE__FORM_PASSWORD','Contraseña');
-
-define ('SITE__FORM_PASSWORD','Contraseña');
+define ('SITE__FORM_PASSWORD_FORGOT','¿Olvidaste tu contraseña?');
 
 define ('SITE__SEARCH_BUTTON','BUSCAR');
 define ('SITE__BOOK_APPOINTMENT', 'PEDIR CITA');
 define ('SITE__SEE_MORE', 'VER');
+define ('SITE__SEARCH_PLACEHOLDER_NAME', 'Especialidad, Nombre del doctor o Clínica');
+define ('SITE__SEARCH_PLACEHOLDER_LOCATION', '¿Donde lo buscas?');
 
 	
 ?>

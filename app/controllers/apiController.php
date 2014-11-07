@@ -37,14 +37,17 @@
 					$t = 0;
 					
 					foreach ($searchTerms as $term) {
-					    $term = trim($term);				
+					    $term = trim($term);
+						$array_final['filters'][$t]['term'] = $term;				
 						if($t == 0) {
 							$termsQuery = "WHERE term LIKE '%$term%'"; 					
 						} else if (!empty($term)) {			         
 					        $termsQuery .= " OR term LIKE '%$term%'";  //$termsQuery[] = "OR term LIKE '%$term%'";
 					        //$string = "LIKE '%$string%'"			        
 					    } $t++;
+						
 					}
+					
 					$found_matches = $this->model->search($termsQuery);
 				
 					$this->loadModel('doctor');
@@ -120,6 +123,64 @@
 			
 			
 		 	//get all columns from Table
+			$profileFields = DB::columnList('doctor');	
+			$practiceFields = DB::columnList('clinic');		
+ 
+			$i=0;
+			foreach($array_doctors as $doctor) {
+				
+				foreach ($profileFields as $field) {					
+					$array_final['doctors'][$i][$field] = $doctor[$field];
+				}
+							
+				$array_practices = doctorModel::getDoctorPractices($doctor["id"]);
+				
+				$p=0;	
+				foreach ($array_practices as $practice) {
+					
+					foreach ($practiceFields as $practicefield) {
+						$array_final['doctors'][$i]['practice'][$p][$practicefield] = $practice[$practicefield];
+					}
+					$array_schedules = doctorModel::getDoctorPracticesSchedule($practice["id"]);
+					//$array_final['doctors'][$i]['practice'][$p]	= $practice;
+					$s=0;
+					foreach ($array_schedules as $schedule) {
+						
+						$array_final['doctors'][$i]['practice'][$p]['schedule'][$s]	= $schedule;
+						$schedule['day'] = substr($schedule['day'], 0, -2);
+						$array_final['doctors'][$i]['practice'][$p]['schedule'][$s]['day']	= $schedule['day'];
+
+						$ini_schedule = substr($schedule['ini_schedule'], 0, 2);
+						
+						if ($ini_schedule > 01 &&  $ini_schedule < 13 ) {
+							$icon = '<i class="fa fa-sun-o"></i> ';
+						} else {
+							$icon = '<i class="fa fa-moon-o"></i> ';
+						}
+						
+						$schedule['ini_schedule'] = $icon. $schedule['ini_schedule'];
+						$array_final['doctors'][$i]['practice'][$p]['schedule'][$s]['ini_schedule']	= $schedule['ini_schedule'];
+						
+						
+						$s++;
+					}
+					$p++;
+				}						
+				$i++;
+			}
+		 
+			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+
+		}
+		
+		//DOCTOR/$ID/: To get the object for 1 doctor
+		public function doctor ($id) {
+			
+			$id = escape_value($id);
+			 
+			$this->loadModel('doctor');
+			$array_doctors = doctorModel::getDoctors('doctor.id', $id);
+			//get all columns from Table
 			$profileFields = DB::columnList('doctor');	
 			$practiceFields = DB::columnList('clinic');		
  
