@@ -44,7 +44,8 @@ require.config({
          'app/search': ['jquery','common'],
          'app/doctor': ['jquery','common','app/search'],
          'app/site': ['jquery','common','app/search'],
-         'app/site-start': ['common', 'app/registration', 'app/search', 'app/site'],
+         'app/login': ['jquery','common','assets/jquery.validate.min'],
+         'app/site-start': ['common', 'app/registration', 'app/search', 'app/site', 'app/login'],
        
 	}
 });

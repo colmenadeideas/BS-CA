@@ -50,10 +50,11 @@
 			//retrieve hash from database
 			
 			$hash = $this->getHash($username);
+			
 			$hash = $hash[0]['pass_hash'];
 			
 		   	$result = $this->validate_password($data, $hash);
-		   
+		 	
 		   	return $result;
 		   
 		}

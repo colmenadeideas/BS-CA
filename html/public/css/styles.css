@@ -126,7 +126,7 @@ padding: 15px;}
 .left-addon input  { padding-left:  35px; }
 .right-addon input { padding-right: 30px; }
 
-#signin .form-control { 
+#form-login .form-control, #signin .form-control { 
 	margin-bottom: 7px;
 	border: none;
 	border-radius: 0;
@@ -139,6 +139,7 @@ padding: 15px;}
 	transition: all ease 0.3s;
 }
 .field-wrapper { margin-bottom:20px;}
+
 label.placeholder {
   position:absolute;
   top:-13px;
@@ -158,6 +159,15 @@ label.show {
   opacity:1;
 }
 
+#login label.placeholder {
+  position:inherit;
+  left:0;
+}
+#login label.on {
+	color:#FFF;
+}
+
+
 label.error { /*font-family: 'Glyphicons Halflings';float: right;margin: -35px 10px 0 0;*/ color: #FFF; background:#E74C3C; padding: 3px; border-radius:3px; }
 input.error { background: rgba(255,255,255,0.3) url(../img/validation-sprites.png) no-repeat right -40px !important; border-bottom-color: #e74c3c !important;
 border-radius:10px !important}
@@ -168,19 +178,21 @@ border-radius:10px !important}
     -webkit-transform:  translate3d(0, 125%, 0);
     transform:  translate3d(0, 125%, 0)
 }
-.success-response, .alert-response { color: #FFF }
-.success-response h1, .alert-response h1 { font-size:300% }
+.success-response, .alert-response, .warning-response { color: #FFF }
+.success-response h1, .alert-response h1, .warning-response h1 { font-size:300% }
 .success-response h2 { /*color:rgb(0, 169, 123);*/  color: white; background: #2ecc71; padding: 15px 5px; border-radius: 30px;}
 .success-response h4, .alert-response h4 { color: #FFF/*#585858*/; font-weight: 200; line-height: 140%; }
 
 .alert-response h1{ color: #DD4B39;  }
 .alert-response h2 { color: white; background: #DD4B39; padding: 15px 5px; border-radius: 30px; }
 
+.warning-response { color: #566263;font-weight: 800;text-align: center;font-size: 110%; background: #B8FFF7; padding: 20px 5px; border-radius: 0 0 25px 25px; border: none; margin-top:7px }
+
 /*.back-close { background:rgba(255,255,255,0.7); height: 55px;
 padding: 20px; border-bottom: 1px solid #E3E3E3; }*/
  
 #registration-patient { padding: 10px }
-#response-registration{ padding: 20px } 
+#response-registration { padding: 20px } 
 
 /*
 //Transparent #signin
@@ -209,7 +221,7 @@ box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.42);
 padding: 20px;}
 #register-select .close {font-size: 200%;color: #FFF;text-shadow:none; opacity: 1;}
 */
-
+#login { margin: 7% auto 0 auto;}
 #signin .modal-dialog  {  width: 100%;  height: 100%;  padding: 0; margin:0 }
 #signin .modal-content {
 	background: #004c95;
@@ -226,9 +238,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#004c95', end
   	border-radius: 0;
 }
 #signin .modal-body { width: 450px; margin: 5% auto; }
-#register-select { background:none; padding: 0 50px; color: #FFF;font-weight:200; letter-spacing: 1px; text-align:center; }
-.back-close { height: 55px; padding: 20px;}
-.back-close i { font-weight: 800; font-size: 200%; color: #FFF; text-shadow: none; opacity: 1; }
+#register-select, { background:none; padding: 0 50px; color: #FFF;font-weight:200; letter-spacing: 1px; text-align:center; }
+.back-close { height: 55px; padding: 20px; font-weight: 200; color: #FFF;}
+.back-close i { font-weight: 800; font-size: 200%;  text-shadow: none; opacity: 1; }
 
 #signin .close {font-size: 400%;color: #FFF;text-shadow:none; opacity: 1;
 position: fixed;
@@ -241,7 +253,7 @@ hr { border-top: 1px solid rgba(236, 240, 241,0.3) }
 .logo-square { margin: 35px auto; width: 135px; text-align:center;clear:both; }
 .btn { letter-spacing:normal;}
 #signin .modal-header  { padding:12px; border: none; }
-#signin .btn { margin:3px; border-radius: 3px }
+#signin .btn, #form-login .btn { margin:3px; border-radius: 3px }
 
 
 .btn-facebook {	border-color: #3b5998;	border-bottom-color: #263a63;	background-color: #3b5998;	color: #FFF; }
@@ -258,10 +270,11 @@ hr { border-top: 1px solid rgba(236, 240, 241,0.3) }
  text-transform: uppercase; padding: 15px;font-size: 115%;letter-spacing: 0.5px; border-radius: 27px !important;
 }
 
-.btn-facebook:hover, .btn-email:hover, .btn-google:hover { 
+.btn-facebook:hover, .btn-email:hover, .btn-google:hover, .btn-success:hover { 
  box-shadow: inset 0 3px 5px rgba(0,0,0,.3);
 }
 
+.btn-sm.btn-facebook, .btn-sm.btn-email, .btn-sm.btn-google { padding: 10px; font-size: 70%;}
 
 .form-control:focus { box-shadow:none}
 
@@ -433,12 +446,18 @@ a.btn.btn-login:hover, .navbar-default .navbar-nav>li>a.btn-login:hover { color:
 .btn.btn-register { color: #FFF; background-color: #3898f9;border-color: #3898f9; text-transform: uppercase; border-radius: 20px;padding: 10px 20px;  font-size: 95%; letter-spacing: 1px; }
 .btn-register:hover { color: #FFF;background-color: #2C72BD;border-color: #2C72BD;}
 
-.btn-register:focus {   
+.btn-register:focus, {   
 border-color: none;
     box-shadow: none;
     -webkit-box-shadow: none;
     outline: 0;
 }
+.btn.btn-success {text-transform: uppercase; border-radius: 20px;padding: 15px 20px;  font-size: 95%; letter-spacing: 1px; border-radius: 27px !important;
+/*
+ background: #ecf0f1;
+border: none;
+color: #7f8c8d;
+*/}
 
 .modal-backdrop { background: none;/* transition: all ease 0.2s;*/ }/*
 .modal-backdrop.in { opacity:1}

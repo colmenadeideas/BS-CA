@@ -44,6 +44,12 @@ define(function() {
 							
 						});						
 						break;
+					case "login":
+						require(['app/login'], function($) {							
+							signin();
+							floatinput();
+						});						
+						break;
 					default:					
 						break;
 				}

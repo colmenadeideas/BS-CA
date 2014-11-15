@@ -1,15 +1,9 @@
-<div id="login">
-	<?php //$this -> render('site/forms/login'); ?>
+<div class="container-fluid">
+	<div class="back-close">
+		<a href="<?php echo URL; ?>" ><i class="glyphicon glyphicon-chevron-left"></i> <?php echo SITE__BACK_TO_HOME; ?></a>
+	</div>
+	
 </div>
-
-	<!--body class="login-screen">
-		<div class="container">
-			
-
-			<div class="col-lg-6 col-sm-6 col-lg-push-3 col-sm-push-3">
-				<?php $this->render('login/loginbox'); ?>
-				<div id="response"></div>
-			</div>
-			
-			
-		</div-->
+<div id="login" class="col-lg-4 col-sm-4 col-lg-push-4 col-sm-push-4">
+	<?php $this -> render('login/loginbox'); ?>
+</div>

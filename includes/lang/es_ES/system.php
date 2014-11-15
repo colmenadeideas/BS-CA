@@ -4,7 +4,9 @@
 	define ('SYSTEM_EMAIL__YOUR_USER_IS_MESSAGE', 'Su usuario es: '); 
 	define ('ACTIVATION_USER_SUBJECT', 'Activación de Usuario en ' . SITE_NAME );
 	
-	
+		
+	define ('SYSTEM_INVALID_PASSWORD','Contraseña incorrecta');
+	define ('SYSTEM_PASSWORD_CHANGE','Cambio de Password realizado');
 	
 	
 	//EMAIL Head & Footer

@@ -20,8 +20,9 @@
                 <!--li class="active"><a href="#">Home</a></li-->               
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><button class="btn btn-register" data-toggle="modal" data-target="#signin"><?php echo SITE__SIGN_IN; ?></button></li>
+                
 				<li><a href="<?php echo URL; ?>site/login" class="btn btn-default btn-login"><?php echo SITE__LOG_IN; ?></a></li>
+				<li><button class="btn btn-register" data-toggle="modal" data-target="#signin"><?php echo SITE__SIGN_IN; ?></button></li>
             </ul>
         </div>
     </nav>

@@ -359,6 +359,7 @@
 			
 			$userdata 	= $this->user->getUserdata($role, $username);			
 			
+		
 			if (empty($userdata)) {
 				exit;
 				
@@ -370,6 +371,8 @@
 				$values = '';
 				$array_datos = array();	
 				$array_datos['username'] = $username;
+				
+				
 				
 				foreach ($_POST as $key => $value) {
 							
@@ -402,7 +405,7 @@
 					}
 									
 				}
-					switch ($what) {
+				switch ($what) {
 						
 					case 'password':
 						
