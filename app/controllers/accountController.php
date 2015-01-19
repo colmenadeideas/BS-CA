@@ -51,19 +51,47 @@
 			$validUser = $this->user->validateUsername($username);
 			
 			if(empty($validUser)){
-				echo "error";
+					
+				//echo "error";				
+				$response["tag"] = "login";
+				$response["success"] = 0;
+				$response["error"] = 1;	
+	            $response["response"] = LOGIN_MESSAGE_ERROR;				
+				echo json_encode($response);
+				
 			} else {
 				$validPass = $this->user->validatePassword($username, $password);
 				if(empty($validPass)){
-					echo "error";
+					//echo "error";
+					$response["tag"] = "login";
+					$response["success"] = 0;
+					$response["error"] = 1;	
+		            $response["response"] = LOGIN_MESSAGE_ERROR;	
+					echo json_encode($response);
+					
 				} else {
 						$role = escape_value($validUser[0]['role']);
 						$username = escape_value($validUser[0]['username']);
+						
+						$profile = $this->model->getAccount($role, $validUser[0]['id']);
+						
 						$this->user->init();
 				        $this->user->set('role', $role);
 						$this->user->set('loggedIn', true);
 				        $this->user->set('username', $username);				           
-						echo "welcome";					
+						//echo "welcome";	
+						
+						$response["tag"] = "login";
+						$response["success"] = 1;
+						$response["error"] = 0;	
+						$response["response"] = "welcome!";		
+						$response["user"]["role"] = $role;
+						$response["user"]["uid"] = $validUser[0]['id'];
+						$response["user"]["name"] = $profile[0]['name'];
+			            $response["user"]["email"] = $username;						
+												
+						echo json_encode($response);
+										
 						exit;
 					}
 			}

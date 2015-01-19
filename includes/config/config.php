@@ -45,6 +45,7 @@
 	
 	define("COUNTRY","ve");
 	
+	
 	//TODO	//String mix for password hash
 	
 	//Database Meekro Class Config
