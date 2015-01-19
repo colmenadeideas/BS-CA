@@ -17,8 +17,10 @@
 		}
 		
 		 function validate_password($password, $correct_hash){
-
+		 	
+			
 		    $params = explode(":", $correct_hash);
+			
 		    if(count($params) < HASH_SECTIONS)			
 		       return false; 
 		    $pbkdf2 = base64_decode($params[HASH_PBKDF2_INDEX]);
@@ -34,6 +36,7 @@
 		            true
 		        )
 		    );
+			
 		}
 		
 		// Compares two strings $a and $b in length-constant time.

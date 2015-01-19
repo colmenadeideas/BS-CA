@@ -10,6 +10,7 @@
 			
 		require ( LIBS . $class. '.php');
 		
+		
 	}
 	require ( LIBS . 'Functions.php');
 	require ( LANG . DEFAULT_LANGUAGE .'.php');	

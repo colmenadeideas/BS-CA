@@ -95,6 +95,21 @@
 					//TEST echo "<h4>Case: 3 Param </h4>";
 					$this->_controller->{$this->_url[1]}($this->_url[2], $this->_url[3], $this->_url[4]);
 					break;
+					case 6: 
+					//Controller -> Method -> (Param1, Param2, Param 3)
+					//TEST echo "<h4>Case: 4 Param </h4>";
+					$this->_controller->{$this->_url[1]}($this->_url[2], $this->_url[3], $this->_url[4], $this->_url[5]);
+					break;
+					case 7: 
+					//Controller -> Method -> (Param1, Param2, Param 3)
+					//TEST echo "<h4>Case: 5 Param </h4>";
+					$this->_controller->{$this->_url[1]}($this->_url[2], $this->_url[3], $this->_url[4], $this->_url[5], $this->_url[6]);
+					break;
+					case 8: 
+					//Controller -> Method -> (Param1, Param2, Param 3)
+					//TEST echo "<h4>Case: 6 Param </h4>";
+					$this->_controller->{$this->_url[1]}($this->_url[2], $this->_url[3], $this->_url[4], $this->_url[5], $this->_url[6], $this->_url[7]);
+					break;
 									
 					default:
 					//Controller -> Method  IF NO MATCHING PARAMETER -> INDEX? o ERROR

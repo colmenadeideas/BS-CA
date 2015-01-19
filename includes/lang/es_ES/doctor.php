@@ -1,4 +1,4 @@
 <?php
-define ('ESPECIALITY','Especialidad');
+define ('SPECIALTY','Especialidad');
 
 ?>

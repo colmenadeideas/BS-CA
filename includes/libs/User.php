@@ -50,10 +50,11 @@
 			//retrieve hash from database
 			
 			$hash = $this->getHash($username);
+			
 			$hash = $hash[0]['pass_hash'];
 			
 		   	$result = $this->validate_password($data, $hash);
-		   
+		 	
 		   	return $result;
 		   
 		}
@@ -90,38 +91,28 @@
 		
 		
 		
-		public function getUserdata(){
 		
+		public function getUserdata(){
+			
 			$user = $this->get('username');
-			$role = $this->get('role');
-						
-			switch ($role) {
-				case 'doctor':
-					$table = 'doctor';
-					$field="id_doctor";
-					break;
-				
-				default:
-						$field = 'id_patient';	
-						$table = 'patient';
+			
+			if (!empty($user)) {
+				$role = $this->get('role');
+			
+				$table = $role; //'user_profile';
+				$field = 'username';
 									
-					break;
+				return DB::query("SELECT * FROM ". DB_PREFIX . $table ." WHERE ". $field ."=%s LIMIT 1", $user);
 			}
-			
-							
-			return DB::query("SELECT * FROM ". DB_PREFIX . $table ." WHERE ". $field ."=%s LIMIT 1", $user);
-			
 		
 		}
+		
+		
 		
 		static function checkSession($controller=''){
 				
 			$data  = User::get('username');
 			$role  = User::get('role');				
-			//TODO
-			/*if ($controller === '') {
-				
-			}*/
 			
 			//Check if user valid
 			$usr = new User();
@@ -137,21 +128,35 @@
 				User::destroy();
 				header('location: '.URL);
 				exit;	
-		 	} else {   
+		 	} else {
 		 		
 				//User exists, not fake session, do everything then
 				User::activeSession();
 			
 				if(empty($check_firsttime_session)) {
 					
-					//requieres Password Change First time	
-					header('location: '.URL.'account/firstlogin/');
-					exit;
+					switch ($role) {
+							
+						// DISTRIBUIDOR password is self choised, so log and move on
+						case 'cliente':
+							
+							if(empty($check_session)) { //if session not registered, log
+								User::logSession($data);
+							}
+							break;
+						
+						default:
+							//requieres Password Change First time	
+							header('location: '.URL.'settings/firstlogin/');
+							exit;
+							break;
+					}
 						
 					
 				} else {
 					//Not first Session, so log and move on
 					//Check if User is allowed to used this area or controlller
+					
 					User::checkPermissions($role, $controller);
 					//If allowed, move on and log
 					if(empty($check_session)) { //if session not registered, log
@@ -168,8 +173,9 @@
 		}
 		
 		static private function activeSession() {
-				
-			$session_limit = SESSION_LIMIT; 
+			//TODO change to cookies??
+			
+			$session_limit = SESSION_LIMIT; // 5 minutes
 			$role = User::get('role');
 			
 			$session_analysis = time() - $_SESSION['loggedIn'];
@@ -271,20 +277,23 @@
 				
 			//}
 			//If not Authorized, Redirect to authorized home
+			
 			if (!in_array($controller,$authorized_url)) {
+				//print_r($_SESSION);
 				echo "<h3 class='text-center'>".RESTICTED_AREA_SESSION."</h3>";				
 				exit;
 			}
 			
 			
 		}
-		public static function gotoMainArea() {
+		
+		
+ 		public static function gotoMainArea() {
 			$role = User::get('role');
 			$permisos =	DB::query("SELECT * FROM " . DB_PREFIX . "users_role_permissions WHERE role=%s", $role);
 
 			header('location: '.URL.$permisos[0]['area']);
 		}
-		
 		
 		
 					
