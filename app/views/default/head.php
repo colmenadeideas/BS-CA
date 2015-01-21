@@ -45,7 +45,7 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
    
-   function fblogin(){
+   function fblogin(role){
 FB.login(function(response) {
 
         if (response.authResponse) {
@@ -57,8 +57,33 @@ FB.login(function(response) {
 
             FB.api('/me', function(response) {
                 user_email = response.email; //get user email
-                console.log("dentro de /me" + response);
-          // you can store this data into your database             
+                response.role = role;
+                console.log(response);
+                console.log(response.email);
+          // you can store this data into your database  
+          
+          
+          $.ajax({
+				type : "POST",
+				url : URL + "account/process/",
+				data : response,
+				timeout : 15000,
+				success : function(response) {
+						console.log('works' + response);
+						//TODO Pendiente definir si se cierra la ventana o que ocurre despues de ese paso
+						  $('#registration-patient').remove();
+						  $('#response-registration').html(response).fadeIn('fast');
+					},
+				error : function(response) {
+						console.log(response);
+						 $('.register-send').removeAttr("disabled");
+						 $('#response-registration').html(response).fadeIn('fast');
+					}
+				
+				
+			});
+          
+                     
             });
 
         } else {

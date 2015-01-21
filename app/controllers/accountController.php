@@ -219,6 +219,10 @@
 		// PROCESS: Method called by form REGISTRATION, to process vars and create user
 		function process() {
 			
+			//print_r($_POST);
+			
+			//exit();
+				
 			$array_data = array();	
 			foreach ($_POST as $key => $value) {
 				$field = escape_value($key);
@@ -244,6 +248,17 @@
 			//$array_profile['birth'] 		= $array_data['birth'];		
 			//$array_profile['sex'] 		= $array_data['v'];
 			@$array_user['data'] 		= json_encode( array('creationdate'=> date("Y-m-d h:i:s")));
+			
+			//
+			
+			if (isset($array_data['id'])){
+			
+			@$array_user['data'] 		= json_encode( array('fb_id'=> $array_data['id'])); 
+			unset($array_data['id']);
+			$array_user['gender'] 		= $array_data['gender'];
+			
+			}
+			//
 			
 			//Check if already exist in User database
 			$already_registered =	$this->model->getAccount("",$array_data['email'], 'username');
