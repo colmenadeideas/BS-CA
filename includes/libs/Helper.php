@@ -2,8 +2,7 @@
 	
 	class Helper {
 	
-		function __construct() {
-			
+		function __construct() {			
 		
 		}
 		

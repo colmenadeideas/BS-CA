@@ -9,6 +9,11 @@
 	
 		public function index() {
 			
+						
+		}
+		
+		public function demo() {
+			
 			$this->view->title = SITE_NAME;
 				
 			$this->view->buildpage('site/index');			

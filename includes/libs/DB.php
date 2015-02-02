@@ -621,9 +621,9 @@ class MeekroDB {
     $this->queryResult = $result;
     $this->queryResultType = $type;
     $this->insert_id = $db->insert_id;
-    $this->affected_rows = $db->affected_rows;
+    $this->affected_rows =$db->affected_rows;
     
-    if ($is_buffered) $this->num_rows = $result->num_rows;
+    if ($is_buffered) $this->num_rows =$result->num_rows;
     else $this->num_rows = null;
     
     if ($is_null) {

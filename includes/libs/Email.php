@@ -104,7 +104,5 @@ class Email extends PHPMailer{
 		return $body;
 		
 	}
-	
-
 }
 ?>

@@ -1,20 +1,19 @@
-<?php 
+<?php
 	
-	class appointmentsModel extends Model {
+	class appointmentsModel extends Model{
 	
 		public function __construct() {
 	
 			parent::__construct();
+			
 		}
 		
 		
-		public function checkFreeDay($practice_schedule,$date){
-			 DB::query("SELECT * FROM " . DB_PREFIX . "appointments
+		/*public function checkFreeDay($practice_schedule,$date){
+			 DB::query("SELECT * FROM " .DB_PREFIX . "appointments
 			where date_appointment =%s and id_practice_schedule=%i",$date,$practice_schedule);
 			 return$counter = DB::count();
 		}
-		
-		
 		//
 		public function getAppointments($by="id_doctor", $param="", $order="ASC") {
 			return DB::query("SELECT * FROM ". DB_PREFIX . "appointments WHERE $by =$param ORDER BY id $order");
@@ -27,8 +26,6 @@
 		}
 		public function getAppointment($id) {
 			return DB::query("SELECT * FROM ". DB_PREFIX . "appointments WHERE id='$id'");
-		}
-		
+		}*/
 	}
-
 ?>

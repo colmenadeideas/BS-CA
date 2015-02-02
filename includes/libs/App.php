@@ -1,5 +1,4 @@
 <?php
-
 	class App {
 		
 		private $_url = null;		
@@ -87,7 +86,9 @@
 					case 4: 
 					//Controller -> Method -> (Param1, Param2)
 					//TEST echo "<h4>Case: 2 Param </h4>";
+					
 					$this->_controller->{$this->_url[1]}($this->_url[2], $this->_url[3]);
+					
 					break;
 					
 					case 5: 
