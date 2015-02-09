@@ -5,13 +5,8 @@
 		public function __construct() {
 	
 			parent::__construct();
-<<<<<<< HEAD
-		}
-	
-=======
 			
 		}
->>>>>>> origin/Panel-Doctor
 		public function listUsers($by = 'username', $order = '') {
 			return DB::query("SELECT * FROM " . DB_PREFIX . "users ORDER BY $by $order");
 		}
@@ -23,11 +18,5 @@
 		public function getUserProfile($table, $id, $by = 'username') {
 			return DB::query("SELECT * FROM " . DB_PREFIX . "$table WHERE $by=%s LIMIT 1", $id);
 		}
-<<<<<<< HEAD
-	
 	}
 ?>
-=======
-	}
-?>
->>>>>>> origin/Panel-Doctor

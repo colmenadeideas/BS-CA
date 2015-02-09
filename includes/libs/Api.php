@@ -129,9 +129,9 @@
 			
 		}
 		
-		public function search ($type = "other", $terms, $location = "VE"){		
-			
-		 	$this->api->search($string);
+		//public function search ($type = "other", $terms, $location = "VE"){		
+		public function search(){	
+		 	echo "hi";
 
 		}
 		//

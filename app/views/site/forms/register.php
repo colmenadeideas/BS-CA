@@ -11,21 +11,10 @@
 	      	<div id="registration-panels" class="wraper">
 				
 				<div id="registration-forms" class="mask">
-<<<<<<< HEAD
-<<<<<<< HEAD
-					<!--Choose Option-->
-					<div id="register-select" class="masked-item">
-=======
 					
 					<!-- ->
 					
 					<!--Choose Option-->
-=======
-					
-					<!-- ->
-					
-					<!--Choose Option-->
->>>>>>> origin/Calendario_Paciente
 					<div id="register-who" class="masked-item">
 						
 						<div class="logo-square">
@@ -77,10 +66,6 @@
 	      			
 	      			<!--Form Patient-->
 					<div id="register-select-patient" class="masked-item">
-<<<<<<< HEAD
->>>>>>> origin/Panel-Doctor
-=======
->>>>>>> origin/Calendario_Paciente
 						
 						<div class="logo-square">
 							<img src="<?php echo IMG; ?>okidoc-logo-main-square-white.png" class="img-responsive" />							
@@ -88,38 +73,19 @@
 						<div class="padding-20">										
 							<a class="btn btn-lg btn-full btn-email" id="register_with_email"><i class="fa fa-envelope"></i> <?php echo SITE__SIGN_IN_WITH_EMAIL; ?></a>
 		      				<hr><?php echo SITE__SIGN_IN_CHOOSE; ?>
-<<<<<<< HEAD
-<<<<<<< HEAD
-		      				<a class="btn btn-lg btn-full btn-facebook more-margin" id="register_with_facebook"><i class="fa fa-facebook"></i> <?php echo SITE__SIGN_IN_WITH_FACEBOOK; ?></a>
-=======
-=======
->>>>>>> origin/Calendario_Paciente
 		      				
 <a class="btn btn-lg btn-full btn-facebook more-margin" id="register_with_facebook" onclick="fblogin('patient')"><i class="fa fa-facebook"></i> <?php echo SITE__SIGN_IN_WITH_FACEBOOK; ?></a>
 
 
 
 
-<<<<<<< HEAD
->>>>>>> origin/Panel-Doctor
-=======
->>>>>>> origin/Calendario_Paciente
 							<a class="btn btn-lg btn-full btn-google" id="register_with_google"><i class="fa fa-google-plus"></i> <?php echo SITE__SIGN_IN_WITH_GOOGLE; ?></a>
 						</div>
 						
 	      				
 	      				
-<<<<<<< HEAD
-<<<<<<< HEAD
-	      			</div>					
-=======
 	      			</div>	
 	      							
->>>>>>> origin/Panel-Doctor
-=======
-	      			</div>	
-	      							
->>>>>>> origin/Calendario_Paciente
 					<!--Register with Email -->
 					<div id="registration-emails" class="masked-item">	
 						<div class="back-close">

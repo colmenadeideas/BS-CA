@@ -7,15 +7,8 @@
 			parent::__construct();	
 		}
 	
-		public function index() {
-			
-<<<<<<< HEAD
-		}
+		public function index() { }
 
-=======
-						
-		}
->>>>>>> origin/Calendario_Paciente
 		
 		public function demo() {
 			
