@@ -9,8 +9,13 @@
 	
 		public function index() {
 			
+<<<<<<< HEAD
 		}
 
+=======
+						
+		}
+>>>>>>> origin/Calendario_Paciente
 		
 		public function demo() {
 			

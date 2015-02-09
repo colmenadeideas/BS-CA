@@ -253,7 +253,11 @@
 			
 			if (isset($array_data['id'])){
 			
+<<<<<<< HEAD
 			@$array_user['data'] = json_encode( array('fb_id'=> $array_data['id'])); 
+=======
+			@$array_user['data'] 		= json_encode( array('fb_id'=> $array_data['id'])); 
+>>>>>>> origin/Calendario_Paciente
 			unset($array_data['id']);
 			$array_user['gender'] 		= $array_data['gender'];
 			

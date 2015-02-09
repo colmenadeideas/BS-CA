@@ -24,17 +24,24 @@ $('#signin').on('hide.bs.modal', function (e) {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 $('#register_with_email').click(function() {
 =======
 $('#register-select-patient #register_with_email, #register-select-doctor#register_with_email').click(function() {
 >>>>>>> origin/Panel-Doctor
+=======
+$('#register-select-patient #register_with_email, #register-select-doctor#register_with_email').click(function() {
+>>>>>>> origin/Calendario_Paciente
 	$('#registration-panels').scrollTo($('#registration-emails'), 500);	
 	registerWithEmail();	
 });
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/Calendario_Paciente
 $('#register_who_doctor').click(function() {
 	$('#registration-panels').scrollTo($('#register-select-doctor'), 500);		
 });
@@ -44,7 +51,10 @@ $('#register_who_patient').click(function() {
 });
 
 
+<<<<<<< HEAD
 >>>>>>> origin/Panel-Doctor
+=======
+>>>>>>> origin/Calendario_Paciente
 $('#signin .back').click(function() {
 	$('#registration-panels').scrollTo($('#register-select'), 500);	
 });
