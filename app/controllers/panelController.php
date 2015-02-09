@@ -3,6 +3,7 @@ class panelController extends Controller {
 	public function __construct() {
 		parent::__construct();
 	}
+	
 	public function index($id){
 		//TODO pasar parametros desde variable
 		
