@@ -23,12 +23,28 @@ $('#signin').on('hide.bs.modal', function (e) {
 
 
 
+<<<<<<< HEAD
 $('#register_with_email').click(function() {
+=======
+$('#register-select-patient #register_with_email, #register-select-doctor#register_with_email').click(function() {
+>>>>>>> origin/Panel-Doctor
 	$('#registration-panels').scrollTo($('#registration-emails'), 500);	
 	registerWithEmail();	
 });
 
 
+<<<<<<< HEAD
+=======
+$('#register_who_doctor').click(function() {
+	$('#registration-panels').scrollTo($('#register-select-doctor'), 500);		
+});
+
+$('#register_who_patient').click(function() {
+	$('#registration-panels').scrollTo($('#register-select-patient'), 500);		
+});
+
+
+>>>>>>> origin/Panel-Doctor
 $('#signin .back').click(function() {
 	$('#registration-panels').scrollTo($('#register-select'), 500);	
 });

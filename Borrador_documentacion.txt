@@ -1,0 +1,1 @@
+--Las funciones del ApiController deben recibir la misma cantidad de parametros que las del Api( libreria)

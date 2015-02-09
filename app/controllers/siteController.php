@@ -9,6 +9,14 @@
 	
 		public function index() {
 			
+<<<<<<< HEAD
+=======
+						
+		}
+		
+		public function demo() {
+			
+>>>>>>> origin/Panel-Doctor
 			$this->view->title = SITE_NAME;
 				
 			$this->view->buildpage('site/index');			

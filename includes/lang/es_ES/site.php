@@ -12,6 +12,13 @@ define ('SITE__LOG_IN_WITH_FACEBOOK','Entrar con Facebook');
 define ('SITE__LOG_IN_WITH_GOOGLE','Entrar con Google');
 
 
+<<<<<<< HEAD
+=======
+define ("SITE__SIGN_IN_WHO_DOCTOR", "Soy Doctor");
+define ("SITE__SIGN_IN_WHO_PATIENT", "Soy Paciente");
+
+
+>>>>>>> origin/Panel-Doctor
 define ('SITE__SIGN_IN_WITH_FACEBOOK','Registrar con Facebook');
 define ('SITE__SIGN_IN_WITH_GOOGLE','Registrar con Google');
 define ('SITE__SIGN_IN_WITH_EMAIL','Registrar con Email');

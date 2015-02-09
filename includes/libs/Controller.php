@@ -1,6 +1,6 @@
 <?php
 	
-	class Controller {
+	class Controller  {
 	
 		public function __construct(){
 			
@@ -8,9 +8,8 @@
 			$this->helper = new Helper();
 			$this->email = new Email();
 			$this->user = new User();		
-			
-			$this->user->init(); //Added 26-10-13 to keep sessions through Controllers
-		
+			$this->api = new Api();
+			$this->user->init();//Added 26-10-13 to keep sessions through Controllers
 		}
 				 		
 		/**
@@ -29,8 +28,7 @@
 				
 				$this->model = new $modelName();
 			}        
-		}				
-					
+		}						
 	}
 	
 ?>
