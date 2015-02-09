@@ -209,72 +209,6 @@
 			 	// die ("The reCAPTCHA wasn't entered correctly. Go back and try it again." . "(reCAPTCHA said: " . $resp->error . ")");
 				// echo 'false'; 
 				echo 'true';
-<<<<<<< HEAD
-			} else {
-			    echo 'true';
-			}
-
-		}
-		
-		
-		// PROCESS: Method called by form REGISTRATION, to process vars and create user
-		function process() {
-			
-			$array_data = array();	
-			foreach ($_POST as $key => $value) {
-				$field = escape_value($key);
-				$field_data = escape_value($value);				
-				$array_data[$field] = $field_data;
-			}
-			
-			unset($array_data['recaptcha_challenge_field']);
-			unset($array_data['recaptcha_response_field']);			
-			
-			
-			// 1 -Creates User&Profile and Sends Authentication Link
-			$array_user['username'] 	= $array_data['email'];
-			$array_user['role'] 		= $array_data['role'];
-			$array_user['status'] 		= 'active';
-			//Data for Profile
-			$array_user['name'] 		= $array_data['name'];
-			$array_user['email'] 		= $array_data['email'];
-			$array_user['phone'] 		= $array_data['phone'];
-			//TODO Users registration will be a process of steps
-			//TODO REFACTOR Should 'sex' and 'birth' be located in fields or should they go to a json field DATA?
-			//$array_user['id_card'] 		= $array_data['id_card'];
-			//$array_profile['birth'] 		= $array_data['birth'];		
-			//$array_profile['sex'] 		= $array_data['v'];
-			@$array_user['data'] 		= json_encode( array('creationdate'=> date("Y-m-d h:i:s")));
-			
-			//Check if already exist in User database
-			$already_registered =	$this->model->getAccount("",$array_data['email'], 'username');
-			
-			if(!empty($already_registered)){
-					
-				if ($already_registered[0]['status'] === 'sleep'){
-					//si está sleep ->
-					$array_user['wakeup'] 	= $already_registered[0]['id'];
-					//Register User				
-					require_once('usersController.php');	
-					$users = new usersController;	
-					$create_user = $users->create($array_user);	
-						
-				}
-			} else if (empty($already_registered)) {
-					
-				//Register User				
-				require_once('usersController.php');	
-				$users = new usersController;	
-				$create_user = $users->create($array_user);	
-			}
-			
-			if ($create_user > 0) {								
-				echo REGISTRATION_MESSAGE_SUCCESS;		
-			} else {
-				echo REGISTRATION_MESSAGE_ERROR;
-			}
-			
-=======
 			} else {
 			    echo 'true';
 			}
@@ -354,7 +288,6 @@
 				echo REGISTRATION_MESSAGE_ERROR;
 			}
 			
->>>>>>> origin/Panel-Doctor
 			
 		}
 		
@@ -401,11 +334,6 @@
 				
 				echo PASSWORD_RECOVERY_SUCCESS_RESPONSE;
 			}
-<<<<<<< HEAD
-			
-				
-=======
->>>>>>> origin/Panel-Doctor
 		}
 		
 		// EDIT: Views to edit Password or Profile
@@ -576,16 +504,6 @@
 			}				
 					
 			
-<<<<<<< HEAD
-		
-		}
-			
-		
-		
-		
-	}
-=======
->>>>>>> origin/Panel-Doctor
 		
 		}	
 	}
