@@ -151,7 +151,6 @@ padding-left: 15px;*/
 
 
 
-
 		</style>
 		
 				
@@ -214,6 +213,36 @@ padding-left: 15px;*/
 				
 								
 			</div>
+			 
+<style>
+#wrapper {
+/*	border-radius: 0;
+	width: 800px;
+	height: 400px;
+	padding: 10px;*/
+}
+
+.looper .goback, .looper  .gofoward {
+	position: absolute;
+	top: 250px;	
+	
+	background: none !important;
+	color: #565A5C;
+	text-shadow: none !important;
+	font-size: xx-large;
+	padding: 100px 0 0 0;
+}
+.looper .goback {left:100px}	
+.looper .goback:hover {}	
+.looper .gofoward {right: 50px;}			
+.looper .gofoward:hover {}				
+
+</style>
+
+
+
+
+
 			<div id="inner" class="col-lg-12">	
 				
 				
@@ -240,7 +269,112 @@ padding-left: 15px;*/
 								<h2>¿Donde quieres pedir tu cita?</h2>
 								
 								
-								<div id="practices-loop" class="carousel slide" data-ride="carousel">
+								
+								
+								
+								
+								   
+								
+    
+							<div id="wrapper" class="looper">
+								<div id="practices-loop">
+									
+									{{practice}}
+								      
+									       <div class="column-steps practice-item">
+									       	  <h4>{{name}} {{#}} {{##}}</h4>
+									       	  
+									       	  <img src="<?php echo IMG;?>icon-okidoc-hospital.png" class="img-responsive" alt="{{name}}" />
+									       	  <div class="dates-available">
+									       	  
+									       	  	<div>
+									       	  	
+									       	  	{{if schedule}}
+										       	  	{{schedule}}
+										       	  	
+													    <div class="text-right date-resume">
+													    	<div class="left weekday">{{day}}&nbsp;</div>
+													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
+													    	&nbsp;
+													    </div>
+													    
+													    <div class="text-right date-resume2">
+													    	<div class="left weekday">{{day}}&nbsp;</div>
+													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
+													    	&nbsp;
+													    </div>
+										       	  	{{/schedule}}
+									       	  	{{/if}}
+									       	  	</div>
+									       	  </div>
+									       	  
+											</div>
+											<div class="column-steps practice-item">
+									       	  <h4>{{name}} {{#}} {{##}}</h4>
+									       	  
+									       	  <img src="<?php echo IMG;?>icon-okidoc-hospital.png" class="img-responsive" alt="{{name}}" />
+									       	  <div class="dates-available">
+									       	  
+									       	  	<div>
+									       	  	
+									       	  	{{if schedule}}
+										       	  	{{schedule}}
+										       	  	
+													    <div class="text-right date-resume">
+													    	<div class="left weekday">{{day}}&nbsp;</div>
+													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
+													    	&nbsp;
+													    </div>
+													    
+													    <div class="text-right date-resume2">
+													    	<div class="left weekday">{{day}}&nbsp;</div>
+													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
+													    	&nbsp;
+													    </div>
+										       	  	{{/schedule}}
+									       	  	{{/if}}
+									       	  	</div>
+									       	  </div>
+									       	  
+											</div>
+											<div class="column-steps practice-item">
+									       	  <h4>{{name}} {{#}} {{##}}</h4>
+									       	  
+									       	  <img src="<?php echo IMG;?>icon-okidoc-hospital.png" class="img-responsive" alt="{{name}}" />
+									       	  <div class="dates-available">
+									       	  
+									       	  	<div>
+									       	  	
+									       	  	{{if schedule}}
+										       	  	{{schedule}}
+										       	  	
+													    <div class="text-right date-resume">
+													    	<div class="left weekday">{{day}}&nbsp;</div>
+													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
+													    	&nbsp;
+													    </div>
+													    
+													    <div class="text-right date-resume2">
+													    	<div class="left weekday">{{day}}&nbsp;</div>
+													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
+													    	&nbsp;
+													    </div>
+										       	  	{{/schedule}}
+									       	  	{{/if}}
+									       	  	</div>
+									       	  </div>
+									       	  
+											</div>
+								      	
+								      {{/practice}}
+								</div>
+								<a class="goback" href="#"> <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
+								<a class="gofoward" href="#"> <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
+							</div>
+    
+    
+    
+								<div id="practices-loop2" style="display:none" class="carousel slide" data-ride="carousel" >
 								    <!-- Wrapper for slides -->
 								  
 								  

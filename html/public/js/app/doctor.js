@@ -26,6 +26,19 @@ function doctorLoadDetails() {
 
 function bookingform() {
 	
+	
+	$('#practices-loop').carouFredSel({
+		
+		items: 3,
+		scroll: 1,
+		auto: {
+			 play: false,
+		},
+		prev: '.goback',
+		next: '.gofoward',
+	});
+
+	
 //jQuery time
 var current_fs, next_fs, previous_fs; //fieldsets
 var left, opacity, scale; //fieldset properties which we will animate

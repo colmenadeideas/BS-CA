@@ -36,13 +36,15 @@ require.config({
       	 'assets/fullcalendar.min': ['jquery'/*,'assets/fullcalendar-es'*/],
        	 'assets/jquery.geocomplete.min' : ['jquery'],
        	 'assets/bootstrap-datetimepicker':['jquery','assets/bootstrap.min'],
+       	 'assets/ jquery.carouFredSel-6.1.0-packed':['jquery','assets/easing.min'],
+       	
        	 //DATA TO PRELOAD
        //	 'assets/jsonsql': ['../../data/ve/jsonload'],
          //
          'common': ['jquery','assets/all','assets/jquery-ui.min','assets/bootstrap.min','assets/jquery.validate.min','assets/jquery.easing.min','assets/jquery.scrollTo.min','assets/jquery.backstretch.min','assets/bootstrap-datetimepicker','assets/jquery.geocomplete.min','assets/moment.min','assets/fullcalendar.min','assets/jsonsql','functions','config'],
          'app/registration': ['jquery','common'],
          'app/search': ['jquery','common'],
-         'app/doctor': ['jquery','common','app/search','assets/jquery.easing.min'],
+         'app/doctor': ['jquery','common','app/search','assets/jquery.easing.min', 'assets/jquery.carouFredSel-6.1.0-packed'],
          'app/site': ['jquery','common','app/search'],
          'app/login': ['jquery','common','assets/jquery.validate.min'],
          'app/site-start': ['common', 'app/registration', 'app/search', 'app/site', 'app/login'],
