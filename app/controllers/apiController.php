@@ -12,24 +12,33 @@
 		}
 		// SEARCH: Main search processing is done with this function
 		public function search($type = "other", $terms, $location = "VE") {
-			$this -> api -> search($string);
+
+			$this -> api -> search($type, $terms, $location);
 		}
 		//PATIENT/$ID
-		public function patient( $arreglo="json", $id) {
-			$this->api->patient($arreglo, $id);
+		public function patient	( $print="json", $id) {
+			$this->api->patient($print, $id);
 		}
 		
-		public function doctor($arreglo="json",$id) {
-			$this -> api -> doctor($arreglo, $id);
+		
+		//DOCTOR/$ID
+		public function doctor($print="json", $id ) {
+			$this -> api -> doctor($print, $id);
 		}
 		
-		public function doctors( $arreglo="json", $type, $value, $location = "VE"){
-			$this -> api -> doctors($arreglo , $type, $value);
+		public function doctors( $print="json", $type, $value, $location = "VE"){
+			$this -> api -> doctors($print , $type, $value);
 		}
 		
-		public function appointments($arreglo="json", $by = "doctor", $id, $second_parameter = "", $practice_id = "", $for_date = "", $to_date = ""){
+		//DOCTOR/$ID/PRACTICES/$ID
+		public function practices ($print = "json", $parameter = "doctor", $id) {
+			$this->api->practices ($print, $parameter, $id);
+		}
+				
+		
+		public function appointments($print="json", $by = "doctor", $id, $second_parameter = "", $practice_id = "", $for_date = "", $to_date = ""){
 			//TODO definir el envio del 1er parametro
-			$this -> api -> appointments($arreglo, $by, $id);
+			$this -> api -> appointments($print, $by, $id);
 		}
 		
 		//APPOINTMENTS/DOCTOR/$ID/RANGE : To Get Latest Doctor's Appointments grouped by day?

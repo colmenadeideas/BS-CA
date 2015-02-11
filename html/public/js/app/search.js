@@ -130,8 +130,8 @@ function checkSearchView() {
 	if (hashCheck[0] == '#search' || hashCheck[0] == '#doctor') {
 		//Set Minimum Form
 		$('.site-head').css({
-			'margin-top':'70px',
-			'min-height': '200px'
+			'margin-top':'20px',
+			'min-height': '100px'
 		});
 		$('.site-head h1').fadeOut();
 	}

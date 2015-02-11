@@ -46,7 +46,8 @@ color:#565A5C;
 /* Preloader */
 
 #footer {
-  position: absolute;
+	opacity: 0.1;
+  position: fixed;
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
@@ -466,15 +467,12 @@ color: #7f8c8d;
     opacity:1;
 }
 */
+.center-block { float: none }
+.left { float: left }
+.right { float: right}
 
 
 
 
 
 
-
-
-
-#doc-details { position: fixed;    width: 100%;    height: 100%;  background: #FFF; padding-top: 40px }
-#doc-details #card { }
-#doc-details #view { }

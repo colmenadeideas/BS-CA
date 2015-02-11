@@ -41,6 +41,8 @@ define ('SITE__SEARCH_PLACEHOLDER_LOCATION', '¿Donde lo buscas?');
 define ('SITE__BACK_TO_HOME', 'Volver al Home');
 
 define ('NO_APPOINTMENTS_DATE', 'No hay resultados');
+define ('NO_PRACTICES_AVAILABLE', 'Disculpe, No hay centros registrados para este doctor');
+
 
 	
 ?>

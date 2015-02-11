@@ -12,6 +12,7 @@
 	
 			return DB::query("	SELECT * FROM  (
 									SELECT doctor.name AS label, 'doctor_name' AS type FROM doctor UNION 
+									SELECT doctor.lastname AS label, 'doctor_name' AS type FROM doctor UNION 
 				 					SELECT clinic.name AS label, 'clinic_name' FROM clinic UNION 
 				 					SELECT clinic.address AS label, 'clinic_address' FROM clinic UNION
 				 					SELECT specialty.name AS label, 'doctor_specialty' FROM specialty
@@ -23,6 +24,7 @@
 	
 			return DB::query("	SELECT * FROM  (
 									 SELECT id, doctor.name AS term, 'doctor' AS in_table FROM doctor UNION 
+									 SELECT id, doctor.lastname AS term, 'doctor' AS in_table FROM doctor UNION 
 				 					 SELECT id, clinic.name AS term, 'clinic' FROM clinic UNION 
 				 					 SELECT id, clinic.address AS term, 'clinic' FROM clinic UNION
 				 					 SELECT id, specialty.name AS term, 'specialty' FROM specialty
@@ -90,7 +92,12 @@
 		}
 		  
 		public function getDoctorPractices($id) {
-			return DB::query("SELECT doctor_practice.id, doctor_practice.id_doctor, doctor_practice.id_clinic, clinic.name, clinic.address FROM " . DB_PREFIX . "doctor_practice INNER JOIN clinic ON id_clinic=clinic.id WHERE doctor_practice.id_doctor=%i", $id);
+			return DB::query("SELECT doctor_practice.id, 
+							doctor_practice.id_doctor, 
+							doctor_practice.id_clinic, 
+							clinic.name, 
+							clinic.address FROM " . DB_PREFIX . "doctor_practice 
+							INNER JOIN clinic ON id_clinic=clinic.id WHERE doctor_practice.id_doctor=%i", $id);
 		}
 		public function getDoctorPractice($id, $id_clinic) {
 			return DB::query("SELECT doctor_practice.id, doctor_practice.id_doctor, doctor_practice.id_clinic, clinic.name, clinic.address FROM " . DB_PREFIX . "doctor_practice INNER JOIN clinic ON id_clinic=clinic.id WHERE doctor_practice.id_doctor=%i AND doctor_practice.id_clinic=%i", $id, $id_clinic);
