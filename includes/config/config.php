@@ -4,8 +4,33 @@
 	define ('DEFAULT_LANGUAGE', 'es_ES');
 	
 	date_default_timezone_set('America/Caracas');	
+	
+	//
+	
+	
+	
 	//Path info
-	define ('SITE_PATH', dirname(dirname(realpath(__FILE__))).'/'); 
+	//define ('SITE_PATH', str_replace('\\', '/', dirname(dirname(realpath(__FILE__))).'/'));//original
+	
+	define ('SITE_PATH', str_replace('\\', '/', dirname(realpath(__DIR__)).'/'));//original
+		
+	define ('SITE_PATH2', __DIR__);//prueba
+	//define ('SITE_PATH3', dirname(__FILE__).'/');//prueba
+	//define ('SITE_PATH4', realpath($mappath.'/'));//prueba
+	
+	
+	//define('SITE_PATH', realpath(__DIR__).'/');//prueba
+	
+	
+	
+	
+	
+	//echo SITE_PATH2 ."<br>";//prueba
+	//echo SITE_PATH3 ."<br>";//prueba
+	//echo SITE_PATH4 ."<br>";//prueba
+	//echo SITE_PATH4 .str_replace(realpath(dirname(__FILE__).'/../'),'',realpath(dirname(__FILE__)));//prueba
+
+		
 	define ('SITE_NAME', "OKIDOC");
 	define ('PUBLIC_PATH', URL . 'public/');
 	define ('CSS', URL . 'public/css/'); 
@@ -13,8 +38,9 @@
 	define ('ICONS', URL . 'public/img/icons/'); 
 	define ('IMAGES', URL . 'public/images/'); 
 	define ('JS', URL . 'public/js/'); 
-	define ('LIBS', SITE_PATH . 'libs/');
-	define ('LANG', SITE_PATH . 'lang/'); 
+	define ('LIBS', '../includes/libs/');
+	//define ('LIBS', SITE_PATH . 'libs/');
+	define ('LANG',  '../includes/lang/'); 
 	define ('SIDEBARS', SITE_PATH . '/app/views/sidebars/'); 
 	define ('DATA', SITE_PATH . '../html/public/data/'); 
 	
@@ -48,7 +74,8 @@
 	
 	//TODO	//String mix for password hash
 	
-	//Database Meekro Class Config
+	
+ //Database Meekro Class Config
 	DB::$user = DB_USER;
 	DB::$password = DB_PASSWORD;
 	DB::$dbName = DB_NAME;

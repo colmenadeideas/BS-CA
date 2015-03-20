@@ -10,7 +10,7 @@
 			$this->user = new User();		
 			
 			$this->user->init(); //Added 26-10-13 to keep sessions through Controllers
-		
+		 
 		}
 				 		
 		/**

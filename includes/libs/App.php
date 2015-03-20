@@ -7,7 +7,7 @@
 		private $_helper = null;
 		
 		private $_controllerPath = '../app/controllers/';
-		private $_modelPath = '../app/models/';
+		private $_modelPath = '../../app/models/';
 		private $_errorFile = 'error.php';
 		private $_defaultFile = 'siteController';
 		
@@ -16,7 +16,8 @@
 			//sets the $_url
 			$this->_getUrl();
 			
-			@$this->_loadController($this->_url[0]);
+			
+			$this->_loadController($this->_url[0]);
 			$this->_getControllerMethod();
 			
 		}
@@ -28,6 +29,7 @@
 			$url = filter_var( $url, FILTER_SANITIZE_URL );
 			
 			$this->_url = explode('/', $url);
+		
 									
 		}
 		

@@ -122,7 +122,7 @@
 			//Check if active session from User is already registered
 			$check_previous_session = User::check_session_inDB($data);
 			
-			
+						
 			//El usuario no existe, existía una sesión vieja iniciada tal vez
 		 	if(empty($check_uservalid)) {		 		
 				User::destroy();
@@ -138,7 +138,8 @@
 					switch ($role) {
 							
 						// DISTRIBUIDOR password is self choised, so log and move on
-						case 'cliente':
+						case 'doctor':
+						case 'patient':
 							
 							if(empty($check_session)) { //if session not registered, log
 								User::logSession($data);
@@ -147,7 +148,7 @@
 						
 						default:
 							//requieres Password Change First time	
-							header('location: '.URL.'settings/firstlogin/');
+							header('location: '.URL.'account/firstlogin/');
 							exit;
 							break;
 					}
@@ -195,14 +196,14 @@
 		static function logSession($username) {
 			
 			$check_previous_session = User::check_session_inDB($username);
-			
+						
 			if (empty($check_previous_session)) {
-				
+								
 				$array_session = array();
 				$array_session['username'] 	 = $username;
 				$array_session['session_randomkey'] = escape_value($_SESSION['randomkey']);
 				$array_session['url_in'] = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-				$array_session['ip_address'] = Helper::getIpAddress();				
+				//$array_session['ip_address'] = Helper::getIpAddress();				
 				
 				Helper::insert('user_session', $array_session ,1);
 			}

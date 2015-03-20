@@ -16,7 +16,7 @@
 			return DB::affectedRows();
 		}
 		
-		static function update($tablename, $id, $vars, $by ='id'){
+		static function update($tablename, $id, $vars, $by ='username'){ //se cambio $by='id' por $by='username' para poder actualizar con las redes
 				
 			$tablename = escape_value($tablename);
 			$id = escape_value($id);

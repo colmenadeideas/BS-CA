@@ -8,6 +8,9 @@ define('LOGIN_MESSAGE_ERROR', 'Usuario o Contraseña inválido');
 define('REGISTRATION_MESSAGE_ERROR', '<div class="alert-response"><h1>):</h1><h2>¡Lo sentimos!</h2><h4>Ha ocurrido un error con tu registro, por favor contactanos al '.CONTACT_PHONENUMBER.'</h4></div>');
 define('REGISTRATION_MESSAGE_SUCCESS', '<div class="success-response"><h1>:)</h1><h3>¡Bien!</h3><h2>te has registrado con éxito</h2><h4>Revisa tu bandeja de correo y sigue las instrucciones que te hemos enviado para poder entrar al sistema</h4></div>');
 
+define ('SITE__SIGN_IN_WHO_DOCTOR','Soy Doctor');
+define ('SITE__SIGN_IN_WHO_PATIENT','Soy Paciente');
+
 define ('SITE__LOG_IN_WITH_FACEBOOK','Entrar con Facebook');
 define ('SITE__LOG_IN_WITH_GOOGLE','Entrar con Google');
 

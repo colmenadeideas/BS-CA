@@ -5,9 +5,11 @@
 		public function __construct() {
 	
 			parent::__construct();
+			
 		}
 		
 		public function getAccount($table, $data, $by='id') {
+			
 			
 			if ($table == "") {
 				$table = 'patient';				

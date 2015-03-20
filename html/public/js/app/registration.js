@@ -23,19 +23,29 @@ $('#signin').on('hide.bs.modal', function (e) {
 
 
 
-$('#register_with_email').click(function() {
+$('#register-select-patient #register_with_email, #register-select-doctor #register_with_email').click(function() {
 	$('#registration-panels').scrollTo($('#registration-emails'), 500);	
 	registerWithEmail();	
 });
 
 
+$('#register_who_doctor').click(function() {
+	$('#registration-panels').scrollTo($('#register-select-doctor'), 500);		
+});
+
+$('#register_who_patient').click(function() {
+	$('#registration-panels').scrollTo($('#register-select-patient'), 500);		
+});
+
+
 $('#signin .back').click(function() {
-	$('#registration-panels').scrollTo($('#register-select'), 500);	
+	$('#registration-panels').scrollTo($('#register-select-patient, #register-select-doctor'), 500);	
 });
 
 
 
 function registerWithEmail() {
+	
 
 	$('.datetimepicker').datetimepicker({pickTime: false, });
 	 
@@ -59,7 +69,7 @@ function registerWithEmail() {
 		messages: {
 			email: { remote:jQuery.format("Ya existe un usuario registrado con este correo") },	
 			//"birth": {check_age: "" },        
-		},
+		},	
 		//onkeyup: false,
 		//onfocusout: false,
 		//onclick: false,

@@ -18,6 +18,20 @@
 			$this->view->render('doc/details');
 		}
 		
+		// Doctor profile
+		public function profile() {
+			
+			$session = User::get('username');
+			
+			$profiledatos = DB::query("SELECT * FROM " . DB_PREFIX . "doctor WHERE username='$session'");
+			
+			//print_r($profiledatos);
+			
+			$this->view->usuario = $profiledatos;
+			
+			$this->view->buildpage('doc/profile');
+		}
+		
 		/*public function details($id) {
 			
 			$doctor = $this->model->getDoctorsBy('doctor.id',$id);			
