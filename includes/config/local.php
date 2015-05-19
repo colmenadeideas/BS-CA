@@ -1,6 +1,6 @@
 <?php
 		//Path Info
-		define ('URL', "http://localhost/CapitanAmerica/BS-CA/html/"); 
+		define ('URL', "http://localhost/BS-OK/html/"); 
 
 		//Server Info
 		define ( 'DB_SERVER', 'localhost');
