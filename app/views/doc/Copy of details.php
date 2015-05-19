@@ -6,56 +6,18 @@
 		
 		<style>
 		
-		.site-head { height:10px !important; margin-top:0 !important; min-height:0;}
 		
-		
-		.menubar-action { background: #3898F9; padding: 15px; }
-		.img-profile { /*padding: 0 20px 20px;*/ 
-			margin: 0 20px 20px;max-width: 93%;box-shadow: 0px 1px 10px rgba(0,0,0,0.25);padding: 5px;}
-		.menubar-action  .nav-tabs { border:none; transition: all ease 0.5s}
-		.menubar-action .nav-tabs>li.active>a, .menubar-action li a  { border: none;  color: rgba(255,255,255,0.5); text-transform: uppercase; background: none; font-weight: 400 }
-		.menubar-action .nav-tabs>li.active>a  {font-weight: 600; color: rgba(255,255,255,1); }
-		.menubar-action .nav-tabs>li.active>a:hover, .menubar-action .nav-tabs>li>a:hover , .menubar-action .nav-tabs>li.active>a:focus { background: none; }
-		.menubar-action .nav-tabs>li.active:after { top: 100%;	left: 50%;	border: solid transparent;	content: " ";	height: 0;	width: 0;	position: absolute;
-						pointer-events: none;	border-color: rgba(136, 183, 213, 0);	border-top-color: #3898F9;	border-width: 30px;
-	margin-left: -30px }
-	.menubar-action .nav-tabs>li.active, .menubar-action .nav-tabs>li.active>a:hover, .menubar-action .nav-tabs>li>a:hover , .menubar-action .nav-tabs>li.active>a:focus {	color: rgba(255,255,255,1) }
-		.title-profile h4, .title-profile h5 { text-transform: uppercase; opacity: 0.8 }
-		.title-profile h5, { /*color: #949494;*/ font-weight:200; opacity: 0.6}
-		.badge { padding:15px; border-radius: 20px }
-		.trophy { text-align: center; text-transform:uppercase; min-height:75px; font-size: 80%; background: #00B1C0; color: #FFF; padding: 20px 0; border-left: solid 2px #FFF;
-margin: 20px 0 ; font-weight:100; border-radius: 4px;}
-		.trophy span { font-size:120%; font-weight:400;}
-		#doc-details #inner { background:#F7F7F7; padding: 30px 20px; border-bottom: solid 1px #CCC }
-		#doc-details {width: 100%;    height: 100%;  background: #FFF; padding-top: 40px }
-
-		.steps h2 { color:#1CD6BD; margin: 25px 0 40px;}
-		.steps .dates-available { 
-			border-radius: 3px; padding: 10px; font-weight: 200;display: inline-block;
-		}
-		
-		.steps .date-resume { margin: 0 auto 5px;padding: 3px 7px;border-radius: 15px;border: solid 2px #FFF;opacity: 0.7;color: #009EFC;font-weight: 600;background: #FFF; }
-		.steps h4 { text-transform: uppercase;font-weight: 700 !important;letter-spacing: 0.5px;font-size: 20px;}
-		.weekday { font-weight:600}
-		.hours-day { opacity: 0.7}
-		
-		
-		.steps .date-resume2 { margin: 0 auto 5px;padding: 3px 7px;border-radius: 15px; opacity: 0.7;color: #FFF; }
-		.steps .date-resume2 .weekday {font-weight: 600; color: #009EFC; background: #FFF;padding: 5px 8px;  width: 30px; border-radius: 15px;}
-		.steps .date-resume2 .hours-day { opacity: 0.7; padding: 5px;}
-		
-		
-		.carousel-control.right, .carousel-control.left {  background: none !important; color: #565A5C; text-shadow: none !important; font-size: xx-large;width: 50px; padding: 100px 0 0 0;}
-		.practice-item2 {border: 2px solid #E2E2E2;background: #FFF;border-radius: 15px;margin: 0 10px; }
-		.practice-item { background: #009EFC;color: #FFF;font-weight: 800 !important;border-radius: 15px;margin: 0 10px;padding: 20px 10px;}
-		.practice-item img { padding: 20px 30px 10px;}
 		.column-steps {/*position: relative;
 min-height: 1px;
 padding-right: 15px;
 padding-left: 15px;*/
-		 width:270px; float: left;
+		 width:260px; float: left;
 }
-		/*form styles*/
+
+
+.reason-item { background: #009EFC;color: #FFF;font-weight: 800 !important;border-radius: 15px;margin: 0 10px;padding: 20px 10px; text-align: center}
+		
+
 
 /*basic reset*/
 /*form styles*/
@@ -87,18 +49,28 @@ padding-left: 15px;*/
 }
 /*buttons*/
 #msform .action-button {
-	width: 100px;
-	background: #27AE60;
-	font-weight: bold;
-	color: white;
-	border: 0 none;
-	border-radius: 1px;
+	width: 140px;
+	background: none;
+	font-weight: 400;
+	text-transform: uppercase;
+	color: #999;
+	border: solid 2px #999;
+	border-radius: 20px;
 	cursor: pointer;
 	padding: 10px 5px;
 	margin: 10px 5px;
+	
+	
+padding: 10px 20px;
+font-size: 95%;
+letter-spacing: 1px;
 }
 #msform .action-button:hover, #msform .action-button:focus {
-	box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+	color: #FFF;
+	background-color: #2C72BD;
+	border-color: #2C72BD;
+	
+	box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
 }
 
 /*progressbar*/
@@ -106,10 +78,16 @@ padding-left: 15px;*/
 	overflow: hidden;
 	/*CSS counters to number the steps*/
 	counter-reset: step;
+	width: 500px;
+	margin: auto;
+	padding: 10px;
+	border-radius: 15px;
+	background: #FFF;
+	border-radius: 40px;
 }
 #progressbar li {
 	list-style-type: none;
-	width: 33.33%;
+	width: 25%;
 	float: left;
 	position: relative;
 }
@@ -213,33 +191,10 @@ padding-left: 15px;*/
 				
 								
 			</div>
-			 
-<style>
-#wrapper {
-/*	border-radius: 0;
-	width: 800px;
-	height: 400px;
-	padding: 10px;*/
-}
-
-.looper .goback, .looper  .gofoward {
-	position: absolute;
-	top: 250px;	
 	
-	background: none !important;
-	color: #565A5C;
-	text-shadow: none !important;
-	font-size: xx-large;
-	padding: 100px 0 0 0;
-}
-.looper .goback {left:100px}	
-.looper .goback:hover {}	
-.looper .gofoward {right: 50px;}			
-.looper .gofoward:hover {}				
-
+<style>
+	.choose-this {}
 </style>
-
-
 
 
 
@@ -252,6 +207,7 @@ padding-left: 15px;*/
 					
 				  <div class="tab-pane fade in active" id="book-appointment">
 				 
+				 
 						{{if practice}}			
 					
 				  	
@@ -259,177 +215,123 @@ padding-left: 15px;*/
 						<!-- multistep form -->
 						<form id="msform" class="steps">
 							<!-- progressbar -->
-							<ul id="progressbar">
-								<li class="active">Account Setup</li>
-								<li>Social Profiles</li>
-								<li>Personal Details</li>
-							</ul>
-							<!-- fieldsets -->
+							<!--ul id="progressbar">
+								<li class="active">¿donde?</li>
+								<li>¿cuando?</li>
+								<li>confirma</li>
+								<li>pago</li>
+							</ul-->
+							
+							
+							
 							<fieldset>
 								<h2>¿Donde quieres pedir tu cita?</h2>
 								
 								
-								
-								
-								
+								   
+								<div id="wrapper" class="looper">
+									<div id="practices-loop">
+										{{practice}}
+								      
+									       <div class="column-steps practice-item">
+									       	  <h4>{{name}} {{#}} {{##}}</h4>
+									       	  
+									       	  <img src="<?php echo IMG;?>icon-okidoc-hospital.png" class="img-responsive" alt="{{name}}" />
+									       	  <div class="dates-available">
+									       	  
+									       	  	<div>
+									       	  	
+									       	  	{{if schedule}}
+										       	  	{{schedule}}
+										       	  	
+													    <div class="text-right date-resume">
+													    	<div class="left weekday">{{day}}&nbsp;</div>
+													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
+													    	&nbsp;
+													    </div>
+													    
+													    <div class="text-right date-resume2">
+													    	<div class="left weekday">{{day}}&nbsp;</div>
+													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
+													    	&nbsp;
+													    </div>
+										       	  	{{/schedule}}
+									       	  	{{/if}}
+									       	  	</div>
+									       	  </div>
+									       	  
+											</div>
+											<div class="column-steps practice-item">
+									       	  <h4>{{name}} {{#}} {{##}}</h4>
+									       	  
+									       	  <img src="<?php echo IMG;?>icon-okidoc-hospital.png" class="img-responsive" alt="{{name}}" />
+									       	  <div class="dates-available">
+									       	  
+									       	  	<div>
+									       	  	
+									       	  	{{if schedule}}
+										       	  	{{schedule}}
+										       	  	
+													    <div class="text-right date-resume">
+													    	<div class="left weekday">{{day}}&nbsp;</div>
+													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
+													    	&nbsp;
+													    </div>
+													    
+													    <div class="text-right date-resume2">
+													    	<div class="left weekday">{{day}}&nbsp;</div>
+													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
+													    	&nbsp;
+													    </div>
+										       	  	{{/schedule}}
+									       	  	{{/if}}
+									       	  	</div>
+									       	  </div>
+									       	  
+											</div>
+																						
+											
+								      	
+								      {{/practice}}
+									</div>
+									<a id="handler-back-practice" class="goback" href="#"> <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
+									<a id="handler-fowr-practice" class="gofoward" href="#"> <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>									
+								</div>
+							<input type="button" name="previous" class="previous action-button" value="Previous" />
+    						<input type="button" name="next" class="next action-button" value="Next" />
+							</fieldset>
+							<fieldset>
+								<h2>¿Cuál es el motivo de tu consulta?</h2>
+								<div id="wrapper3" class="looper">
+									<div id="practices1-loop">
+							
+										<div class="column-steps reason-item">
+											<h4>ajsd</h4>
+							
+										</div>				
+										<div class="column-steps reason-item">
+											<h4>ajsd</h4>
+							
+										</div>
+										<div class="column-steps reason-item">
+											<h4>ajsd</h4>
+							
+										</div>
+										<div class="column-steps reason-item">
+											<h4>ajsd</h4>
+							
+										</div>
+									</div>
+									<a id="handler-back-practice" class="goback" href="#"> <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
+									<a id="handler-fowr-practice" class="gofoward" href="#"> <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
+								</div>
 								
 								   
-								
-    
-							<div id="wrapper" class="looper">
-								<div id="practices-loop">
-									
-									{{practice}}
-								      
-									       <div class="column-steps practice-item">
-									       	  <h4>{{name}} {{#}} {{##}}</h4>
-									       	  
-									       	  <img src="<?php echo IMG;?>icon-okidoc-hospital.png" class="img-responsive" alt="{{name}}" />
-									       	  <div class="dates-available">
-									       	  
-									       	  	<div>
-									       	  	
-									       	  	{{if schedule}}
-										       	  	{{schedule}}
-										       	  	
-													    <div class="text-right date-resume">
-													    	<div class="left weekday">{{day}}&nbsp;</div>
-													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
-													    	&nbsp;
-													    </div>
-													    
-													    <div class="text-right date-resume2">
-													    	<div class="left weekday">{{day}}&nbsp;</div>
-													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
-													    	&nbsp;
-													    </div>
-										       	  	{{/schedule}}
-									       	  	{{/if}}
-									       	  	</div>
-									       	  </div>
-									       	  
-											</div>
-											<div class="column-steps practice-item">
-									       	  <h4>{{name}} {{#}} {{##}}</h4>
-									       	  
-									       	  <img src="<?php echo IMG;?>icon-okidoc-hospital.png" class="img-responsive" alt="{{name}}" />
-									       	  <div class="dates-available">
-									       	  
-									       	  	<div>
-									       	  	
-									       	  	{{if schedule}}
-										       	  	{{schedule}}
-										       	  	
-													    <div class="text-right date-resume">
-													    	<div class="left weekday">{{day}}&nbsp;</div>
-													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
-													    	&nbsp;
-													    </div>
-													    
-													    <div class="text-right date-resume2">
-													    	<div class="left weekday">{{day}}&nbsp;</div>
-													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
-													    	&nbsp;
-													    </div>
-										       	  	{{/schedule}}
-									       	  	{{/if}}
-									       	  	</div>
-									       	  </div>
-									       	  
-											</div>
-											<div class="column-steps practice-item">
-									       	  <h4>{{name}} {{#}} {{##}}</h4>
-									       	  
-									       	  <img src="<?php echo IMG;?>icon-okidoc-hospital.png" class="img-responsive" alt="{{name}}" />
-									       	  <div class="dates-available">
-									       	  
-									       	  	<div>
-									       	  	
-									       	  	{{if schedule}}
-										       	  	{{schedule}}
-										       	  	
-													    <div class="text-right date-resume">
-													    	<div class="left weekday">{{day}}&nbsp;</div>
-													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
-													    	&nbsp;
-													    </div>
-													    
-													    <div class="text-right date-resume2">
-													    	<div class="left weekday">{{day}}&nbsp;</div>
-													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
-													    	&nbsp;
-													    </div>
-										       	  	{{/schedule}}
-									       	  	{{/if}}
-									       	  	</div>
-									       	  </div>
-									       	  
-											</div>
-								      	
-								      {{/practice}}
-								</div>
-								<a class="goback" href="#"> <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
-								<a class="gofoward" href="#"> <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
-							</div>
-    
-    
-    
-								<div id="practices-loop2" style="display:none" class="carousel slide" data-ride="carousel" >
-								    <!-- Wrapper for slides -->
-								  
-								  
-								  <div class="carousel-inner" role="listbox">
-								    <div class="item active">
-								    	<div class="columns-centered">
-								      {{practice}}
-								      
-									       <div class="column-steps practice-item">
-									       	  <h4>{{name}} {{#}} {{##}}</h4>
-									       	  
-									       	  <img src="<?php echo IMG;?>icon-okidoc-hospital.png" class="img-responsive" alt="{{name}}" />
-									       	  <div class="dates-available">
-									       	  
-									       	  	<div>
-									       	  	
-									       	  	{{if schedule}}
-										       	  	{{schedule}}
-										       	  	
-													    <div class="text-right date-resume">
-													    	<div class="left weekday">{{day}}&nbsp;</div>
-													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
-													    	&nbsp;
-													    </div>
-													    <div class="text-right date-resume2">
-													    	<div class="left weekday">{{day}}&nbsp;</div>
-													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
-													    	&nbsp;
-													    </div>
-										       	  	{{/schedule}}
-									       	  	{{/if}}
-									       	  	</div>
-									       	  </div>
-									       	  
-											</div>
-								      	
-								      {{/practice}}
-								      </div>
-								    </div>
-								    
-								  </div>
-								 
-								
-								  <!-- Controls -->
-								  <a class="carousel-control left" href="#practices-loop" role="button" data-slide="prev">
-								    <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
-								  </a>
-								  <a class="carousel-control right" href="#practices-loop" role="button" data-slide="next">
-								    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-								  </a>
-								</div>
-								
-								
-								<input type="button" name="next" class="next action-button" value="Next" />
+								<input type="button" name="previous" class="previous action-button" value="Previous" />
+    							<input type="button" name="next" class="next action-button" value="Next" />
+    							<div class="clearfix"></div>
 							</fieldset>
+							
 							<fieldset>
 								<h2 class="fs-title">Social Profiles</h2>
 								<h3 class="fs-subtitle">Your presence on the social network</h3>

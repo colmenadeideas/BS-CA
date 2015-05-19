@@ -14,7 +14,8 @@
 	<link href="<?php echo CSS; ?>fullcalendar.css" rel="stylesheet">
 	<link href="<?php echo CSS; ?>font-awesome.min.css" rel="stylesheet">
 	<link href="<?php echo CSS; ?>all.css" rel="stylesheet">
-	<link href="<?php echo CSS; ?>styles.css" rel="stylesheet">
+	<link href="<?php echo CSS; ?>bootstrap-datetimepicker-v4.css" rel="stylesheet">
+	<link href="<?php echo CSS; ?>panel.css" rel="stylesheet">
 	
 	<?php echo GOOGLE_FONTS; ?>
 	<?php echo GOOGLE_ANALYTICS; ?>
@@ -22,14 +23,8 @@
 
     <script src="<?php echo JS; ?>config.js">
     </script>
-    <script language="JavaScript">
+    <script data-main="<?php echo JS;?>main-panel" src="<?php echo JS; ?>assets/require.js"></script>
     
-    function mostrarMas () {
-    	
-    	alert("Alerta");
-    }
-    </script>>
-    <!--script data-main="<?php echo JS;?>main-site" src="<?php echo JS; ?>assets/require.js"></script-->
     
 </head>
 <body>

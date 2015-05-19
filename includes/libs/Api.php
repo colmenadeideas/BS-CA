@@ -33,7 +33,36 @@ class Api extends ApiQuery {
 				foreach ($practiceFields as $field) {
 					$array_final['practice'][$i][$field] = $practice[$field];
 				}
+				
+			
+				$array_schedules = ApiQuery::getDoctorPracticesSchedule($practice["id"]);
+				$s = 0;
+				foreach ($array_schedules as $schedule) {
+
+					$array_final['practice'][$i]['schedule'][$s] = $schedule;
+					$schedule['day'] = substr($schedule['day'], 0, -2);
+					$array_final['practice'][$i]['schedule'][$s]['day'] = $schedule['day'];
+					$ini_schedule = substr($schedule['ini_schedule'], 0, 2);
+
+					if ($ini_schedule > 01 && $ini_schedule < 13) {
+						$icon = '<i class="fa fa-sun-o"></i> ';
+					} else {
+						$icon = '<i class="fa fa-moon-o"></i> ';
+					}
+
+					$schedule['ini_schedule'] = $icon . $schedule['ini_schedule'];
+					$array_final['practice'][$i]['schedule'][$s]['ini_schedule'] = $schedule['ini_schedule'];
+
+					$s++;
+				}
+				$i++;
+			
 			}
+			
+			
+			
+			
+			
 					
 			if ($print == 'json') {
 				echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
@@ -83,77 +112,101 @@ class Api extends ApiQuery {
 		} else {
 
 			$array_practices = ApiQuery::getDoctorPractices($id);
-			$practiceFields = DB::columnList('clinic');
-			//print_r($array_practices);
-
-			$array_dates = ApiQuery::getAppointmentsDate("id_doctor", $id, "ASC");
-
-			//Later use inside
-			//$this->loadModel('patient');
-
-			if (empty($array_dates)) {
-
-				$response["tag"] = "appointments";
+			
+			if (empty($array_practices)) {
+				//Doctor has NO practices
+				$response["tag"] = "practices";
 				$response["empty"] = 1;
-				$response["response"] = NO_APPOINTMENTS_DATE;
-
-				//echo json_encode($response);
-
+				$response["response"] = NO_PRACTICES_AVAILABLE;
+	
 				if ($print == 'json') {
 					echo json_encode($response, JSON_UNESCAPED_UNICODE);
 				} else {//modo "array"
 					return $response;
 				}
-
+				
 			} else {
+				$practiceFields = DB::columnList('clinic');
 
-				$i = 0;
-				$array_final["empty"] = 0;
-				foreach ($array_dates as $date) {
-					$date_array['date_string'] = $date["date"];
-					//$array_final['appointments'][$i]['date'] = $date_array;
-					$array_final['dates'][$i] = $date_array;
-
-					$p = 0;
-					foreach ($array_practices as $practice) {
-						$array_appointments = ApiQuery::getAppointmentsByDate($id, $date["date"], $practice["id"]);
-
-						foreach ($practiceFields as $practicefield) {
-							$array_final['dates'][$i]['practice'][$p][$practicefield] = $practice[$practicefield];
-							//$array_final['appointments'][$i]['date']['practice'][$p][$practicefield] = $practice[$practicefield];
-						}
-
-						//	$array_final['appointments'][$i]['date']['practice'][$p]['practice_id'] = $practice['id'];
-						//$array_final['appointments'][$i]['date'][$date["date"]]['practice'][$practice['id']] = $date["date"];
-						$a = 0;
-						foreach ($array_appointments as $appointment) {
-							$array_patient_data = ApiQuery::getPatientBy("id", $appointment['id_patient']);
-							$appointment['patient_data'] = $array_patient_data;
-
-							$array_final['dates'][$i]['practice'][$p]['appointments'][$a] = $appointment;
-
-							$a++;
-						}
-						$p++;
+				$array_dates = ApiQuery::getAppointmentsDate("id_doctor", $id, "ASC");
+				
+				//Later use inside
+				//$this->loadModel('patient');
+					
+				if (empty($array_dates)) {
+	
+					$response["tag"] = "appointments";
+					$response["empty"] = 1;
+					$response["response"] = NO_APPOINTMENTS_DATE;
+	
+					//echo json_encode($response);
+	
+					if ($print == 'json') {
+						echo json_encode($response, JSON_UNESCAPED_UNICODE);
+					} else {//modo "array"
+						return $response;
 					}
-					$i++;
+	
+					} else {
+		
+						$i = 0;
+						$array_final["empty"] = 0;
+						foreach ($array_dates as $date) {
+							$date_array['date_string'] = $date["date"];
+							//$array_final['appointments'][$i]['date'] = $date_array;
+							$array_final['dates'][$i] = $date_array;
+		
+							$p = 0;
+							foreach ($array_practices as $practice) {
+								$array_appointments = ApiQuery::getAppointmentsByDate($id, $date["date"], $practice["id"]);
+	
+								foreach ($practiceFields as $practicefield) {
+									$array_final['dates'][$i]['practice'][$p][$practicefield] = $practice[$practicefield];
+									//$array_final['appointments'][$i]['date']['practice'][$p][$practicefield] = $practice[$practicefield];
+								}
+	
+								//	$array_final['appointments'][$i]['date']['practice'][$p]['practice_id'] = $practice['id'];
+								//$array_final['appointments'][$i]['date'][$date["date"]]['practice'][$practice['id']] = $date["date"];
+								$a = 0;
+								foreach ($array_appointments as $appointment) {
+									$array_patient_data = ApiQuery::getPatientBy("id", $appointment['id_patient']);
+									$appointment['patient_data'] = $array_patient_data;
+		
+									$array_final['dates'][$i]['practice'][$p]['appointments'][$a] = $appointment;
+		
+									$a++;
+								}
+								$p++;
+							}
+							$i++;
+						}
+	
+					if ($print == 'json') {
+						echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+					} else {//modo "array"
+						return $array_final;
+					}
 				}
-
-				if ($print == 'json') {
-					echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
-				} else {//modo "array"
-					return $array_final;
-				}
-			}
+			} //end if doctor HAS practices
 		} //end if emtpy second parameter
 
 	}
 
 	// AUTOCOMPLETE: This function is invoked when user is writing fields related to : Doctor's name, Clinics, Addresses and Doctor's Speciality
-	public function autocomplete($print = "json", $string) {
+	public function autocomplete($print = "json", $what="all", $string) {
 
-		//	$string = trim($_GET['term']);//TODO escape values
-		$query = ApiQuery::autocomplete($string);
+		//	$string = trim($_GET['term']);
+		/*switch ($what) {
+			case 'practices':
+				$query = ApiQuery::autocomplete($what, $string);
+				break;
+			
+			case "all":
+				$query = ApiQuery::autocomplete($string);
+				break;
+		}*/
+		$query = ApiQuery::autocomplete($what, $string);
+		
 		if ($print == 'json') {
 			echo json_encode($query, JSON_UNESCAPED_UNICODE);
 		} else {//modo "array"
@@ -320,6 +373,8 @@ class Api extends ApiQuery {
 
 	}
 
+	
+	
 	//
 	public function patient($print = "json", $id) {
 
@@ -342,7 +397,28 @@ class Api extends ApiQuery {
 		}
 
 	}
-
+	
+	//get Doctor's Matrix of available slots  and current unavailable
+	public function availability($print = "json", $id_practice) {
+		
+		
+		$array_schedules = ApiQuery::getDoctorPracticesSchedule($id_practice);
+		$array_schedules_exceptions = ApiQuery::getDoctorPracticesScheduleExceptions($id_practice);
+		$array_practice =	ApiQuery::getPractice($id_practice);
+		
+		
+		$array_final["empty"] = 0;
+		$array_final["max_days_ahead"] = $array_practice[0]['max_days_ahead'];
+		$array_final["manage_time_slots"] = $array_practice[0]['manage_time_slots'];
+		$array_final["days_in"] = $array_schedules;
+		$array_final["days_out"] = $array_schedules_exceptions;
+		
+		if ($print == 'json') {
+			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+		} else {//modo "array"
+			return $array_final;
+		}
+	}
 	public function appointment($print = "json", $by = "doctor", $id, $second_parameter = "", $practice_id = "", $for_date = "", $to_date = "") {
 
 		$id = escape_value($id);
@@ -414,13 +490,21 @@ class Api extends ApiQuery {
 					$ini_schedule = substr($schedule['ini_schedule'], 0, 2);
 
 					if ($ini_schedule > 01 && $ini_schedule < 13) {
-						$icon = '<i class="fa fa-sun-o"></i> ';
+						//$icon = '<i class="fa fa-sun-o"></i> ';
+						$icon = " AM ";
 					} else {
-						$icon = '<i class="fa fa-moon-o"></i> ';
+						$icon = " PM";
+						//$icon = '<i class="fa fa-moon-o"></i> ';
 					}
+					
+					//delete this if change to ICON
+					$end_schedule = substr($schedule['end_schedule'], 0, 2);
+					if ($end_schedule > 01 && $end_schedule < 13) { $icon = " AM";	} else { $icon = " PM";	}
 
-					$schedule['ini_schedule'] = $icon . $schedule['ini_schedule'];
+					$schedule['ini_schedule'] = substr($schedule['ini_schedule'], 0, -3).$icon;//$icon . $schedule['ini_schedule'];
+					$schedule['end_schedule'] = substr($schedule['end_schedule'], 0, -3).$icon;
 					$array_final['doctors'][$i]['practice'][$p]['schedule'][$s]['ini_schedule'] = $schedule['ini_schedule'];
+					$array_final['doctors'][$i]['practice'][$p]['schedule'][$s]['end_schedule'] = $schedule['end_schedule'];
 
 					$s++;
 				}

@@ -8,6 +8,7 @@ function getPage(position) {
 }
 
 function floatinput() {
+	console.log("flo");
 	var onClass = "on";
 	var showClass = "show";
 

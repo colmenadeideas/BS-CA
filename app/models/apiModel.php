@@ -16,7 +16,7 @@
 		}
 		
 		
-		public function autocomplete($string){
+		/*public function autocomplete($string){
 			
 			return DB::query("	SELECT * FROM  (
 								SELECT doctor.name AS label, 'doctor_name' AS type FROM doctor UNION 
@@ -35,6 +35,6 @@
 			 					SELECT id, specialty.name AS term, 'specialty' FROM specialty
 			 					) AS autocomplete_table ".$string." ORDER BY in_table;
 			 				");
-		}
+		}*/
 	}
 ?>

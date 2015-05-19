@@ -31,5 +31,3 @@
 		
 	</form>
 </div>
-<div id="response-registration" class="text-center">
-</div>

@@ -56,17 +56,35 @@
 		 }
 	}
 
-/*
-	function createJsonDoctor($array_doctores){
-	 	$archivo=DATA.COUNTRY."/doctors2.js";
-		 $fp = fopen($archivo, "w+");
-		//selecionar cada doctor
-		echo "holis";
-		
-		 fwrite($fp, "var doctores =".utf8_decode(json_encode($array_doctores).";"));
-		 fclose($fp);
+	/*
+	 * Builds array with Hours Range
+	 * http://stackoverflow.com/questions/3903317/how-can-i-make-an-array-of-times-with-half-hour-intervals
+	 * EXAMPLE: 
+	 * Every 15 Minutes, All Day Long
+	 * $range = hoursRange( 0, 86400, 60 * 15 );
+	 * 
+	 * EXAMPLE 2: 
+	 * Every 30 Minutes from 8 AM - 5 PM, using Custom Time Format
+	 * $range2 = hoursRange( 28800, 61200, 60 * 30, 'h:i a' );
+	 */
+	 function hoursRange( $lower = 0, $upper = 86400, $step = 3600, $format = '' ) {
+		$times = array();
+			
+		if ( empty( $format ) ) {
+			$format = 'g:i a';
+		}
+			
+		foreach ( range( $lower, $upper, $step ) as $increment ) {
+			$increment = gmdate( 'H:i', $increment );
+			
+			list( $hour, $minutes ) = explode( ':', $increment );
+			
+			$date = new DateTime( $hour . ':' . $minutes );
+			
+			$times[(string) $increment] = $date->format( $format );
+		}
+		return $times;
 	}
- * */
 
 	
 

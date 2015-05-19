@@ -13,11 +13,13 @@
 				$table = 'patient';				
 				$result = DB::query("SELECT * FROM " . DB_PREFIX . "$table WHERE $by=%s LIMIT 1", $data);
 				
-				if ($result < 1) {
+				if (empty($result)) {
+				//if ($result < 1) {
 					$table = 'doctor';				
 					$result = DB::query("SELECT * FROM " . DB_PREFIX . "$table WHERE $by=%s LIMIT 1", $data);
 					
-					if ($result < 1) {
+					if (empty($result)) {
+					//if ($result < 1) {
 						$table = 'doctor_assistant';				
 						$result = DB::query("SELECT * FROM " . DB_PREFIX . "$table WHERE $by=%s LIMIT 1", $data);
 					}

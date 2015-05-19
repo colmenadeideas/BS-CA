@@ -47,29 +47,33 @@
 				eval($data);
 			}
 			
-			$username = $email;
-			$validUser = $this->user->validateUsername($username);
-			
-			if(empty($validUser)){
-					
-				//echo "error";				
-				$response["tag"] = "login";
-				$response["success"] = 0;
-				$response["error"] = 1;	
-	            $response["response"] = LOGIN_MESSAGE_ERROR;				
-				echo json_encode($response);
+				$username = $email;
+				$validUser = $this->user->validateUsername($username);
 				
-			} else {
-				$validPass = $this->user->validatePassword($username, $password);
-				if(empty($validPass)){
-					//echo "error";
+				if(empty($validUser)){						
+					//echo "error";				
 					$response["tag"] = "login";
 					$response["success"] = 0;
 					$response["error"] = 1;	
-		            $response["response"] = LOGIN_MESSAGE_ERROR;	
+		            $response["response"] = LOGIN_MESSAGE_ERROR;				
 					echo json_encode($response);
 					
 				} else {
+					if (!empty($accesstoken)) { //Regular login, else is coming from SocialNetwork login
+						$validPass = $this->user->validatePassword($username, $password);
+					} else {
+						$validPass = 'access__token'; //not empty
+					}
+					
+					if(empty($validPass)){
+						//echo "error";
+						$response["tag"] = "login";
+						$response["success"] = 0;
+						$response["error"] = 1;	
+			            $response["response"] = LOGIN_MESSAGE_ERROR;	
+						echo json_encode($response);
+						
+					} else {
 						$role = escape_value($validUser[0]['role']);
 						$username = escape_value($validUser[0]['username']);
 						
@@ -78,13 +82,15 @@
 						$this->user->init();
 				        $this->user->set('role', $role);
 						$this->user->set('loggedIn', true);
-				        $this->user->set('username', $username);				           
-						//echo "welcome";	
+				        $this->user->set('username', $username);
+						if (isset($accesstoken)) {
+							$this->user->set('socialnetwork', true);	
+						}	
 						
 						$response["tag"] = "login";
 						$response["success"] = 1;
 						$response["error"] = 0;	
-						$response["response"] = "welcome!";		
+						$response["response"] = "welcome";		
 						$response["user"]["role"] = $role;
 						$response["user"]["uid"] = $validUser[0]['id'];
 						$response["user"]["name"] = $profile[0]['name'];
@@ -94,7 +100,7 @@
 										
 						exit;
 					}
-			}
+				}			
 				
 		}
 		
@@ -173,7 +179,7 @@
 			switch (escape_value($what)) {
 				case 'username':
 					$requested_data = escape_value($_POST['email']);					
-					$already_registered =	$this->model->getAccount("", $requested_data, "username"); //checkRegistered
+					$already_registered =	$this->model->getAccount("", $requested_data, "username");
 					
 					if (!empty($already_registered)){
 						if ($already_registered[0]['status'] === 'sleep') {
@@ -182,18 +188,19 @@
 					}					
 					
 					break;
+					
 				//TODO Change if need to check by other field
 				/*case 'rif':
 					$requested_data = escape_value($_POST['rifletter']).escape_value($_POST['rif']);
-					$already_registered =	$this->model->getAccount($requested_data, 'rif'); //checkRegistered
+					$already_registered =	$this->model->getAccount($requested_data, 'rif'); 
 					break;*/
 			}
 			
-			if (!empty($already_registered)) {
-			    echo 'false';
+			if (empty($already_registered)) {
+			    echo 'true'; //good to go
 			}
 			else {
-			    echo 'true';
+			    echo 'false';
 			}
 		}
 		
@@ -219,16 +226,14 @@
 		// PROCESS: Method called by form REGISTRATION, to process vars and create user
 		function process() {
 			
-			//print_r($_POST);
-			
-			//exit();
-				
 			$array_data = array();	
+			
 			foreach ($_POST as $key => $value) {
 				$field = escape_value($key);
 				$field_data = escape_value($value);				
 				$array_data[$field] = $field_data;
 			}
+			
 			
 			unset($array_data['recaptcha_challenge_field']);
 			unset($array_data['recaptcha_response_field']);			
@@ -247,18 +252,56 @@
 			//$array_user['id_card'] 		= $array_data['id_card'];
 			//$array_profile['birth'] 		= $array_data['birth'];		
 			//$array_profile['sex'] 		= $array_data['v'];
-			@$array_user['data'] 		= json_encode( array('creationdate'=> date("Y-m-d h:i:s")));
 			
-			//
 			
-			if (isset($array_data['id'])){
+			//Facebook
 			
-			@$array_user['data'] = json_encode( array('fb_id'=> $array_data['id'])); 
-			unset($array_data['id']);
-			$array_user['gender'] 		= $array_data['gender'];
+			//if (isset($array_data['facebook'])){
+			if ($array_data['socialnetwork'] == 'facebook'){
+				
+				$array_user['name'] 		= $array_data['first_name'];
+				$array_user['lastname'] 	= $array_data['last_name'];								
+				
+				$array_user['data']['facebook_id'] = $array_data['id'];
+				unset($array_data['id']);
+				
+				$array_user['gender'] 		= strtoupper( substr($array_data['gender'], 0, 1) ); //just first leter
+				$array_user['birth'] 		= $array_data['birthday'];
+				
+				$array_user['data']['locale'] = $array_data['locale'];
+				$array_data['data']['location'] = $array_data['location']['name'];
+				
+				//Picture
+				$image_data=file_get_contents($array_data['fbpicture']['data']['url']);
+				$encoded_image=base64_encode($image_data);
+				//print_r($encoded_image);
+				$array_user['avatar'] 		= $encoded_image;
+				
+						
+			} else	
+					
+			//Google			
+			//if (isset($array_data['google'])){
+			if ($array_data['socialnetwork'] == 'google'){
+				$array_user['name'] 		= $array_data['given_name'];
+				$array_user['lastname'] 	= $array_data['family_name'];	
+				$array_user['gender'] 		= strtoupper( substr($array_data['gender'], 0, 1) ); //just first leter			
+				
+				//Google picture
+				$image_data=file_get_contents($array_data['picture']);
+				$encoded_image=base64_encode($image_data);
+				$array_user['avatar'] 		= $encoded_image;							
+				//Google data
+				$array_user['data']['google_id'] = $array_data['id'];
+				$array_user['data']['locale'] = $array_data['locale'];	
+								
 			
 			}
-			//
+					
+			$array_user['data']['creationdate'] = date("Y-m-d h:i:s");
+			
+			$array_user['data'] = json_encode($array_user['data']);
+			
 			
 			//Check if already exist in User database
 			$already_registered =	$this->model->getAccount("",$array_data['email'], 'username');
@@ -274,6 +317,7 @@
 					$create_user = $users->create($array_user);	
 						
 				}
+				
 			} else if (empty($already_registered)) {
 					
 				//Register User				
@@ -300,8 +344,19 @@
 		 
 		// FIRSTLOGIN: takes user to inmediately set a password ( when coming from AUTHENTICATE from mail he doesn't have one);
 		public function firstlogin($old_password= '') {
+			
+			if (!empty($this->user->get('socialnetwork'))) {
+				// Insertar registro de Session				
+				$username 	= $this->user->get('username');
+				User::logSession($username);
 				
-			$this->edit('password', $old_password);
+				$this->view->redirect_link = URL .'account/identify';
+				$this->view->render('redirect');
+				
+			} else {
+				$this->edit('password', $old_password);
+			}			
+			
 			
 		}
 		// PROFILE: shows main Account area
@@ -393,62 +448,140 @@
 		}*/
 		
 		public function update($what) {
-			//TODO Auth this method  YES or NO? Make it private
-								
-			$username 	= $this->user->get('username');
-			$role 		= $this->user->get('role');
-			
-			$userdata 	= $this->user->getUserdata($role, $username);			
-			
-		
-			if (empty($userdata)) {
-				exit;
 				
-			} else {
-				
-				$email 	= $userdata[0]['email'];
-								
-				$fields = '';
-				$values = '';
-				$array_datos = array();	
-				$array_datos['username'] = $username;
-				
-				
-				
-				foreach ($_POST as $key => $value) {
-							
-					if ($value === '') { // skips empty fields
-									
-					} else {
-								
-						$campo = escape_value($key);
-						$valor = escape_value($value);
-						
-						switch ($key) {
-											
-							case 'submit': //omitir campo
-								break;
-								
-							case 'password_confirm': //omitir campo
-								break;
-	
-							default:
-							
-							//Convert to $variables every filled field		
-						
-							$data = "\$" . $campo . "='" . $valor . "';";						
-							eval($data);
-					
-							$array_datos[$campo] = $valor;
-						
-						}
-								
+			switch ($what) {
+				case 'data':
+					//comes from $_POST						
+					$array_datos = array();	
+					foreach ($_POST as $key => $value) {
+						$field = escape_value($key);
+						$field_data = escape_value($value);				
+						$array_datos[$field] = $field_data;
 					}
-									
-				}
-				switch ($what) {
+					
+					//UPDATE Facebook					
+					//if (isset($array_datos['facebook'])){
+					if ($array_datos['socialnetwork'] == 'facebook'){						
 						
-					case 'password':
+						$array_user['name'] 			= $array_datos['first_name'];
+						$array_user['lastname'] 		= $array_datos['last_name'];
+						$array_user['gender'] 			= strtoupper( substr($array_data['gender'], 0, 1));
+						
+						//Location Facebook
+						$array_fb['data']['timezone']	= $array_datos['timezone'];
+						$array_fb['data']['locale']		= $array_datos['locale'];
+						$array_fb['data']['location'] 	= $array_datos['location']['name'];
+						
+						//Picture
+						$image_data=file_get_contents($array_datos['fbpicture']['data']['url']);
+						$encoded_image=base64_encode($image_data);
+						//print_r($encoded_image);
+						$array_user['avatar'] 		= $encoded_image;
+						
+						$role 								= $array_datos['role']; 
+						
+						$array_fb['data']['birthday'] 		=	$array_datos['birthday'];
+						$array_fb['data']['lastupdatedata']	= date("Y-m-d h:i:s");
+					}
+					
+					//UPDATE Google
+					//if (isset($array_datos['google'])){
+					if ($array_datos['socialnetwork'] == 'google'){							
+						
+						$array_user['name'] 			= $array_datos['given_name'];
+						$array_user['lastname'] 		= $array_datos['family_name'];
+						$array_user['gender'] 			= strtoupper( substr($array_data['gender'], 0, 1) );
+						
+						//Location 
+						$array_fb['data']['locale'] 	= $array_datos['locale'];
+						$array_fb['data']['location'] 	= $array_datos['location']['name'];
+						
+						// picture
+						//Google picture
+						$image_data=file_get_contents($array_datos['picture']);
+						$encoded_image=base64_encode($image_data);
+						$array_user['avatar'] 			= $encoded_image;
+						$role 							= $array_datos['role']; 
+						
+						$array_fb['data']['birthday'] 	=	$array_datos['birthday'];
+						$array_fb['data']['lastupdatedata'] 	= date("Y-m-d h:i:s");
+					}
+					
+					$current_user = $this->model->getAccount($array_user['role'], $array_datos['email'], 'username');
+					
+					//get previous stored field 'data'
+					$data = $current_user[0]['data'];
+					$data_temp = json_decode($data,true);
+					//use as array
+					foreach ($data_temp as $key => $value) {
+						$array_fb['data'][$key] = $value;
+					}
+										
+					$array_user['data'] 	= json_encode($array_fb['data'] );
+					
+					unset($array_user['role']);
+					
+					$updated_data = $this->helper->update($role, $array_datos['email'], $array_user, 'username');
+					
+					if ($updated_data > 0){
+						echo "true"; // updated
+					} else {
+						echo "false"; /// Maybe they were the same, no nothing changed.
+					}
+					
+					break;
+					
+				case 'password':
+					//comes from controller call -->
+					
+					$username 	= $this->user->get('username');
+					$role 		= $this->user->get('role');
+					
+					$userdata 	= $this->user->getUserdata($role, $username);
+					
+					if (empty($userdata)) {
+						exit;
+						
+					} else {
+						
+						$email 	= $userdata[0]['email'];
+								
+						$fields = '';
+						$values = '';
+						$array_datos = array();	
+						$array_datos['username'] = $username;
+						
+						foreach ($_POST as $key => $value) {
+									
+							if ($value === '') { // skips empty fields
+											
+							} else {
+										
+								$campo = escape_value($key);
+								$valor = escape_value($value);
+								
+								switch ($key) {
+													
+									case 'submit': //omitir campo
+										break;
+										
+									case 'password_confirm': //omitir campo
+										break;
+			
+									default:
+									
+									//Convert to $variables every filled field		
+								
+									$data = "\$" . $campo . "='" . $valor . "';";						
+									eval($data);
+							
+									$array_datos[$campo] = $valor;
+								
+								}
+										
+							}
+											
+						}
 						
 						//Validate Data
 						$validPass = $this->user->validatePassword($username, $password_old);
@@ -458,7 +591,6 @@
 							echo SYSTEM_INVALID_PASSWORD;					
 						
 						} else {
-								
 							//Previous Password Approved, move on						
 							$array_datos['pass_hash'] = $this->user->create_hash($password);
 							
@@ -488,22 +620,17 @@
 								$this->view->render('redirect');						
 								
 							} 
-							
-												
-							
-						}				
+						}
 						
 						
-						break;
+						
+					}
 					
-					default:
-						echo "def";
-						break;
-				}
+					break;
+			}			
 				
-			}				
-					
-			
+				
+				
 		
 		}	
 	}

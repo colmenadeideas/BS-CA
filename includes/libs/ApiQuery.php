@@ -8,16 +8,35 @@
 		}
 		
 	
-		public function autocomplete($string){
+		public function autocomplete($what="all", $string){
+			
+			switch ($what) {
+				case 'practices':		
+								
+					return DB::query("	SELECT * FROM  (
+										
+					 					SELECT clinic.name AS label, clinic.id AS id_value, 'clinic_name' AS type FROM clinic UNION 
+					 					SELECT clinic.address AS label, clinic.id AS id_value, 'clinic_address' AS type FROM clinic
+					 					) AS autocomplete_table  WHERE label LIKE '%$string%';
+					 			");
+							
+					break;		
+							
+				case 'all':
+					
+					return DB::query("	SELECT * FROM  (
+										SELECT doctor.name AS label, 'doctor_name' AS type FROM doctor UNION 
+										SELECT doctor.lastname AS label, 'doctor_name' AS type FROM doctor UNION 
+					 					SELECT clinic.name AS label, 'clinic_name' FROM clinic UNION 
+					 					SELECT clinic.address AS label, 'clinic_address' FROM clinic UNION
+					 					SELECT specialty.name AS label, 'doctor_specialty' FROM specialty
+					 					)AS autocomplete_table  WHERE label LIKE '%$string%';
+					 			");
+								
+					break;
+			}
 	
-			return DB::query("	SELECT * FROM  (
-									SELECT doctor.name AS label, 'doctor_name' AS type FROM doctor UNION 
-									SELECT doctor.lastname AS label, 'doctor_name' AS type FROM doctor UNION 
-				 					SELECT clinic.name AS label, 'clinic_name' FROM clinic UNION 
-				 					SELECT clinic.address AS label, 'clinic_address' FROM clinic UNION
-				 					SELECT specialty.name AS label, 'doctor_specialty' FROM specialty
-				 					)AS autocomplete_table  WHERE label LIKE '%$string%';
-				 				");
+			
 		}
 	
 		public function search($string){
@@ -81,8 +100,12 @@
 			return DB::queryFirstRow("select name,address from  " . DB_PREFIX . "clinic where id=%i",$id);
 		}
 		
+		public function getPractice($id_practice) {
+			return DB::query("SELECT * FROM " . DB_PREFIX . "doctor_practice WHERE id=%i", $id_practice);
+		}
 		//***************************//		
 		//Reformuladas:
+		
 		public function getDoctors($by="name", $param="", $order="ASC") {
 			return DB::query("SELECT ". DB_PREFIX . "doctor.*, " . DB_PREFIX . "specialty.name AS specialty  FROM " . DB_PREFIX . "doctor INNER JOIN " . DB_PREFIX . "specialty ON " . DB_PREFIX . "specialty.id=" . DB_PREFIX . "doctor.specialty WHERE $by LIKE '%".$param."%' ORDER BY $by $order");
 		
@@ -103,9 +126,14 @@
 			return DB::query("SELECT doctor_practice.id, doctor_practice.id_doctor, doctor_practice.id_clinic, clinic.name, clinic.address FROM " . DB_PREFIX . "doctor_practice INNER JOIN clinic ON id_clinic=clinic.id WHERE doctor_practice.id_doctor=%i AND doctor_practice.id_clinic=%i", $id, $id_clinic);
 		}
 		
-		public function getDoctorPracticesSchedule($id) {
-			return DB::query("SELECT * FROM " . DB_PREFIX . "doctor_practice_schedule WHERE id_practice=%i", $id);
+		public function getDoctorPracticesSchedule($id_practice) {
+			return DB::query("SELECT * FROM " . DB_PREFIX . "doctor_practice_schedule WHERE id_practice=%i", $id_practice);
 		}
+		public function getDoctorPracticesScheduleExceptions($id_practice) {
+			return DB::query("SELECT * FROM " . DB_PREFIX . "doctor_practice_schedule_exceptions WHERE id_practice=%i", $id_practice);
+		}
+		
+		
 		
 		//***************************//
 		//Search by

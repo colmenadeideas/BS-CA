@@ -10,33 +10,55 @@ function doctorLoadDetails() {
 		$('#doc-details').html(Mark.up(template, context));
 
 		//Activate Rating
-		$(".rating").rating();
-		
+		$(".rating").rating();	
+			
 		bookingform();
 	});
 	
-	
-	//checkcurrentform();
-	
-
 	//Build Other views
 	
 
 }
 
-function bookingform() {
-	
-	
-	$('#practices-loop').carouFredSel({
-		
+function bookingform() {	
+	//Step 1 
+	$('#reasons-loop').carouFredSel({
+		width: "100%",
+		height:500,
 		items: 3,
 		scroll: 1,
 		auto: {
-			 play: false,
-		},
-		prev: '.goback',
-		next: '.gofoward',
+			play: false,
+		},		
+		prev: '#handler-back-reason',
+		next: '#handler-fowr-reason',
 	});
+	//Step2
+	$('#practices-loop').carouFredSel({
+		width: "100%",
+		height:500,
+		items: 3,
+		scroll: 1,
+		auto: {
+			play: false,
+		},
+		prev: '#handler-back-practice',
+		next: '#handler-fowr-practice',
+	});
+	//Step3
+	$('#calendar-loop').carouFredSel({
+		width: "100%",
+		height:500,
+		items: 3,
+		scroll: 1,
+		auto: {
+			play: false,
+		},
+		
+		prev: '#handler-back-cal',
+		next: '#handler-fowr-cal',
+	});
+
 
 	
 //jQuery time
@@ -56,6 +78,9 @@ $(".next").click(function(){
 	
 	//show the next fieldset
 	next_fs.show(); 
+	current_fs.removeClass('activestep');
+	next_fs.addClass('activestep');
+	
 	//hide the current fieldset with style
 	current_fs.animate({opacity: 0}, {
 		step: function(now, mx) {
@@ -93,6 +118,9 @@ $(".previous").click(function(){
 	
 	//show the previous fieldset
 	previous_fs.show(); 
+	current_fs.removeClass('activestep');
+	previous_fs.addClass('activestep');
+	
 	//hide the current fieldset with style
 	current_fs.animate({opacity: 0}, {
 		step: function(now, mx) {

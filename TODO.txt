@@ -21,3 +21,10 @@ html/public/js
 app/views/default
 	-head
 		llenar info de autor y description
+		
+-- Cambiar menu if session active or already registered
+
+//Resetear el form de Registro cuando se hce click en close
+
+*-- MIGRAR EL DATE TIME PICKER ( en panel funciona con v4) en site aun usa el v3
+implementar la version mas nueva

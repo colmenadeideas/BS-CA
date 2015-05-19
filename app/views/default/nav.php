@@ -11,7 +11,7 @@
             <div class=" hidden-xs col-sm-1 col-lg-1">
             </div>
             <div class="col-xs-5 col-lg-5">
-           	<a href="<?php echo URL; ?>"><img src="<?php echo IMG; ?>okidoc-logo-main.png" class="img-responsive"></a>
+           	<a href="<?php echo URL; ?>"><img src="<?php echo IMG; ?>okidoc-logo-full-white.png" class="img-responsive"></a>
            </div>
         </div>
         <!-- Collection of nav links and other content for toggling -->
@@ -22,7 +22,7 @@
             <ul class="nav navbar-nav navbar-right">
                 
 				<li><a href="<?php echo URL; ?>site/login" class="btn btn-default btn-login"><?php echo SITE__LOG_IN; ?></a></li>
-				<li><button class="btn btn-register" data-toggle="modal" data-target="#signin"><?php echo SITE__SIGN_IN; ?></button></li>
+				<li><button class="btn btn-register-outline" data-toggle="modal" data-target="#signin"><?php echo SITE__SIGN_IN; ?></button></li>
             </ul>
         </div>
     </nav>

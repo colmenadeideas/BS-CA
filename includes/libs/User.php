@@ -147,7 +147,7 @@
 						
 						default:
 							//requieres Password Change First time	
-							header('location: '.URL.'settings/firstlogin/');
+							header('location: '.URL.'account/firstlogin/');
 							exit;
 							break;
 					}
@@ -202,8 +202,8 @@
 				$array_session['username'] 	 = $username;
 				$array_session['session_randomkey'] = escape_value($_SESSION['randomkey']);
 				$array_session['url_in'] = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-				$array_session['ip_address'] = Helper::getIpAddress();				
-				
+				$array_session['ip_address'] = Helper::getIpAddress();	
+								
 				Helper::insert('user_session', $array_session ,1);
 			}
 			
@@ -215,7 +215,7 @@
 			
 			$view->titulo = "Configuración | Perfil";
 			
-			$view->render("settings/head");
+			$view->render("settings/default/head");
 			$view->render("settings/nav");
 			$view->render("settings/password-change");
 			$view->render("settings/footer");
@@ -253,7 +253,7 @@
 			foreach ($permisos_result as $key => $value) {
 				//Check if Menu is authorized for user role
 				if ($value == 1) { 
-					$menu = DB::query("SELECT * FROM " . DB_PREFIX . "menu WHERE id=%s AND status='active' LIMIT 1", $key);	
+					$menu = DB::query("SELECT * FROM " . DB_PREFIX . "users_role_menu WHERE id=%s AND status='active' LIMIT 1", $key);	
 					$authorized[] = $menu[0]['url'];							
 				}
 			}
@@ -277,7 +277,6 @@
 				
 			//}
 			//If not Authorized, Redirect to authorized home
-			
 			if (!in_array($controller,$authorized_url)) {
 				//print_r($_SESSION);
 				echo "<h3 class='text-center'>".RESTICTED_AREA_SESSION."</h3>";				

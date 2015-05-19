@@ -6,6 +6,22 @@
 		
 		}
 		
+		static function getIpAddress($ip = USER_IP) {
+			
+			if ($ip === '') {
+				
+				if(!empty($_SERVER['HTTP_CLIENT_IP'])) {
+					$ip = $_SERVER['HTTP_CLIENT_IP'];
+				} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+					$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+				} else {
+					$ip = $_SERVER['REMOTE_ADDR'];
+				}
+				
+			}
+			return $ip;
+		}
+		
 		//Database	Basic Usage
 		static function insert($tablename, $vars){
 			

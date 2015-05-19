@@ -19,6 +19,10 @@
 			$array_user['pass_hash'] = $this->user->create_hash($temp_key);
 			$table = $array_user['role'];		
 			
+			$data_data = json_decode($data['data'], true);
+			
+			
+			
 			//Add User
 			if (isset($data['wakeup'])) {
 				//just update user
@@ -38,6 +42,7 @@
 			if ($insert > 0) {				
 				
 				$this->create_profile($table,$id,$data);
+				
 				$send_mail = 'Y';
 				//Si hay status ...
 				if (isset($data['status'])) {
@@ -45,21 +50,37 @@
 					if ($data['status'] == 'sleep') {
 						$send_mail = 'N';
 					}
-				}							
+				}			
+				
+				
 				
 				if ($send_mail === 'Y') {
+					if(isset($data_data['facebook_id']) || isset($data_data['google_id'])) {	// has facebook or google registration	
+							// Welcome Email only
+							$message = SYSTEM_SIMPLE_EMAIL_HEAD;	
+							$message .= "Bienvenido a Okidoc";							
+						//	$message .= SYSTEM_EMAIL__USER_ACTIVATION_MESSAGE_PART1;
+						//	$message .= SYSTEM_EMAIL__YOUR_USER_IS_MESSAGE. $array_user['username'] .'<br><br>';
+						//	$message .= SYSTEM_EMAIL__USER_ACTIVATION_MESSAGE_PART2;
+						//	$message .= '<a href="'.URL.'account/authenticate/'.$temp_key.'/'.$array_user['username'].'" style="color: #ffffff; font-size:16px; font-weight: bold; font-family: Helvetica, Arial, sans-serif; text-decoration: none; line-height:40px; width:100%; display:inline-block">Activar Usuario</a>';				
+						//	$message .= SYSTEM_EMAIL__USER_ACTIVATION_MESSAGE_PART3;
+							$message .= SYSTEM_SIMPLE_EMAIL_FOOTER;
+							
+							$this->email->sendMail($array_user['username'], SYSTEM_EMAIL, ACTIVATION_USER_SUBJECT , $message);
+							
+					} else {
 					
-					//Email User Activation Notification
-					$message = SYSTEM_SIMPLE_EMAIL_HEAD;								
-					$message .= SYSTEM_EMAIL__USER_ACTIVATION_MESSAGE_PART1;
-					$message .= SYSTEM_EMAIL__YOUR_USER_IS_MESSAGE. $array_user['username'] .'<br><br>';
-					$message .= SYSTEM_EMAIL__USER_ACTIVATION_MESSAGE_PART2;
-					$message .= '<a href="'.URL.'account/authenticate/'.$temp_key.'/'.$array_user['username'].'" style="color: #ffffff; font-size:16px; font-weight: bold; font-family: Helvetica, Arial, sans-serif; text-decoration: none; line-height:40px; width:100%; display:inline-block">Activar Usuario</a>';				
-					$message .= SYSTEM_EMAIL__USER_ACTIVATION_MESSAGE_PART3;
-					$message .= SYSTEM_SIMPLE_EMAIL_FOOTER;
-					
-					$this->email->sendMail($array_user['username'], SYSTEM_EMAIL, ACTIVATION_USER_SUBJECT , $message);
+						//Email User Activation Notification
+						$message = SYSTEM_SIMPLE_EMAIL_HEAD;								
+						$message .= SYSTEM_EMAIL__USER_ACTIVATION_MESSAGE_PART1;
+						$message .= SYSTEM_EMAIL__YOUR_USER_IS_MESSAGE. $array_user['username'] .'<br><br>';
+						$message .= SYSTEM_EMAIL__USER_ACTIVATION_MESSAGE_PART2;
+						$message .= '<a href="'.URL.'account/authenticate/'.$temp_key.'/'.$array_user['username'].'" style="color: #ffffff; font-size:16px; font-weight: bold; font-family: Helvetica, Arial, sans-serif; text-decoration: none; line-height:40px; width:100%; display:inline-block">Activar Usuario</a>';				
+						$message .= SYSTEM_EMAIL__USER_ACTIVATION_MESSAGE_PART3;
+						$message .= SYSTEM_SIMPLE_EMAIL_FOOTER;
 						
+						$this->email->sendMail($array_user['username'], SYSTEM_EMAIL, ACTIVATION_USER_SUBJECT , $message);
+					}
 				}			
 					
 			}		

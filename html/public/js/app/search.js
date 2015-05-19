@@ -1,7 +1,7 @@
 //Autocomplete Main Fields
 search_location();
 $("input[name=search_term]").autocomplete({
-        source: URL+"api/autocomplete/",
+        source: URL+"api/autocomplete/json/",
         minLength: 2,
         delay: 100,
         messages: {
