@@ -97,43 +97,43 @@
 				<tr>
 					<td>Desde:</td>
 					<td>
-						<div class="input-group">
+						<div class="input-group collapse div_schedule_1">
 							<label for="ini_schedule_1" class="placeholder"></label>
 							<input id="ini_schedule_1" class="timepicker form-control input-lg smaller" type="text" name="ini_schedule_1"/>	
 						</div>			     
 					</td>
 					<td>
-						<div class="input-group">
+						<div class="input-group collapse div_schedule_2">
 				        	<label for="ini_schedule_2" class="placeholder"></label>
 							<input id="ini_schedule_2" class="timepicker form-control input-lg smaller" type="text" name="ini_schedule_2"/>
 				        </div>
 				    </td>
 					<td>
-						<div class="input-group">
+						<div class="input-group collapse div_schedule_3">
 							<label for="ini_schedule_3" class="placeholder"></label>
 							<input id="ini_schedule_3" class="timepicker form-control input-lg smaller" type="text" name="ini_schedule_3"/>	
 						</div>				     
 					</td>
 					<td>
-						<div class="input-group">
+						<div class="input-group collapse div_schedule_4">
 							<label for="ini_schedule_4" class="placeholder"></label>
 							<input id="ini_schedule_4" class="timepicker form-control input-lg smaller" type="text" name="ini_schedule_4"/>	
 						</div>				     
 					</td>
 					<td>
-						<div class="input-group">
+						<div class="input-group collapse div_schedule_5">
 							<label for="ini_schedule_5" class="placeholder"></label>
 							<input id="ini_schedule_5" class="timepicker form-control input-lg smaller" type="text" name="ini_schedule_5"/>	
 						</div>				     
 					</td>
 					<td>
-						<div class="input-group">
+						<div class="input-group collapse div_schedule_6">
 							<label for="ini_schedule_6" class="placeholder"></label>
 							<input id="ini_schedule_6" class="timepicker form-control input-lg smaller" type="text" name="ini_schedule_6"/>	
 						</div>				     
 					</td>
 					<td>
-						<div class="input-group">
+						<div class="input-group collapse div_schedule_7">
 							<label for="ini_schedule_7" class="placeholder"></label>
 							<input id="ini_schedule_7" class="timepicker form-control input-lg smaller" type="text" name="ini_schedule_7"/>		
 						</div>			     
@@ -143,43 +143,43 @@
 				<tr>
 					<td>Hasta:</td>
 					<td>
-						<div class="input-group">
+						<div class="input-group collapse div_schedule_1">
 							<label for="end_schedule_1" class="placeholder">Hasta</label>
 							<input id="end_schedule_1" class="timepicker form-control input-lg smaller" type="text" name="end_schedule_1"/>		
 						</div>	
 					</td>
 					<td>
-						<div class="input-group">
+						<div class="input-group collapse div_schedule_2">
 							<label for="end_schedule_2" class="placeholder">Hasta</label>
 							<input id="end_schedule_2" class="timepicker form-control input-lg smaller" type="text" name="end_schedule_2"/>		
 						</div>	
 					</td>
 					<td>
-						<div class="input-group">
+						<div class="input-group collapse div_schedule_3">
 							<label for="end_schedule_3" class="placeholder">Hasta</label>
 							<input id="end_schedule_3" class="timepicker form-control input-lg smaller" type="text" name="end_schedule_3"/>		
 						</div>	
 					</td>
 					<td>
-						<div class="input-group">
+						<div class="input-group collapse div_schedule_4">
 							<label for="end_schedule_4" class="placeholder">Hasta</label>
 							<input id="end_schedule_4" class="timepicker form-control input-lg smaller" type="text" name="end_schedule_4"/>		
 						</div>	
 					</td>
 					<td>
-						<div class="input-group">
+						<div class="input-group collapse div_schedule_5">
 							<label for="end_schedule_5" class="placeholder">Hasta</label>
 							<input id="end_schedule_5" class="timepicker form-control input-lg smaller" type="text" name="end_schedule_5"/>		
 						</div>	
 					</td>
 					<td>
-						<div class="input-group">
+						<div class="input-group collapse div_schedule_6">
 							<label for="end_schedule_6" class="placeholder">Hasta</label>
 							<input id="end_schedule_6" class="timepicker form-control input-lg smaller" type="text" name="end_schedule_6"/>		
 						</div>	
 					</td>
 					<td>
-						<div class="input-group">
+						<div class="input-group collapse div_schedule_7">
 							<label for="end_schedule_7" class="placeholder">Hasta</label>
 							<input id="end_schedule_7" class="timepicker form-control input-lg smaller" type="text" name="end_schedule_7"/>		
 						</div>	

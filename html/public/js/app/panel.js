@@ -9,7 +9,11 @@ $("[id^=collapse]").on('shown', function(){
 });
 
 function practiceForm() {
-
+	$('#clinic-adress').collapse({ toggle: false });
+	$('#regular-adress').collapse({ toggle: false });
+	
+	//$('#ini_schedule_1').collapse('show');
+	//$('#end_schedule_1').collapse('show');
  
 	$('input:radio[name="isclinic"]').change(function(){		
 		if ($('input:radio[name="isclinic"]:checked').val() == 1) {
@@ -22,8 +26,18 @@ function practiceForm() {
 		//console.log($('input:radio[name="isclinic"]:checked').val());
 	});
 	
-	$('#clinic-adress').collapse({ toggle: false });
-	$('#regular-adress').collapse({ toggle: false });
+		
+	
+
+	
+		/*$('input:checkbox[id="day_1"]').change(function(){		
+		if ($('input:checkbox[name="day_1"]:checked').val() == 1) {
+			$('#ini_schedule_1').collapse('show'); 
+			$('#end_schedule_1').collapse('show'); 
+		} else {
+			$('#ini_schedule_1').collapse('hide'); 
+			$('#end_schedule_1').collapse('hide');   
+		}*/
 	
 	$('#ini_schedule_1').datetimepicker({
     	format: 'LT'
@@ -32,6 +46,103 @@ function practiceForm() {
     	format: 'LT'
     });
 	//$('.datetimepicker').timepicker();
+	
+	
+	$('#day_1').click(function() {
+    if($(this).is(':checked')){
+        
+        $('.div_schedule_1').collapse('show'); 
+        
+    }else{
+       
+        $('.div_schedule_1').collapse('hide'); 
+        $('#ini_schedule_1').val(''); 
+        $('#end_schedule_1').val(''); 
+       }
+		});
+		
+		$('#day_2').click(function() {
+    if($(this).is(':checked')){
+       
+        $('.div_schedule_2').collapse('show'); 
+          
+    }else{
+        
+        $('.div_schedule_2').collapse('hide'); 
+         $('#ini_schedule_2').val(''); 
+        $('#end_schedule_2').val(''); 
+		}
+		});
+		
+		$('#day_3').click(function() {
+    if($(this).is(':checked')){
+       
+        $('.div_schedule_3').collapse('show'); 
+   
+        
+   } else{
+       
+        $('.div_schedule_3').collapse('hide'); 
+        $('#ini_schedule_3').val(''); 
+        $('#end_schedule_3').val(''); 
+		}
+		});
+		
+		$('#day_4').click(function() {
+    if($(this).is(':checked')){
+       
+        $('.div_schedule_4').collapse('show'); 
+        
+    }else{
+        
+        $('.div_schedule_4').collapse('hide'); 
+        $('#ini_schedule_4').val(''); 
+        $('#end_schedule_4').val(''); 
+		}
+		});
+		
+		$('#day_5').click(function() {
+    if($(this).is(':checked')){
+        
+        $('.div_schedule_5').collapse('show'); 
+        
+    }else{
+       
+        $('.div_schedule_5').collapse('hide'); 
+        $('#ini_schedule_5').val(''); 
+        $('#end_schedule_5').val(''); 
+		}
+		});
+		
+	$('#day_6').click(function() {
+    if($(this).is(':checked')){
+        
+        $('.div_schedule_6').collapse('show'); 
+        
+        
+    }else{
+        
+        $('.div_schedule_6').collapse('hide');
+        $('#ini_schedule_6').val(''); 
+        $('#end_schedule_6').val('');  
+		}
+		});
+		
+		$('#day_7').click(function() {
+    if($(this).is(':checked')){
+       
+        $('.div_schedule_7').collapse('show'); 
+        
+    }else{
+       
+        $('.div_schedule_7').collapse('hide'); 
+        $('#ini_schedule_7').val(''); 
+        $('#end_schedule_7').val(''); 
+		}
+		});
+	
+	
+
 	
 }
 
@@ -58,7 +169,7 @@ function search_location () {
 
 function autocomplete() {
 	$("input[name=clinic]").autocomplete({
-		source : URL + "api/autocomplete/json/practices/",
+		source : URL + "api/autocomplete/json/practices/", //aqui llama al api que retorna el valor de las clinicas guardadas previamente
 		minLength : 1,
 		delay : 50,
 		messages : {
@@ -90,3 +201,5 @@ function autocomplete() {
 		 }*/
 	});
 }
+
+
