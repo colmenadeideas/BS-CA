@@ -132,6 +132,9 @@ text-align: center;  padding: 24px;  font-size: 45px;  }
 	letter-spacing: 0.5px;
 	transition: all ease 0.3s;
 }
+
+
+
 .light-form .form-control:focus{ box-shadow: none;}
 .form-control {
   box-shadow: none;

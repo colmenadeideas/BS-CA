@@ -51,8 +51,11 @@ define(function() {
 							autocomplete();
 							search_location();
 							practiceForm();
+							quoteForm();
+							//registerquote();
+							
 						});						
-						break;
+						break;				
 					default:					
 						break;
 				}

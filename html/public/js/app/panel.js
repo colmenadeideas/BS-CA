@@ -8,6 +8,29 @@ $("[id^=collapse]").on('shown', function(){
          .prop('checked', true);
 });
 
+
+function quoteForm() {
+	$('#general').collapse({ toggle: false });
+	$('#practica').collapse({ toggle: false });
+	
+	
+	//$('#general').collapse({ toggle: true });
+	//$('#practica').collapse({ toggle: true });
+ 
+	$('input:radio[name="quot"]').change(function(){		
+		if ($('input:radio[name="quot"]:checked').val() ==0) {
+			$('#practica').collapse('show'); 
+			$('#general').collapse('hide'); 
+		} else {
+			$('#practica').collapse('hide'); 
+			$('#general').collapse('show');   
+		}			
+	});
+	
+	registerquote();
+}
+
+
 function practiceForm() {
 	$('#clinic-adress').collapse({ toggle: false });
 	$('#regular-adress').collapse({ toggle: false });
@@ -26,9 +49,6 @@ function practiceForm() {
 		//console.log($('input:radio[name="isclinic"]:checked').val());
 	});
 	
-		
-	
-
 	
 		/*$('input:checkbox[id="day_1"]').change(function(){		
 		if ($('input:checkbox[name="day_1"]:checked').val() == 1) {
@@ -141,8 +161,8 @@ function practiceForm() {
 		}
 		});
 	
-	
 
+		registerPractice();
 	
 }
 
@@ -200,6 +220,111 @@ function autocomplete() {
 		 return false;
 		 }*/
 	});
+	
+	
 }
 
+
+function registerPractice() {
+
+	//$('.datetimepicker').datetimepicker({});	 
+	 
+	var form = "#form-add-practice";
+	//Validate Practice Form
+	$(form).validate({
+		rules : {/*
+			"email": {
+	        	required: true,
+	            email: true,
+	            remote: {
+	            	url: URL+'account/checkregistered/username/',
+	                type: 'post'
+	            }
+	       	},
+	       	"birth": { 
+	       		required: true,
+	       		check_age: true ,
+	       	}	       
+		},
+		messages: {
+			email: { remote:jQuery.format("Ya existe un usuario registrado con este correo") },*/
+		},
+		//onkeyup: false,
+		//onfocusout: false,
+		//onclick: false,
+		submitHandler : function(form) {
+			//$('.register-send').attr('disabled', 'disabled');//prevent double send
+			$.ajax({
+				type : "POST",
+				url : URL + "panel/processpractice",
+				//http://localhost/BS-OK/html/panel#panel/processpractice
+				data : $(form).serialize(),
+				timeout : 15000,
+				success : function(response) {
+					console.log('works' + response);
+					//$('.form-register').empty();
+					//$('#response-registration').html(response).fadeIn('fast');
+				},
+				error : function(response) {
+					console.log(response);
+					// $('.register-send').removeAttr("disabled");
+					// $('#response-registration').html(response).fadeIn('fast');
+				}
+			});
+			return false;
+		}
+	});
+
+}
+
+function registerquote() {
+	
+	var form = "#form-quote-practice";
+	//Validate Practice Form
+	$(form).validate({
+		rules : {/*
+			"email": {
+	        	required: true,
+	            email: true,
+	            remote: {
+	            	url: URL+'account/checkregistered/username/',
+	                type: 'post'
+	            }
+	       	},
+	       	"birth": { 
+	       		required: true,
+	       		check_age: true ,
+	       	}	       
+		},
+		messages: {
+			email: { remote:jQuery.format("Ya existe un usuario registrado con este correo") },*/
+		},
+		//onkeyup: false,
+		//onfocusout: false,
+		//onclick: false,
+		submitHandler : function(form) {
+			//alert("registerquote");
+			$('.register-send').attr('disabled', 'disabled');//prevent double send
+			$.ajax({
+				type : "POST",
+				url : URL + "panel/processquote",
+				//http://localhost/BS-OK/html/panel#panel/processpractice
+				data : $(form).serialize(),
+				timeout : 15000,
+				success : function(response) {
+					console.log('works' + response);
+					//$('.form-register').empty();
+					//$('#response-registration').html(response).fadeIn('fast');
+				},
+				error : function(response) {
+					console.log(response);
+					// $('.register-send').removeAttr("disabled");
+					// $('#response-registration').html(response).fadeIn('fast');
+				}
+			});
+			return false;
+		}
+	});
+		
+}
 

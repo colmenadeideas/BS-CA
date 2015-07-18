@@ -13,7 +13,9 @@
 
 		//Resources
 		define ( 'JQUERY_LINK', URL .'public/js/jquery.min.js');
-		define ( 'GOOGLE_FONTS', "<link href='".URL."public/css/localfonts.css' type='text/css'>" );
+		//define ( 'GOOGLE_FONTS', "<link href='".URL."public/css/localfonts.css' type='text/css'>" );
+		define ("GOOGLE_FONTS", "<link href='http://fonts.googleapis.com/css?family=Lato:400,500,600,700,800,900,200,100' rel='stylesheet' type='text/css'>");
+		
 		define ( 'GOOGLE_ANALYTICS', "");
 		//Session
 		define ('SESSION_LIMIT', '300000');

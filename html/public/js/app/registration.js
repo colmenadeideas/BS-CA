@@ -44,7 +44,7 @@ $('#signin .back').click(function(e) {
 
 
 
-function registerWithEmail(parent) {
+function registerL(parent) {
 
 	$('.datetimepicker').datetimepicker({});	 
 	 

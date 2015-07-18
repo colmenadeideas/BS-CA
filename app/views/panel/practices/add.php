@@ -11,11 +11,11 @@
 				¿Está ubicado en una Clinica, Hospital o Centro Médico?
 			</div>
 			<div class="col-sm-6 col-lg-6">
-				<input name="isclinic" type="radio" id="isclinic1" value="1" />
+				<input name="isclinic" type="radio" class="isclinic" id="isclinic1" value="1" />
 				<label for="isclinic1"><span></span>Si</label>
 			</div>
 			<div class="col-sm-6 col-lg-6">
-				<input name="isclinic" type="radio" id="isclinic2" value="0" />
+				<input name="isclinic" type="radio" class="isclinic" id="isclinic2" value="0" />
 				<label for="isclinic2"><span></span>No</label>
 			</div>			
 	    </div>
@@ -24,7 +24,7 @@
 			<input name="clinic_id" type="hidden">					 	
 		</div>
 		 <div id="regular-address" class="collapse">	
-			<textarea name="address" class="form-control input-lg input-home-location" 
+			<textarea name="address" id="address"  class="form-control input-lg input-home-location" 
 			placeholder="Dirección" required="required" autocomplete="off"></textarea>
 			<input name="address_location" type="hidden"><input name="address_url" type="hidden">					 	
 		</div>
@@ -32,7 +32,7 @@
 			
 		
 		<div class="field-wrapper col-sm-12 col-lg-12">
-			<label for="name" class="placeholder"><?php echo SITE__FORM_NAME; ?></label>
+			<label for="name" class="placeholder">a<?php echo SITE__FORM_NAME; ?></label>
 			<input type="text" name="name" placeholder="<?php echo SITE__FORM_NAME; ?>" required="required" class="form-control input-lg signinput">
 		</div>
 		
