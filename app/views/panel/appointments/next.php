@@ -2,7 +2,7 @@
 	<?php 
 		//print_r($this->appointments);
 		$i = 0;
-		foreach($this->appointments ['dates'] as $date){ ?>
+		/*foreach($this->appointments ['dates'] as $date){ ?>
 			
 		<div id="date-<?php echo $date['date_string']; ?>">
 			<div class="col-lg-2 col-sm-2">
@@ -56,4 +56,4 @@
 		</div>
 		<div class="col-lg-12 col-xs-12 date-spacer"></div>
 	<?php $i++; } ?>
-</div>	
+</div>	*/

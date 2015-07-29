@@ -31,7 +31,7 @@ class Api extends ApiQuery {
 			
 			foreach ($array_practices as $practice) {
 				foreach ($practiceFields as $field) {
-					$array_final['practice'][$i][$field] = $practice[$field];
+					@$array_final['practice'][$i][$field] = $practice[$field];
 				}
 				
 			

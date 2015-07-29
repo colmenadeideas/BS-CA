@@ -1,7 +1,8 @@
 <?
 	class apiModel extends Model {
 	
-		public function __construct() {
+		/*
+        public function __construct() {
 	
 			parent::__construct();
 		}
@@ -16,7 +17,7 @@
 		}
 		
 		
-		/*public function autocomplete($string){
+		public function autocomplete($string){
 			
 			return DB::query("	SELECT * FROM  (
 								SELECT doctor.name AS label, 'doctor_name' AS type FROM doctor UNION 

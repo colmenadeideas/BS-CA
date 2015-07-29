@@ -3,7 +3,7 @@
 <div class="col-lg-8 col-sm-8">
 	<h2 class="text-center forms">Agregar Práctica</h2>
 	
-	<form id="form-add-practice" action="" novalidate="novalidate" method="post" class="light-form">
+	<form id="add" action="" novalidate="novalidate" method="post" class="light-form">
 		
 		
 		<div class="field-wrapper form-inline col-sm-12 col-lg-12">
@@ -11,7 +11,7 @@
 				¿Está ubicado en una Clinica, Hospital o Centro Médico?
 			</div>
 			<div class="col-sm-6 col-lg-6">
-				<input name="isclinic" type="radio" class="isclinic" id="isclinic1" value="1" />
+				<input name="isclinic" type="radio" class="isclinic" id="isclinic1" value="1"  checked />
 				<label for="isclinic1"><span></span>Si</label>
 			</div>
 			<div class="col-sm-6 col-lg-6">
@@ -19,11 +19,11 @@
 				<label for="isclinic2"><span></span>No</label>
 			</div>			
 	    </div>
-	     <div id="clinic-adress" class="collapse">	
+	     <div id="clinic-adress" class="collapse col-sm-12 col-lg-12">	
 			<input name="clinic" class="form-control input-lg input-home-doctor" placeholder="Nombre de la Clínica, Hospital..." required="required">
 			<input name="clinic_id" type="hidden">					 	
 		</div>
-		 <div id="regular-address" class="collapse">	
+		 <div id="regular-address" class="collapse col-sm-12 col-lg-12">	
 			<textarea name="address" id="address"  class="form-control input-lg input-home-location" 
 			placeholder="Dirección" required="required" autocomplete="off"></textarea>
 			<input name="address_location" type="hidden"><input name="address_url" type="hidden">					 	
@@ -59,37 +59,37 @@
 					<td></td>
 					<td>
 					<div class="checkbox">
-						<input type="checkbox" value="Mon" id="day_1" name="day">
+						<input type="checkbox" value="LUN" id="day_1" name="day" class="day">
 						<label for="day_1"></label>
 					</div></td>
 					<td>
 					<div class="checkbox">
-						<input type="checkbox" value="Tue" id="day_2" name="day">
+						<input type="checkbox" value="MAR" id="day_2" name="day" class="day">
 						<label for="day_2"></label>
 					</div></td>
 					<td>
 					<div class="checkbox">
-						<input type="checkbox" value="Wen" id="day_3" name="day">
+						<input type="checkbox" value="MIE" id="day_3" name="day" class="day">
 						<label for="day_3"></label>
 					</div></td>
 					<td>
 					<div class="checkbox">
-						<input type="checkbox" value="Thu" id="day_4" name="day">
+						<input type="checkbox" value="JUE" id="day_4" name="day" class="day">
 						<label for="day_4"></label>
 					</div></td>
 					<td>
 					<div class="checkbox">
-						<input type="checkbox" value="Fri" id="day_5" name="day">
+						<input type="checkbox" value="VIE" id="day_5" name="day" class="day">
 						<label for="day_5"></label>
 					</div></td>
 					<td>
 					<div class="checkbox">
-						<input type="checkbox" value="Sat" id="day_6" name="day">
+						<input type="checkbox" value="SAB" id="day_6" name="day" class="day">
 						<label for="day_6"></label>
 					</div></td>
 					<td>
 					<div class="checkbox">
-						<input type="checkbox" value="Sun" id="day_7" name="day">
+						<input type="checkbox" value="DOM" id="day_7" name="day" class="day">
 						<label for="day_7"></label>
 					</div></td>
 
@@ -222,7 +222,7 @@
 		<input type="hidden"  id="id_doctor" name="id_doctor" value="<?php echo $this->username['id']; ?>" required>
 		
 	</form>
-	
+	<div class="hidden-mesage"><h2 class="text-center forms">Su practica de ha guardado con exito</h2></div>
 	
 </div>
 <div class="col-lg-2 col-sm-2"></div>

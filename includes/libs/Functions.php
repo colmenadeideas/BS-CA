@@ -6,9 +6,9 @@
 		}
 		$data = strip_tags($data, '<p><a><br>');
 		//use this if local
-		return mysql_real_escape_string($data);
+		//return mysql_real_escape_string($data);
 		//use this for server
-		//return mysql_escape_string($data); 
+        return mysql_escape_string($data); 
 	}
 	
 	function create_slug($data) {

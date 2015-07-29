@@ -195,6 +195,10 @@ input[type="radio"]:checked + label span {
   transition:background-color 0.2s ease;*/
 }
 
+input.time-lapse {
+	width: 120px;
+}
+
 .field-wrapper span, .field-wrapper .text { font-size: 150%;color: #7A8181;  font-weight: 300; margin-bottom:15px}
 
 
@@ -261,7 +265,9 @@ input[type="radio"]:checked + label span {
 
 
 /* FORMS */
-
+.hidden-message{
+	display: none;
+}
 
 /* AUTOCOMPLETE */
 .ui-tooltip {

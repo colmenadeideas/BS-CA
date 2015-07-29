@@ -5,12 +5,13 @@ class panelController extends Controller {
 	public function __construct() {
 		
 		parent::__construct();
-		//Auth::handleLogin('panel');	
+		//Auth::handleLogin('panel');
+        $this->view->title = "Doctor PANEL";	 //Temporarly defined to avoid individual var
 		
 	}
 	
 	public function index(){
-		
+        
 		$this->view->userdata = $this->user->getUserdata();		
 		
 		$this->view->buildpage("panel/appointments/next", "doctor");
@@ -38,7 +39,7 @@ class panelController extends Controller {
 	}
 	
 	public function practice($action) {
-		
+		$this->view->username=array("id"=>"22");
 		switch ($action) {
 			case 'add':
 				$template = "add";
@@ -61,7 +62,10 @@ class panelController extends Controller {
 					
 				}
 		
-				break;	
+				break;
+				case 'cost':
+				$template = "cost";
+				break;
 					
 				//$template = "quote";
 				//break;
@@ -114,54 +118,87 @@ class panelController extends Controller {
 		}
 	}*/
 	
-	
+	function pruebaparadavid() {
+
+		$array_practice['id_doctor'] 	= "22";
+		// paso 1 el ID del doctor
+		$reg = $this->model->getLastPractice("",$array_practice['id_doctor'], 'id_doctor');
+		 echo $reg[0]['id'] ;
+		 echo '<br>';
+		 $array_practice['max_days_ahead'] 	= "66";
+		
+		 // paso 2 actualizar los datos del doctor co el iD encontrado en el paso 1
+		$s = $this->helper->update('doctor_practice', $reg[0]['id'], $array_practice);
+		
+
+		$reg2 = $this->model->getLastPractice("",$array_practice['id_doctor'], 'id_doctor');
+		print_r($reg2);
+		// $reg = $this->model->getLastPractice("",$array_practice['id_doctor'], 'id_doctor');
+		
+
+
+	}
 	
 	function processpractice() {
 			
 			$array_data = array();	
 			
+			// getting all the POST variables
 			foreach ($_POST as $key => $value) {
 				$field = escape_value($key);
 				$field_data = escape_value($value);				
 				$array_data[$field] = $field_data;
 			}
-			
-			
-			//$array_practice['id_doctor'] 	= $array_data['id_doctor'];
-			$array_practice['id_doctor'] 	= "22";
-			//$array_practice['id_clinic'] 	= "3";
-			
-			$array_practice['address_details'] 	= $array_data['address'];
-			
-			if ($array_data['isclinic']==1){
-			$array_practice['id_clinic'] 	= $array_data['clinic_id'];
-			//$array_practice['address_details'] 	= "";
+			$array_practice['id_doctor'] 	= $array_data['id_doctor'];
+
+			// setting up the variables of the ajax request	
+			if ($array_data['param'] == "add") {				
+				
+				$array_practice['id_clinic'] 	= "3";
+				$array_practice['address_details'] 	= $array_data['address'];
+				/*$array_practice[''] 	= $array_data[''];
+				$array_practice[''] 	= $array_data[''];
+				$array_practice[''] 	= $array_data[''];
+				$array_practice[''] 	= $array_data[''];
+				$array_practice[''] 	= $array_data[''];*/
+				if ($array_data['isclinic'] == 1){
+				$array_practice['id_clinic'] = $array_data['clinic_id'];
+				$array_practice['address_details'] 	= false;
+				}				
+				if ($array_data['isclinic'] == 0){			
+				$array_practice['id_clinic'] = 101;			
+				$array_practice['address_details'] = $array_data['address'];
+				}
+				// insert values into database
+				$insert_practice = $this->helper->insert('doctor_practice', $array_practice);
+
 			}
-			
-			if ($array_data['isclinic']==0){
-			
-			$array_practice['id_clinic'] 	= 101;
-			
-			//$array_practice['address_details'] 	= $array_data['address'];
+			elseif ($array_data['param'] == "quote") 
+			{
+				// get curent doctor id
+				$reg = $this->model->getLastPractice("",$array_practice['id_doctor'], 'id_doctor');
+				$array_practice['max_days_ahead'] 	= $array_data['max_days'];
+		
+				// update max_days_ahead on current doctor's practice
+				$s = $this->helper->update('doctor_practice', $reg[0]['id'], $array_practice);
+				$insert_practice = $this->model->getLastPractice("",$array_practice['id_doctor'], 'id_doctor');
+
+			}
+			elseif ($array_data['param'] == "cost") {
+				$array_practice['consultation_reason'] 	= $array_data['reason'];
+				$array_practice['price'] = $array_data['cost'];
+				$array_practice['initial_interval'] = $array_data['time-lapse'];
+				// insert values into database
+				$insert_practice = $this->helper->insert('doctor_practice_schedule_intervals_matrix', $array_practice);
 			}
 
-			
 			//$already_registered =	$this->model->getPractice("",$array_data['id_doctor'], 'id_doctor');
 			
-			
-			$insert_practice = $this->helper->insert('doctor_practice', $array_practice);
-			
-				if (!$insert_practice > 0) {
-					
-					//processquote();
-					
-					echo "Registrado";
-					
-					
-					
-				}	else{
-					
-					echo "No Registrado";
+				if ($insert_practice > 0) {					
+					//processquote();					
+					echo "true";									
+				}	else{					
+					echo "Error: " . mysql_error();
 				}	
 				
 				

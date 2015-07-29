@@ -1,4 +1,11 @@
 <?php
+
+define ('SYSTEM_EMAIL_BGCOLOR','');  //TODO define
+define ('SYSTEM_EMAIL_HEADCOLOR','');  //TODO define
+define ('SYSTEM_EMAIL_BUTTONSCOLOR','');  //TODO define
+define ('CONTACT_PHONENUMBER','');  //TODO define
+
+
 	//Sistem messages
 	define ('ERROR_AUTHENTICATE_MESSAGE', 'Ha ocurrido un error. La cuenta no ha podido activarse. Por favor contacte al administrador' );
 	define ('SYSTEM_EMAIL__YOUR_USER_IS_MESSAGE', 'Su usuario es: '); 

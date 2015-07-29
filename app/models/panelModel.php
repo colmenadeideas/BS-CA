@@ -20,8 +20,20 @@
 				$result = DB::query("SELECT * FROM " . DB_PREFIX . "$table WHERE $by=%s LIMIT 1", $data);
 			}
 			return $result;
+
 		}
+			public function getLastPractice($table, $data, $by='id') {
+			
+			
+				$table = 'doctor_practice';	
 				
+				
+				$result = DB::query("SELECT * FROM " . DB_PREFIX . "$table WHERE $by=%s ORDER BY id  DESC LIMIT 1" , $data);
+				
+				
+			
+				return $result;
+			}	
 	}
 		
 ?>
