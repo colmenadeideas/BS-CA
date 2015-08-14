@@ -21,7 +21,8 @@ require.config({
          'assets/jquery.validate.min': ['jquery'],
          'common': ['jquery','assets/all','assets/jquery-ui.min','assets/bootstrap.min','assets/jquery.validate.min','assets/jquery.easing.min','assets/jquery.scrollTo.min','assets/bootstrap-datetimepicker','assets/jquery.geocomplete.min','assets/moment.min','assets/fullcalendar.min','assets/jsonsql','functions','config'],
          'app/settings': ['jquery','common'],
-         'app/settings': ['common']
+         'app/settings': ['common'],
+         'assets/slidebars.min': ['jquery']
        
 	}
 });

@@ -118,6 +118,7 @@ text-align: center;  padding: 24px;  font-size: 45px;  }
 .practice-item { border-bottom:solid 1px #BDC3C6; padding: 10px 0 30px 20px;  margin-bottom: 40px; }
 .light-form thead { color: #4E92F6;}
 
+
 /* FORMS */
 
 .light-form .form-control {
@@ -264,8 +265,11 @@ input.time-lapse {
 .checkbox input[type=checkbox]:checked + label:after {-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";	filter: alpha(opacity=100);	opacity: 1;}
 
 
-/* FORMS */
+/* HIDDIG */
 .hidden-message{
+	display: none;
+}
+.hidden-patient{
 	display: none;
 }
 
@@ -302,3 +306,173 @@ input.time-lapse {
 
 .pac-matched{font-weight:400}
 /* AUTOCOMPLETE */
+
+/* id patient */
+.p-details{
+	padding-top: 15px;
+	padding-bottom: 15px;
+	color: white;
+	text-transform: uppercase;
+	border-bottom: solid 1px white;
+}
+.p-details p{
+	font-size: 10px;
+	font-weight: bold;
+}
+.green{
+	background: #31DBC1;
+}
+.blue{
+	background: #4E92F6;
+}
+.absolute{
+	position: absolute;
+	font-size: 30px;
+	margin-right: 20px;
+}
+.border-green-50{
+	border-left: 3px solid #31DBC1;
+	height: 50px;
+}
+.border-blue-20{
+	border-left: 3px solid #4E92F6;
+	height: 20px;
+}
+.text-circle{
+	border-radius: 50%;
+	width: 125px;
+	height: 125px;
+	padding: 24px;
+	font-size: 35px;
+	line-height: 30px;
+	text-transform: uppercase;
+	margin: auto;
+	background: #FFF none repeat auto 0% 0%;
+}
+.text-circle-blue{
+	border: 3px solid #4E92F6;
+	color: #4E92F6;
+}
+.text-circle-green{
+	border: 3px solid #31DBC1;
+	color: #31DBC1;	
+}
+.next-app{
+	border-top: solid 2px #aaa;
+	padding-top: 30px;
+	border-bottom: solid 2px #aaa;
+	padding-bottom: 30px;
+}
+.hborder{
+	border-bottom: solid 2px #aaa;
+	margin: auto;
+	height: 1px;
+	display: block;
+	position: absolute;
+	top: 65%;
+	width: 100px;
+}
+.gray{
+	background: #aaa;
+	margin: auto;
+	display: block;
+	position: absolute;
+	top: 58%;
+	width: 100px;
+	color: white;
+	text-align: center;
+	padding: 5px;
+}
+.gray-right{
+	left: 425px;
+	right: 0px;
+}
+.gray-left{
+	right: 425px;
+	left: 0px;
+}
+.hborder-right{
+	left: 225px;
+	right: 0px;
+}
+.hborder-left{
+	right: 225px;
+	left: 0px;
+}
+h3{
+	margin-top: 10px; 
+}
+.text-blue{
+	color: #4E92F6;
+}
+.bfixed{
+	width: auto !important;
+	height: auto !important;
+}
+.radio{
+	display: inline-block !important;
+	
+}
+#patient{
+	margin-left:16.6667%; 
+}
+.extra-question{
+	margin-top: 50px; 
+}
+.qex{
+	margin-top: 20px; 
+}
+/* Progressbar */
+.progressbar {
+	margin-bottom: 30px;
+	overflow: hidden;
+	/*CSS counters to number the steps*/
+	counter-reset: step;
+}
+.progressbar li {
+	list-style-type: none;
+	color: #555;
+	text-transform: uppercase;
+	font-size: 9px;
+	width: 33.33%;
+	float: left;
+	position: relative;
+	text-align: center;
+}
+.progressbar li:before {
+	content: counter(step);
+	counter-increment: step;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	display: block;
+	font-size: 10px;
+	color: #333;
+	background: white;
+	border-radius: 50%;
+	margin: 0 auto 5px auto;
+}
+/*progressbar connectors*/
+.progressbar li:after {
+	content: '';
+	width: 100%;
+	height: 2px;
+	background: white;
+	position: absolute;
+	left: -50%;
+	top: 30%;
+	z-index: -1; /*put it behind the numbers*/
+}
+.progressbar li:first-child:after {
+	/*connector not needed before the first step*/
+	content: none; 
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+.progressbar li.active:before,  .progressbar li.active:after{
+	background: #4E92F6;
+	color: white;
+}
+.eso{
+	margin-bottom: 100px;
+}

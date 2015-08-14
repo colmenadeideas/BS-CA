@@ -55,6 +55,14 @@ define(function() {
 							//registerquote();
 							
 						});						
+						break;	
+					case "practice":
+						require(['app/panel'], function($) {							
+							floatinput();
+							autocomplete();
+							search_location();
+							practiceForm();
+						});						
 						break;				
 					default:					
 						break;

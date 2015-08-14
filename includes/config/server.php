@@ -1,6 +1,6 @@
 <?php
 		//Path Info
-		define ('URL', "http://okidoctor.com/"); 
+		define ('URL', "http://192.168.0.115"); 
 
 		//Server Info
 		define ( 'DB_SERVER', 'internal-db.s23550.gridserver.com');

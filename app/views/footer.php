@@ -1,5 +1,6 @@
 			</div><!-- row-->
 		</div><!-- container-full -->
+		</div>
 		
 		<div id="footer">
 	      <div class="container">

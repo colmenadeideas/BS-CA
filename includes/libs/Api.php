@@ -82,7 +82,6 @@ class Api extends ApiQuery {
 			$practice_id = escape_value($practice_id);
 			$for_date = escape_value($for_date);
 			$to_date = escape_value($to_date);
-
 			//$this->loadModel('appointments');
 			$array_appointments = ApiQuery::getAppointmentsByDate($id, $for_date, $practice_id);
 			//$this->loadModel('doctor');
@@ -108,7 +107,6 @@ class Api extends ApiQuery {
 			} else {//modo "array"
 				return $array_final;
 			}
-
 		} else {
 
 			$array_practices = ApiQuery::getDoctorPractices($id);
