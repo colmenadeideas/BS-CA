@@ -557,3 +557,4 @@ margin: 20px 0 ; font-weight:100; border-radius: 4px;}
 		.practice-item2 {border: 2px solid #E2E2E2;background: #FFF;border-radius: 15px;margin: 0 10px; }
 		.practice-item { background: #009EFC;color: #FFF;font-weight: 800 !important;border-radius: 15px;margin: 0 10px;padding: 20px 10px; text-align: center}
 		.practice-item img { padding: 20px 30px 10px;}
+    .khidden{width:0;visibility:hidden;}

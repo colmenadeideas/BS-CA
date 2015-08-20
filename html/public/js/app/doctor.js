@@ -13,6 +13,10 @@ function doctorLoadDetails() {
 		$(".rating").rating();	
 			
 		bookingform();
+		bookingSteps();
+		day();
+		console.log(context['doctors']['0']['practice']['0']['schedule']['0']['quota']);
+
 	});
 	
 	//Build Other views
@@ -33,31 +37,9 @@ function bookingform() {
 		prev: '#handler-back-reason',
 		next: '#handler-fowr-reason',
 	});
-	//Step2
-	$('#practices-loop').carouFredSel({
-		width: "100%",
-		height:500,
-		items: 3,
-		scroll: 1,
-		auto: {
-			play: false,
-		},
-		prev: '#handler-back-practice',
-		next: '#handler-fowr-practice',
-	});
+
 	//Step3
-	$('#calendar-loop').carouFredSel({
-		width: "100%",
-		height:500,
-		items: 3,
-		scroll: 1,
-		auto: {
-			play: false,
-		},
-		
-		prev: '#handler-back-cal',
-		next: '#handler-fowr-cal',
-	});
+
 
 
 	
@@ -149,3 +131,78 @@ $(".submit").click(function(){
 });
 
 }
+
+// I hate handlebars
+function bookingSteps() {
+	data = 'La data tiene que ser configurada';
+	console.log(data);
+	$('#calendar').datepicker({
+		inline: true,
+		firstDay: 1,
+		showOtherMonths: true,
+		dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab' ],
+		timeFormat: 'yyy-dd-mm HH:MM:ss'
+	});
+
+	$('.reason-book').children('button').click(function (){
+		$('.reason-book').animate({
+			margin: "500px 0 0",
+			opacity: 0,
+		},
+		{
+	 	duration: 400,
+	 	complete: function(){
+	 		$(this).hide();
+	 		$(this).css('margin', "0")
+			$('#step2').removeClass('hidden').css('opacity', '0');
+			$('#practices-loop').carouFredSel({
+				width: "100%",
+				height:500,
+				items: 3,
+				scroll: 1,
+				auto: {
+					play: false,
+				},
+				prev: '#handler-back-practice',
+				next: '#handler-fowr-practice',
+			});
+			$('#step2').animate({opacity: 1, margin: '0'});
+	 	}
+	 });
+	});
+
+	$('.practice-item').click(function (){
+		$('#step2').animate({
+			height: "400px",
+			opacity:00,
+		},
+		{
+			duration: 400,
+			complete: function()
+			{
+				$(this).hide();
+				$('.step3').removeClass('hidden').css('opacity', '0');
+				$('#calendar-loop').carouFredSel({
+					width: "100%",
+					height:300,
+					items: 3,
+					scroll: 1,
+					auto: {
+						play: false,
+					},
+					
+					prev: '#handler-back-cal',
+					next: '#handler-fowr-cal',
+				});
+				$('.step3').animate({opacity: 1, margin: '0'});
+			}
+		})
+	});
+	$('.calendar-item').click(function(){
+		$('.hcontainer').removeClass('hidden').css('opacity', '0').animate({opacity: 1, margin: 'auto'});
+	})
+}
+
+
+
+

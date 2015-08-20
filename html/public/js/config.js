@@ -6,7 +6,7 @@ var isProcessing = false;
 
 if (modo === 'local') {
 	//var URL = "http://192.168.1.107/Edil/Web/";
-	var URL = "http://localhost/BS-OK/html/";
+	var URL = "http://localhost:8888/BS-OK/html/";
 	var urlCheck = '/html/';
 
 	var position = 2;

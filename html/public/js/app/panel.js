@@ -333,8 +333,11 @@ function addpatient(){
 							left: '100px',
 							opacity: 0							
 						},400, function (){
-							$('.in').delay(200)
-							.css('opacity','0')
+							$('.inn')
+							.css({
+								'opacity':'0',
+								'left':'0'
+							})
 							.load('panel/patient/step2')
 							.animate({
 								left: '16.6667%',
@@ -346,8 +349,11 @@ function addpatient(){
 							left: '100px',
 							opacity: 0							
 						},400, function (){
-							$('.in').delay(200)
-							.css('opacity','0')
+							$('.inn')
+							.css({
+								'opacity':'0',
+								'left':'0'
+							})
 							.load('panel/patient/step3')
 							.animate({
 								left: '16.6667%',

@@ -413,9 +413,6 @@ h3{
 	display: inline-block !important;
 	
 }
-#patient{
-	margin-left:16.6667%; 
-}
 .extra-question{
 	margin-top: 50px; 
 }
@@ -426,7 +423,6 @@ h3{
 .progressbar {
 	margin-bottom: 30px;
 	overflow: hidden;
-	/*CSS counters to number the steps*/
 	counter-reset: step;
 }
 .progressbar li {
@@ -452,7 +448,7 @@ h3{
 	border-radius: 50%;
 	margin: 0 auto 5px auto;
 }
-/*progressbar connectors*/
+
 .progressbar li:after {
 	content: '';
 	width: 100%;
@@ -461,7 +457,7 @@ h3{
 	position: absolute;
 	left: -50%;
 	top: 30%;
-	z-index: -1; /*put it behind the numbers*/
+	z-index: -1; 
 }
 .progressbar li:first-child:after {
 	/*connector not needed before the first step*/
@@ -475,4 +471,7 @@ h3{
 }
 .eso{
 	margin-bottom: 100px;
+}
+.inn{
+	left: 16.6667%;
 }

@@ -1,9 +1,4 @@
 
-<div id="doc-details">
-	
-	<script id="item-details" type="text/template">
-		{{doctors}}
-		
 		<style>
 		
 		
@@ -141,11 +136,57 @@ letter-spacing: 1px;
 	color: white;
 	border-radius: 10px;
 }
+	
+#msform .choose-this {
+	width: 140px;
+	background: none;
+	font-weight: 400;
+	text-transform: uppercase;
+	color: #999;
+	border: solid 2px #999;
+	border-radius: 20px;
+	cursor: pointer;
+	margin: 10px 5px;	
+	padding: 10px 20px;
+	font-size: 95%;
+	letter-spacing: 1px;
+	}
+	
 
+#msform .choose-this:hover, #msform .choose-this:focus {
+	color: #FFF;
+	background-color: #45CFCB;
+	border-color: #45CFCB;	
+	box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+}
+
+#calendar-loop h4 { font-size:400%; font-weight:100}
+#calendar-loop h5 { color:white;font-weight: 100;font-size: 200%;letter-spacing: 1px;text-transform: uppercase;}
+.date-resume2 {
+    margin-left: 50px;
+    display: inline-block;
+    padding: 10px;
+    color: white;
+    background-color: #009EFC;
+    border-radius: 20px;
+}
+.hcontainer{
+	margin: auto;
+	width: 80%;
+	text-align: center;
+}
+.hcontainer h4{
+	margin-bottom: 30px; 
+}
 
 
 
 		</style>
+		
+<div id="doc-details">
+	
+	<script id="item-details" type="text/template">
+		{{doctors}}
 		
 				
 		<div class="container">
@@ -207,32 +248,6 @@ letter-spacing: 1px;
 				
 								
 			</div>
-	
-<style>
-	
-	#msform .choose-this {
-	width: 140px;
-	background: none;
-	font-weight: 400;
-	text-transform: uppercase;
-	color: #999;
-	border: solid 2px #999;
-	border-radius: 20px;
-	cursor: pointer;
-	margin: 10px 5px;	
-	padding: 10px 20px;
-	font-size: 95%;
-	letter-spacing: 1px;
-	}
-	
-
-	#msform .choose-this:hover, #msform .choose-this:focus {
-	color: #FFF;
-	background-color: #45CFCB;
-	border-color: #45CFCB;	
-	box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
-}
-</style>
 
 
 
@@ -241,74 +256,22 @@ letter-spacing: 1px;
 				
 				<!-- Tab panes -->
 				<div class="tab-content">
-					
-					
-				  <div class="tab-pane fade in active" id="book-appointment">
-				 
-				 
-						{{if practice}}		
-						
-						
 
-					<style>
-						#calendar-loop h4 { font-size:400%; font-weight:100}
-						#calendar-loop h5 { color:#1AD8C1;font-weight: 100;font-size: 200%;letter-spacing: 1px;text-transform: uppercase;}
-					</style>
-				  
-				  		
-						<!-- multistep form -->
-						<form id="msform" class="steps">
-							<!-- progressbar -->
-							<!--ul id="progressbar">
-								<li class="active">¿donde?</li>
-								<li>¿cuando?</li>
-								<li>confirma</li>
-								<li>pago</li>
-							</ul-->
-							
-							<fieldset class="activestep">
-								<h2>¿Cuando deseas tu cita?</h2>
-								
-								<div id="wrapper" class="looper">
-									<div id="calendar-loop">
-										<div class="column-steps calendar-item">
-											<h5>Viernes</h5>
-											<h4>06</h4>
-											<h5>Feb 15</h5>
-											
-												{{practice}}
-													{{schedule}}
-														 <div class="text-right date-resume">
-														   <div class="input-group">
-														      <span class="input-group-addon">
-														        <input type="radio" aria-label="...">
-														      </span>
-														      <input type="text" class="form-control" aria-label="...">
-														    </div>
-														   <div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
-														   	&nbsp;
-														 </div>														 
-											       	  	{{/schedule}}
-												{{/practice}}										
-												
-											
+				<fieldset class="activestep step3 hidden">
+					<h2 class="text-center">¿Cuando deseas tu cita?</h2>
+					
+					<div id="wrapper" class="looper" style="padding-top: 150px;">
+						<div id="calendar-loop">
+							<div class="column-steps calendar-item">
+								<h5>Viernes</h5>
+								<h4>06</h4>
+								<h5>Feb 15</h5>
 										</div>
 										<div class="column-steps calendar-item">
 											<h5>Viernes</h5>
 											<h4>06</h4>
 											<h5>Feb 15</h5>
-											
-												{{practice}}
-													{{schedule}}
-														 
-														 <div class="text-right date-resume2">
-														 		<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
-														    	&nbsp;
-														    </div>
-											       	  	{{/schedule}}
-												{{/practice}}										
-												<input type="button" name="aa" class="choose-this next" value="1" />
-											
+
 										</div>
 										<div class="column-steps calendar-item">
 											Cita antes de operación
@@ -319,6 +282,19 @@ letter-spacing: 1px;
 										</div>
 							
 									</div>
+									<div class="hcontainer hidden">
+										<h4>Horarios disponibles</h4>
+										{{practice}}
+											{{schedule}}
+												 <div class="text-center date-resume2">
+												 		<div class=" hours-day">{{ini_schedule}}-{{end_schedule}}</div>
+												    </div>
+									       	  	{{/schedule}}
+										{{/practice}}										
+												
+									</div>
+
+											
 									<a id="handler-back-cal" class="goback" href="#"> <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
 									<a id="handler-fowr-cal" class="gofoward" href="#"> <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
 								</div>
@@ -326,41 +302,17 @@ letter-spacing: 1px;
 	    						<input type="button" name="next" class="next action-button" value="Next" />
 								<div class="clearfix"></div>
 							</fieldset>
-							<fieldset class="activestep">
-								<h2>¿Cuál es el motivo de tu consulta?</h2>
-								
-								<div id="wrapper" class="looper">
-									<div id="reasons-loop">
-							
-										<div class="column-steps reason-item">
-											Cita por Primera vez											
-											<input type="button" name="aa" class="choose-this next" value="1" />
-										</div>
-										<div class="column-steps reason-item">
-											Cita Control Regular/Chequeo
-							
-										</div>
-										<div class="column-steps reason-item">
-											Cita antes de operación
-							
-										</div>
-										<div class="column-steps reason-item">
-											Entrega de mensajes							
-										</div>
-							
-									</div>
-									<a id="handler-back-reason" class="goback" href="#"> <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
-									<a id="handler-fowr-reason" class="gofoward" href="#"> <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
-								</div>
-								<input type="button" name="previous" class="previous action-button" value="Previous" />
-	    						<input type="button" name="next" class="next action-button" value="Next" />
-								<div class="clearfix"></div>
-							</fieldset>
-							
-							<fieldset>
-								<h2>¿Donde quieres pedir tu cita?</h2>
-								
-								
+
+
+					<form class="text-center title-profile reason-book">
+						<h4>INDIQUE LA RAZON DE LA CONSULTA</h4>
+						<button class="btn btn-register "> Primera vez </button>
+						<button class="btn btn-register "> Pre-operatorio</button>
+						<button class="btn btn-register "> Post-operatorio </button>
+				  	</form>
+				  		<fieldset class="text-center place-book hidden"  id="step2" >
+
+								<h2>¿DONDE QUIERES PEDIR TU CITA?</h2>
 								   
 								<div id="wrapper" class="looper">
 									<div id="practices-loop">
@@ -433,58 +385,16 @@ letter-spacing: 1px;
 							<input type="button" name="previous" class="previous action-button" value="Previous" />
     						<input type="button" name="next" class="next action-button" value="Next" />
 							</fieldset>
-							
-							
-							<fieldset>
-								<h2 class="fs-title">Social Profiles</h2>
-								<h3 class="fs-subtitle">Your presence on the social network</h3>
-								<input type="text" name="twitter" placeholder="Twitter" />
-								<input type="text" name="facebook" placeholder="Facebook" />
-								<input type="text" name="gplus" placeholder="Google Plus" />
-								<input type="button" name="previous" class="previous action-button" value="Previous" />
-								<input type="button" name="next" class="next action-button" value="Next" />
-							</fieldset>
-							<fieldset>
-								<h2 class="fs-title">Personal Details</h2>
-								<h3 class="fs-subtitle">We will never sell it</h3>
-								<input type="text" name="fname" placeholder="First Name" />
-								<input type="text" name="lname" placeholder="Last Name" />
-								<input type="text" name="phone" placeholder="Phone" />
-								<textarea name="address" placeholder="Address"></textarea>
-								<input type="button" name="previous" class="previous action-button" value="Previous" />
-								<input type="submit" name="submit" class="submit action-button" value="Submit" />
-							</fieldset>
-							<div class="clearfix"></div>	
-						</form>
-						
-						{{else}}
-							Este Doctor no tiene consultas, sugierele crear un centro
-						{{/if}}
-						
-
-						
-				  	
-						
-				  </div>
-				  <div class="tab-pane fade" id="profile">
-				  	Perfil
-				  </div>
+		
+				 	<div class="tab-pane fade" id="profile">
+				  		Perfil
+				 	</div>
 				</div>
 			</div>
 			
 		</div>
 		
 		{{/doctors}}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 	</script>
 </div>

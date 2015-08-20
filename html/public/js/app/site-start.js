@@ -36,6 +36,7 @@ define(function() {
 							switch(active_page[1]) {
 								case 'details':
 									doctorLoadDetails();
+									bookingSteps();
 									break;
 								default:
 									//doctorLoadDetails();
@@ -60,5 +61,7 @@ define(function() {
 		
 	});
 	// Trigger and Handle the hash the page may have loaded with
-	$(window).trigger('hashchange');		
+	$(window).trigger('hashchange');	
+
+	
 });

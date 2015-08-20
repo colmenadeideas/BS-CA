@@ -1,13 +1,13 @@
-<h2 class="text-center forms">Resgistro de Pasientes</h2>
+<h2 class="text-center forms">Resgistro de Pacientes</h2>
 <div class="progressbar-container col-lg-12 col-sm-12" >
 	<!-- progressbar -->
 	<ul class="progressbar">
 		<li>Informacion general</li>
 		<li>Datos esenciales</li>
-		<li>Pregutas extra</li>
+		<li>Observaciones</li>
 	</ul>
 </div>
-<div class="in col-lg-8 col-sm-8">
+<div class="inn col-lg-8 col-sm-8">
 	<div class="col-sm-2"></div>
 	<form id="patient" action="" novalidate="novalidate" method="post" class="light-form col-sm-12 step" step="1">	
 		<div class="field-wrapper col-sm-5 col-lg-5">

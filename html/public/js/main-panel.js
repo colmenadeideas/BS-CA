@@ -58,6 +58,7 @@ require([
     function($) {    	
     	$(document).ready(function () {
    			console.log("Loaded :)"); 
+         $.slidebars();
    	 	});
     }
 );
