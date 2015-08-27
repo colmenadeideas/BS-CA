@@ -1,35 +1,33 @@
 define(function() {
-	console.log('RUNNING site-start.js');
+	
 	var cache = {
 		'' : $('#desktop #search'), /*title: "<?= $page->attr['title'] ?>", elem: $('.site-head')*/
-		'search' : $('#desktop #search'),
-		'search=': $('#desktop #search'),
+		//'search' : $('#desktop #search'),
+		//'search=': $('#desktop #search'),
 	};
 	$(window).bind('hashchange', function () {
 		var url = $.param.fragment();
 		// Hide any visible ajax content.
-		$('#desktop').children(':visible').hide();
-		
+		$('#desktop').children(':visible').hide();		
 		if (cache[url]) {
 			
 			//Prevent desktop to usea .load() method
-			if (url == 'search'){
+			/*if (url == 'search'){
 				 $('#desktop #search').show();
 				 console.log( "is "+ cache[url]);
 			} else {
 				cache[url].show();
-			}			
+			}*/		
 			$('#preloader').fadeOut();
 			
 		} else {
-			$('#preloader').show();
-			
+
+			$('#preloader').show();			
 			//show preloader per request -- This is not related to first login preloader			
 			cache[url] = $('<div class="view"/>').appendTo('#desktop').load(url, function() {
+
 				var active_page = url.split('/');
-				console.log(active_page[0]+"->"+active_page[1]);
 				
-				//TODO lo cmabie al active_page[1] active, porque todo corre actualmente dentro de 1 solo controller (panel)
 				switch(active_page[1]) {
 					case "doctor":
 						require(['app/doctor'], function($) {
@@ -45,25 +43,17 @@ define(function() {
 							
 						});						
 						break;
+
 					case "practice":
-						require(['app/panel'], function($) {							
-							floatinput();
-							autocomplete();
-							search_location();
-							practiceForm();
-							quoteForm();
+						require(['app/practice'], function(practice) {
+
+							practice.add();							
+							//quoteForm();
 							//registerquote();
 							
 						});						
 						break;	
-					case "practice":
-						require(['app/panel'], function($) {							
-							floatinput();
-							autocomplete();
-							search_location();
-							practiceForm();
-						});						
-						break;				
+					
 					default:					
 						break;
 				}

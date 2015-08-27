@@ -94,10 +94,12 @@ a.btn.btn-login:hover, .navbar-default .navbar-nav>li>a.btn-login:hover {
   border-color: #1CDBC1;
 }*/
 .btn-add:hover { background-color:#36FF84}
+.btn-delete:hover  { background-color: #C0392B; }
 .btn-action {   width: 55.5px;  height: 55.5px;  font-size: 35px; text-decoration: none;  color: #FFF;  background-color: #333;  
 text-align: center;  letter-spacing: .5px; border-radius: 50%; transition: .3s;  cursor: pointer;  vertical-align: middle; border: none; }
 span.btn-action {padding: 10px 20px 10px;}
 .btn-add { background-color: #3ED87A; }
+.btn-delete { background-color: #D64541; }
 .button-instruction {   font-size: 150%;  padding: 0 10px; color:#333;  font-weight: 200; }
 a.wrap-action { text-decoration: none}
 /* BUTTONS */
@@ -132,8 +134,11 @@ text-align: center;  padding: 24px;  font-size: 45px;  }
 	font-size: 170%;
 	letter-spacing: 0.5px;
 	transition: all ease 0.3s;
+    max-width: 100%;
+	
 }
-
+.light-form input[type=number].form-control ,
+.practice-format input[type=text] { padding: 0px;   text-align: center; }
 
 
 .light-form .form-control:focus{ box-shadow: none;}
@@ -475,3 +480,53 @@ h3{
 .inn{
 	left: 16.6667%;
 }
+
+
+
+
+
+
+
+
+.btn.next, .btn.previous  {     
+	text-transform: uppercase;	
+    padding: 15px;
+    font-size: 115%;
+    letter-spacing: 0.5px;
+    border-radius: 27px !important;
+    min-width: 190px;
+    color: #FFF;
+    background-color: #45CFCA;
+    border-color: #45CFCA; 
+}
+.light-form .button-area { margin: 35px auto 20px }
+input.timepicker {
+    padding: 0 !important;
+    font-size: 17px !important;
+    letter-spacing: -0.6px !important;
+}
+.light-form td { padding: 0 !important}
+
+
+.practice-format {
+	background: #3EB4E4;
+    color: #FFFFFF;
+    font-weight: 400;
+    padding: 15px 20px;
+    font-size: 120%;
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.15);
+    margin-bottom: 25px;
+}
+.practice-format .text { font-weight: 400 !important; color: #FFFFFF !important; font-size: 130%}
+.practice-format label.error {background: #FB0000;    padding: 2px 5px;    border-radius: 8px;    font-size: 70%;    font-weight: 400;}
+input.form-control.input-lg.signinput, input.form-control.input-lg.time-lapse  { color:#000 !important; font-size: 130%; border-color:#FFF !important;}
+input.form-control.input-lg.time-lapse{ max-width: 130px;}
+.practice-format .signinput::-webkit-input-placeholder, .practice-format .time-lapse::-webkit-input-placeholder { font-weight: 200; color:rgba(255,255,255,0.5) }
+.practice-format .signinput::-moz-placeholder, .practice-format .time-lapse::-moz-placeholder { font-weight: 200; color:rgba(255,255,255,0.5) }
+.practice-format .signinput:-ms-input-placeholder, .practice-format .time-lapse:-ms-input-placeholder { font-weight: 200; color:rgba(255,255,255,0.5) }
+.practice-format .signinput input:-moz-placeholder, .practice-format .time-lapse input:-moz-placeholder { font-weight: 200; color:rgba(255,255,255,0.5) }
+.practice-format .field-wrapper span { color:#FFF; font-size: 100% !important; font-weight: 400 !important; }
+.practice-format span.btn-action {    padding: 0px 7px 0px !important; color: #FFF;}
+.practice-format  span.button-instruction {font-size: 100% !important; font-weight: 400 !important;}
+
+.practice-sheet { background: #FFF; padding:20px 0 40px;  box-shadow: 4px 4px 3px rgba(0,0,0,0.15); }

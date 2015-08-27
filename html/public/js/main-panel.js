@@ -1,12 +1,11 @@
 require.config({
-	baseUrl: URL+"public/js",
-	requireDefine:true,
-	waitSeconds:0,
-	paths: {
-	        jquery:[  'assets/jquery.min', '//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min'], // 2.0.0
-			'async': 'assets/requirejs-plugins/async',
-	        
-	   },	
+  baseUrl: "http://localhost/BS-OK/html/public/js",
+  requireDefine:true,
+  waitSeconds:0,
+  paths: {
+          jquery:[  'assets/jquery.min', '//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min'],
+                    'async': 'assets/requirejs-plugins/async',          
+  },  
 	    
 	shim: {
 		'jquery': {
@@ -29,6 +28,7 @@ require.config({
          'assets/jquery.scrollTo.min': ['jquery'], 
          'assets/slidebars.min': ['jquery'], 
          'functions': ['jquery', 'assets/jquery.validate.min'],
+         'appassets/stepform' : ['jquery', 'globals', 'assets/jquery.validate.min'],
           //'assets/jquery.dataTables.min': ['jquery'],
          //'assets/jquery.maskedinput.min': ['jquery'],
          //'assets/dataTables.bootstrap': ['jquery', 'assets/bootstrap.min', 'assets/jquery.dataTables.min'], 
@@ -42,15 +42,15 @@ require.config({
        //	 'assets/jsonsql': ['../../data/ve/jsonload'],
          //
          'common': ['jquery','assets/all','assets/jquery-ui.min','assets/bootstrap.min','assets/jquery.validate.min','assets/jquery.easing.min','assets/jquery.scrollTo.min','assets/bootstrap-datetimepicker-v4','assets/jquery.geocomplete.min','assets/moment.min','assets/fullcalendar.min','assets/jsonsql','functions','config'],
-         'app/search': ['jquery','common'],
-         'app/doctor': ['jquery','common','app/search','assets/jquery.easing.min', 'assets/jquery.carouFredSel-6.1.0-packed'],
-         'app/panel': ['jquery','common','app/search'],
-         'app/login': ['jquery','common','assets/jquery.validate.min'],
-         'app/panel-start': ['common', 'app/search', 'app/panel', 'app/login'],
+         'app/search': ['jquery','common', 'globals'],
+         'app/doctor': ['jquery','common', 'globals','app/search','assets/jquery.easing.min', 'assets/jquery.carouFredSel-6.1.0-packed'],
+         'app/panel': ['jquery','common', 'globals','assets/jquery.validate.min'],
+         'app/login': ['jquery','common', 'globals','assets/jquery.validate.min'],
+         'app/start-panel': ['common', 'app/search', 'app/panel', 'app/login'],
        
 	}
 });
-require([
+/*require([
         'jquery',
         'async!https://maps.googleapis.com/maps/api/js?v=3&libraries=places&sensor=false',
         'app/panel-start'
@@ -60,5 +60,17 @@ require([
    			console.log("Loaded :)"); 
          $.slidebars();
    	 	});
+    }
+);*/
+
+require([
+        'jquery',
+        'globals', //would replace 'common' eventually
+        'async!https://maps.googleapis.com/maps/api/js?v=3&libraries=places&sensor=false',
+        'app/start-panel'
+    ],
+    function($, app, gmaps_ , panel ) { 
+        console.log("Loaded all"); 
+        //login.init();     
     }
 );

@@ -7,28 +7,28 @@ class panelController extends Controller {
 		parent::__construct();
 		//Auth::handleLogin('panel');
         $this->view->title = "Doctor PANEL";	 //Temporarly defined to avoid individual var
+       // $this->view->user = $this->user->getUserdata(); //TODO Change  $this->view->username por $this->view->user
+        $this->view->userdata  = array("id"=>"22", "username" => "dlarez", "role" => "doctor" 	);
 		
 	}
 	
 	public function index(){
         
-		$this->view->userdata = $this->user->getUserdata();		
-		
+		//$this->view->userdata = $this->user->getUserdata();		
 		$this->view->buildpage("panel/appointments/next", "doctor");
 	}
 	
 	public function appointments($date_range, $days) {
 		
 		//Get Next Appointments
-		$this->view->appointments = $this->api-> appointments("array" , "doctor", /*$this->view->userdata[0]['id']*/ '22');
+		$this->view->appointments = $this->api-> appointments("array" , "doctor", $this->view->userdata[0]['id']);
 		
 		if ($this->view->appointments['tag'] == 'practices' && $this->view->appointments['empty'] == 1) {
 			// Doctor hasn't add PRACTICES
 			//TODO: suggest add practices
 			$this->view->render("panel/appointments/none", "doctor");
 			
-		} else 
-		if ($this->view->appointments['tag'] == 'appointments' && $this->view->appointments['empty'] == 1) {
+		} else if ($this->view->appointments['tag'] == 'appointments' && $this->view->appointments['empty'] == 1) {
 			
 			$this->view->render("panel/appointments/none", "doctor");
 			
@@ -37,54 +37,7 @@ class panelController extends Controller {
 			$this->view->render("panel/appointments/next", "doctor");
 		}
 	}
-	
-	public function practice($action) {
-		$this->view->username=array("id"=>"22");
-		switch ($action) {
-			case 'add':
-				$template = "add";
-				break;
-			
-				case 'quote':
-					
-				$template = "quote";
-					
-				//list
-				$this->view->practices = $this->api-> practices("array" , "doctor", /*$this->view->userdata[0]['id']*/ '22');
-				
-				if ($this->view->practices['empty'] != 1) {
-					
-					$template = "quote";
-					
-				} else {
-					
-					$template = "none";
-					
-				}
-		
-				break;
-				case 'cost':
-				$template = "cost";
-				break;				
-			default:
-				//list
-				$this->view->practices = $this->api-> practices("array" , "doctor", /*$this->view->userdata[0]['id']*/ '22');
-				
-				if ($this->view->practices['empty'] != 1) {
-					
-					$template = "list";
-					
-				} else {
-					
-					$template = "none";
-					
-				}
-		
-				break;
-		}
 
-		$this->view->render("panel/practices/".$template);
-	}
 	
 	/*public function index($id){
 		
@@ -157,6 +110,154 @@ class panelController extends Controller {
 
 
 	}
+
+	public function practice($action, $secondparameter, $tempkey) {		
+
+		switch ($action) {
+			case 'add':
+				//has
+				//-- step 1
+				//---- step 2
+				//------ step 3
+				//-------- step 4
+				if (!empty($secondparameter)) {
+
+					//Get Previous
+					$tempdata = Api::getTempRecord("array", $this->view->userdata['id'], $tempkey);
+					$this->view->tempkey = $tempdata[0]['tempkey'];
+					$this->view->tempdata = json_decode($tempdata[0]['data'], TRUE);
+
+					switch ($secondparameter) {
+						case 'step2': 	$template = "add-days"; 	break;
+						case 'step3':	$template = "add-quote";	break;
+						case 'step4':	$template = "add-cost";		break;
+						case 'step5':	$template = "add-preview";	break;
+					}
+				} else {
+					$this->view->tempkey = generateTempKey($this->view->userdata["username"]);			
+					$template = "add";
+				}
+			
+				break;
+
+			
+			/*case 'quote':
+
+				$template = "quote";
+
+				//list
+				$this->view->practices = $this->api-> practices("array" , "doctor", $this->view->userdata[0]['id']);
+
+				if ($this->view->practices['empty'] != 1) {
+
+					$template = "quote";
+
+				} else {
+
+					$template = "none";
+
+				}
+
+				break;
+			case 'cost':
+				$template = "cost";
+				break;	*/			
+			
+			default:
+				//list
+				$this->view->practices = $this->api-> practices("array" , "doctor", /*$this->view->userdata[0]['id']*/ '22');
+
+				if ($this->view->practices['empty'] != 1) {
+
+					$template = "list";
+
+				} else {
+
+					$template = "none";
+
+				}
+
+			break;
+		}
+
+		$this->view->render("panel/practices/".$template);
+	}
+
+	function process ($what, $step, $step_id) {
+
+		switch ($what) {
+
+			case 'practice':
+				$array_data = array();	
+				
+				foreach ($_POST as $key => $value) {
+					$field = escape_value($key);
+					$field_data = escape_value($value);	
+					if ($field_data != "") { //only filled data?
+						$array_data[$field] = $field_data;
+					}
+				}
+				unset($array_data['submit']);
+			
+				if (!empty($step_id)){
+
+					$template = "panel/practice/add/step".($step_id+1);	
+
+					$this->temp("save", "noresponse");			
+
+					switch ($step_id) {
+						case 1: //will go to next template (2) which is...
+							//$template = "panel/practices/add/step1";
+							break;
+						
+						case 2:
+							$previous = Api::getTempRecord("array", $array_data['id_doctor'], $array_data['tempkey']);
+							if (!empty($previous)){
+								$this->view->tempdata = json_decode($previous[0]['data'], TRUE);
+							}							
+							break;
+							
+						case 5:
+							$previous = Api::getTempRecord("array", $array_data['id_doctor'], $array_data['tempkey']);
+							if (!empty($previous)){
+								$this->view->tempdata = json_decode($previous[0]['data'], TRUE);
+							}							
+							break;
+					}
+					
+
+					//if ($insert > 0) {
+						$response["tag"] = "process";
+						$response["success"] = 1;
+						$response["error"] = 0;	
+						$response["response"] = "saved";
+						$response["template"] = $template;
+						$response["tempkey"] = $array_data['tempkey'];
+					//}
+					echo json_encode($response);
+
+				}
+				
+				/*$array_practice['id_doctor'] 	= $array_data['id_doctor'];
+
+				if ($step == '1') {				
+					$array_practice['id_clinic'] 	= "3";
+					$array_practice['address_details'] 	= $array_data['address'];
+					if ($array_data['isclinic'] == 1){
+					$array_practice['id_clinic'] = $array_data['clinic_id'];
+					$array_practice['address_details'] 	= false;
+					}				
+					if ($array_data['isclinic'] == 0){			
+					$array_practice['id_clinic'] = 101;			
+					$array_practice['address_details'] = $array_data['address'];
+					}
+					// insert values into database
+					$insert_practice = $this->helper->insert('doctor_practice', $array_practice);
+				}*/
+
+				break;			
+		}
+	}
 	
 	function processpractice() {
 			
@@ -224,7 +325,7 @@ class panelController extends Controller {
 			}
 
 
-function processquote() {
+			function processquote() {
 			
 			$array_data = array();	
 			$array_quote = array();
@@ -298,6 +399,73 @@ function processquote() {
 				
 				
 			}
+
+		function temp ($action, $echoresponse = "Y") {
+
+			switch ($action) {
+				case 'save':
+					
+					$array_data = array();	
+			
+					foreach ($_POST as $key => $value) {
+						if (is_array($_POST)) {
+							$array_data['data'][$key] = $value;
+						} else{
+							$field = escape_value($key);
+							$field_data = escape_value($value);	
+							$array_data['data'][$field] = $field_data;
+						}						
+						
+					}
+					//DB::debugMode();
+					$array_data['user_id'] = $array_data['data']['id_doctor'];
+					$array_data['role'] = 'doctor'; /*$this->user->getUserdata('role')*/; //'doctor'; //TODO get role with functions;
+					$array_data['tempkey'] = $array_data['data']['tempkey'];
+					$array_data['url'] = $array_data['data']['url'];				
+					
+					$previous = Api::getTempRecord("array", $array_data['user_id'], $array_data['tempkey']);
+					
+					//Delete Previous temp
+					if (!empty($previous)) {
+						//TODO user un foreach?
+						//$array_data['data'] = array_merge(json_decode($previous[0]['data'], TRUE),	$array_data['data']);	
+
+
+
+
+					$data = $previous[0]['data'];
+					$data_temp = json_decode($data,true);
+						//use as array
+						foreach ($data_temp as $key => $value) {
+							$array_data['data'][$key] = $value;
+						}					
+					
+						$this->helper->delete('temporal_data', $previous[0]['id']);
+					} 
+					
+					$array_data['data'] = json_encode($array_data['data']);
+					
+					$insert = $this->helper->insert('temporal_data', $array_data);
+					
+					if ($insert > 0) {
+						$response["tag"] = "temp";
+						$response["success"] = 1;
+						$response["error"] = 0;	
+						$response["response"] = "saved";	
+						$response["tempkey"] = $array_data["tempkey"];
+					}
+					if ($echoresponse == "Y") {
+						echo json_encode($response);
+					}
+					
+
+					break;
+				
+				default:
+					exit;
+					break;
+			}
+		}
 	
 }
 ?>

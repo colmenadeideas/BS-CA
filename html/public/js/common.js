@@ -26,4 +26,8 @@ function floatinput() {
 	}).on("blur", function() {
 		$(this).prev("label").removeClass(onClass);
 	}).trigger("checkval");
-};
+}
+
+function uniqId() {
+  return Math.round(new Date().getTime() + (Math.random() * 100));
+}

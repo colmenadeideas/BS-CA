@@ -87,5 +87,12 @@
 	}
 
 	
+	function generateTempKey($username) {
+			
+		return $username.uniqid(rand(), true);
+			
+	}
+
+	
 
 ?>

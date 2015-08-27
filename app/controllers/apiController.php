@@ -6,10 +6,7 @@
 		}
 		// AUTOCOMPLETE: This function is invoked when user is writing fields related to : Doctor's name, Clinics, Addresses and Doctor's Speciality
 		public function autocomplete($print="json", $what="all") {
-			echo "json";	 exit;	
-			
 			$string = trim($_GET['term']);	
-			
 			//TODO escape values	
 			$this -> api -> autocomplete($print, $what, $string);
 		}

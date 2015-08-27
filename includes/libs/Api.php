@@ -517,7 +517,7 @@ class Api extends ApiQuery {
 		}
 
 	}
-
+	
 	//This function is likely to be deleted
 	public function doctors($print = "json", $type, $value, $location = "VE") {
 		//$this->loadModel('doctor');
@@ -574,6 +574,17 @@ class Api extends ApiQuery {
 			return $array_final;
 		}
 
+	}
+	//GET TEMP FORM DATA
+	public function getTempRecord($print = "json", $user_id, $tempkey) {
+
+		$array_final = ApiQuery::getTempRecordResult($user_id, $tempkey);
+		
+		if ($print == 'json') {
+			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+		} else {//modo "array"
+			return $array_final;
+		}	
 	}
 
 }

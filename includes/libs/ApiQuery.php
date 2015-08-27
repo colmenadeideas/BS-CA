@@ -132,6 +132,11 @@
 		public function getDoctorPracticesScheduleExceptions($id_practice) {
 			return DB::query("SELECT * FROM " . DB_PREFIX . "doctor_practice_schedule_exceptions WHERE id_practice=%i", $id_practice);
 		}
+
+		public function getTempRecordResult($id, $tempkey) {
+			// return DB::query("SELECT * FROM " . DB_PREFIX . "temporal_data WHERE user_id=%i AND role=%i AND url=%i", $id, $role, $url);
+			return DB::query("SELECT * FROM " . DB_PREFIX . "temporal_data WHERE user_id=%s AND tempkey=%s", $id, $tempkey);	
+		}	
 		
 		
 		
