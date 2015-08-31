@@ -129,7 +129,7 @@ function checkSearchView() {
 	//TODO Check for something else in case of #search, otherwise it will trigger the miniform with no results
 	if (hashCheck[0] == '#search' || hashCheck[0] == '#doctor') {
 		//Set Minimum Form
-		$('.site-head').css({
+		$('.site-home').css({
 			'margin-top':'20px',
 			'min-height': '100px'
 		});

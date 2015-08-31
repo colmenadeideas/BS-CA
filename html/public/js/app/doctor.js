@@ -132,8 +132,9 @@ $(".submit").click(function(){
 
 }
 
-// I hate handlebars
+
 function bookingSteps() {
+
 	data = 'La data tiene que ser configurada';
 	console.log(data);
 	$('#calendar').datepicker({
@@ -145,6 +146,9 @@ function bookingSteps() {
 	});
 
 	$('.reason-book').children('button').click(function (){
+		var reason = $(this).text();
+		$('.progressbar').children('li:nth-child(1)').text(reason)
+		$('#reason').text(reason);
 		$('.reason-book').animate({
 			margin: "500px 0 0",
 			opacity: 0,
@@ -166,15 +170,21 @@ function bookingSteps() {
 				prev: '#handler-back-practice',
 				next: '#handler-fowr-practice',
 			});
+			$('body').scrollTop($('body').height());
 			$('#step2').animate({opacity: 1, margin: '0'});
+			$('.progressbar').children('li:nth-child(1)').attr('class','active');
+			$('.progressbar').children('li:nth-child(2)').attr('class','s-active');
 	 	}
 	 });
 	});
 
 	$('.practice-item').click(function (){
+		var clinic = $(this).children('h4').text();
+		$('.progressbar').children('li:nth-child(2)').text(clinic)
+		$('#clinic').text(clinic);
 		$('#step2').animate({
 			height: "400px",
-			opacity:00,
+			opacity:0,
 		},
 		{
 			duration: 400,
@@ -184,7 +194,7 @@ function bookingSteps() {
 				$('.step3').removeClass('hidden').css('opacity', '0');
 				$('#calendar-loop').carouFredSel({
 					width: "100%",
-					height:300,
+					height:250,
 					items: 3,
 					scroll: 1,
 					auto: {
@@ -194,13 +204,34 @@ function bookingSteps() {
 					prev: '#handler-back-cal',
 					next: '#handler-fowr-cal',
 				});
+				$('body').scrollTop($('body').height());
 				$('.step3').animate({opacity: 1, margin: '0'});
+				$('.progressbar').children('li:nth-child(2)').attr('class','active');
+				$('.progressbar').children('li:nth-child(3)').attr('class','s-active');
 			}
 		})
 	});
 	$('.calendar-item').click(function(){
+		var dayName = $(this).children('h5:nth-child(1)').text();
+		var day = $(this).children('h4').text();
+		var my = $(this).children('h5:nth-child(3)').text();
+		$('.current-day').html(dayName+"  "+day+ " <br>"+my);
 		$('.hcontainer').removeClass('hidden').css('opacity', '0').animate({opacity: 1, margin: 'auto'});
+		$('body').scrollTop($('body').height());
+
+	});
+	$('.hcontainer').click(function(){
+		$('.progressbar').children('li:nth-child(3)').attr('class','active');
+		$('.step3').fadeOut(400);
+		var date = $('.current-day').text();
+		$('.progressbar').children('li:nth-child(3)').text(date);
+
+		$('#date').text(date);
+		$('.progressbar').fadeOut(400);
+		$('.finish').fadeIn(400);
+
 	})
+	
 }
 
 

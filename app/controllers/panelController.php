@@ -65,8 +65,12 @@ class panelController extends Controller {
 				break;
 				case 'cost':
 				$template = "cost";
-				break;				
-			default:
+				break;
+				case 'settings':
+					$this->view->practices = $this->api-> practices("array" , "doctor", /*$this->view->userdata[0]['id']*/ '22');
+					$template = "settings";
+				break;						
+				default:
 				//list
 				$this->view->practices = $this->api-> practices("array" , "doctor", /*$this->view->userdata[0]['id']*/ '22');
 				
@@ -134,6 +138,22 @@ class panelController extends Controller {
 		}
 
 		$this->view->render("panel/patient/".$template);
+	}
+	public function doctor($action) {
+		$this->view->username=array("id"=>"22");
+		switch ($action) {
+			case 'breaks':
+				$template = "breaks";
+				break;	
+			case 'settings':
+				$template = "settings";
+				break;								
+			default:
+				$template = "breaks";
+				break;
+		}
+
+		$this->view->render("panel/doctor/".$template);
 	}
 		
 

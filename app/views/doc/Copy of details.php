@@ -246,13 +246,13 @@ letter-spacing: 1px;
 										       	  	
 													    <div class="text-right date-resume">
 													    	<div class="left weekday">{{day}}&nbsp;</div>
-													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
+													    	<div class="left ">{{ini_schedule}}-{{end_schedule}}</div>
 													    	&nbsp;
 													    </div>
 													    
 													    <div class="text-right date-resume2">
 													    	<div class="left weekday">{{day}}&nbsp;</div>
-													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
+													    	<div class="left ">{{ini_schedule}}-{{end_schedule}}</div>
 													    	&nbsp;
 													    </div>
 										       	  	{{/schedule}}
@@ -274,13 +274,13 @@ letter-spacing: 1px;
 										       	  	
 													    <div class="text-right date-resume">
 													    	<div class="left weekday">{{day}}&nbsp;</div>
-													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
+													    	<div class="left ">{{ini_schedule}}-{{end_schedule}}</div>
 													    	&nbsp;
 													    </div>
 													    
 													    <div class="text-right date-resume2">
 													    	<div class="left weekday">{{day}}&nbsp;</div>
-													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
+													    	<div class="left ">{{ini_schedule}}-{{end_schedule}}</div>
 													    	&nbsp;
 													    </div>
 										       	  	{{/schedule}}
