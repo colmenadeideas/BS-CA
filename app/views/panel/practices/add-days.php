@@ -23,43 +23,43 @@
 				<td></td>
 				<td>
 					<div class="checkbox">
-						<input type="checkbox" value="LUN" id="day_1" name="day[]" class="day">
+						<input type="checkbox" value="LUN" id="day_1" name="day_1" class="day">
 						<label for="day_1"></label>
 					</div>
 				</td>
 				<td>
 					<div class="checkbox">
-						<input type="checkbox" value="MAR" id="day_2" name="day[]" class="day">
+						<input type="checkbox" value="MAR" id="day_2" name="day_2" class="day">
 						<label for="day_2"></label>
 					</div>
 				</td>
 				<td>
 					<div class="checkbox">
-						<input type="checkbox" value="MIE" id="day_3" name="day[]" class="day">
+						<input type="checkbox" value="MIE" id="day_3" name="day_3" class="day">
 						<label for="day_3"></label>
 					</div>
 				</td>
 				<td>
 					<div class="checkbox">
-						<input type="checkbox" value="JUE" id="day_4" name="day[]" class="day">
+						<input type="checkbox" value="JUE" id="day_4" name="day_4" class="day">
 						<label for="day_4"></label>
 					</div>
 				</td>
 				<td>
 					<div class="checkbox">
-						<input type="checkbox" value="VIE" id="day_5" name="day[]" class="day">
+						<input type="checkbox" value="VIE" id="day_5" name="day_5" class="day">
 						<label for="day_5"></label>
 					</div>
 				</td>
 				<td>
 					<div class="checkbox">
-						<input type="checkbox" value="SAB" id="day_6" name="day[]" class="day">
+						<input type="checkbox" value="SAB" id="day_6" name="day_6" class="day">
 						<label for="day_6"></label>
 					</div>
 				</td>
 				<td>
 					<div class="checkbox">
-							<input type="checkbox" value="DOM" id="day_7" name="day[]" class="day">
+							<input type="checkbox" value="DOM" id="day_7" name="day_7" class="day">
 							<label for="day_7"></label>
 						</div>
 					</td>

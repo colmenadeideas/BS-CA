@@ -9,32 +9,27 @@ define(['globals', 'appassets/enhance'], function(globals, enhance) {
 		});
 
 	}
+	function process(stepform) {
 
-	function next(stepform){
-
-		//Identify Form
-		var stepForm = stepform.attr('id');
-		var step = stepform.data('stepfoward');
+		var stepForm = stepform.attr('id');	
 		var currentUrl = window.location.href;
-		console.log("step "+step);	
-		var updateArea = "#stepform";
-		var pleasewait = '<div id="pleasewait" style="background:red; width 100%; height:200px">please wait</div>';
-		
-		//Validate
+
 		$("#"+stepForm).validate({
 			submitHandler : function(form) {
 				//Loading
-				$(updateArea).hide().html(pleasewait).fadeIn(300);
-				
+				//TODO show loading
+				$('.send').attr('disabled', 'disabled');				
 				$.ajax({
 					type : "POST",
-					url : URL + "panel/process/"+stepForm+"/step/"+(step-1),
+					url : URL + "panel/process/"+stepForm,
 					data : $(form).serialize()+ "&form="+stepForm+"&url="+currentUrl+"&tempkey="+stepform.data('tempkey'),
 					timeout : 12000,
 					success : function(response) {
+						//$('.send').removeAttr("disabled");
 						var response = JSON.parse(response);
 						console.log(response.response);	
-						switch (response.success) {						
+						
+						/*switch (response.success) {						
 							case 0: //TODO ERROR	
 								break;							
 							case 1: //if continue	
@@ -42,22 +37,79 @@ define(['globals', 'appassets/enhance'], function(globals, enhance) {
 							 	$(updateArea).load(
 							 		response.template+"/"+response.tempkey, function () {	
 							 	})
-							 	.hide().html(response.template).fadeIn(500, function(){
-							 		enhance.fieldsfor(stepForm);
-							 		run();
+							 	.hide().html(response.template).fadeIn(500, function(){						 		
 							 	});							 	
 
 								break;
-						}
-
+						}*/
 					},
 					error : function(obj, errorText, exception) {
+						$('.send').removeAttr("disabled");
 						console.log(errorText);
 					}
 				});
 				//return false;
 			}
 		});
+	}
+
+	function next(stepform){
+
+		//Identify Form
+		var stepForm = stepform.attr('id');
+		var step = stepform.data('stepfoward');
+		var currentUrl = window.location.href;
+		
+		if (step == 0) {
+			process(stepform);
+			//event.preventDefault();
+			//return;
+		} else {
+						
+			console.log("step "+step);	
+			var updateArea = "#stepform";
+			var pleasewait = '<div id="pleasewait" style="background:red; width 100%; height:200px">please wait</div>';
+			
+			//Validate
+			$("#"+stepForm).validate({
+				submitHandler : function(form) {
+					//Loading
+					$(updateArea).hide().html(pleasewait).fadeIn(300);
+					
+					$.ajax({
+						type : "POST",
+						url : URL + "panel/process/"+stepForm+"/step/"+(step-1),
+						data : $(form).serialize()+ "&form="+stepForm+"&url="+currentUrl+"&tempkey="+stepform.data('tempkey'),
+						timeout : 12000,
+						success : function(response) {
+							var response = JSON.parse(response);
+							console.log(response.response);	
+							switch (response.success) {						
+								case 0: //TODO ERROR	
+									break;							
+								case 1: //if continue	
+								 	//console.log(response.template);
+								 	$(updateArea).load(
+								 		response.template+"/"+response.tempkey, function () {	
+								 	})
+								 	.hide().html(response.template).fadeIn(500, function(){
+								 		enhance.fieldsfor(stepForm);
+								 		run();
+								 	});							 	
+
+									break;
+							}
+
+						},
+						error : function(obj, errorText, exception) {
+							console.log(errorText);
+						}
+					});
+					//return false;
+				}
+			});
+
+		} // end else
 	}
 
 	function tempsave(form) {

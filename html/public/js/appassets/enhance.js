@@ -19,8 +19,8 @@ define(['globals'], function(globals) {
 					}			
 				});
 
-				$('input:radio[name="autoquota"]').change(function(){		
-					if ($('input:radio[name="autoquota"]:checked').val() == 1) {
+				$('input:radio[name="manage_time_slots"]').change(function(){		
+					if ($('input:radio[name="manage_time_slots"]:checked').val() == 1) {
 						$('#days-list' ).collapse('hide');
 						$('.spots').val('5');
 						$('.spots').prop('disabled', false); 						
@@ -38,7 +38,6 @@ define(['globals'], function(globals) {
 			    }); 					
 				
 				//Days Format
-				//$('input:checkbox[name="day[]"]').change(function(){
 				$('input:checkbox.day').change(function(){	
 					var selected = $(this).attr("id");
 					var value = selected.split("_");					

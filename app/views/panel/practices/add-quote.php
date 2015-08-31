@@ -18,12 +18,12 @@
 			¿Quiere que los cupos se administren automáticamente?
 		</div>
 		<div class="col-sm-6 col-lg-6">
-			<input name="autoquota" type="radio" class="autoquota" id="autoquota1" required value="1" />
-			<label for="autoquota1"><span></span>Si</label>
+			<input name="manage_time_slots" type="radio" class="manage_time_slots" id="manage_time_slots1" required value="1" />
+			<label for="manage_time_slots1"><span></span>Si</label>
 		</div>
 		<div class="col-sm-6 col-lg-6">
-			<input name="autoquota" type="radio" class="autoquota" id="autoquota2" required value="0" />
-			<label for="autoquota2"><span></span>No</label>
+			<input name="manage_time_slots" type="radio" class="manage_time_slots" id="manage_time_slots2" required value="0" />
+			<label for="manage_time_slots2"><span></span>No</label>
 		</div>
 
 
@@ -32,13 +32,20 @@
 			<div class="col-sm-12 col-lg-12 text text-center">
 				Indique la cantidad máxima de pacientes que desea admitir por día
 			</div>
-			<?php foreach ($this->tempdata['day'] as $key => $value) { ?>				
-				<div class="col-sm-2 col-lg-2">
-					<h3><?php echo $value; ?></h3>
-					<input type="number" min="1" 
-					max="40" maxlength="2" size="7" name="day_quote_<?php echo $key;?>" value="5"  required="required" class="form-control">
-				</div>
-			<?php }
+			<?php 
+				
+				for ($i=1; $i < 8; $i++) { 
+					if ($this->tempdata['day_'.$i] != ""){
+						$this->tempdata['day'][] = $this->tempdata['day_'.$i];	
+						?>
+						<div class="col-sm-2 col-lg-2">
+							<h3><?php echo $this->tempdata['day_'.$i]; ?></h3>
+							<input type="number" min="1" 
+							max="40" maxlength="2" size="7" name="day_quote_<?php echo $i;?>" value="5"  required="required" class="form-control">
+						</div>
+						<?php					
+					}
+				}				
 			?>
 		</div>			
 	</div>

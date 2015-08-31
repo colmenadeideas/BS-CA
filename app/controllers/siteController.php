@@ -8,8 +8,30 @@
 		}
 	
 		public function index() {
+			$this->view->title = SITE_NAME. " Tu Salud está aquí";
+			$this->view->render('site/registerforbeta');				
+		}
+		
+		public function mailbetalist() { //register in pre beta			
 			
-						
+			$array_data['email'] = escape_value($_POST['email']);
+			//$array_data['name'] = escape_value($_POST['name']);
+			$array_data['whoami'] = escape_value($_POST['whoami']);
+			$array_data['ip_address'] = $this->helper->getIpAddress();
+			
+			
+			//Check if already registered
+			$already_registered = $this->model->getBetaListed($array_data['email']);
+			//print_r($already_registered); exit;
+			if (empty($already_registered)) {
+				//Register
+				 $this->helper->insert('mailbetalist', $array_data);
+				echo "Recibirás la invitación al Demo en su lanzamiento. Te avisaremos";
+			
+			} else {
+				echo "Ya estás anotado para recibir la invitación al Demo. Te avisaremos";				
+			}
+							
 		}
 		
 		public function demo() {
