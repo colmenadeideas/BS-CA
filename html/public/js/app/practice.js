@@ -2,11 +2,8 @@ define(['globals', 'appassets/stepform', 'appassets/enhance'], function(globals,
 	
 	function add() {
 		
-		floatinput();
-
 		stepform.run();
 		enhance.fieldsfor("practice");
-
 		autocomplete();
 	}
 

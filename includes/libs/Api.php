@@ -57,8 +57,7 @@ class Api extends ApiQuery {
 				}
 				$i++;
 			
-			}
-			
+			}			
 			
 			
 			
@@ -72,10 +71,14 @@ class Api extends ApiQuery {
 		}
 
 	}
+	
+	//Appointments/arreglo/doctor/22/2014-02-09/2014-02-10/practice/11/
+	public function appointments($print = "json", $by = "doctor", $id, $for_date = "", $to_date = "",$second_parameter = "", $practice_id = "") {
 
-	//Appointments/arreglo/doctor/22/practice/11/2014-02-09
-	public function appointments($print = "json", $by = "doctor", $id, $second_parameter = "", $practice_id = "", $for_date = "", $to_date = "") {
 		$id = escape_value($id);
+		//Si no hay parametros de fecha, tomar fecha actual + 7 días
+		if($for_date == "") { $for_date = date("Y-m-d");	}
+		if($to_date == "") 	{ $to_date 	= date("Y-m-d", strtotime("+7 days"));	}
 
 		if (!empty($second_parameter)) {
 			$second_parameter = escape_value($second_parameter);
@@ -107,7 +110,7 @@ class Api extends ApiQuery {
 			} else {//modo "array"
 				return $array_final;
 			}
-		} else {
+		} else { //GET ALL PRACTICES DATES
 
 			$array_practices = ApiQuery::getDoctorPractices($id);
 			
@@ -126,7 +129,7 @@ class Api extends ApiQuery {
 			} else {
 				$practiceFields = DB::columnList('clinic');
 
-				$array_dates = ApiQuery::getAppointmentsDate("id_doctor", $id, "ASC");
+				$array_dates = ApiQuery::getAppointmentsDate("id_doctor", $id, "ASC", $for_date, $to_date);
 				
 				//Later use inside
 				//$this->loadModel('patient');
@@ -145,39 +148,39 @@ class Api extends ApiQuery {
 						return $response;
 					}
 	
-					} else {
+				} else {
 		
-						$i = 0;
-						$array_final["empty"] = 0;
-						foreach ($array_dates as $date) {
-							$date_array['date_string'] = $date["date"];
-							//$array_final['appointments'][$i]['date'] = $date_array;
-							$array_final['dates'][$i] = $date_array;
-		
-							$p = 0;
-							foreach ($array_practices as $practice) {
-								$array_appointments = ApiQuery::getAppointmentsByDate($id, $date["date"], $practice["id"]);
+					$i = 0;
+					$array_final["empty"] = 0;
+					foreach ($array_dates as $date) {
+						$date_array['date_string'] = $date["date"];
+						//$array_final['appointments'][$i]['date'] = $date_array;
+						$array_final['dates'][$i] = $date_array;
 	
-								foreach ($practiceFields as $practicefield) {
-									$array_final['dates'][$i]['practice'][$p][$practicefield] = $practice[$practicefield];
-									//$array_final['appointments'][$i]['date']['practice'][$p][$practicefield] = $practice[$practicefield];
-								}
-	
-								//	$array_final['appointments'][$i]['date']['practice'][$p]['practice_id'] = $practice['id'];
-								//$array_final['appointments'][$i]['date'][$date["date"]]['practice'][$practice['id']] = $date["date"];
-								$a = 0;
-								foreach ($array_appointments as $appointment) {
-									$array_patient_data = ApiQuery::getPatientBy("id", $appointment['id_patient']);
-									$appointment['patient_data'] = $array_patient_data;
-		
-									$array_final['dates'][$i]['practice'][$p]['appointments'][$a] = $appointment;
-		
-									$a++;
-								}
-								$p++;
+						$p = 0;
+						foreach ($array_practices as $practice) {
+							$array_appointments = ApiQuery::getAppointmentsByDate($id, $date["date"], $practice["id"]);
+
+							foreach ($practiceFields as $practicefield) {
+								$array_final['dates'][$i]['practice'][$p][$practicefield] = $practice[$practicefield];
+								//$array_final['appointments'][$i]['date']['practice'][$p][$practicefield] = $practice[$practicefield];
 							}
-							$i++;
+
+							//	$array_final['appointments'][$i]['date']['practice'][$p]['practice_id'] = $practice['id'];
+							//$array_final['appointments'][$i]['date'][$date["date"]]['practice'][$practice['id']] = $date["date"];
+							$a = 0;
+							foreach ($array_appointments as $appointment) {
+								$array_patient_data = ApiQuery::getPatientBy("id", $appointment['id_patient']);
+								$appointment['patient_data'] = $array_patient_data;
+	
+								$array_final['dates'][$i]['practice'][$p]['appointments'][$a] = $appointment;
+	
+								$a++;
+							}
+							$p++;
 						}
+						$i++;
+					}
 	
 					if ($print == 'json') {
 						echo json_encode($array_final, JSON_UNESCAPED_UNICODE);

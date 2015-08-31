@@ -46,13 +46,15 @@ define(function() {
 
 					case "practice":
 						require(['app/practice'], function(practice) {
-
-							practice.add();							
-							//quoteForm();
-							//registerquote();
-							
+							practice.add();								
 						});						
 						break;	
+
+					case "appointments":
+						require(['app/appointments'], function(appointments) {
+							appointments.list();								
+						});						
+						break;
 					
 					default:					
 						break;

@@ -5,6 +5,5 @@ define(['module'], function(module){
 		URL: "http://localhost/BS-OK/html/",
 		urlCheck: '/html/',
 		position: 2
-
     }
 });

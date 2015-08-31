@@ -38,9 +38,6 @@ require.config({
        	 'assets/bootstrap-datetimepicker-v4':['jquery','assets/bootstrap.min'],
        	 'assets/ jquery.carouFredSel-6.1.0-packed':['jquery','assets/easing.min'],
        	
-       	 //DATA TO PRELOAD
-       //	 'assets/jsonsql': ['../../data/ve/jsonload'],
-         //
          'common': ['jquery','assets/all','assets/jquery-ui.min','assets/bootstrap.min','assets/jquery.validate.min','assets/jquery.easing.min','assets/jquery.scrollTo.min','assets/bootstrap-datetimepicker-v4','assets/jquery.geocomplete.min','assets/moment.min','assets/fullcalendar.min','assets/jsonsql','functions','config'],
          'app/search': ['jquery','common', 'globals'],
          'app/doctor': ['jquery','common', 'globals','app/search','assets/jquery.easing.min', 'assets/jquery.carouFredSel-6.1.0-packed'],
@@ -50,18 +47,6 @@ require.config({
        
 	}
 });
-/*require([
-        'jquery',
-        'async!https://maps.googleapis.com/maps/api/js?v=3&libraries=places&sensor=false',
-        'app/panel-start'
-    ],
-    function($) {    	
-    	$(document).ready(function () {
-   			console.log("Loaded :)"); 
-         $.slidebars();
-   	 	});
-    }
-);*/
 
 require([
         'jquery',
@@ -71,6 +56,6 @@ require([
     ],
     function($, app, gmaps_ , panel ) { 
         console.log("Loaded all"); 
-        //login.init();     
+        
     }
 );
