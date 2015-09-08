@@ -47,5 +47,18 @@
 		<div class="navicon-line"></div>
 	</div>
 	<div class="col-lg-12 col-xs-12" id="panel-search"> Buscar</div>
+
+	<div id="search-add" class="col-lg-1 col-xs-1" onClick="addMenu();">
+		<div></div>
+	</div>
+	<ul id="addMenu">
+		<li>Agregar Paciente</li>
+		<li>Agregar Practica</li>
+		<li>Agregar Periodo de ausencia</li>
+		<li>Agregar Informacion</li>
+	</ul>
+
+
+
 	<div class="col-lg-12 col-xs-12" id="desktop">
 		

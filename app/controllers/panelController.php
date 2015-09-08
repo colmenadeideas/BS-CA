@@ -91,7 +91,32 @@ class panelController extends Controller {
 
 
 	}
+
+	public function schedule($action="list") {
+
+		switch ($action) {
+			case 'intervals':
+				$template = "add-interval";
+				break;	
+			case 'settings':
+				$template = "settings";
+				break;								
+		}
+
+		$this->view->render("panel/schedule/".$template);
+	}
 	
+
+
+
+
+
+
+
+
+
+	// Métodos Listos
+
 	public function appointments($action = "next", $from_date="", $to_date="") {
 
 		switch ($action) {
@@ -156,7 +181,7 @@ class panelController extends Controller {
 			
 			default:
 				//list
-				$this->view->practices = $this->api-> practices("array" , "doctor", /*$this->view->userdata[0]['id']*/ '22');
+				$this->view->practices = $this->api-> practices("array" , "doctor", $this->view->userdata[0]['id']);
 
 				if ($this->view->practices['empty'] != 1) {
 

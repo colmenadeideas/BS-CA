@@ -25,6 +25,40 @@
   
 </head>
 <style>
+
+@-webkit-keyframes animate_background { 
+    from { 
+        background-position: 0 bottom;
+    } 
+    to { 
+        background-position: -1500px bottom;
+    } 
+}
+@-moz-keyframes animate_background { 
+    from { 
+        background-position: 0 bottom;
+    } 
+    to { 
+        background-position: -1500px bottom;
+    } 
+}
+@-o-keyframes animate_background { 
+    from { 
+        background-position: 0 bottom;
+
+    } 
+    to { 
+        background-position: -1500px bottom;
+    } 
+}
+@keyframes animate_background { 
+    from { 
+        background-position: 0 bottom;
+    } 
+    to { 
+        background-position: -1500px bottom;
+    } 
+}
 	.betaregister {
 		background: url(<?php echo IMG;?>bg-city.png) repeat-x bottom center, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3898F9), color-stop(100%,#50D8C4));
 		background: url(<?php echo IMG;?>bg-city.png) repeat-x bottom center, -webkit-linear-gradient(top,  #3898F9 0%,#50D8C4 100%) );
@@ -32,6 +66,14 @@
 		background: url(<?php echo IMG;?>bg-city.png) repeat-x bottom center, -ms-linear-gradient(top,  #3898F9 0%,#50D8C4 100%);
 		background: url(<?php echo IMG;?>bg-city.png) repeat-x bottom center, -o-linear-gradient(top,  #3898F9 0%,#50D8C4 100%) );
 		background: url(<?php echo IMG;?>bg-city.png) repeat-x bottom center, linear-gradient(to bottom,  #3898F9 0%,#50D8C4 100%);
+
+	
+    -webkit-animation: animate_background 35s linear 0s infinite;
+    -moz-animation: animate_background 35s linear 0s infinite;
+    -o-animation: animate_background 35s linear 0s infinite;
+    animation: animate_background 35s linear 0s infinite;
+
+
 	}
 
 	h2 {
@@ -60,6 +102,8 @@
 	  font-weight: 600;
 	  display:none;
 	}
+
+
 </style>
 <script>
 $(document).ready( function(){

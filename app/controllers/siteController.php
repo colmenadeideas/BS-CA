@@ -46,7 +46,7 @@
 			$this->view->title = SITE_NAME;	
 			$this->view->render('default/head');
 			$this->view->render('login/index');		
-			$this->view->render('footer');				
+			$this->view->render('default/footer');				
 		}
 		
 		public function test() {			

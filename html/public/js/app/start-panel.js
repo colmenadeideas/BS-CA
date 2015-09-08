@@ -52,7 +52,15 @@ define(function() {
 
 					case "appointments":
 						require(['app/appointments'], function(appointments) {
-							appointments.list();								
+							appointments.list();
+														
+						});						
+						break;
+
+					case "schedule":
+						require(['app/schedule'], function(schedule) {
+							schedule.add();
+														
 						});						
 						break;
 					

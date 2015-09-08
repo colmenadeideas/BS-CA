@@ -89,6 +89,9 @@ define(['globals'], function(globals) {
 				
 
 				break;
+
+			case "schedule":
+				break;
 		}
 	
 	}

@@ -1,10 +1,11 @@
 define(function() {
-	console.log('RUNNING site-start.js');
+	
 	var cache = {
-		'' : $('#results #search'), /*title: "<?= $page->attr['title'] ?>", elem: $('.site-head')*/
+		'' : $('#results #search'), //title: "<?= $page->attr['title'] ?>", elem: $('.site-head')
 		'search' : $('#results #search'),
 		'search=': $('#results #search'),
 	};
+	
 	$(window).bind('hashchange', function () {
 		var url = $.param.fragment();
 		// Hide any visible ajax content.
@@ -26,6 +27,8 @@ define(function() {
 			
 			//show preloader per request -- This is not related to first login preloader			
 			cache[url] = $('<div class="view"/>').appendTo('#results').load(url, function() {
+
+				
 				var active_page = url.split('/');
 				console.log(active_page[0]);
 				
@@ -46,12 +49,12 @@ define(function() {
 						});						
 						break;
 					case "login":
+						console.log("sssss");
 						require(['app/login'], function($) {							
-							signin();
-							floatinput();
-						});						
-						break;
-					default:					
+							login.signin();
+						});	
+						
+					default:	
 						break;
 				}
 				$('#preloader').fadeOut();
@@ -61,7 +64,6 @@ define(function() {
 		
 	});
 	// Trigger and Handle the hash the page may have loaded with
-	$(window).trigger('hashchange');	
-
+	$(window).trigger('hashchange');
 	
 });

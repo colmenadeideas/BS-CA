@@ -4,6 +4,8 @@ define(['globals'], function(globals) {
 		
 		
 	}
+	function addMenu(){$('#addMenu').slideToggle(400);}	
+	
 	function list () {
 
 		var list = $('.appointments-list');	
@@ -36,7 +38,8 @@ define(['globals'], function(globals) {
 
 	return {
       add: add,
-      list: list
+      list: list,
+      addMenu: addMenu
 	}
 
 });
