@@ -76,8 +76,6 @@ function pinanimation() {
 		ii = 1;
 	};
 
-
-
 	$('.bg-flow:nth-child('+ii+')>img:nth-child('+i+')').css({
     	top: function( index, value ) {
     		return parseFloat( value ) - 50
