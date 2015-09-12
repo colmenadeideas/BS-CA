@@ -1,72 +1,67 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://okidoctor.com/api/
 
-# okidoc
+# OKIDOC
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+Esta es  la documentación para el uso del API en OKIDOC, por los momentos 
+limitado a llamados dentro del sistema, iniciados por el sistema o el usuario
 
-# Polls API Root [/]
+# Estructura [/]
 
-This resource does not have any attributes. Instead it offers the initial
-API affordances in the form of the links in the JSON body.
+Las llamadas de datos se hacen a través del *apiController* para ser accesibles vía ULR (GET). 
+Recibe los parámetros separados por "/". 
+
+Puede aceptar hasta 6 parámetros
+
+
+Esta es la estructura del URL:
+
+api/appointments/parametro1/parametro2/parametro3/parametro4/parametro5/parametro6/
+http://localhost/BS-OK/html/api/autocomplete/json/patient/?term=el
 
 It is recommend to follow the “url” link values,
 [Link](https://tools.ietf.org/html/rfc5988) or Location headers where
 applicable to retrieve resources. Instead of constructing your own URLs,
 to keep your client decoupled from implementation details.
 
-## Retrieve the Entry Point [GET]
+## Group Endpoints
 
-+ Response 200 (application/json)
+Resources related to questions in the API. 
 
-        {
-            "questions_url": "/questions"
-        }
+## Question [/autocomplete/{print}/{object}/?term={term} ]
 
-## Group Question
+Autocomplete toma los siguientes parametros
 
-Resources related to questions in the API.
-
-## Question [/questions/{question_id}]
-
-A Question object has the following attributes:
-
-+ question
-+ published_at - An ISO8601 date when the question was published.
-+ url
-+ choices - An array of Choice objects.
++ print
++ object
++ term
 
 + Parameters
-    + question_id: 1 (required, number) - ID of the Question in form of an integer
+    + print: json, array (required, String) - Cómo será retornada la respuesta
+    + object: all, practice, patient (required, String) - El objeto a ser buscado
+    + term: (optional, String) - El String de búsqueda. Debe ir precedido por "?term="
 
-### View a Questions Detail [GET]
+### Ver Autocomplete [GET]
 
 + Response 200 (application/json)
 
-        {
-            "question": "Favourite programming language?",
-            "published_at": "2014-11-11T08:40:51.620Z",
-            "url": "/questions/1",
-            "choices": [
-                {
-                    "choice": "Swift",
-                    "url": "/questions/1/choices/1",
-                    "votes": 2048
-                }, {
-                    "choice": "Python",
-                    "url": "/questions/1/choices/2",
-                    "votes": 1024
-                }, {
-                    "choice": "Objective-C",
-                    "url": "/questions/1/choices/3",
-                    "votes": 512
-                }, {
-                    "choice": "Ruby",
-                    "url": "/questions/1/choices/4",
-                    "votes": 256
-                }
-            ]
-        }
+        [{
+            "label": "Nombre de Clínica",
+            "id_value": "1",
+            "type": "clinic_name"
+        }, {
+            "label": "Dirección de Clínica",
+            "id_value": "2",
+            "type": "clinic_address"
+        }, {
+            "label": "Nombre del Paciente",
+            "id_value": "3",
+            "type": "patient_name"
+        }, {
+            "label": "Nombre del Doctor",
+            "id_value": "4",
+            "type": "doctor_name"
+        }]
 
 ## Choice [/questions/{question_id}/choices/{choice_id}]
 
