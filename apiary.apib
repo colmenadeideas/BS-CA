@@ -16,16 +16,16 @@ Puede aceptar hasta 6 parámetros
 
 
 Esta es la estructura del URL:
+    
+    
+    api/appointments/parametro1/parametro2/parametro3/parametro4/parametro5/parametro6/
+    
 
-+    api/appointments/parametro1/parametro2/parametro3/parametro4/parametro5/parametro6/
-http://localhost/BS-OK/html/api/autocomplete/json/patient/?term=el
-
-
-## Question [/autocomplete/{print}/{object}/?term={term} ]
+## Autocomplete [/autocomplete/{print}/{object}/?term={term} ]
 
 Autocomplete toma los siguientes parametros
 
-+ print
++ print (json or array)
 + object
 + term
 
@@ -56,7 +56,7 @@ Autocomplete toma los siguientes parametros
             "type": "doctor_name"
         }]
 
-## Choice [/questions/{question_id}/choices/{choice_id}]
+## Appointments [/appointments/{print}/doctor/{doctor_id}/{from_date}/{to_date}]
 
 + Parameters
     + question_id: 1 (required, number) - ID of the Question in form of an integer
