@@ -6,7 +6,8 @@ HOST: http://okidoctor.com/api/
 Esta es  la documentación para el uso del API en OKIDOC, por los momentos 
 limitado a llamados dentro del sistema, iniciados por el sistema o el usuario
 
-# Estructura [/]
+
+## Group Endpoints
 
 Las llamadas de datos se hacen a través del *apiController* para ser accesibles vía ULR (GET). 
 Recibe los parámetros separados por "/". 
@@ -16,17 +17,9 @@ Puede aceptar hasta 6 parámetros
 
 Esta es la estructura del URL:
 
-api/appointments/parametro1/parametro2/parametro3/parametro4/parametro5/parametro6/
++    api/appointments/parametro1/parametro2/parametro3/parametro4/parametro5/parametro6/
 http://localhost/BS-OK/html/api/autocomplete/json/patient/?term=el
 
-It is recommend to follow the “url” link values,
-[Link](https://tools.ietf.org/html/rfc5988) or Location headers where
-applicable to retrieve resources. Instead of constructing your own URLs,
-to keep your client decoupled from implementation details.
-
-## Group Endpoints
-
-Resources related to questions in the API. 
 
 ## Question [/autocomplete/{print}/{object}/?term={term} ]
 
