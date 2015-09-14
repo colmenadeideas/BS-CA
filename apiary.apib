@@ -18,7 +18,13 @@ Puede aceptar hasta 6 parámetros
 Esta es la estructura del URL:
     
     
-    api/appointments/parametro1/parametro2/parametro3/parametro4/parametro5/parametro6/
+    api/appointments/
+                    parametro1/
+                    parametro2/
+                    parametro3/
+                    parametro4/
+                    parametro5/
+                    parametro6/
     
 
 ## Autocomplete [/autocomplete/{print}/{object}/?term={term} ]
@@ -60,19 +66,22 @@ Autocomplete toma los siguientes parametros
 
 + Parameters
     + print: json, array (required, String) - Cómo será retornada la respuesta
-    + choice_id: 1 (required, number) - ID of the Choice in form of an integer
+    + element: doctor (required, string) - Nombre del parametro a identificar
+    + element_id: 22 (required, number) - Id Value
+    + from_date: YYYY-MM-DD (required, number) - Fecha de inicio para el período a consultar
+    + to_date: YYYY-MM-DD (required, number) - Fecha de término para el período a consultar
 
 ### appointments [GET]
 
-This action allows you to vote on a question's choice.
+Obtener el listado de Citas por Médico, Centro y Fecha
 
 + Response 201
 
     + Headers
 
-            Location: /questions/1
+            Location: /appointments/json/doctor/22/2015-09-01/2015-09-01/
 
-## Questions Collection [/questions{?page}]
+## Questions Collection [/appointments{?page}]
 
 + Parameters
     + page: 1 (optional, number) - The page of questions to return
