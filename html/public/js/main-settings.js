@@ -16,6 +16,11 @@ require.config({
             deps: ['jquery'],
             exports: '$'
         },
+        'bootstrap-editable.min': {
+            deps: ['jquery'],
+            exports: '$'
+        },
+         'assets/bootstrap-editable.min': ['jquery'],
          'assets/all': ['jquery'],
          'assets/bootstrap.min' : ['jquery'],
          'assets/jquery.validate.min': ['jquery'],
@@ -28,7 +33,8 @@ require.config({
 });
 require([
         'jquery',
-        'app/settings',       
+        'app/settings',
+        'assets/bootstrap-editable.min',       
     ],
     function($) {
     console.log("Loaded Main-Settings.js"); 

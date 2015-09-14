@@ -11,3 +11,6 @@
           
         </div><!--/.nav-collapse -->
       </div>
+      <div class="col-md-8 col-md-offset-2" id="profile-settings-container">
+    	<div class="row">
+        	<div class="col-md-9" style="padding-top: 40px; background:white" id="settings-render">

@@ -12,7 +12,7 @@ if (modo === 'local') {
 	var position = 2;
 
 } else {
-	var URL = "http://okidoctor.com";
+	var URL = "http://okidoctor.com/";
 	var urlCheck = '/';
 	var position = 1;
 

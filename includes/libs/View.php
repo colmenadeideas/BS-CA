@@ -10,7 +10,7 @@ class View {
         require '../app/views/' . $name . '.php';    
     }
 	
-	 public function insert($filename)    {
+	public function insert($filename)    {
         echo  '<img src="private/'.$filename.'" class="img-responsive" /> '; 
     }
 	
@@ -48,8 +48,7 @@ class View {
 	}
 		
 	
-	//Redirects from all Controllers to Settings Controller
-	
+	//Redirects from all Controllers to Settings Controller	
 	public function settings ($method = 'index', $param1 ='', $param2 ='',$param3 ='') { //Added 27-10-13
 		
 		$out = '';
@@ -69,5 +68,6 @@ class View {
 			
 			header('location:../../'.$out.'settings/'.$method);
 	}
+		 
 }
 ?>

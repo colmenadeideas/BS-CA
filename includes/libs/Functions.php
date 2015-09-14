@@ -1,14 +1,19 @@
 <?php
 	//Main anti XSS function
 	function escape_value($data) {
-		if (ini_get('magic_quotes_gpc')) {
-			$data = stripslashes($data);
+		if (is_array($data)){
+			return $data;
+		} else {
+			
+			if (ini_get('magic_quotes_gpc')) {
+				$data = stripslashes($data);
+			}
+			$data = strip_tags($data, '<p><a><br>');
+			//use this if local
+			return mysql_real_escape_string($data);
+			//use this for server
+	        //return mysql_escape_string($data); 
 		}
-		$data = strip_tags($data, '<p><a><br>');
-		//use this if local
-		return mysql_real_escape_string($data);
-		//use this for server
-        //return mysql_escape_string($data); 
 	}
 	
 	function create_slug($data) {
@@ -84,6 +89,13 @@
 			$times[(string) $increment] = $date->format( $format );
 		}
 		return $times;
+	}
+
+	
+	function generateTempKey($username) {
+			
+		return $username.uniqid(rand(), true);
+			
 	}
 
 	

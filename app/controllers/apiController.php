@@ -6,10 +6,7 @@
 		}
 		// AUTOCOMPLETE: This function is invoked when user is writing fields related to : Doctor's name, Clinics, Addresses and Doctor's Speciality
 		public function autocomplete($print="json", $what="all") {
-			echo "json";	 exit;	
-			
 			$string = trim($_GET['term']);	
-			
 			//TODO escape values	
 			$this -> api -> autocomplete($print, $what, $string);
 		}
@@ -39,9 +36,9 @@
 		}
 				
 		
-		public function appointments($print="json", $by = "doctor", $id, $second_parameter = "", $practice_id = "", $for_date = "", $to_date = ""){
+		public function appointments($print="json", $by = "doctor", $id, $for_date = "", $to_date = "", $second_parameter = "", $practice_id = ""){
 			//TODO definir el envio del 1er parametro
-			$this -> api -> appointments($print, $by, $id);
+			$this -> api -> appointments($print, $by, $id, $for_date , $to_date, $second_parameter, $practice_id);
 		}
 		
 		//APPOINTMENTS/DOCTOR/$ID/RANGE : To Get Latest Doctor's Appointments grouped by day?

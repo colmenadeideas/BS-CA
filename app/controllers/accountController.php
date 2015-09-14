@@ -104,8 +104,29 @@
 				
 		}
 		
-		
-		
+		// Setting template method
+		public function settings($action) {
+		$this->view->username=array("id"=>"22");
+		switch ($action) {
+			case 'password':
+				$template = "password-change";
+				break;
+			case 'notifications':
+				$template = "notifications";
+				break;
+			case 'preferences':
+				$template = "preferences";
+				break;
+			case 'profile':
+				$template = "profile";
+				break;						
+			default:
+				$template = "profile";
+				break;
+		}
+
+			$this->view->render("settings/".$template);
+		}
 		
 		// AUTHENTICATE: Method called when user is verified via Email -after registration-, and is logging in for the first time	
 		public function authenticate($temp_password, $username) {
@@ -361,7 +382,7 @@
 		}
 		// PROFILE: shows main Account area
 		public function profile () {
-			$this->edit('profile');
+			$this->edit('password-change');
 		}
 		
 		// RECOVER: Method called by form, checks user and triggers recovery by email password process

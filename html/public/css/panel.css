@@ -15,6 +15,34 @@ body {
 	color:#616467/*556473*/;
 	font-family: 'Lato';
 }
+
+
+
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+.col-fixed {
+    /* custom width */
+    width:320px;
+}
+.col-min {
+    /* custom min width */
+    min-width:320px;
+}
+.col-max {
+    /* custom max width */
+    max-width:320px;
+}
+
+
 #panel-drawer { background: #525C6D; min-height:700px; height:100%; color: #FFF; padding: 0; position: fixed; left: 0; top: 0; bottom:0 }
 .drawer_profile{background: #4E92F6; padding:40px }
 .drawer_menu {}
@@ -95,6 +123,10 @@ ul.menu-content, .nav-side-menu li {
 	background: #3898F9;
 	color: white;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 #desktop { padding-top: 40px;}
 
 .tip { padding: 20px 15px 15px 15px;  border-radius: 10px;  border: solid 1px #1AD8C1;  color: #1AD8C1;  min-width: 300px;  font-size: 17px;  margin: 50px auto;}
@@ -132,10 +164,12 @@ a.btn.btn-login:hover, .navbar-default .navbar-nav>li>a.btn-login:hover {
   border-color: #1CDBC1;
 }*/
 .btn-add:hover { background-color:#36FF84}
+.btn-delete:hover  { background-color: #C0392B; }
 .btn-action {   width: 55.5px;  height: 55.5px;  font-size: 35px; text-decoration: none;  color: #FFF;  background-color: #333;  
 text-align: center;  letter-spacing: .5px; border-radius: 50%; transition: .3s;  cursor: pointer;  vertical-align: middle; border: none; }
 span.btn-action {padding: 10px 20px 10px;}
 .btn-add { background-color: #3ED87A; }
+.btn-delete { background-color: #D64541; }
 .button-instruction {   font-size: 150%;  padding: 0 10px; color:#333;  font-weight: 200; }
 a.wrap-action { text-decoration: none}
 /* BUTTONS */
@@ -170,8 +204,11 @@ text-align: center;  padding: 24px;  font-size: 45px;  }
 	font-size: 170%;
 	letter-spacing: 0.5px;
 	transition: all ease 0.3s;
+    max-width: 100%;
+	
 }
-
+.light-form input[type=number].form-control ,
+.practice-format input[type=text] { padding: 0px;   text-align: center; }
 
 
 .light-form .form-control:focus{ box-shadow: none;}
@@ -513,6 +550,11 @@ h3{
 .inn{
 	left: 16.6667%;
 }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 .ui-datepicker,
 .ui-datepicker table,
 .ui-datepicker tr,
@@ -524,13 +566,17 @@ h3{
 	border-spacing: 0;
 	margin: auto;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 /* Calendar Wrapper */
 .ui-datepicker {
 	display: none;
 	width: 70%;
 	padding: 35px;
 	cursor: default;
+<<<<<<< HEAD
 
 	text-transform: uppercase;
 	font-family: Tahoma;
@@ -539,22 +585,36 @@ h3{
 	background: transparent;	
 }
 
+=======
+	text-transform: uppercase;
+	font-family: Tahoma;
+	font-size: 12px;
+	background: transparent;	
+}
+>>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 /* Calendar Header */
 .ui-datepicker-header {
 	position: relative;
 	padding-bottom: 10px;
 	border-bottom: 1px solid #d6d6d6;
 }
+<<<<<<< HEAD
 
 .ui-datepicker-title { text-align: center; }
 
+=======
+.ui-datepicker-title { text-align: center; }
+>>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 /* Month */
 .ui-datepicker-month {
 	position: relative;
 	padding-right: 15px;
 	color: #565656;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 .ui-datepicker-month:before {
 	display: block;
 	position: absolute;
@@ -563,6 +623,7 @@ h3{
 	width: 5px;
 	height: 5px;
 	content: '';
+<<<<<<< HEAD
 
 	background: #a5cd4e;
 	background: -moz-linear-gradient(top, #a5cd4e 0%, #6b8f1a 100%);
@@ -574,6 +635,17 @@ h3{
 
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
+=======
+	background: #a5cd4e;
+	background: -moz-linear-gradient(top, #a5cd4e 0%, #6b8f1a 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a5cd4e), color-stop(100%,#6b8f1a));
+    background: -webkit-linear-gradient(top, #a5cd4e 0%,#6b8f1a 100%);
+    background: -o-linear-gradient(top, #a5cd4e 0%,#6b8f1a 100%);
+    background: -ms-linear-gradient(top, #a5cd4e 0%,#6b8f1a 100%);
+    background: linear-gradient(top, #a5cd4e 0%,#6b8f1a 100%);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+>>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 	border-radius: 5px;
 }
 /* start date picker ( YYYY / MM / DD) */
@@ -582,7 +654,10 @@ h3{
 	padding-left: 8px;
 	color: #a8a8a8;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 /* Prev Next Month */
 .ui-datepicker-prev,
 .ui-datepicker-next {
@@ -591,23 +666,33 @@ h3{
 	padding: 5px;
 	cursor: pointer;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 .ui-datepicker-prev {
 	left: 0;
 	padding-left: 0;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 .ui-datepicker-next {
 	right: 0;
 	padding-right: 0;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 .ui-datepicker-prev span,
 .ui-datepicker-next span{
 	display: block;
 	width: 5px;
 	height: 10px;
 	text-indent: -9999px;
+<<<<<<< HEAD
 
 	background-image: url(../img/arrows.png);
 }
@@ -620,6 +705,14 @@ h3{
 
 .ui-datepicker-next-hover span { background-position: -5px -10px; }
 
+=======
+	background-image: url(../img/arrows.png);
+}
+.ui-datepicker-prev span { background-position: 0px 0px; }
+.ui-datepicker-next span { background-position: -5px 0px; }
+.ui-datepicker-prev-hover span { background-position: 0px -10px; }
+.ui-datepicker-next-hover span { background-position: -5px -10px; }
+>>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 /* Calendar "Days" */
 .ui-datepicker-calendar th {
 	padding-top: 15px;
@@ -629,23 +722,33 @@ h3{
 	font-weight: normal;
 	color: #888;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 .ui-datepicker-calendar td {
 	padding: 0 7px;
 	
 	text-align: center;
 	line-height: 26px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 .ui-datepicker-calendar .ui-state-default {
 	display: block;
 	width: 26px;
 	outline: none;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 	text-decoration: none;
 	color: #585858;
 	
 	border: 1px solid transparent;
+<<<<<<< HEAD
 }
 
 /* Day Active State*/
@@ -657,6 +760,16 @@ h3{
 /* Other Months Days*/
 .ui-datepicker-unselectable span{ color: #afafaf !important;}
 }
+=======
+}		
+    		
+
+
+/* Day Active State*/
+.ui-datepicker-calendar .ui-state-active {	color: #3898F9; border-bottom-color: #3898F9; }
+/* Other Months Days*/
+.ui-datepicker-unselectable span{ color: #afafaf !important;}
+>>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 
 .ui-datepicker-unselectable{
 	color: #777;
@@ -747,3 +860,64 @@ h3{
     text-align: center;
     display: none;
 }
+<<<<<<< HEAD
+=======
+
+
+
+
+
+.btn.next, .btn.previous  {     
+	text-transform: uppercase;	
+    padding: 15px;
+    font-size: 115%;
+    letter-spacing: 0.5px;
+    border-radius: 27px !important;
+    min-width: 190px;
+    color: #FFF;
+    background-color: #45CFCA;
+    border-color: #45CFCA; 
+}
+.btn.success {
+	background-color: #2ECC71;
+    border-color: #2ECC71;	
+}
+.light-form .button-area { margin: 35px auto 20px }
+input.timepicker {
+    padding: 0 !important;
+    font-size: 17px !important;
+    letter-spacing: -0.6px !important;
+}
+.light-form td { padding: 0 !important}
+
+
+.practice-format {
+	background: #3EB4E4;
+    color: #FFFFFF;
+    font-weight: 400;
+    padding: 15px 20px;
+    font-size: 120%;
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.15);
+    margin-bottom: 25px;
+}
+.practice-format .text { font-weight: 400 !important; color: #FFFFFF !important; font-size: 130%}
+.practice-format label.error {background: #FB0000;    padding: 2px 5px;    border-radius: 8px;    font-size: 70%;    font-weight: 400;}
+input.form-control.input-lg.signinput, input.form-control.input-lg.time-lapse  { color:#000 !important; font-size: 130%; border-color:#FFF !important;}
+input.form-control.input-lg.time-lapse{ max-width: 130px;}
+.practice-format .signinput::-webkit-input-placeholder, .practice-format .time-lapse::-webkit-input-placeholder { font-weight: 200; color:rgba(255,255,255,0.5) }
+.practice-format .signinput::-moz-placeholder, .practice-format .time-lapse::-moz-placeholder { font-weight: 200; color:rgba(255,255,255,0.5) }
+.practice-format .signinput:-ms-input-placeholder, .practice-format .time-lapse:-ms-input-placeholder { font-weight: 200; color:rgba(255,255,255,0.5) }
+.practice-format .signinput input:-moz-placeholder, .practice-format .time-lapse input:-moz-placeholder { font-weight: 200; color:rgba(255,255,255,0.5) }
+.practice-format .field-wrapper span { color:#FFF; font-size: 100% !important; font-weight: 400 !important; }
+.practice-format span.btn-action {    padding: 0px 7px 0px !important; color: #FFF;}
+.practice-format  span.button-instruction {font-size: 100% !important; font-weight: 400 !important;}
+
+.practice-sheet { background: #FFF; padding:20px 0 40px;  box-shadow: 4px 4px 3px rgba(0,0,0,0.15); display: table;}
+.practice-sheet input { padding: 0;}
+.practice-sheet .light-form .form-control { font-size: 130%; font-weight: 700; color: #2C3E50; border-color: #BDC3C7 }
+.practice-sheet  .input-lg {   height: 36px;}
+.practice-sheet input.form-control.input-lg.time-lapse {   max-width: 60px; }
+h3.division , h4.division {     text-transform: uppercase; border-bottom: solid 1px rgba(0,0,0,0.15);    color: #C3C8CA;    padding: 5px 0 10px;  margin: 40px 0 30px; }
+.sidetext { display: inline; }
+.previewtext {    text-transform: uppercase;    text-align: right;    margin-top: 5px; }
+>>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8

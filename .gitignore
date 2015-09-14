@@ -9,4 +9,7 @@ html/index.php
 html/public/js/config.js
 
 includes/config/local.php
+
+html/public/.DS_Store
+
 includes/config/local.php

@@ -46,7 +46,7 @@
 		<div class="navicon-line"></div>
 		<div class="navicon-line"></div>
 	</div>
-	<div class="col-lg-11 col-xs-11" id="panel-search"> Buscar</div>
+	<input class="col-lg-11 col-xs-11" placeholder="Buscar" id="panel-search"/>
 	<div id="search-add" class="col-lg-1 col-xs-1" onClick="addMenu();">
 		<div></div>
 	</div>
@@ -57,4 +57,4 @@
 		<li>Agregar Informacion</li>
 	</ul>
 	<div class="col-lg-12 col-xs-12" id="desktop">
-		
+	<script>autocomplete()</script>

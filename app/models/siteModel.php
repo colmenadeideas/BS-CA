@@ -14,6 +14,9 @@
 			where " . DB_PREFIX . "specialty like '%%s%'  and id_city=%s and " . DB_PREFIX . "doctor.name like '%%s%'
 			ORDER BY $by $order",$specialty,$city,$specialty);
 		}
+		public function getBetaListed($email) {	
+			return DB::query("SELECT * FROM " . DB_PREFIX . "mailbetalist WHERE email = '$email' LIMIT 1");
+		}
 	}
 	
 ?>

@@ -1,3 +1,4 @@
+
 $('.collapse').collapse();
 
 //forms
@@ -298,7 +299,7 @@ function appointments(){
 	var t = $(this).find('.hidden-patient').length;
 	if (t >= 1) {
 		$(this).append('<div class="col-lg-2 col-xs-2 extra-patients-circle text-center"></div>');
-		p = t-3
+		p = t-2;
 		$(this).find('.extra-patients-circle').text('+'+p);
 	};
  	});
@@ -459,3 +460,4 @@ function breaks(){
 		$(this).parent().css('border', 'dashed 1px #ccc');	
 	})
 }
+

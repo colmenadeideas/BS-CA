@@ -46,7 +46,7 @@
 
 	
 	//Renders custom Buttons for GOOGLE
-	function render() {
+	function render_() {
 	 	gapi.signin.render("registerGoogleDoctor", { 	
 		  'callback': signinCallback,  // TODO: this is invoked when load, so have to manage not only regisration, but also already active sessions
 		  'clientid': '787160254039-53j11tf8qir6utj3qr315tmevs8fj58d.apps.googleusercontent.com', 
@@ -63,7 +63,7 @@
 		});	
 	}
 	//Google default Login Function
-	function signinCallback(authResult) { 
+	function signinCallback_(authResult) { 
 		//get Role from clicked button
 		$("#registerGoogleDoctor, #registerGooglePatient").click(function() {
 			role = this.name; //console.log('El role es: '+ role); 

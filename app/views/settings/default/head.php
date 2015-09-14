@@ -7,6 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Besign Colmena de ideas - besign.com.ve">
     <link rel="shortcut icon" href="<?php echo IMG; ?>favico.png">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
     
     <title><?php echo $this->title; ?></title>
 	
@@ -29,6 +30,7 @@
     <![endif]-->	
      <script src="<?php echo JS; ?>config.js"></script>
     <script data-main="<?php echo JS;?>main-settings" src="<?php echo JS; ?>assets/require.js"></script>
+    
     
 
 </head>

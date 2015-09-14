@@ -7,15 +7,8 @@ html {
 body {
   /* Margin bottom by footer height */
 margin-bottom: 60px;
-background:#3898F9; /* Old browsers */
-background: -moz-linear-gradient(top,  #3898F9 0%, #50d8c4 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3898F9), color-stop(100%,#50d8c4)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  #3898F9 0%,#50d8c4 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  #3898F9 0%,#50d8c4 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  #3898F9 0%,#50d8c4 100%); /* IE10+ */
-background: linear-gradient(to bottom,  #3898F9 0%,#50d8c4 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3898F9', endColorstr='#50d8c4',GradientType=0 ); /* IE6-9 */
 color:#565A5C;
+background-color: #455565;
 }
 /* Preloader */
 #preloader {
@@ -28,21 +21,15 @@ color:#565A5C;
     top:0; left:0;
 }
 .spinner {
-    background-color: #FFF;
-    border: 25px solid rgba(0,180,180,0.9);
-    opacity: .9;
-    border-top: 25px solid rgba(0,0,0,0);
-    border-left: 25px solid rgba(0,0,0,0);
-    border-radius: 50px;
+    background: url("../img/2.svg") no-repeat center / cover;
     width: 100px;
     height: 100px;
     top: 40%;
     position:relative;
     margin: 0 auto;
-    -moz-animation: spin .7s infinite linear;
-    -webkit-animation: spin .7s infinite linear;
 }
-@-moz-keyframes spin{0%{-moz-transform:rotate(0deg)}100%{-moz-transform:rotate(360deg)}}@-moz-keyframes spinoff{0%{-moz-transform:rotate(0deg)}100%{-moz-transform:rotate(-360deg)}}@-webkit-keyframes spin{0%{-webkit-transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg)}}@-webkit-keyframes spinoff{0%{-webkit-transform:rotate(0deg)}100%{-webkit-transform:rotate(-360deg)}}
+/*@-moz-keyframes spin{0%{-moz-transform:rotate(0deg)}100%{-moz-transform:rotate(360deg)}}@-moz-keyframes spinoff{0%{-moz-transform:rotate(0deg)}100%{-moz-transform:rotate(-360deg)}}@-webkit-keyframes spin{0%{-webkit-transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg)}}@-webkit-keyframes spinoff{0%{-webkit-transform:rotate(0deg)}100%{-webkit-transform:rotate(-360deg)}}
+*/
 /* Preloader */
 
 #footer {
@@ -59,13 +46,113 @@ color:#565A5C;
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 
+#profile-settings-container{
+  background: #F5F5F5;
+  
+}
+
+#settings-options{
+  height: 800px;
+  background-color: #F5F5F5;
+  padding: 0;
+}
+
+#settings-options ul{
+  list-style: none;
+  width: 100%;
+  padding-left: 0;
+}
+#settings-options ul > li{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 16px;
+  padding-left: 5%;
+  border-bottom: solid 1px #ddd;
+  cursor: pointer;
+}
+
+#settings-options ul > li:hover, #settings-options ul > li.active:hover{
+  background-color: #3898F9;
+  color: white;
+}
+#settings-options ul > li.active{
+  background-color: white;
+}
+
 body > .container {
   padding: 60px 15px 0;
+
 }
 .container .text-muted {
   margin: 20px 0;
 }
+.img-circle{
+  margin: 0 auto;
+}
+.account-wall{
+  margin-bottom: 50px;
+}
+.account-wall .checkbox{
+  margin-top: 0;
+}
+.account-wall .select-all, .account-wall .unselect-all{
+  cursor: pointer;
+  font-size: 12px;
+}
+.account-wall input{
+  border-bottom: solid 1px #ccc;
+  margin-bottom: 30px;
+}
+.account-wall input:focus{
+  border: none;
+  border-bottom: solid 1px #337ab7;
+  border-radius: 0;
+}
+.account-wall div{
+  margin-bottom: 0px; 
+  padding-top: 15px;
+}
+.account-wall h2,.account-wall label{
+  margin: 0;
+  display: block;
+}
+.account-wall label{
+  font-weight: 400;
+  opacity: 0.7;
+}
+.account-wall i{
+  margin-right: 5px;
+}
+.check-list h4{
+  margin-bottom: 0;
+}
 
+.inline-edit{
+  position: relative;
+}
+.inline-edit h4, .inline-edit i{
+  display: inline-block;
+}
+.inline-edit h4{
+  cursor: pointer;
+}
+
+.inline-edit input, .inline-edit input:focus{
+  border: none;
+  border-bottom: solid 1px #ccc;
+  box-shadow: none;
+  margin: 10px 0;
+}
+.inline-edit > .glyphicon-pencil{
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 48px;
+}
+.inline-edit > .glyphicon-remove, .inline-edit > .glyphicon-ok{
+  margin: 0 5px;
+  cursor: pointer;
+}
 #footer > .container {
   padding-right: 15px;
   padding-left: 15px;
@@ -115,8 +202,11 @@ padding: 15px;}
 .regist_title a:hover { text-decoration: none;}
 .smaller-img { width:60%; margin:auto;} 
 
-.input-home-doctor 	 { min-width: 360px; }
-.input-home-location { }
+#form-search-doctor {  margin: 30px 0 0 0; }
+#form-search-doctor .send {  border-radius: 0 30px 30px 0; padding-right: 25px;  }
+.input-home-doctor 	 { min-width: 360px; border-right: solid 1px #BABABA !important; border-radius: 30px 0 0 30px !important; padding-left: 25px;  }
+.input-home-location {  border-radius:  0; margin: 0 -4px 0 -2px}
+#form-search-doctor .send , .input-home-doctor, .input-home-location{ height: 65px; }
 
 .blured { filter: blur(2px); filter: url("../stuff/blur.svg#gaussian_blur"); -webkit-filter: blur(2px); }
 .blurme {}
@@ -383,6 +473,7 @@ color: #3898F9;
 .search-filters-area .filterby { margin:0; padding:0; color: #166BA5; float:left; font-weight:600; font-size: 120%}
 .search-results {  margin-top:20px;}
 
+
 .ui-helper-hidden-accessible { display:none; }
 
 /*other */
@@ -558,6 +649,7 @@ margin: 20px 0 ; font-weight:100; border-radius: 4px;}
 		.practice-item { background: #009EFC;color: #FFF;font-weight: 800 !important;border-radius: 15px;margin: 0 10px;padding: 20px 10px; text-align: center}
 		.practice-item img { padding: 20px 30px 10px;}
     .khidden{width:0;visibility:hidden;}
+
     /* Progressbar */
     .progressbar {
       margin-bottom: 30px;
@@ -666,3 +758,8 @@ margin: 20px 0 ; font-weight:100; border-radius: 4px;}
       top: 235px;
       left: 93.96%;
     }
+
+
+    #results {  position: absolute;    z-index: 10;    margin-top: 500px;    bottom: 0;    background-color: red; opacity: 0;    width: 100%; transition: all ease 1s;}
+
+

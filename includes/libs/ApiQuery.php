@@ -72,8 +72,15 @@
 		public function getAppointments($by="id_doctor", $param="", $order="ASC") {
 						return DB::query("SELECT * FROM ". DB_PREFIX . "appointments WHERE $by =$param ORDER BY id $order");
 		}
-		public function getAppointmentsDate($by="id_doctor", $param="", $order="ASC") {
-			return DB::query("SELECT date FROM ". DB_PREFIX . "appointments WHERE $by =$param GROUP BY date ORDER BY date $order");
+		public function getAppointmentsDate($by="id_doctor", $param="", $order="ASC", $for="", $to="") {					
+			if ($for != ""){
+				$extra_for = " AND date >= DATE_FORMAT(DATE('".escape_value($for)."'),'%Y-%m-%d') ";				
+			}
+			if ($to != ""){
+				$extra_to = " AND date <= DATE_FORMAT(DATE('".escape_value($to)."'),'%Y-%m-%d') ";
+			}
+			return DB::query("SELECT date FROM ". DB_PREFIX . "appointments WHERE ".escape_value($by)."=".escape_value($param)." $extra_for $extra_to GROUP BY date ORDER BY date ".escape_value($order));
+	
 		}
 		public function getAppointmentsByDate($id, $date, $id_clinic) {
 			return DB::query("SELECT * FROM ". DB_PREFIX . "appointments WHERE id_doctor = $id AND date = '".$date."' AND id_clinic ='".$id_clinic."'  ORDER BY id ASC" );
@@ -132,6 +139,11 @@
 		public function getDoctorPracticesScheduleExceptions($id_practice) {
 			return DB::query("SELECT * FROM " . DB_PREFIX . "doctor_practice_schedule_exceptions WHERE id_practice=%i", $id_practice);
 		}
+
+		public function getTempRecordResult($id, $tempkey) {
+			// return DB::query("SELECT * FROM " . DB_PREFIX . "temporal_data WHERE user_id=%i AND role=%i AND url=%i", $id, $role, $url);
+			return DB::query("SELECT * FROM " . DB_PREFIX . "temporal_data WHERE user_id=%s AND tempkey=%s", $id, $tempkey);	
+		}	
 		
 		
 		

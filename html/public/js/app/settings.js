@@ -42,4 +42,97 @@ $(document).ready(function(e) {
 		}
 	});
 
+
+
+
+$('#settings-options').children().children().click(function() {
+	var id = $(this).attr("id");
+
+	if ( id == "password") {
+		$('#settings-render').load(URL + 'account/settings/password');
+	}
+	if ( id == "profile") {
+		$('#settings-render').load(URL + 'account/settings/profile');
+		editable();
+	}
+	if ( id == "preferences") {
+		$('#settings-render').load(URL + 'account/settings/preferences');
+	}
+	if ( id == "notifications") {
+		$('#settings-render').load(URL + 'account/settings/notifications');
+	}
+	$('#settings-options').children().children('.active').attr("class", "");
+	$(this).attr("class", "active");
+	//alert('Hola')
+
+})
+
+editable();
+
 });
+function editable(){
+
+	//Setting up Edit in line Plugin, be aware there's no url it is sended to
+	$('#email').editable({
+	    type: 'text',
+	    pk: 1,
+	    url: '',
+	});
+	$('#phone').editable({
+	    type: 'text',
+	    pk: 1,
+	    url: '',
+	});
+	$('#sex').editable({
+        prepend: "not selected",
+        source: [
+        {value: 1, text: 'femenino'},
+        {value: 2, text: 'masculino'},
+       ],
+       type: 'select'
+    }); 
+    $('#sex').editable({
+        prepend: "not selected",
+        source: [
+        {value: 1, text: 'femenino'},
+        {value: 2, text: 'masculino'},
+       ],
+       type: 'select'
+    });
+    $('#ensurance').editable({
+        prepend: "not selected",
+        source: [
+        {value: 1, text: 'Seguros Cualitas'},
+        {value: 2, text: 'Seguros Altamira'},
+        {value: 3, text: 'Seguros El Cabo'},
+        {value: 4, text: 'Seguros Alvarado'},
+        {value: 5, text: 'Seguros Caracas'},
+        {value: 6, text: 'Seguros Mercantil'},
+       ],
+       type: 'select'
+    });
+    $('#language').editable({
+        prepend: "not selected",
+        source: [
+        {value: 1, text: 'Español'},
+        {value: 2, text: 'English'},
+        {value: 3, text: 'Dutch'}
+       ],
+       type: 'select'
+    });  
+}
+
+function checkall(){
+	$('.select-all').click(function (e) {
+		e.preventDefault;
+		$(this).parent().find('.checkbox').children().children().prop("checked", true);
+	});
+	$('.unselect-all').click(function (e) {
+		e.preventDefault;
+		$(this).parent().find('.checkbox').children().children().prop("checked", false);
+	});
+}
+
+function profileSend(){
+	
+}
