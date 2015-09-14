@@ -20,6 +20,18 @@
 					 					) AS autocomplete_table  WHERE label LIKE '%$string%';
 					 			");
 							
+					break;
+
+				case 'patient':		
+								
+					return DB::query("	SELECT * FROM  (
+										
+					 					SELECT patient.name AS label, patient.id AS id_value, 'patient_name' AS type FROM patient UNION 
+					 					SELECT patient.lastname AS label, patient.id AS id_value, 'patient_name' AS type FROM patient UNION
+					 					SELECT patient.username AS label, patient.id AS id_value, 'patient_name' AS type FROM patient
+					 					) AS autocomplete_table  WHERE label LIKE '%$string%';
+					 			");
+							
 					break;		
 							
 				case 'all':
