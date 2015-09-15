@@ -27,20 +27,32 @@ Esta es la estructura del URL:
                 parametro6/
     
 
-## Autocomplete [/autocomplete/{print}/{object}/?term={term} ]
+## autocomplete [/autocomplete/{print}/{object}/?term={term} ]
 
-Autocomplete toma los siguientes parametros
+/autocomplete toma los siguientes parametros
 
 + print (json or array)
 + object
 + term
+
+    # Lista de Acciones
+
++ Listar todos los "pacientes" con el nombre o apellido "Jhon"
+
+    api/autocomplete/json/patient/?term=jhon
+
++ Listar Clinicas, Doctores por nombre o apellido, Direccion de Clinica, Especialidad del Doctor
+
+    api/autocomplete/json/?term=Car
+
+
 
 + Parameters
     + print: json, array (required, String) - Cómo será retornada la respuesta
     + object: all, practice, patient (required, String) - El objeto a ser buscado
     + term: Cardiolo (optional, String) - El String de búsqueda. Debe ir precedido por "?term="
 
-### Ver Autocomplete [GET]
+### test autocomplete [GET]
 
 + Response 200 (application/json)
 
@@ -71,7 +83,7 @@ Autocomplete toma los siguientes parametros
     + from_date: YYYY-MM-DD (required, number) - Fecha de inicio para el período a consultar
     + to_date: YYYY-MM-DD (required, number) - Fecha de término para el período a consultar
 
-### appointments [GET]
+### test appointments [GET]
 
 Obtener el listado de Citas por Médico, Centro y Fecha
     
