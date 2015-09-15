@@ -23,7 +23,7 @@ define(['globals'], function(globals) {
 		var t = $(this).find('.hidden-patient').length;
 		if (t >= 1) {
 			$(this).append('<div class="col-lg-2 col-xs-2 extra-patients-circle text-center"></div>');
-			p = t-3
+			p = t;
 			$(this).find('.extra-patients-circle').text('+'+p);
 		};
 	 	});
