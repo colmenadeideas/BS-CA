@@ -23,13 +23,8 @@ define(['globals'], function(globals) {
 		var t = $(this).find('.hidden-patient').length;
 		if (t >= 1) {
 			$(this).append('<div class="col-lg-2 col-xs-2 extra-patients-circle text-center"></div>');
-<<<<<<< HEAD
 			p = t-3
 			$(this).find('.extra-patients-circle').text('+'+"1");
-=======
-			p = t;
-			$(this).find('.extra-patients-circle').text('+'+p);
->>>>>>> 7f7ca660708cd06f0dc55f03c35aa44fe365b224
 		};
 	 	});
 	 	$('.extra-patients-circle').click(function(){
