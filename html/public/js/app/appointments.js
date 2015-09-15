@@ -6,8 +6,8 @@ define(['globals'], function(globals) {
 	}
 	function addMenu(){$('#addMenu').slideToggle(400);}	
 	
-	/*function list () {
-		alert("Hola");
+	function list () {
+
 		var list = $('.appointments-list');	
 		var i = 0;
 		$.each(list, function(){
@@ -24,7 +24,7 @@ define(['globals'], function(globals) {
 		if (t >= 1) {
 			$(this).append('<div class="col-lg-2 col-xs-2 extra-patients-circle text-center"></div>');
 			p = t-3
-			$(this).find('.extra-patients-circle').text('+'+"1");
+			$(this).find('.extra-patients-circle').text('+'+p);
 		};
 	 	});
 	 	$('.extra-patients-circle').click(function(){
@@ -34,7 +34,7 @@ define(['globals'], function(globals) {
 	 		var did = '22';
 	 		document.location.href = "#panel/appointments/"+clinic+"/22/"+day;	 		
 	 	});
-	}*/
+	}
 
 	function autocomplete(){
 		$("#panel-search").autocomplete({

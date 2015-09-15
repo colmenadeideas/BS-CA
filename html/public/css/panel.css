@@ -181,9 +181,9 @@ a.wrap-action { text-decoration: none}
 .dates-practices h1, .practice-item h1 { font-weight: 400; text-transform: capitalize;}
 .date-spacer { height:35px}
   
-.patient-pic {  padding-left: 0; transition: all ease 0.3s; margin-bottom: 15px;}
-.patient-pic:hover { padding-top: 10px; margin-bottom: 5px;}
-.extra-patients-circle { cursor:pointer; border-radius: 50%;  width: 125px;  height: 125px;  border: solid 5px #1AD8C1;  color: #1AD8C1;  background: #FFF;  
+.patient-pic {  padding-left: 0; transition: all ease 0.3s }
+.patient-pic:hover { padding-top: 10px;}
+.extra-patients-circle {  border-radius: 50%;  width: 125px;  height: 125px;  border: solid 5px #1AD8C1;  color: #1AD8C1;  background: #FFF;  
 text-align: center;  padding: 24px;  font-size: 45px;  }
 
 
