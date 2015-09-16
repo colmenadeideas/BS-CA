@@ -67,7 +67,7 @@ define(['globals'], function(globals) {
 	 		$(list).mouseleave(function() {
 	 		   $(this).parent().find('.hidden-patient').slideUp();
 			   //$(this).children('.hidden-patient').fadeOut();
-	           //$(this).find('.extra-patients-circle').fadeIn();
+	           $(this).find('.extra-patients-circle').fadeIn();
 			});
 	 	});
 
