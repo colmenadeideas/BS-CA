@@ -38,38 +38,6 @@
 </div>
 
 <div class="container-fluid site-home">
-	<div class="flow-container">
-		<div class="bg-flow">
-			<img src="../public/img/bg-city-pin.png" alt="" class="">
-			<img src="../public/img/bg-city-pin.png" alt="" class="">
-			<img src="../public/img/bg-city-pin.png" alt="" class="">
-			<img src="../public/img/bg-city-pin.png" alt="" class="">
-			<img src="../public/img/bg-city-pin.png" alt="" class="">
-			<img src="../public/img/bg-city-pin.png" alt="" class="">
-			<img src="../public/img/bg-city-pin.png" alt="" class="">
-			<img src="../public/img/bg-city-pin.png" alt="" class="">
-		</div>
-		<div class="bg-flow">
-			<img src="../public/img/bg-city-pin.png" alt="" class="">
-			<img src="../public/img/bg-city-pin.png" alt="" class="">
-			<img src="../public/img/bg-city-pin.png" alt="" class="">
-			<img src="../public/img/bg-city-pin.png" alt="" class="">
-			<img src="../public/img/bg-city-pin.png" alt="" class="">
-			<img src="../public/img/bg-city-pin.png" alt="" class="">
-			<img src="../public/img/bg-city-pin.png" alt="" class="">
-			<img src="../public/img/bg-city-pin.png" alt="" class="">
-		</div>
-		<div class="bg-flow">
-			<img src="../public/img/bg-city-pin.png" alt="" class="">
-			<img src="../public/img/bg-city-pin.png" alt="" class="">
-			<img src="../public/img/bg-city-pin.png" alt="" class="">
-			<img src="../public/img/bg-city-pin.png" alt="" class="">
-			<img src="../public/img/bg-city-pin.png" alt="" class="">
-			<img src="../public/img/bg-city-pin.png" alt="" class="">
-			<img src="../public/img/bg-city-pin.png" alt="" class="">
-			<img src="../public/img/bg-city-pin.png" alt="" class="">
-		</div>
-	</div>
 	<div class="row">
 		<div class="col-lg-1 col-md-1 col-sm-1 "></div>
 		<div class="col-lg-10 col-md-10 col-sm-10 ">

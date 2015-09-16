@@ -16,25 +16,18 @@ require.config({
             deps: ['jquery'],
             exports: '$'
         },
-        'bootstrap-editable.min': {
-            deps: ['jquery'],
-            exports: '$'
-        },
-         'assets/bootstrap-editable.min': ['jquery'],
          'assets/all': ['jquery'],
          'assets/bootstrap.min' : ['jquery'],
          'assets/jquery.validate.min': ['jquery'],
+         'assets/slidebars.min': ['jquery'],
          'common': ['jquery','assets/all','assets/jquery-ui.min','assets/bootstrap.min','assets/jquery.validate.min','assets/jquery.easing.min','assets/jquery.scrollTo.min','assets/bootstrap-datetimepicker','assets/jquery.geocomplete.min','assets/moment.min','assets/fullcalendar.min','assets/jsonsql','functions','config'],
          'app/settings': ['jquery','common'],
-         'app/settings': ['common'],
-         'assets/slidebars.min': ['jquery']
        
 	}
 });
 require([
         'jquery',
-        'app/settings',
-        'assets/bootstrap-editable.min',       
+        'app/settings',       
     ],
     function($) {
     console.log("Loaded Main-Settings.js"); 

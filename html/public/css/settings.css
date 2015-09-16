@@ -1,0 +1,106 @@
+#profile-settings-container{
+ background: #F5F5F5;
+  
+}
+
+#settings-options{
+  height: 800px;
+  background-color: #F5F5F5;
+  padding: 0;
+}
+
+#settings-options ul{
+  list-style: none;
+  width: 100%;
+  padding-left: 0;
+}
+#settings-options ul > li{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 16px;
+  padding-left: 5%;
+  border-bottom: solid 1px #ddd;
+  cursor: pointer;
+}
+
+#settings-options ul > li:hover, #settings-options ul > li.active:hover{
+  background-color: #3898F9;
+  color: white;
+}
+#settings-options ul > li.active{
+  background-color: white;
+}
+body > .container {
+   padding: 60px 15px 0;
+}
+ .container .text-muted {   
+   margin: 20px 0;       
+ }     
+
+ .img-circle{
+  margin: 0 auto;
+}
+.account-wall{
+  margin-bottom: 50px;
+}
+.account-wall .checkbox{
+  margin-top: 0;
+}
+.account-wall .select-all, .account-wall .unselect-all{
+  cursor: pointer;
+  font-size: 12px;
+}
+.account-wall input{
+  border-bottom: solid 1px #ccc;
+  margin-bottom: 30px;
+}
+.account-wall input:focus{
+  border: none;
+  border-bottom: solid 1px #337ab7;
+  border-radius: 0;
+}
+.account-wall div{
+  margin-bottom: 0px; 
+  padding-top: 15px;
+}
+.account-wall h2,.account-wall label{
+  margin: 0;
+  display: block;
+}
+.account-wall label{
+  font-weight: 400;
+  opacity: 0.7;
+}
+.account-wall i{
+  margin-right: 5px;
+}
+.check-list h4{
+  margin-bottom: 0;
+}
+
+.inline-edit{
+  position: relative;
+}
+.inline-edit h4, .inline-edit i{
+  display: inline-block;
+}
+.inline-edit h4{
+  cursor: pointer;
+}
+     
+.inline-edit input, .inline-edit input:focus{
+  border: none;
+  border-bottom: solid 1px #ccc;
+  box-shadow: none;
+  margin: 10px 0;
+}
+.inline-edit > .glyphicon-pencil{
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 48px;
+}
+.inline-edit > .glyphicon-remove, .inline-edit > .glyphicon-ok{
+  margin: 0 5px;
+  cursor: pointer;
+}

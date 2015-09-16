@@ -53,7 +53,7 @@
                 
                 
             <div class="clear" style="height:20px"></div>
-			<div id="msg"><div id="response"></div><div class="b-close"></div></div>	
+            <div id="msg"><div id="response"></div><div class="b-close"></div></div>    
             </div>
             <div class="col-md-12 text-center">
                 <p>Para editar algun dato, haga click sobre este, y edite</p>

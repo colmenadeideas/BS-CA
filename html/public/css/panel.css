@@ -123,10 +123,7 @@ ul.menu-content, .nav-side-menu li {
 	background: #3898F9;
 	color: white;
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 #desktop { padding-top: 40px;}
 
 .tip { padding: 20px 15px 15px 15px;  border-radius: 10px;  border: solid 1px #1AD8C1;  color: #1AD8C1;  min-width: 300px;  font-size: 17px;  margin: 50px auto;}
@@ -181,9 +178,9 @@ a.wrap-action { text-decoration: none}
 .dates-practices h1, .practice-item h1 { font-weight: 400; text-transform: capitalize;}
 .date-spacer { height:35px}
   
-.patient-pic {  padding-left: 0; transition: all ease 0.3s }
-.patient-pic:hover { padding-top: 10px;}
-.extra-patients-circle {  border-radius: 50%;  width: 125px;  height: 125px;  border: solid 5px #1AD8C1;  color: #1AD8C1;  background: #FFF;  
+.patient-pic {  padding-left: 0; transition: all ease 0.3s; margin-bottom: 15px; }
+.patient-pic:hover { padding-top: 10px; margin-bottom: 5px;}
+.extra-patients-circle { cursor:pointer; border-radius: 50%;  width: 125px;  height: 125px;  border: solid 5px #1AD8C1;  color: #1AD8C1;  background: #FFF;  
 text-align: center;  padding: 24px;  font-size: 45px;  }
 
 
@@ -550,11 +547,8 @@ h3{
 .inn{
 	left: 16.6667%;
 }
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 .ui-datepicker,
 .ui-datepicker table,
 .ui-datepicker tr,
@@ -566,55 +560,30 @@ h3{
 	border-spacing: 0;
 	margin: auto;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 /* Calendar Wrapper */
 .ui-datepicker {
 	display: none;
 	width: 70%;
 	padding: 35px;
 	cursor: default;
-<<<<<<< HEAD
-
-	text-transform: uppercase;
-	font-family: Tahoma;
-	font-size: 12px;
-
-	background: transparent;	
-}
-
-=======
 	text-transform: uppercase;
 	font-family: Tahoma;
 	font-size: 12px;
 	background: transparent;	
 }
->>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 /* Calendar Header */
 .ui-datepicker-header {
 	position: relative;
 	padding-bottom: 10px;
 	border-bottom: 1px solid #d6d6d6;
 }
-<<<<<<< HEAD
-
 .ui-datepicker-title { text-align: center; }
-
-=======
-.ui-datepicker-title { text-align: center; }
->>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 /* Month */
 .ui-datepicker-month {
 	position: relative;
 	padding-right: 15px;
 	color: #565656;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 .ui-datepicker-month:before {
 	display: block;
 	position: absolute;
@@ -623,19 +592,6 @@ h3{
 	width: 5px;
 	height: 5px;
 	content: '';
-<<<<<<< HEAD
-
-	background: #a5cd4e;
-	background: -moz-linear-gradient(top, #a5cd4e 0%, #6b8f1a 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a5cd4e), color-stop(100%,#6b8f1a));
-	background: -webkit-linear-gradient(top, #a5cd4e 0%,#6b8f1a 100%);
-	background: -o-linear-gradient(top, #a5cd4e 0%,#6b8f1a 100%);
-	background: -ms-linear-gradient(top, #a5cd4e 0%,#6b8f1a 100%);
-	background: linear-gradient(top, #a5cd4e 0%,#6b8f1a 100%);
-
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-=======
 	background: #a5cd4e;
 	background: -moz-linear-gradient(top, #a5cd4e 0%, #6b8f1a 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a5cd4e), color-stop(100%,#6b8f1a));
@@ -645,7 +601,6 @@ h3{
     background: linear-gradient(top, #a5cd4e 0%,#6b8f1a 100%);
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
->>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 	border-radius: 5px;
 }
 /* start date picker ( YYYY / MM / DD) */
@@ -654,10 +609,6 @@ h3{
 	padding-left: 8px;
 	color: #a8a8a8;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 /* Prev Next Month */
 .ui-datepicker-prev,
 .ui-datepicker-next {
@@ -666,53 +617,26 @@ h3{
 	padding: 5px;
 	cursor: pointer;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 .ui-datepicker-prev {
 	left: 0;
 	padding-left: 0;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 .ui-datepicker-next {
 	right: 0;
 	padding-right: 0;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 .ui-datepicker-prev span,
 .ui-datepicker-next span{
 	display: block;
 	width: 5px;
 	height: 10px;
 	text-indent: -9999px;
-<<<<<<< HEAD
-
-	background-image: url(../img/arrows.png);
-}
-
-.ui-datepicker-prev span { background-position: 0px 0px; }
-
-.ui-datepicker-next span { background-position: -5px 0px; }
-
-.ui-datepicker-prev-hover span { background-position: 0px -10px; }
-
-.ui-datepicker-next-hover span { background-position: -5px -10px; }
-
-=======
 	background-image: url(../img/arrows.png);
 }
 .ui-datepicker-prev span { background-position: 0px 0px; }
 .ui-datepicker-next span { background-position: -5px 0px; }
 .ui-datepicker-prev-hover span { background-position: 0px -10px; }
 .ui-datepicker-next-hover span { background-position: -5px -10px; }
->>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 /* Calendar "Days" */
 .ui-datepicker-calendar th {
 	padding-top: 15px;
@@ -722,45 +646,20 @@ h3{
 	font-weight: normal;
 	color: #888;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 .ui-datepicker-calendar td {
 	padding: 0 7px;
 	
 	text-align: center;
 	line-height: 26px;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 .ui-datepicker-calendar .ui-state-default {
 	display: block;
 	width: 26px;
 	outline: none;
-<<<<<<< HEAD
-
-=======
->>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 	text-decoration: none;
 	color: #585858;
 	
 	border: 1px solid transparent;
-<<<<<<< HEAD
-}
-
-/* Day Active State*/
-.ui-datepicker-calendar .ui-state-active {
-	color: #3898F9;
-	border-bottom-color: #3898F9;
-}
-
-/* Other Months Days*/
-.ui-datepicker-unselectable span{ color: #afafaf !important;}
-}
-=======
 }		
     		
 
@@ -769,7 +668,6 @@ h3{
 .ui-datepicker-calendar .ui-state-active {	color: #3898F9; border-bottom-color: #3898F9; }
 /* Other Months Days*/
 .ui-datepicker-unselectable span{ color: #afafaf !important;}
->>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8
 
 .ui-datepicker-unselectable{
 	color: #777;
@@ -860,8 +758,6 @@ h3{
     text-align: center;
     display: none;
 }
-<<<<<<< HEAD
-=======
 
 
 
@@ -920,4 +816,3 @@ input.form-control.input-lg.time-lapse{ max-width: 130px;}
 h3.division , h4.division {     text-transform: uppercase; border-bottom: solid 1px rgba(0,0,0,0.15);    color: #C3C8CA;    padding: 5px 0 10px;  margin: 40px 0 30px; }
 .sidetext { display: inline; }
 .previewtext {    text-transform: uppercase;    text-align: right;    margin-top: 5px; }
->>>>>>> 847ea2f3b0eea6c9b4a09363e7f5f477a67542c8

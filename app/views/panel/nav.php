@@ -57,4 +57,3 @@
 		<li>Agregar Informacion</li>
 	</ul>
 	<div class="col-lg-12 col-xs-12" id="desktop">
-	<script>autocomplete()</script>

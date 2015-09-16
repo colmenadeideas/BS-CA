@@ -7,7 +7,6 @@
     <meta name="description" content="">
     <meta name="author" content="Besign Colmena de ideas - besign.com.ve">
     <link rel="shortcut icon" href="<?php echo IMG; ?>favico.png">
-    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
     
     <title><?php echo $this->title; ?></title>
 	
@@ -17,6 +16,9 @@
 	<link href="<?php echo CSS; ?>font-awesome.min.css" rel="stylesheet">
 	<link href="<?php echo CSS; ?>all.css" rel="stylesheet">
 	<link href="<?php echo CSS; ?>styles.css" rel="stylesheet">
+    <link href="<?php echo CSS; ?>settings.css" rel="stylesheet">
+
+  <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
 	
 	<?php echo GOOGLE_FONTS; ?>
 	<?php echo GOOGLE_ANALYTICS; ?>
@@ -30,7 +32,6 @@
     <![endif]-->	
      <script src="<?php echo JS; ?>config.js"></script>
     <script data-main="<?php echo JS;?>main-settings" src="<?php echo JS; ?>assets/require.js"></script>
-    
     
 
 </head>
