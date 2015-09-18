@@ -1,4 +1,4 @@
-        </div>
+  </div>
         <div class="col-md-3" id="settings-options">
             <ul>
                 <li id="profile">Perfil</li>

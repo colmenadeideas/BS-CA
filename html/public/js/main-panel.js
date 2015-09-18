@@ -54,11 +54,8 @@ require([
         'async!https://maps.googleapis.com/maps/api/js?v=3&libraries=places&sensor=false',
         'app/start-panel'
     ],
-
-    function($) {    	
-    	$(document).ready(function () {
-   			console.log("Loaded :)"); 
-   	 	});
-  }
+    function($, app, gmaps_ , panel ) { 
+        console.log("Loaded all"); 
+        
+    }
 );
-

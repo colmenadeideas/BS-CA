@@ -90,7 +90,6 @@ define(['globals', 'appassets/enhance', 'app/search', 'app/login'], function(glo
 		setInterval(pinanimation,3750);
 	}
 
-
 	function pinanimation() {
 		$('.bg-flow:nth-child(3)>img').css("opacity", "0");
 		if(i > 8){
@@ -121,6 +120,5 @@ define(['globals', 'appassets/enhance', 'app/search', 'app/login'], function(glo
       list: list,
       animateBackground: animateBackground
 	}
-
 
 });

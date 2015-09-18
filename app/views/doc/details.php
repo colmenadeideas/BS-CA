@@ -178,32 +178,6 @@ letter-spacing: 1px;
 .hcontainer h4{
 	margin-bottom: 30px; 
 }
-.current-day{
-	border: 1px solid #3898F9;
-    padding: 10px;
-    width: 200px;
-    margin: auto;
-    color: #555;
-    border-radius: 15px;
-    font-weight: 300;
-}
-.step3, #step2{width: 100%}
-.finish{
-	width: 80%;
-	margin: auto;
-}
-.finish h4{
-	border: 1px solid #3898F9;
-	background: #3898F9;
-    padding: 10px;
-    width: 200px;
-    margin: 0 20px;
-    color: #fff;
-    border-radius: 15px;
-    font-weight: 300;
-    display: inline-block;
-    text-align: center;
-}
 
 
 
@@ -259,6 +233,9 @@ letter-spacing: 1px;
 				</div>
 				
 				<div class="clearfix"></div>
+				
+				
+					
 										
 				<div class="col-lg-12 menubar-action">
 					<ul class="nav nav-tabs" role="tablist" class="col-lg-12">
@@ -267,58 +244,50 @@ letter-spacing: 1px;
 						<li><a href="#messages" role="tab" data-toggle="tab">Mensajes</a></li>
 					</ul>
 				</div>
+				
+				
 								
 			</div>
+
+
 
 			<div id="inner" class="col-lg-12">	
 				
 				
 				<!-- Tab panes -->
 				<div class="tab-content">
-				<div class="progressbar-container col-lg-12 col-sm-12" >
-					<!-- progressbar -->
-					<ul class="progressbar">
-						<li class="s-active">Razon de consulta</li>
-						<li>Lugar de consulta</li>
-						<li>Fecha de consulta</li>
-					</ul>
-				</div>
+
 				<fieldset class="activestep step3 hidden">
-					<h4 class="text-center">¿Cuando deseas tu cita?</h4>
+					<h2 class="text-center">¿Cuando deseas tu cita?</h2>
 					
-					<div id="wrapper" class="looper" style="padding-top: 30px;">
+					<div id="wrapper" class="looper" style="padding-top: 150px;">
 						<div id="calendar-loop">
 							<div class="column-steps calendar-item">
 								<h5>Viernes</h5>
 								<h4>06</h4>
 								<h5>Feb 15</h5>
-							</div>
-							<div class="column-steps calendar-item">
-								<h5>Lunes</h5>
-								<h4>09</h4>
-								<h5>Feb 15</h5>
+										</div>
+										<div class="column-steps calendar-item">
+											<h5>Viernes</h5>
+											<h4>06</h4>
+											<h5>Feb 15</h5>
 
-							</div>
-							<div class="column-steps calendar-item">
-								<h5>Martes</h5>
-								<h4>10</h4>
-								<h5>Feb 15</h5>
-
-							</div>
-							<div class="column-steps calendar-item">
-								<h5>Miercoles</h5>
-								<h4>11</h4>
-								<h5>Feb 15</h5>
-
-							</div>							
+										</div>
+										<div class="column-steps calendar-item">
+											Cita antes de operación
+							
+										</div>
+										<div class="column-steps calendar-item">
+											Entrega de mensajes							
+										</div>
+							
 									</div>
 									<div class="hcontainer hidden">
-										<h3 class="current-day"></h3>
-										<h4>Horarios disponibles:</h4>
+										<h4>Horarios disponibles</h4>
 										{{practice}}
 											{{schedule}}
 												 <div class="text-center date-resume2">
-												 		<div class=" ">{{ini_schedule}}-{{end_schedule}}</div>
+												 		<div class=" hours-day">{{ini_schedule}}-{{end_schedule}}</div>
 												    </div>
 									       	  	{{/schedule}}
 										{{/practice}}										
@@ -329,6 +298,8 @@ letter-spacing: 1px;
 									<a id="handler-back-cal" class="goback" href="#"> <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
 									<a id="handler-fowr-cal" class="gofoward" href="#"> <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
 								</div>
+								<input type="button" name="previous" class="previous action-button" value="Previous" />
+	    						<input type="button" name="next" class="next action-button" value="Next" />
 								<div class="clearfix"></div>
 							</fieldset>
 
@@ -341,7 +312,7 @@ letter-spacing: 1px;
 				  	</form>
 				  		<fieldset class="text-center place-book hidden"  id="step2" >
 
-								<h4>¿DONDE QUIERES PEDIR TU CITA?</h4>
+								<h2>¿DONDE QUIERES PEDIR TU CITA?</h2>
 								   
 								<div id="wrapper" class="looper">
 									<div id="practices-loop">
@@ -360,13 +331,13 @@ letter-spacing: 1px;
 										       	  	
 													    <div class="text-right date-resume">
 													    	<div class="left weekday">{{day}}&nbsp;</div>
-													    	<div class="left ">{{ini_schedule}}-{{end_schedule}}</div>
+													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
 													    	&nbsp;
 													    </div>
 													    
 													    <div class="text-right date-resume2">
 													    	<div class="left weekday">{{day}}&nbsp;</div>
-													    	<div class="left ">{{ini_schedule}}-{{end_schedule}}</div>
+													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
 													    	&nbsp;
 													    </div>
 										       	  	{{/schedule}}
@@ -388,13 +359,13 @@ letter-spacing: 1px;
 										       	  	
 													    <div class="text-right date-resume">
 													    	<div class="left weekday">{{day}}&nbsp;</div>
-													    	<div class="left ">{{ini_schedule}}-{{end_schedule}}</div>
+													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
 													    	&nbsp;
 													    </div>
 													    
 													    <div class="text-right date-resume2">
 													    	<div class="left weekday">{{day}}&nbsp;</div>
-													    	<div class="left ">{{ini_schedule}}-{{end_schedule}}</div>
+													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
 													    	&nbsp;
 													    </div>
 										       	  	{{/schedule}}
@@ -411,12 +382,9 @@ letter-spacing: 1px;
 									<a id="handler-back-practice" class="goback" href="#"> <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
 									<a id="handler-fowr-practice" class="gofoward" href="#"> <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>									
 								</div>
+							<input type="button" name="previous" class="previous action-button" value="Previous" />
+    						<input type="button" name="next" class="next action-button" value="Next" />
 							</fieldset>
-							<div class="finish f-hidden">
-								<h4 id="reason"></h4>
-								<h4 id="clinic"></h4>
-								<h4 id="date"></h4>
-							</div>
 		
 				 	<div class="tab-pane fade" id="profile">
 				  		Perfil
