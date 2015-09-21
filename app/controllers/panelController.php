@@ -165,8 +165,9 @@ class panelController extends Controller {
 	
 	}
 
-	public function practice($action, $secondparameter, $tempkey) {		
+	public function practice($action, $secondparameter , $tempkey) {	
 
+			
 		switch ($action) {
 			case 'add':
 				//has
@@ -197,7 +198,8 @@ class panelController extends Controller {
 			
 			default:
 				//list
-				$this->view->practices = $this->api-> practices("array" , "doctor", $this->view->userdata[0]['id']);
+				
+				$this->view->practices = $this->api-> practices("array" , "doctor", $this->view->userdata['id']);
 
 				if ($this->view->practices['empty'] != 1) {
 
