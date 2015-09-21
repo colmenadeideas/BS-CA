@@ -184,7 +184,7 @@ a.wrap-action { text-decoration: none}
 text-align: center;  padding: 24px;  font-size: 45px;  }
 
 
-.practice-item { border-bottom:solid 1px #BDC3C6; padding: 10px 0 30px 20px;  margin-bottom: 40px; }
+.practice-item { background-color: #efefef; padding: 0;  margin: 10px; }
 .light-form thead { color: #4E92F6;}
 
 
@@ -910,9 +910,12 @@ h3.division , h4.division {     text-transform: uppercase; border-bottom: solid 
     border-radius: 50%;
     color: #888;
     padding: 10px;
-    padding-top: 11px;
+    padding-top: 9px;
+    padding-bottom: 5px;
     cursor: pointer;
+    width: 50px;
 }
+
 #notifications-icon{
 	position: absolute;
     top: 36.666666666%;
@@ -924,4 +927,54 @@ h3.division , h4.division {     text-transform: uppercase; border-bottom: solid 
     padding: 10px;
     padding-top: 11px;
     cursor: pointer;
+    width: 50px;
+    height: 50px;
+}
+
+.practice-item:nth-child(odd){
+	margin-left: 8%;
+}
+.practice-item .fa{
+	display:none;
+
+}
+.practice-item .placeholder{
+	font-size: 10px;
+	color: #777;
+	margin-top: 0;
+}
+
+.practice-item h3{
+	font-size: 1.5em;
+	margin-bottom: 0;
+}
+
+.practice-item .address{
+	background-color: #3EB4E4;
+	color: white;
+	min-height: 100px;
+	padding: 0;
+}
+.practice-item .address h4{
+	margin-top: 40px;
+	color: white;
+}
+.practice-item .details{
+	border-bottom: solid 1px #dedede;
+
+}
+.practice-item .details:last-child{
+	border-bottom: none;
+}
+
+.address .mask{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(78, 146, 246, 0.5);
+}
+.address{
+	position: relative;
 }

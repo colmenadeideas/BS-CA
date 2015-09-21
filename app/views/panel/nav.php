@@ -1,8 +1,8 @@
 <i class="sb-button glyphicon glyphicon glyphicon-resize-small"></i>
 <div id="panel-drawer" class="sb-slidebar sb-left col-lg-3 col-md-3 col-sm-3 col-xs-3">
 	<div class="drawer_profile col-lg-12 col-xs-12 text-center">
-		<i class="glyphicon glyphicon-cog" id="settings-icon"></i>
-		<i class="glyphicon glyphicon-bell" id="notifications-icon"></i>
+		<a href="<?php echo URL ?>account/edit/profile" id="settings-icon"><i class="glyphicon glyphicon-cog" ></i></a>
+		<a href="" id="notifications-icon"><i class="glyphicon glyphicon-bell" ></i></a>
 		<div class="col-lg-9 col-lg-offset-1 text-center">
 			<img src="<?php echo IMG; ?>default-male.png" class="img-responsive img-circle">			
 		</div>	
