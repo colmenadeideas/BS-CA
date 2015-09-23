@@ -297,9 +297,7 @@ letter-spacing: 1px;
 											
 									<a id="handler-back-cal" class="goback" href="#"> <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
 									<a id="handler-fowr-cal" class="gofoward" href="#"> <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
-								</div>
-								<input type="button" name="previous" class="previous action-button" value="Previous" />
-	    						<input type="button" name="next" class="next action-button" value="Next" />
+								</div>	    						
 								<div class="clearfix"></div>
 							</fieldset>
 
@@ -382,8 +380,6 @@ letter-spacing: 1px;
 									<a id="handler-back-practice" class="goback" href="#"> <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
 									<a id="handler-fowr-practice" class="gofoward" href="#"> <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>									
 								</div>
-							<input type="button" name="previous" class="previous action-button" value="Previous" />
-    						<input type="button" name="next" class="next action-button" value="Next" />
 							</fieldset>
 		
 				 	<div class="tab-pane fade" id="profile">

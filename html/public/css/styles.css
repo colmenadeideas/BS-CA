@@ -6,16 +6,16 @@ html {
 }
 body {
   /* Margin bottom by footer height */
-margin-bottom: 60px;
-background:#3898F9; /* Old browsers */
-background: -moz-linear-gradient(top,  #3898F9 0%, #50d8c4 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3898F9), color-stop(100%,#50d8c4)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  #3898F9 0%,#50d8c4 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  #3898F9 0%,#50d8c4 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  #3898F9 0%,#50d8c4 100%); /* IE10+ */
-background: linear-gradient(to bottom,  #3898F9 0%,#50d8c4 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3898F9', endColorstr='#50d8c4',GradientType=0 ); /* IE6-9 */
-color:#565A5C;
+  margin-bottom: 60px;
+  background:#3898F9; /* Old browsers */
+  background: -moz-linear-gradient(top,  #3898F9 0%, #50d8c4 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3898F9), color-stop(100%,#50d8c4)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #3898F9 0%,#50d8c4 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #3898F9 0%,#50d8c4 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #3898F9 0%,#50d8c4 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #3898F9 0%,#50d8c4 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3898F9', endColorstr='#50d8c4',GradientType=0 ); /* IE6-9 */
+  color:#565A5C;
 }
 /* Preloader */
 #preloader {
@@ -85,16 +85,16 @@ code {
 /* BESIGN */
 body { font-family: 'Lato', sans-serif; }
 .site-head-repv { 
-background: #0099ff; /* Old browsers */
-background: -moz-linear-gradient(top,  #0099ff 0%, #50d8c4 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0099ff), color-stop(100%,#50d8c4)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  #0099ff 0%,#50d8c4 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  #0099ff 0%,#50d8c4 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  #0099ff 0%,#50d8c4 100%); /* IE10+ */
-background: linear-gradient(to bottom,  #0099ff 0%,#50d8c4 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0099ff', endColorstr='#50d8c4',GradientType=0 ); /* IE6-9 */
-min-height: 500px;
-padding:30px 15px;
+  background: #0099ff; /* Old browsers */
+  background: -moz-linear-gradient(top,  #0099ff 0%, #50d8c4 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0099ff), color-stop(100%,#50d8c4)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #0099ff 0%,#50d8c4 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #0099ff 0%,#50d8c4 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #0099ff 0%,#50d8c4 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #0099ff 0%,#50d8c4 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0099ff', endColorstr='#50d8c4',GradientType=0 ); /* IE6-9 */
+  min-height: 500px;
+  padding:30px 15px;
 }
 
 .site-home { min-height:550px; padding-top:20px; background:url(../img/bg-city.png) repeat-x bottom center; background-size: 100% auto; }
@@ -566,7 +566,7 @@ margin: 20px 0 ; font-weight:100; border-radius: 4px;}
 		
 		.carousel-control.right, .carousel-control.left {  background: none !important; color: #565A5C; text-shadow: none !important; font-size: xx-large;width: 50px; padding: 100px 0 0 0;}
 		.practice-item2 {border: 2px solid #E2E2E2;background: #FFF;border-radius: 15px;margin: 0 10px; }
-		.practice-item { background: #009EFC;color: #FFF;font-weight: 800 !important;border-radius: 15px;margin: 0 10px;padding: 20px 10px; text-align: center}
+		.practice-item { background: #009EFC;color: #FFF;font-weight: 800 !important;border-radius: 15px;margin: 0 10px;padding: 20px 10px; text-align: center; margin-top:112px;}
 		.practice-item img { padding: 20px 30px 10px;}
     .khidden{width:0;visibility:hidden;}
 

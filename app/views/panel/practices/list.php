@@ -1,5 +1,5 @@
 <?php  foreach ($this->practices['practice'] as $practice) { ?>
-<div class="col-lg-5 col-xs-5 practice-item">
+<div class="col-lg-5 col-xs-10 practice-item">
 	<div class="address text-center container-fluid">
 		<?php  if (empty($practice['address'])) { ?>
 			<h4>Agregar Ubicacion</h4>

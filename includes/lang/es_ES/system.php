@@ -16,19 +16,10 @@ define ('CONTACT_PHONENUMBER','');  //TODO define
 	define ('SYSTEM_PASSWORD_CHANGE','Cambio de Password realizado');
 	
 	
-	//EMAIL Head & Footer
-	define('SYSTEM_SIMPLE_EMAIL_HEAD', '<table width="100%" height="100%" cellpadding="0" bgcolor="'.SYSTEM_EMAIL_BGCOLOR.'" style="font-size:medium;font-family:Arial,Helvetica,sans-serif;padding:0px">
-		<tbody><tr align="center"><td>
-			<table width="575px" height="40px" cellpadding="0" cellspacing="0" bgcolor="'.SYSTEM_EMAIL_HEADCOLOR.'" style="font-family:Arial,Helvetica,sans-serif;padding:10px 15px 0px 15px;margin:40px 0px 0px;border-top-left-radius:6px;border-top-right-radius:6px">
-				<tbody><tr><td><span style="font-family:Raleway,Arial,Helvetica,sans-serif;color:#FFFFFF"><img src="'.URL_EMAIL.'img/logos/puntolaser100x50-color.png" alt="'.SITE_NAME.'"></font></td>
-					</tr></tbody></table>
-			<table width="575px" height="40px" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="font-family:Arial,Helvetica,sans-serif;padding:0px 20px">
-				<tbody><tr><td width="575px"  style="padding:20px 0px;margin-top:20px"><span style="letter-spacing:-0.5px;line-height:23px;font-family:Raleway,
-				Arial,Helvetica,sans-serif;font-weight:normal;font-size:15px;color:#2c2d25">');
+	//EMAIL Head & Footer minified
+	define('SYSTEM_SIMPLE_EMAIL_HEAD', '<table width="100%" height="100%" cellpadding="0" background="email-city.png" background-repeat="no-repeat" style="font-size:medium;font-family:Arial,Helvetica,sans-serif;padding:0px;background-repeat: repeat-x;background-color:#4E92F6;background-position: bottom;"><tbody background="http://192.168.0.107:8888/email/email-clouds.png"style=" background-repeat:repeat-x;background-position:top;background-size: 100% 50%;"><img src="http://192.168.0.107:8888/email/email-logo.png" alt="" style="margin: auto;display: table;background-color:transparent;position:absolute;left:0;top:60px;right:0;"><tr align="center"><td><table width="575px" height="40px" cellpadding="0" cellspacing="0" bgcolor="'.SYSTEM_EMAIL_HEADCOLOR.'" style="font-family:Arial,Helvetica,sans-serif;margin:40px 0px 0px;border-top-left-radius:6px;border-top-right-radius:6px;background-color: white;padding: 20px;padding-top: 35px;font-size: 22px;font-weight: bold;padding-bottom:15px;"><tbody><tr><td><span style="font-family:Raleway,Arial,Helvetica,sans-serif;color:#31DBC1">Hola, jose</span></td></tr></tbody></table><table width="575px" height="40px" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="font-family:Arial,Helvetica,sans-serif;padding:0px 20px"><tbody><tr><td width="575px" style=""><span style="letter-spacing:-0.5px;line-height:23px;font-family:Raleway,Arial,Helvetica,sans-serif;font-weight:normal;font-size:18px;color:#2c2d25">');
 				
-	define('SYSTEM_SIMPLE_EMAIL_FOOTER', '</td></tr><tr><td style="padding-top:0px;border-bottom-left-radius: 6px;border-bottom-right-radius: 6px;">
-							</td></tr></tbody></table><table width="575px" height="20px" bgcolor="#FFF" style="padding-top:20px;margin-bottom:40px;border-bottom-left-radius: 
-							6px;border-bottom-right-radius: 6px;"><tbody></tr></tbody></table></td></tr></tbody></table>');
+	define('SYSTEM_SIMPLE_EMAIL_FOOTER', '</span></td></tr><tr><td style="padding-top:26px;border-bottom-left-radius: 6px;border-bottom-right-radius: 6px;"><span>Saludos, <br><tt>Equipo de Okidoc. </span></td></tr></tbody></table><table width="575px" height="20px" bgcolor="#FFF" style="padding-top:20px;margin-bottom:40px;border-bottom-left-radius:6px;border-bottom-right-radius: 6px;"><tbody></tr></tbody></table></td></tr></tbody></table>');
 		
 	
 	
