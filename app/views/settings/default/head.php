@@ -16,9 +16,8 @@
 	<link href="<?php echo CSS; ?>font-awesome.min.css" rel="stylesheet">
 	<link href="<?php echo CSS; ?>all.css" rel="stylesheet">
 	<link href="<?php echo CSS; ?>styles.css" rel="stylesheet">
-    <link href="<?php echo CSS; ?>settings.css" rel="stylesheet">
-
-  <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+  <link href="<?php echo CSS; ?>settings.css" rel="stylesheet">
+  <link href="<?php echo CSS; ?>bootstrap-editable.css" rel="stylesheet">
 	
 	<?php echo GOOGLE_FONTS; ?>
 	<?php echo GOOGLE_ANALYTICS; ?>

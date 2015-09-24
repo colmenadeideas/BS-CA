@@ -59,11 +59,12 @@
 					echo json_encode($response);
 					
 				} else {
-					if (!empty($accesstoken)) { //Regular login, else is coming from SocialNetwork login
+					
+					if (empty($accesstoken)) { //Regular login, else is coming from SocialNetwork login
 						$validPass = $this->user->validatePassword($username, $password);
 					} else {
 						$validPass = 'access__token'; //not empty
-					}
+					}					
 					
 					if(empty($validPass)){
 						//echo "error";

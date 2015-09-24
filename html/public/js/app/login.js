@@ -14,7 +14,7 @@ define(['globals', 'appassets/stepform', 'appassets/enhance'], function(globals,
 					data : $(form).serialize(),
 					timeout : 12000,
 					success : function(response) {
-							
+							//console.log(response); return;
 							var response = JSON.parse(response);
 							var responseDiv = "#response-login";
 							$('.send').removeAttr("disabled");
