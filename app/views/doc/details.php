@@ -185,7 +185,7 @@ letter-spacing: 1px;
 		
 <div id="doc-details">
 	
-	<script id="item-details" type="text/template">
+	<!--<script id="item-details" type="text/template">-->
 		{{doctors}}
 		
 				
@@ -266,122 +266,119 @@ letter-spacing: 1px;
 								<h5>Viernes</h5>
 								<h4>06</h4>
 								<h5>Feb 15</h5>
-										</div>
-										<div class="column-steps calendar-item">
-											<h5>Viernes</h5>
-											<h4>06</h4>
-											<h5>Feb 15</h5>
+							</div>
+							<div class="column-steps calendar-item">
+								<h5>Viernes</h5>
+								<h4>06</h4>
+								<h5>Feb 15</h5>
 
-										</div>
-										<div class="column-steps calendar-item">
-											Cita antes de operación
-							
-										</div>
-										<div class="column-steps calendar-item">
-											Entrega de mensajes							
-										</div>
-							
-									</div>
-									<div class="hcontainer hidden">
-										<h4>Horarios disponibles</h4>
-										{{practice}}
-											{{schedule}}
-												 <div class="text-center date-resume2">
-												 		<div class=" hours-day">{{ini_schedule}}-{{end_schedule}}</div>
-												    </div>
-									       	  	{{/schedule}}
-										{{/practice}}										
-												
-									</div>
-
+							</div>
+							<div class="column-steps calendar-item">
+								Cita antes de operación
+							</div>
+							<div class="column-steps calendar-item">
+								Entrega de mensajes							
+							</div>
+						</div>
+						<div class="hcontainer hidden">
+							<h4>Horarios disponibles</h4>
+							{{practice}}
+								{{schedule}}
+								 	<div class="text-center date-resume2">
+								 		<div class=" hours-day">{{ini_schedule}}-{{end_schedule}}</div>
+								    </div>
+						       	  	{{/schedule}}
+							{{/practice}}												
+						</div>
 											
-									<a id="handler-back-cal" class="goback" href="#"> <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
-									<a id="handler-fowr-cal" class="gofoward" href="#"> <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
-								</div>	    						
-								<div class="clearfix"></div>
-							</fieldset>
+						<a id="handler-back-cal" class="goback" href="#"> <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
+						<a id="handler-fowr-cal" class="gofoward" href="#"> <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
+					</div>	    						
+					<div class="clearfix"></div>
+				</fieldset>
 
 
-					<form class="text-center title-profile reason-book">
-						<h4>INDIQUE LA RAZON DE LA CONSULTA</h4>
-						<button class="btn btn-register "> Primera vez </button>
-						<button class="btn btn-register "> Pre-operatorio</button>
-						<button class="btn btn-register "> Post-operatorio </button>
-				  	</form>
-				  		<fieldset class="text-center place-book hidden"  id="step2" >
+				<form class="text-center title-profile reason-book">
+					<h4>INDIQUE LA RAZON DE LA CONSULTA</h4>
+					<button class="btn btn-register "> Primera vez </button>
+					<button class="btn btn-register "> Pre-operatorio</button>
+					<button class="btn btn-register "> Post-operatorio </button>
+			  	</form>
+			  	
+		  		<fieldset class="text-center place-book hidden"  id="step2" >
 
-								<h2>¿DONDE QUIERES PEDIR TU CITA?</h2>
-								   
-								<div id="wrapper" class="looper">
-									<div id="practices-loop">
-										{{practice}}
-								      
-									       <div class="column-steps practice-item">
-									       	  <h4>{{name}} {{#}} {{##}}</h4>
-									       	  
-									       	  <img src="<?php echo IMG;?>icon-okidoc-hospital.png" class="img-responsive" alt="{{name}}" />
-									       	  <div class="dates-available">
-									       	  
-									       	  	<div>
-									       	  	
-									       	  	{{if schedule}}
-										       	  	{{schedule}}
-										       	  	
-													    <div class="text-right date-resume">
-													    	<div class="left weekday">{{day}}&nbsp;</div>
-													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
-													    	&nbsp;
-													    </div>
-													    
-													    <div class="text-right date-resume2">
-													    	<div class="left weekday">{{day}}&nbsp;</div>
-													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
-													    	&nbsp;
-													    </div>
-										       	  	{{/schedule}}
-									       	  	{{/if}}
-									       	  	</div>
-									       	  </div>
-									       	  
-											</div>
-											<div class="column-steps practice-item">
-									       	  <h4>{{name}} {{#}} {{##}}</h4>
-									       	  
-									       	  <img src="<?php echo IMG;?>icon-okidoc-hospital.png" class="img-responsive" alt="{{name}}" />
-									       	  <div class="dates-available">
-									       	  
-									       	  	<div>
-									       	  	
-									       	  	{{if schedule}}
-										       	  	{{schedule}}
-										       	  	
-													    <div class="text-right date-resume">
-													    	<div class="left weekday">{{day}}&nbsp;</div>
-													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
-													    	&nbsp;
-													    </div>
-													    
-													    <div class="text-right date-resume2">
-													    	<div class="left weekday">{{day}}&nbsp;</div>
-													    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
-													    	&nbsp;
-													    </div>
-										       	  	{{/schedule}}
-									       	  	{{/if}}
-									       	  	</div>
-									       	  </div>
-									       	  
-											</div>
-																						
-											
-								      	
-								      {{/practice}}
+						<h2>¿DONDE QUIERES PEDIR TU CITA?</h2>
+						   
+						<div id="wrapper" class="looper">
+							<div id="practices-loop">
+								{{practice}}
+						      
+							       <div class="column-steps practice-item">
+							       	  <h4>{{name}} {{#}} {{##}}</h4>
+							       	  
+							       	  <img src="<?php echo IMG;?>icon-okidoc-hospital.png" class="img-responsive" alt="{{name}}" />
+							       	  <div class="dates-available">
+							       	  
+							       	  	<div>
+							       	  	
+							       	  	{{if schedule}}
+								       	  	{{schedule}}
+								       	  	
+											    <div class="text-right date-resume">
+											    	<div class="left weekday">{{day}}&nbsp;</div>
+											    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
+											    	&nbsp;
+											    </div>
+											    
+											    <div class="text-right date-resume2">
+											    	<div class="left weekday">{{day}}&nbsp;</div>
+											    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
+											    	&nbsp;
+											    </div>
+								       	  	{{/schedule}}
+							       	  	{{/if}}
+							       	  	</div>
+							       	  </div>
+							       	  
 									</div>
-									<a id="handler-back-practice" class="goback" href="#"> <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
-									<a id="handler-fowr-practice" class="gofoward" href="#"> <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>									
-								</div>
-							</fieldset>
-		
+									<div class="column-steps practice-item">
+							       	  <h4>{{name}} {{#}} {{##}}</h4>
+							       	  
+							       	  <img src="<?php echo IMG;?>icon-okidoc-hospital.png" class="img-responsive" alt="{{name}}" />
+							       	  <div class="dates-available">
+							       	  
+							       	  	<div>
+							       	  	
+							       	  	{{if schedule}}
+								       	  	{{schedule}}
+								       	  	
+											    <div class="text-right date-resume">
+											    	<div class="left weekday">{{day}}&nbsp;</div>
+											    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
+											    	&nbsp;
+											    </div>
+											    
+											    <div class="text-right date-resume2">
+											    	<div class="left weekday">{{day}}&nbsp;</div>
+											    	<div class="left hours-day">{{ini_schedule}}-{{end_schedule}}</div>
+											    	&nbsp;
+											    </div>
+								       	  	{{/schedule}}
+							       	  	{{/if}}
+							       	  	</div>
+							       	  </div>
+							       	  
+									</div>
+																				
+									
+						      	
+						      {{/practice}}
+							</div>
+							<a id="handler-back-practice" class="goback" href="#"> <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
+							<a id="handler-fowr-practice" class="gofoward" href="#"> <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>									
+						</div>
+					</fieldset>
+	
 				 	<div class="tab-pane fade" id="profile">
 				  		Perfil
 				 	</div>
