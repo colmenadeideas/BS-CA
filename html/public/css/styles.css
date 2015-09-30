@@ -572,3 +572,116 @@ margin: 20px 0 ; font-weight:100; border-radius: 4px;}
 
     #results {  position: absolute;    z-index: 10;    margin-top: 500px;    bottom: 0;    background-color: red; opacity: 0;    width: 100%; transition: all ease 1s;}
 
+    .resume-fieldset>div>form>div{
+      padding-top: 10px;
+    }
+    .resume-fieldset label{
+      font-weight: normal;
+      font-size: 1.2em;
+    }
+    #amount{
+      color: white;
+      background-color: #3ED87A;
+      padding: 10px;
+      font-size: 1.4em;
+      margin-bottom: 30px;
+    }
+    .image-circle img{
+      width: 100%;
+      height: auto;
+    }
+    .image-circle{
+      border-radius: 50%;
+      padding-left: 0 !important;
+    }
+    #resume-date{
+      padding: 20px;
+    }
+    #resume-date h2{
+      display:inline-block;
+      color: #999;
+    }
+    .text-circle{
+      padding: 10px;
+      border-radius: 50%;
+      color: white;
+      background-color:#3ED87A;
+      color: white !important;
+    }
+    
+
+    #resume-details{
+      border-radius: 10px;
+    }
+
+    #resume-buttons, #resume-buttons > div{
+      padding: 0;
+      padding-top: 10px;
+    }
+   
+    .btn-white{
+      padding: 20px;
+      border-radius: 30px;
+      border: solid 1px #888;
+      background: white;
+      width: 80%;
+      text-align: center;
+    }
+    .resume-baner{
+      padding: 30px;
+      background-color: #fff;
+      color: #555;
+      margin-bottom: 30px;
+    }
+    .resume{
+      position: relative;
+    }
+    #resume-details > div{
+  padding: 0;
+  }
+  .amount-item{
+    height: 140px;
+    overflow: hidden;
+  }
+  .amount-icon{
+    padding-top: 40px;
+    height: 100%;
+    font-size: 3em;
+  }
+  .amount-icon i{
+    display: table;
+    margin: auto;
+  }
+  .amount-cost{
+    padding-top: 40px;
+    height: 30%;
+    color: #777;
+  }
+  .amount-title{
+    padding-top: 15px;
+  }
+  .amount-item{
+    margin-top: 25px;
+    border-top:dashed 1px #cdcdcd;
+  }
+  .amount-item:last-child{
+    border-bottom:dashed 1px #cdcdcd;
+  }
+  .amount-resume{
+    margin-top: 26px;
+    padding: 4%;
+    background-color: #f3f3f3;
+  }
+  #resume-close{
+    position: absolute;
+    right: 0;
+    top: 0;
+    color:white;
+    background-color: red;
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    padding: 10px;
+    z-index: 425;
+    cursor: pointer;
+  }

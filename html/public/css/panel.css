@@ -978,3 +978,19 @@ h3.division , h4.division {     text-transform: uppercase; border-bottom: solid 
 .address{
 	position: relative;
 }
+#resume-details > div{
+	padding: 0;
+}
+.amount-item{
+	height: 180px;
+}
+.amount-icon{
+	padding-top: 40px;
+	height: 100%;
+	font-size: 2em;
+}
+.amount-cost{
+	padding-top: 40px;
+	height: 100%;
+	color: #777;
+}

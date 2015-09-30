@@ -3,7 +3,7 @@ require.config({
   requireDefine:true,
   waitSeconds:0,
   paths: {
-          jquery:[  'assets/jquery.min', '//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min'], // 2.0.0
+          jquery:[  'assets/jquery.min', 'http://localhost:8888/BS-OK/html/js/assets/jquery.min'], // 2.0.0
           'async': 'assets/requirejs-plugins/async',          
         },  
 
@@ -33,7 +33,7 @@ require.config({
          //'assets/dataTables.bootstrap': ['jquery', 'assets/bootstrap.min', 'assets/jquery.dataTables.min'], 
          //'paging': ['jquery','assets/jquery.dataTables.min'],
          'assets/fullcalendar.min': ['jquery'/*,'assets/fullcalendar-es'*/],
-         'assets/jquery.geocomplete.min' : ['jquery'],
+         //'assets/jquery.geocomplete.min' : ['jquery'],
          'assets/bootstrap-datetimepicker':['jquery','assets/bootstrap.min'],
          'assets/jquery.carouFredSel-6.1.0-packed':['jquery','assets/jquery.easing.min'],
 
@@ -50,11 +50,11 @@ require.config({
 require([
   'jquery',
         'globals', //would replace 'common', 'globals' eventually
-        'async!https://maps.googleapis.com/maps/api/js?v=3&libraries=places&sensor=false',
+       // 'async!https://maps.googleapis.com/maps/api/js?v=3&libraries=places&sensor=false',
         'app/start-site',
         'app/site'
         ],
-        function($, app, gmaps_ , start, site ) { 
+        function($, app,/* gmaps_ , */start, site ) { 
           console.log("Loaded all");
           site.run();
         }

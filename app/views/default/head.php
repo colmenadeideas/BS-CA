@@ -26,8 +26,8 @@
     <!-- Register with Facebook-->
     <!-- Revisar si puede ubicarse en otra direccion que no sea "head"-->    
     <div id="fb-root"></div>
-    <script src="https://apis.google.com/js/client:platform.js?onload=render" async defer></script>
-    <script>
+    <!--script src="https://apis.google.com/js/client:platform.js?onload=render" async defer></script-->
+    <!--script>
 	window.fbAsyncInit = function() {
 	    FB.init({
 	      appId      : '1545942492291033', //Este es el ID de la api creada por Gabriel: 1575295952727755
@@ -112,7 +112,7 @@
 	    	}
 	  	}
 	}
-</script>
+</script-->
 	
 <div id="status">
 </div>

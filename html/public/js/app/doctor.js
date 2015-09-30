@@ -135,6 +135,11 @@ $(".submit").click(function(){
 // I hate handlebars
 function bookingSteps() {
 	data = 'La data tiene que ser configurada';
+	var reason;
+	var clinic;
+	var dayName;
+	var day;
+	var month;
 	console.log(data);
 	$('#calendar').datepicker({
 		inline: true,
@@ -145,6 +150,7 @@ function bookingSteps() {
 	});
 
 	$('.reason-book').children('button').click(function (){
+		reason = $(this).text();
 		$('.reason-book').animate({
 			margin: "500px 0 0",
 			opacity: 0,
@@ -172,6 +178,7 @@ function bookingSteps() {
 	});
 
 	$('.practice-item').click(function (){
+		clinic = $(this).children('h4').text();
 		$('#step2').animate({
 			height: "400px",
 			opacity:00,
@@ -199,7 +206,23 @@ function bookingSteps() {
 		})
 	});
 	$('.calendar-item').click(function(){
+		day = $(this).children('h4').text();
+		dayName = $(this).children('h5:first-child').text();
+		month = $(this).children('h5:last-child').text();
 		$('.hcontainer').removeClass('hidden').css('opacity', '0').animate({opacity: 1, margin: 'auto'});
+		
+		$('#resume-clinic').children('h4').text(clinic);
+		$('#resume-date').children('h2:nth-child(2)').text(month.substring(0,3));
+		$('#resume-date').children('h2:first-child').text(day);
+		
+		console.log(day + dayName + month)
+		$('.resume').slideDown();
+	})
+
+	$('#resume-close, #resume-edit').click(function (e) {
+		e.preventDefault;
+		//alert('¿Esta seguro que quiere volver al proceso de apartado de cita?');
+		$('.resume').slideUp();
 	})
 }
 
