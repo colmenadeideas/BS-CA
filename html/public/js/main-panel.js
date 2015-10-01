@@ -1,5 +1,5 @@
 require.config({
-  baseUrl: "http://localhost:8888/BS-OK/html/public/js",
+  baseUrl: "http://localhost/BS-OK/html/public/js",
   requireDefine:true,
   waitSeconds:0,
   paths: {
@@ -52,10 +52,12 @@ require([
         'jquery',
         'globals', //would replace 'common' eventually
         'async!https://maps.googleapis.com/maps/api/js?v=3&libraries=places&sensor=false',
-        'app/start-panel'
+        'app/start-panel',
+        'app/panel'
     ],
-    function($, app, gmaps_ , panel ) { 
+    function($, app, gmaps_ , start, panel ) { 
         console.log("Loaded all"); 
+        panel.run();
         
     }
 );

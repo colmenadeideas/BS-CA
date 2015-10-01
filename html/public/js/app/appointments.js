@@ -4,7 +4,6 @@ define(['globals'], function(globals) {
 		
 		
 	}
-	function addMenu(){$('#addMenu').slideToggle(400);}	
 	
 	function list () {
 
@@ -94,43 +93,9 @@ define(['globals'], function(globals) {
 
 	}
 
-	function autocomplete(){
-		$("#panel-search").autocomplete({
-		        source: URL+"api/autocomplete/json/patient/",
-		        minLength: 2,
-		        delay: 100,
-		        messages: {
-			        noResults: '',
-			        results: function() {}
-			    },
-		      /*  select: function(event, ui) {		        	
-		            var url = ui.item.name;
-		            if(url != '#') {
-		                location.href = '/blog/' + url;
-		            }
-		        },*/
-		        html: true,
-				/* appendTo: '#specialty-input',*/
-		      	// optional (if other layers overlap autocomplete list)
-		        open: function(event, ui) {
-		            $(".ui-autocomplete").css("z-index", 1000);
-		           //$(".ui-autocomplete").css("background", 'red');
-		        },
-		        /*close : function (event, ui) {
-		        val = $("input[name=search_term]").val();
-		         $("input[name=search_term]").autocomplete( "search", val ); //keep autocomplete open by 
-		         //searching the same input again
-		         $("input[name=search_term]").focus();
-		        return false;  
-		    }*/
-		});
-	}
-
 	return {
       add: add,
-      list: list,
-      addMenu: addMenu,
-      autocomplete: autocomplete
+      list: list
 	}
 
 

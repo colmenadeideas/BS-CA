@@ -32,7 +32,7 @@ define(function() {
 					case "doctor":
 						require(['app/doctor'], function($) {
 							
-							switch(active_page[1]) {
+							switch(active_page[2]) {
 								case 'details':
 									doctorLoadDetails();
 									break;
@@ -41,6 +41,20 @@ define(function() {
 									break;
 							}
 							
+						});						
+						break;
+
+					case "patient":
+						require(['app/patient'], function(patient) {
+							
+							switch(active_page[2]) {
+								case 'add':
+									patient.add();
+									break;
+								default:
+									//doctorLoadDetails();
+									break;
+							}															
 						});						
 						break;
 

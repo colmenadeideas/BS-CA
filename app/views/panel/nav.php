@@ -50,19 +50,26 @@
 		<div class="navicon-line"></div>
 	</div>
 	<input class="col-lg-11 col-xs-11" placeholder="Buscar" id="panel-search"/>
-	<div id="search-add" class="col-lg-1 col-xs-1" onClick="addMenu();">
-		<div></div>
-	</div>
-	<ul id="addMenu">
-		<li>Agregar Paciente</li>
+	
+	<div id="search-add" class="dropdown ol-lg-1 col-xs-1">
+	  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+	  <!-- <span class="caret"></span> --></button>
+	  <ul class="dropdown-menu addmenu">
+	    <li>Agregar Paciente</li>
 		<li>Agregar Practica</li>
 		<li>Agregar Periodo de ausencia</li>
 		<li>Agregar Informacion</li>
-	</ul>
-	<div class="col-lg-12 col-xs-12 cm-container">
+	  </ul>
+	</div>
+
+
+	
+
+
+
+	<!-- <div class="col-lg-12 col-xs-12 cm-container">
 		<nav class="navbar navbar-default">
 		<div class="container-fluid">
-			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 					<span class="sr-only">Toggle navigation</span>
@@ -71,7 +78,6 @@
 					<span class="icon-bar"></span>
 				</button>
 			</div>
-			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li class="active" id="cm-home"><a href="#"><i class="glyphicon glyphicon-home"></i> <span class="sr-only">     (current)</span></a></li>
@@ -80,7 +86,7 @@
 					
 				</ul>
 				
-				<!-- Navbar Right side -->
+
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> + <span class="caret"></span></a>
@@ -93,17 +99,11 @@
 					</ul>
 					</li>
 				</ul>
-				<!-- context menu search layout -->
-				<form class="navbar-form navbar-right" role="search">
-				<div class="form-group">
-				<input type="text" class="form-control" placeholder="Search">
-				</div>
-				<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-				</form>
-			</div><!-- /.navbar-collapse -->
-		</div><!-- /.container-fluid -->
+
+				
+			</div>
+		</div>
 		</nav>
-	</div>
+	</div> -->
 	
-	<div class="col-lg-12 col-xs-12" id="desktop">
 	<div class="col-lg-12 col-xs-12" id="desktop">

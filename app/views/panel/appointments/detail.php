@@ -1,4 +1,4 @@
-<input type="hidden"  id="id_doctor" name="id_doctor" value="<?php echo $this->username['id']; ?>">
+<input type="hidden"  id="id_doctor" name="id_doctor" value="<?php echo $this->userdata['id']; ?>">
 <div class="dates-timeline col-lg-12 col-xs-12">
 	<?php 
 		//print_r($this->appointments);

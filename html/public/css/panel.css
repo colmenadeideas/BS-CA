@@ -2,6 +2,7 @@ html {
   position: relative;
   min-height: 100%;
 }
+body {
   	background:#ECF0F1; /* Old browsers */
 	background: -moz-linear-gradient(top,  #ECF0F1 0%, #FFFFFF 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ECF0F1), color-stop(100%,#FFFFFF)); /* Chrome,Safari4+ */
@@ -9,11 +10,11 @@ html {
 	background: -o-linear-gradient(top,  #ECF0F1 0%,#FFFFFF 100%); /* Opera 11.10+ */
 	background: -ms-linear-gradient(top,  #ECF0F1 0%,#FFFFFF 100%); /* IE10+ */
 
-body {
+
 	background: linear-gradient(to bottom,  #ECF0F1 0%,#FFFFFF 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ECF0F1', endColorstr='#FFFFFF',GradientType=0 ); /* IE6-9 */
 	color:#616467/*556473*/;
-	font-family: 'Lato';
+	font-family: 'Lato', sans-serif !important; 
 }
 
 
@@ -64,7 +65,7 @@ ul.menu-content, .nav-side-menu li {
 
 .panel_menu {
 	  overflow: auto;
-	  font-family: verdana;
+	  
 	  font-size: 12px;
 	  font-weight: 200;
 	  background-color: #2e353d;
@@ -85,15 +86,16 @@ ul.menu-content, .nav-side-menu li {
 
 #panel-desktop { padding:0;}
 #panel-search { height: 80px; padding: 15px; background:#FFF; color: #333; border-bottom:#CCC solid 1px; font-size:200%;  font-weight:100; text-align: right;}
-#search-add{background-color: #fff;height: 80px;color: #ccc;font-size: 3.5em;text-align: center;border-bottom:#CCC solid 1px;}
-#search-add div{width: 50px;height: 50px;border: solid 1px #ccc;border-radius: 50%;margin: 12px auto; transition: all 0.5s; cursor:pointer;}
-#search-add div:hover{box-shadow: 0 0 5px #555;}
-#search-add div:before{
+#search-add{ background-color: #FFF; height: 80px;color: #CCC;font-size: 3.5em;text-align: center;border-bottom:#CCC solid 1px;}
+#search-add button{ background-color: #FFF !important;width: 50px;height: 50px;border: solid 1px #ccc;border-radius: 50%;margin: 12px auto; transition: all 0.5s; cursor:pointer;}
+#search-add button:hover{/*box-shadow: 0 0 5px #555;*/background-color: #4E92F6 !important; color: #FFF; border:none;}
+#search-add button:before{
     content: "+";
     position: absolute;
-    top: 0px;
+    top: 9px;
     left: 0;
-    right: 0;
+    right: 0;    
+    font-size: 45px;
 }
 #addMenu{
 	display: none;
@@ -108,7 +110,11 @@ ul.menu-content, .nav-side-menu li {
     padding: 0;
     background: #fff;
 }
-#addMenu li{
+.dropdown-menu.addmenu { right:0 !important; left: initial;
+	margin:0; border-radius: 0; box-shadow: 2px 2px 2px rgba(0,0,0,0.3); color:#525C6D	;
+
+}
+.addmenu li{
 	margin: 0;
     min-height: 50px;
     cursor: pointer;
@@ -119,7 +125,7 @@ ul.menu-content, .nav-side-menu li {
     vertical-align: middle;
     text-align: left;
 }
-#addMenu li:hover{
+.addmenu li:hover{
 	background: #3898F9;
 	color: white;
 }
