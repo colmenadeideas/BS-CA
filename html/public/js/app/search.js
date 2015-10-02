@@ -1,3 +1,5 @@
+// git event
+
 define(['globals', 'appassets/stepform', 'appassets/enhance'], function(globals, stepform, enhance) {
 	
 	function run() {

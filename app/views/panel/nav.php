@@ -1,3 +1,5 @@
+<!-- git event -->
+
 <i class="sb-button glyphicon glyphicon glyphicon-resize-small"></i>
 <div id="panel-drawer" class="sb-slidebar sb-left col-lg-3 col-md-3 col-sm-3 col-xs-3">
 	<div class="drawer_profile col-lg-12 col-xs-12 text-center">

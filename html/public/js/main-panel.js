@@ -1,3 +1,5 @@
+// git event
+
 require.config({
   baseUrl: "http://localhost:8888/BS-OK/html/public/js",
   requireDefine:true,

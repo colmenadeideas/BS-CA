@@ -1,3 +1,5 @@
+// git event
+
 define(['globals'], function(globals) {
 	
 	function add() {
