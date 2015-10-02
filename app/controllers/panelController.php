@@ -201,6 +201,11 @@ class panelController extends Controller {
 
 				break;
 
+			case 'add':
+				$template = "add";
+				$this->view->render("panel/appointments/".$template);
+			break;
+
 			case 'date':
 				$this->view->appointments = $this->api-> appointments("array" , "doctor", $this->view->userdata['id'], $from_date, $from_date);
 				$this->view->render("panel/appointments/detail", "doctor");

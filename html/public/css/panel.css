@@ -16,7 +16,16 @@ body {
 	color:#616467/*556473*/;
 	font-family: 'Lato', sans-serif !important; 
 }
-
+#loading{
+	position: fixed;
+	background: rgba(255,255,255,0.5) url('../img/loading.svg') no-repeat center / 80px;
+	display: none;
+	top: 80px;
+	bottom: 0;
+	left: 25%;
+	right: 0;
+	z-index: 5555;
+}
 
 
 .row-centered {
@@ -130,7 +139,7 @@ ul.menu-content, .nav-side-menu li {
 	color: white;
 }
 
-#desktop { padding-top: 40px;}
+#desktop { padding-top: 40px; position: relative;}
 
 .tip { padding: 20px 15px 15px 15px;  border-radius: 10px;  border: solid 1px #1AD8C1;  color: #1AD8C1;  min-width: 300px;  font-size: 17px;  margin: 50px auto;}
 .tip, .tip a { color: #1AD8C1 }
@@ -999,4 +1008,18 @@ h3.division , h4.division {     text-transform: uppercase; border-bottom: solid 
 	padding-top: 40px;
 	height: 100%;
 	color: #777;
+}
+
+/********** Appointments add view ***********/
+
+#appointment-add input{
+	margin-bottom: 50px;
+
+}
+#appointment-add div{
+	padding-left: 0 !important;
+}
+#appointment-add-calendar > div{
+	padding: 0;
+	padding-top: 18px;
 }

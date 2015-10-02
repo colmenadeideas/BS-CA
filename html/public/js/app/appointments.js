@@ -70,32 +70,51 @@ define(['globals'], function(globals) {
 			});
 	 	});
 
+	 	// function of calendars while there's not a official calendar 
+	 	$('.calendar').datepicker({
+			inline: true,
+			firstDay: 1,
+			showOtherMonths: true,
+			dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'vie', 'Sab'],
+			gotoCurrent: false,
+			minDate: +1
+		});
 
+		// apponitments, appointment add ajax request 
+		$('#appointment-add').on('submit', function(e){
+			e.preventDefault;
+			var data = $(this).serialize();
+			$.ajax({
+				type: 'POST',
+				url: 'url',
+				data: data,
+				beforeSend: function(){
+					$('#loading').fadeIn(300).delay(500);
+				},
+				success: function(r){
+					$('#loading').fadeOut(300);
+				}
+			});
+			return false;
+		});
 
-	 	/*$(window).scroll( function(){
-	    
-	        // Check the location of each list element
-	        $(list).each( function(i, e){
-	            
-	            var bottom_of_object = $(this).offset().top + $(this).outerHeight();
-	            var bottom_of_window = $(window).scrollTop() + $(window).height() / 2.5;
-	            
-	            // If the object is on top in the window, fade it 
-	            if( bottom_of_window > bottom_of_object ) {
+	}
+	function calendar() {
 
-	                $(this).children('.hidden-patient').fadeOut();
-	                $(this).find('.extra-patients-circle').fadeIn();	                    
-	            }	            
-	            
-	        }); 
-	        
-	    });*/
-
+		$('#calendar').datepicker({
+			inline: true,
+			firstDay: 1,
+			showOtherMonths: true,
+			dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'vie', 'Sab'],
+			gotoCurrent: false,
+			minDate: +1
+		});
 	}
 
 	return {
       add: add,
-      list: list
+      list: list,
+      calendar: calendar
 	}
 
 

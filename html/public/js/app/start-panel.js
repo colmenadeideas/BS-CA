@@ -67,7 +67,9 @@ define(function() {
 					case "appointments":
 						require(['app/appointments'], function(appointments) {
 							appointments.list();
-							appointments.autocomplete();														
+							appointments.autocomplete();	
+							appointments.calendar();	
+
 						});						
 						break;
 

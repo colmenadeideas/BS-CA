@@ -107,3 +107,4 @@
 	</div> -->
 	
 	<div class="col-lg-12 col-xs-12" id="desktop">
+		<div id="loading"></div>

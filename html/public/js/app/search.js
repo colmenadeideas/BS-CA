@@ -161,6 +161,7 @@ define(['globals', 'appassets/stepform', 'appassets/enhance'], function(globals,
 		}
 		
 	}
+	
 
 
 	return {

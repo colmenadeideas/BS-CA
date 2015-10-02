@@ -77,7 +77,7 @@ define(['globals', 'appassets/enhance' ], function(globals, enhance) {
 	} 
 	//TOP SEARCH AUTOCOMPLETE
 	function autocomplete(){
-		$("#panel-search").autocomplete({
+		$("#panel-search, #appointment-add-name").autocomplete({
 		        source: URL+"api/autocomplete/json/patient/",
 		        minLength: 2,
 		        delay: 100,
