@@ -35,6 +35,12 @@
 				<div class="col-sm-6 col-lg-6">
 					<input name="birth" type="text" class="form-control input-lg input-home-doctor" placeholder="Fecha de Nacimiento" required="required">
 				</div>	
+				<div class="col-sm-6 col-lg-6">					
+					<input name="cellphone" type="text" class="form-control input-lg input-home-doctor" placeholder="Teléfono Móvil" required="required">
+				</div>
+				<div class="col-sm-6 col-lg-6">
+					<input name="phone" type="text" class="form-control input-lg input-home-doctor" placeholder="Teléfono Habitación" required="required">
+				</div>
 				<div class="col-sm-12 col-lg-12">
 					<input name="email" type="text" class="form-control input-lg input-home-doctor" placeholder="Email" required="required">
 				</div>		

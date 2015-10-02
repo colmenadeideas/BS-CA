@@ -43,61 +43,7 @@ define(['globals', 'appassets/stepform', 'appassets/enhance'], function(globals,
 	
 	}
 	
-function addpatient(){
-	// get the form id for codicionals functions
-	var formId = $('form').attr('id');
 
-	$('form').validate({
-		rules : {
-		},
-		submitHandler: function(form){
-			var data = $('form').serialize();
-			console.log(data);
-			$.ajax({
-				type: 'POST',
-				url: 'panel/addPatient',
-				data: data+'&param='+formId,
-				success: function(r){
-					// Step 1 animation
-					if (formId == 'patient') {
-						$('form').animate({
-							left: '100px',
-							opacity: 0							
-						},400, function (){
-							$('.inn')
-							.css({
-								'opacity':'0',
-								'left':'0'
-							})
-							.load('panel/patient/step2')
-							.animate({
-								left: '16.6667%',
-								opacity: 1
-							},400);
-						});
-					}else if (formId == 'patient2') {
-						$('form').animate({
-							left: '100px',
-							opacity: 0							
-						},400, function (){
-							$('.inn')
-							.css({
-								'opacity':'0',
-								'left':'0'
-							})
-							.load('panel/patient/step3')
-							.animate({
-								left: '16.6667%',
-								opacity: 1
-							},400);
-						});
-
-					};
-				}
-			})
-		}
-	})
-}
 function patient3(){
 	yes = $('.yes');
 	item = $(this).parent('div').parent('div').find('.collapse');

@@ -2,43 +2,8 @@
 
 <i class="sb-button glyphicon glyphicon glyphicon-resize-small"></i>
 <div id="panel-drawer" class="sb-slidebar sb-left col-lg-3 col-md-3 col-sm-3 col-xs-3">
-	<div class="drawer_profile col-lg-12 col-xs-12 text-center">
-		<a href="<?php echo URL ?>account/edit/profile" id="settings-icon"><i class="glyphicon glyphicon-cog" ></i></a>
-		<a href="" id="notifications-icon"><i class="glyphicon glyphicon-bell" ></i></a>
-		<div class="col-lg-9 col-lg-offset-1 text-center">
-			<img src="<?php echo IMG; ?>default-male.png" class="img-responsive img-circle">			
-		</div>	
-		<div class="col-lg-12 col-xs-12"><h2> Hola, <?php echo $this->userdata[0]['name']; ?></h2>	</div>
-	</div>
-
 	
-	<div class="drawer_menu row col-lg-12">
-		<ul id="menu-content" class="menu-content">
-                <li class="col-md">
-                  <a href="#">
-                  	<i class="fa fa-calendar-o fa-lg"></i> &nbsp; Próximas Citas
-                  </a>
-                </li>
-
-                <li data-toggle="collapse" data-target="#products" class="collapsed active">
-                  <a href="#"><i class="fa fa-user fa-lg"></i> &nbsp; Pacientes <span class="arrow"></span></a>
-                </li>
-                <li data-toggle="collapse" data-target="#service" class="">
-                  <a href="#"><i class="fa fa-clock-o fa-lg"></i> &nbsp; Prácticas y Horarios <span class="arrow"></span></a>
-                </li>  
-	                <ul class="sub-menu collapse in" id="service">
-	                 
-	                  <li>New Service 3</li>
-	                </ul>
-                <li>
-                	<a href="#">
-                  		<i class="fa fa-envelope-o fa-lg"></i> &nbsp; Mensajes
-                  	</a>
-                </li>
-            </ul>
-	</div>
-	
-	
+	<?php $this->render('panel/nav-big'); ?>
 	
 </div>
 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 sb-slidebar">
@@ -57,10 +22,9 @@
 	  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
 	  <!-- <span class="caret"></span> --></button>
 	  <ul class="dropdown-menu addmenu">
-	    <li>Agregar Paciente</li>
-		<li>Agregar Practica</li>
-		<li>Agregar Periodo de ausencia</li>
-		<li>Agregar Informacion</li>
+	    <li><a href="#panel/patient/add">Agregar Paciente</a></li>
+		<li><a href="#panel/practice/add">Agregar Práctica</a></li>
+		<li><a href="#panel/practice/intervals">Agregar Ausencia</a></li>
 	  </ul>
 	</div>
 

@@ -1,0 +1,46 @@
+.animated { 
+    -webkit-animation-duration: 1s; 
+    animation-duration: 1s; 
+    -webkit-animation-fill-mode: both; 
+    animation-fill-mode: both; 
+} 
+
+@-webkit-keyframes fadeInUp { 
+    0% { 
+        opacity: 0; 
+        -webkit-transform: translateY(20px); 
+    } 
+    100% { 
+        opacity: 1; 
+        -webkit-transform: translateY(0); 
+    } 
+} 
+
+@keyframes fadeInUp { 
+    0% { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    } 
+    100% { 
+        opacity: 1; 
+        transform: translateY(0); 
+    } 
+} 
+
+.fadeInUp { 
+    -webkit-animation-name: fadeInUp; 
+    animation-name: fadeInUp; 
+}
+
+
+
+.nopadding { padding: 0 !important}
+.inlineradio label { display: inline-block !important; padding-top: 7px !important;  margin-right: 15px !important; }
+
+#right-side-card {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.btn-confirm {    width: 100%;    border-radius: 0 0 35px 0 !important; }
+.btn-confirm {    width: 100%;    border-radius: 0 0 35px 0 !important; }

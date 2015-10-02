@@ -1,16 +1,16 @@
 <div class="drawer_menu row col-lg-12">
    <ul id="menu-small" class="menu-content">
       <li class="col-md">
-         <a href="#">
+         <a href="#panel/appointments/next">
          	<i class="fa fa-calendar-o fa-lg"></i>
          </a>
       </li>
 
-      <li data-toggle="collapse" data-target="#products" class="collapsed active">
-         <a href="#"><i class="fa fa-user fa-lg"></i> </a>
+      <li>
+         <a href="#panel/patient/list"><i class="fa fa-user fa-lg"></i> </a>
       </li>
-      <li data-toggle="collapse" data-target="#service" class="">
-         <a href="#"><i class="fa fa-clock-o fa-lg"></i></a>
+      <li>
+         <a href="#panel/practice/list"><i class="fa fa-clock-o fa-lg"></i></a>
       </li>  
       <li>
        	<a href="#">
@@ -23,7 +23,7 @@
          </a>
       </li>
       <li>
-         <a href="#">
+         <a href="<?php echo URL;?>account/edit/profile/">
            <i class="glyphicon glyphicon-cog" ></i> 
          </a>
       </li>

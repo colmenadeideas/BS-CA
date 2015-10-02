@@ -16,6 +16,7 @@
 	<link href="<?php echo CSS; ?>all.css" rel="stylesheet">
 	<link href="<?php echo CSS; ?>bootstrap-datetimepicker-v4.css" rel="stylesheet">
 	<link href="<?php echo CSS; ?>panel.css" rel="stylesheet">
+	<link href="<?php echo CSS; ?>e0979temp.css" rel="stylesheet">
 	
 	<?php echo GOOGLE_FONTS; ?>
 	<?php echo GOOGLE_ANALYTICS; ?>

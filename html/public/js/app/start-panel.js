@@ -3,16 +3,15 @@
 define(function() {
 	
 	var cache = {
-		'' : $('#desktop #search'), /*title: "<?= $page->attr['title'] ?>", elem: $('.site-head')*/
-		//'search' : $('#desktop #search'),
-		//'search=': $('#desktop #search'),
+		'' : $('.default') /*title: "<?= $page->attr['title'] ?>", elem: $('.site-head')*/
 	};
+
 	$(window).bind('hashchange', function () {
 		var url = $.param.fragment();
 		// Hide any visible ajax content.
 		$('#desktop').children(':visible').hide();		
 		if (cache[url]) {
-			
+			cache[url].show();			
 			//Prevent desktop to usea .load() method
 			/*if (url == 'search'){
 				 $('#desktop #search').show();
@@ -68,10 +67,20 @@ define(function() {
 
 					case "appointments":
 						require(['app/appointments'], function(appointments) {
+<<<<<<< Updated upstream
 							appointments.list();
 							appointments.autocomplete();	
 							appointments.calendar();	
 
+=======
+							switch(active_page[2]) {
+								case 'add':									
+									break;
+								default:
+									appointments.list();
+									break;
+							}																					
+>>>>>>> Stashed changes
 						});						
 						break;
 
