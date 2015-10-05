@@ -70,7 +70,7 @@ define(function() {
 
 							switch(active_page[2]) {
 								case 'add':	
-								appointments.autocomplete();	
+								//appointments.autocomplete();	
 								appointments.calendar();								
 									break;
 								default:

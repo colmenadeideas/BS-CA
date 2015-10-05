@@ -1025,3 +1025,11 @@ h3.division , h4.division {     text-transform: uppercase; border-bottom: solid 
 	padding: 0;
 	padding-top: 18px;
 }
+
+#myModal{
+	position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 25%;
+    right: 0;
+}

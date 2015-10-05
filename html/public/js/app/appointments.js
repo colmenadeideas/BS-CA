@@ -72,9 +72,9 @@ define(['globals'], function(globals) {
 			});
 	 	});
 
-	 	// function of calendars while there's not a official calendar 
+	 	// function of calendars 
 	 	$('.calendar').datepicker({
-			inline: true,
+			inline: true,		
 			firstDay: 1,
 			showOtherMonths: true,
 			dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'vie', 'Sab'],
@@ -103,14 +103,22 @@ define(['globals'], function(globals) {
 	}
 	function calendar() {
 
-		$('#calendar').datepicker({
+		$('.calendar').datepicker({
 			inline: true,
 			firstDay: 1,
 			showOtherMonths: true,
 			dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'vie', 'Sab'],
 			gotoCurrent: false,
-			minDate: +1
+			minDate: +0,
+			onSelect: function(){
+
+			}
 		});
+		$('.hour-picker').datetimepicker({
+			format: 'HH:mm',
+			useCurrent: true,
+	    }); 	
+
 	}
 
 	return {

@@ -1,4 +1,4 @@
-function doctorLoadDetails() {
+	function doctorLoadDetails() {
 
 	template = document.getElementById("item-details").firstChild.textContent;
 	var currentHash = window.location.hash;
@@ -31,6 +31,8 @@ function bookingform() {
 		height:500,
 		items: 3,
 		scroll: 1,
+		showOn: "button",
+
 		auto: {
 			play: false,
 		},		
