@@ -27,6 +27,29 @@
     } 
 } 
 
+@-webkit-keyframes fadeOutUp { 
+    0% { 
+        height: auto;   opacity: 1; 
+        -webkit-transform: translateY(0); 
+    } 
+    100% { 
+        height: 0; margin:0; opacity: 0; 
+        -webkit-transform: translateY(-20px); 
+
+    } 
+} 
+@keyframes fadeOutUp { 
+    0% { 
+
+        height: auto; opacity: 1; 
+        transform: translateY(0); 
+    } 
+    100% { 
+        height: 0; opacity: 0; margin:0; 
+        transform: translateY(-20px);
+    } 
+
+} 
 .fadeInUp { 
     -webkit-animation-name: fadeInUp; 
     animation-name: fadeInUp; 
@@ -34,13 +57,14 @@
 
 
 
+
 .nopadding { padding: 0 !important}
 .inlineradio label { display: inline-block !important; padding-top: 7px !important;  margin-right: 15px !important; }
 
 #right-side-card {
-    max-height: 400px;
+    max-height: 500px;
     overflow-y: auto;
     overflow-x: hidden;
 }
-.btn-confirm {    width: 100%;    border-radius: 0 0 35px 0 !important; }
-.btn-confirm {    width: 100%;    border-radius: 0 0 35px 0 !important; }
+.btn-success.btn-confirm { background:#82CE34; border-color: #82CE34;   width: 100%;    border-radius: 0 0 35px 0 !important; font-size: 125%;}
+.btn-cancel  {    width: 100%;    border-radius: 0 !important; padding: 15px; text-transform: uppercase; }

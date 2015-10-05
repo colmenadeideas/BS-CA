@@ -67,20 +67,17 @@ define(function() {
 
 					case "appointments":
 						require(['app/appointments'], function(appointments) {
-<<<<<<< Updated upstream
-							appointments.list();
-							appointments.autocomplete();	
-							appointments.calendar();	
 
-=======
 							switch(active_page[2]) {
-								case 'add':									
+								case 'add':	
+								appointments.autocomplete();	
+								appointments.calendar();								
 									break;
 								default:
 									appointments.list();
 									break;
 							}																					
->>>>>>> Stashed changes
+
 						});						
 						break;
 

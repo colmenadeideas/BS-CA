@@ -868,7 +868,7 @@ input.form-control.input-lg.time-lapse{ max-width: 130px;}
 .practice-format span.btn-action {    padding: 0px 7px 0px !important; color: #FFF;}
 .practice-format  span.button-instruction {font-size: 100% !important; font-weight: 400 !important;}
 
-.practice-sheet { background: #FFF; padding:20px 0 40px;  box-shadow: 4px 4px 3px rgba(0,0,0,0.15); display: table;}
+.practice-sheet { background: #FFF; padding:20px 0 20px;  box-shadow: 4px 4px 3px rgba(0,0,0,0.15); display: table;}
 .practice-sheet input { padding: 0;}
 .practice-sheet .light-form .form-control { font-size: 130%; font-weight: 700; color: #2C3E50; border-color: #BDC3C7 }
 .practice-sheet  .input-lg {   height: 36px;}

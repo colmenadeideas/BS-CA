@@ -5,6 +5,22 @@ define(['globals'], function(globals) {
 		floatinput();
 
 		switch (form) {
+			case "patient":
+				/*
+				yes = $('.yes');
+				item = $(this).parent('div').parent('div').find('.collapse');
+
+				$('.yes').click(function (){
+					if ($(this).is(':checked')) {
+						$(this).parent('div').parent('div').find('.collapse').collapse('show');
+					}
+				});
+				$('.no').click(function (){
+						$(this).parent('div').parent('div').find('.in').collapse('hide');
+				});
+				*/
+				break;
+	
 			case "practice":			
 				
 				$('#clinic-address'	).collapse({ toggle: false });

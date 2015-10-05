@@ -78,7 +78,7 @@ class Api extends ApiQuery {
 		$id = escape_value($id);
 		//Si no hay parametros de fecha, tomar fecha actual + 7 días
 		if($for_date == "") { $for_date = date("Y-m-d");	}
-		if($to_date == "") 	{ $to_date 	= date("Y-m-d", strtotime("+7 days"));	}
+		if($to_date == "") 	{ $to_date 	= date("Y-m-d", strtotime("+60 days"));	}
 
 		if (!empty($second_parameter)) {
 			$second_parameter = escape_value($second_parameter);

@@ -29,19 +29,20 @@ define(['globals', 'appassets/enhance'], function(globals, enhance) {
 						var response = JSON.parse(response);
 						console.log(response.response);	
 						
-						/*switch (response.success) {						
+						switch (response.success) {						
 							case 0: //TODO ERROR	
 								break;							
 							case 1: //if continue	
 							 	//console.log(response.template);
-							 	$(updateArea).load(
+							 	/*$(updateArea).load(
 							 		response.template+"/"+response.tempkey, function () {	
 							 	})
 							 	.hide().html(response.template).fadeIn(500, function(){						 		
-							 	});							 	
+							 	});*/
+							 	$('#response-'+stepform).last().modal('show'); 							 	
 
 								break;
-						}*/
+						}
 					},
 					error : function(obj, errorText, exception) {
 						$('.send').removeAttr("disabled");
@@ -83,7 +84,7 @@ define(['globals', 'appassets/enhance'], function(globals, enhance) {
 						timeout : 12000,
 						success : function(response) {
 							var response = JSON.parse(response);
-							console.log(response.response);	
+							console.log(response);	
 							switch (response.success) {						
 								case 0: //TODO ERROR	
 									break;							
@@ -148,13 +149,7 @@ define(['globals', 'appassets/enhance'], function(globals, enhance) {
 
 								});								
 							}
-					// changue to cost form
-					if (formId == 'quote') {
-						$('#desktop').load('panel/practice/cost', function () { 
-							registerPractice();
-							practiceForm();	
-						});
-					}
+					
 					// finish the form					
 					if (formId == 'cost') {
 						$(form).slideUp(300)

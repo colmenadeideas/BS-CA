@@ -44,25 +44,11 @@ define(['globals', 'appassets/stepform', 'appassets/enhance'], function(globals,
 	}
 	
 
-function patient3(){
-	yes = $('.yes');
-	item = $(this).parent('div').parent('div').find('.collapse');
-
-	$('.yes').click(function (){
-		if ($(this).is(':checked')) {
-			$(this).parent('div').parent('div').find('.collapse').collapse('show');
-		}
-	});
-	$('.no').click(function (){
-			$(this).parent('div').parent('div').find('.in').collapse('hide');
-	});
-}
-
-function progressbar(){
-	// Defining variables
-	var step = $('.step').attr('step');
-	$(".progressbar li:nth-child("+step+")").attr('class','active');
-}
+	function progressbar(){
+		// Defining variables
+		var step = $('.step').attr('step');
+		$(".progressbar li:nth-child("+step+")").attr('class','active');
+	}
 
 	return {
 		add: add

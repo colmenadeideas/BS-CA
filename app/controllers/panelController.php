@@ -52,22 +52,10 @@ class panelController extends Controller {
 	
 	public function patient($action, $secondparameter , $tempkey) {	
 
-		/*switch ($action) {
-			case 'id':
+		switch ($action) {
+			case 'get':
 				$template = "id";
 				break;
-			case 'step2':
-				$template = "step2";
-				break;	
-			case 'step3':
-				$template = "step3";
-				break;					
-			default:
-				$template = "register";
-				break;
-		}
-		*/			
-		switch ($action) {
 			case 'add':
 				//has
 				//-- step 1
@@ -314,69 +302,35 @@ class panelController extends Controller {
 				//PROCESS/PATIENT ------
 				} else { // IS SINGLE RECORD
 
-					if ($array_data['isclinic'] == 1){
-						if($array_data['clinic_id'] == "") { // TODO cambiar a 'empty'?
-							$array_clinic['name'] 			= $array_data['clinic'];
-							$array_clinic['address'] 		= $array_data['address'];
+					$array_patient['username'] 	= $array_data['email'];
+					$array_patient['name']		= $array_data['name'];
+					$array_patient['lastname']	= $array_data['lastname'];
+					$array_patient['email']		= $array_data['email'];
+					$array_patient['id_card']	= $array_data['id_card'];
+					$array_patient['birth']		= $array_data['manage_time_slots'];
+					$array_patient['gender']	= $array_data['gender'];
+					$array_patient['phone']		= $array_data['phone'];
+					$array_patient['data']		= json_encode($array_data);
+					$array_patient['avatar']	= $array_data['avatar'];					
 
-							//Create the clinic
-							$insert_clinic = $this->helper->insert('clinic', $array_clinic);
-							if ($insert_clinic > 0) {
-								$array_data['clinic_id'] = DB::insertId();
-							} else {
-								//error
-							}						
-						}
-						$array_practice['id_clinic'] 		= $array_data['clinic_id'];
-						$array_practice['address_details'] 	= $array_data['address_details'];
-					} 
-					elseif ($array_data['isclinic'] == 0){			
-						$array_practice['address_details'] 	= $array_data['address'];
-					}
+					//Create the patient
+					$array_patient['role'] = 'patient';
+					$array_patient['status'] = 'sleep';//Doctor is creating the patient, there for is 'sleep' for user
+					//Register User				
+					require_once('usersController.php');	
+					$users = new usersController;	
+					$create_user = $users->create($array_patient);	
 					
-					$array_practice['id_doctor'] 			= $array_data['id_doctor'];
-					$array_practice['max_days_ahead']		= $array_data['max_days_ahead'];
-					$array_practice['manage_time_slots']	= $array_data['manage_time_slots'];
-
-					//Create the Practice
-					$insert_practice = $this->helper->insert('doctor_practice', $array_practice);
-					
-					if ($insert_practice > 0) {
+					if ($create_user > 0) {
 						
-						//Create Schedule
-						$array_practice_schedule['id_practice'] 	= DB::insertId();
-
-						for ($i=1; $i < 8; $i++) { 
-							if ($array_data['day_'.$i] != ""){								
-								$array_practice_schedule['day']				= $array_data['day_'.$i];
-								$array_practice_schedule['ini_schedule']	= $array_data['ini_schedule_'.$i];
-								$array_practice_schedule['end_schedule']	= $array_data['end_schedule_'.$i];
-								if ($array_data['manage_time_slots'] == 1) {
-									$array_practice_schedule['quota']			= -1; //Auto calculated
-								} else {
-									$array_practice_schedule['quota']			= $array_data['day_quote_'.$i];
-								}
-
-								$insert_schedule = $this->helper->insert('doctor_practice_schedule', $array_practice_schedule);
-							}
-						}
-						//Create Reasons Matrix
-						$array_intervals_matrix['id_practice'] 			= $array_practice_schedule['id_practice'];
-						foreach ($array_data['reason'] as $key => $value) {
-							$array_intervals_matrix['consultation_reason'] 	= $value;
-							$array_intervals_matrix['initial_interval'] 	= $array_data['time'][$key];
-							$array_intervals_matrix['price'] 				= $array_data['price'][$key];
-
-							$insert_intervals_matrix = $this->helper->insert('doctor_practice_schedule_intervals_matrix', $array_intervals_matrix);
-						}
-
+						
 						//DELETE TEMP DATA
 						$this->helper->delete('temporal_data', $array_data['tempkey'], 'tempkey');
 
 						$response["tag"] = "process";
 						$response["success"] = 1;
 						$response["error"] = 0;	
-						$response["response"] = "saved";
+						$response["response"] = "created";
 						//$response["template"] = $template;
 						//$response["tempkey"] = $array_data['tempkey'];
 
@@ -384,6 +338,7 @@ class panelController extends Controller {
 
 					} else {
 						//error
+						echo "error";
 					}
 					
 				}

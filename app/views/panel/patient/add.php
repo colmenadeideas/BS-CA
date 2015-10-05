@@ -7,7 +7,7 @@
 	<!-- TODO: Activar el progressbar -->
 	<div class="progressbar-container col-lg-12 col-sm-12" >
 		<!-- progressbar -->
-		<ul class="progressbar">
+		<ul class="progressbar animated">
 			<li>Informacion general</li>
 			<li>Datos esenciales</li>
 			<li>Observaciones</li>
@@ -30,7 +30,7 @@
 					<input name="lastname" type="text" class="form-control input-lg input-home-doctor" placeholder="Apellidos" required="required">
 				</div>
 				<div class="col-sm-6 col-lg-6">
-					<input name="cedula" type="text" class="form-control input-lg input-home-doctor" placeholder="Cédula" required="required">
+					<input name="id_card" type="text" class="form-control input-lg input-home-doctor" placeholder="Cédula" required="required">
 				</div>
 				<div class="col-sm-6 col-lg-6">
 					<input name="birth" type="text" class="form-control input-lg input-home-doctor" placeholder="Fecha de Nacimiento" required="required">

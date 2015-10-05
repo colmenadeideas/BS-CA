@@ -24,11 +24,11 @@
 	<div class="field-wrapper form-inline col-sm-4 col-lg-4">
 		<h2>Sexo</h2>
 		<div class="inlineradio">
-			<input name="sex" type="radio" class="sex" id="sex1" required value="M"  />
-			<label for="sex1"><span></span>Hombre</label>
+			<input name="gender" type="radio" class="gender" id="gender1" required value="M"  />
+			<label for="gender1"><span></span>Hombre</label>
 		
-			<input name="sex" type="radio" class="sex" id="sex2" required value="F" />
-			<label for="sex2"><span></span>Mujer</label>
+			<input name="gender" type="radio" class="gender" id="gender2" required value="F" />
+			<label for="gender2"><span></span>Mujer</label>
 		</div>			
 	</div>
 	<div class="field-wrapper col-sm-6 col-lg-6 form-inline">
