@@ -1,4 +1,4 @@
-<style>
+		<style>
 .progressbar { 
     -webkit-animation-name: fadeOutUp; 
     animation-name: fadeOutUp; 
@@ -171,42 +171,36 @@
 	$('#myModal').modal('show');
 </script>
 <style>
-.modal-footer { padding: 0 0 20px; text-align: center; border:none; }
+.modal-footer { padding: 0 0 0px; text-align: center; border:none; }
 .modal img {margin:auto;}
 </style>
 <div class="modal fadeq" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog" role="document" style="margin-top:150px;">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
       <div class="modal-body">
-      		<div class="col-sm-12 col-lg-12">
-        		<div class="col-sm-2 col-lg-2">
+      		<div style="height:170px"></div>
+      		<div class="col-sm-12 col-lg-12" style="position:absolute;top:-115px;">
+        		<div class="col-sm-3 col-lg-3">
         		</div>
-        		<div class="col-sm-8 col-lg-8 text-center">
-					<img src="<?php echo IMG;?>default-male.png" class="img-responsive img-circle">  
+        		<div class="col-sm-6 col-lg-6 text-center">
+					<img src="<?php echo IMG;?>default-male.png" class="img-responsive img-circle" style="border:solid 2px #4E92F6;">  
 				</div>
-				<div class="col-sm-2 col-lg-2">
+				<div class="col-sm-3 col-lg-3">
         		</div>
        		</div>
-				<h4 class="text-center forms">Su practica se ha guardado con exito</h4>
+				<h2 class="text-center">¡PACIENTE AGREGADO!</h2>
+				<h4 class="text-center">Ahora Carlos Hernandez esta en el sistema</h4>
 				<div class="clearfix"></div>
       </div>
       <div class="modal-footer">
-      	<div class="col-sm-6 col-lg-6">
-        	<button type="button" class="btn btn-default" data-dismiss="modal">Volver al inicio</button>
-        </div>
-        <div class="col-sm-6 col-lg-6">
-        	<div class="add-action col-lg-12 col-xs-12 text-right">
-				<a href="#panel/practice/add" class="wrap-action">
-					<span class="button-instruction">Agregar otra Práctica</span> <span class="btn-action btn-add">+</span>
-				</a>
-			</div>
-
-        	<button type="button" class="btn btn-lg btn-add btn-primary">CREAR CITA PARA ESTE PACIENTE</button>
-        </div>
+      	<div class="row">
+	      	<div class="col-sm-6 col-lg-6" style="padding-right:0;">
+	        	<button type="button" class="btn btn-lg col-md-12" style="border-radius:0;">VOLVER</button>
+	        </div>
+	        <div class="col-sm-6 col-lg-6" style="padding-left:0;color:white;">
+	        	<button type="button" class="btn btn-lg btn-add col-md-12" style="border-radius:0;">AGREGAR CITA</button>
+	        </div>
+      	</div>	
       </div>
     </div>
   </div>

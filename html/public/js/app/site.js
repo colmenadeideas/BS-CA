@@ -27,6 +27,83 @@ define(['globals', 'appassets/enhance', 'app/search', 'app/login'], function(glo
 
 				break;
 		}
+            var r = 255;
+            var g = 255;
+            var b = 255;
+            var r1 = 54;
+            var g1 = 152;
+            var b1 = 249;
+            var last_scroll;
+		    /* Every time the window is scrolled ... */
+		    $(window).scroll( function(e){
+		    
+		        /* Check the location of each desired element */     
+	        	var st = $(this).scrollTop();
+	            var top_of_section = $('#site-featured').offset().top;
+	            var bottom_of_window = $(window).scrollTop() + $(window).height() ;
+	            var bottom_of_section = $('#site-featured').offset().top + $('#site-featured').outerHeight();
+
+	            
+	            /* user entered */
+	            if( (top_of_section < bottom_of_window) && (bottom_of_section > bottom_of_window) ) {
+	                $('.featured-circles').css({ 
+	                	"position": "fixed",
+	                	"margin-top": "663px"
+	                });
+	                // Going up or down event
+	                if (st > last_scroll){
+
+	                	r = r - 20;
+	                	g = g - 10;
+	                	b = b - 5;
+	                	r1 = r1 + 20;
+	                	g1 = g1 + 10;
+	                	b1 = b1 + 5;
+	                	if (r < 54) { r = 54 };
+	                	if (g < 152) { g = 152 };
+	                	if (b < 249) { b = 249 };
+	                	if (r1 > 255) { r1 = 255 };
+	                	if (g1 > 255) { g1 = 255 };
+	                	if (b1 > 255) { b1 = 255 };
+
+	                }else{
+
+	                	r1 = r1 - 20;
+	                	g1 = g1 - 10;
+	                	b1 = b1 - 5;
+	                	r = r + 20;
+	                	g = g + 10;
+	                	b = b + 5;
+	                	if (r > 255) { r = 255 };
+	                	if (g > 255) { g = 255 };
+	                	if (b > 255) { b = 255 };
+	                	if (r1 < 54) { r1 = 54 };
+	                	if (g1 < 152) { g1 = 152 };
+	                	if (b1 < 249) { b1 = 249 };
+
+	                }
+                	// Change color of circles
+	                $('.featured-circles').children('div').css({ 
+	            		"background": "rgb("+r+","+g+","+b+")"
+	            	});
+	            	$('.featured-circles').children('div').children().css({ 
+	            		"color": "rgb("+r1+","+g1+","+b1+")"
+	            	});       
+	                console.log(); // Police
+	            }else if( (bottom_of_section < bottom_of_window) || (top_of_section > bottom_of_window) ){
+            		$('.featured-circles').css({ 
+	            		"position": "absolute",
+            		    "margin-top": "530px"
+	            	});
+                 	
+	                $('.featured-circles').children('div').css({ 
+	            		"background": "rgb("+r+","+g+","+b+")"
+	            	});       
+
+	            }
+	  			// Set last scroll
+            	last_scroll = st;
+		    });
 		
 	}
 	function list () {

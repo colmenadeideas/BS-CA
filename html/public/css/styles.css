@@ -100,6 +100,64 @@ body { font-family: 'Lato', sans-serif; }
 .site-home { min-height:550px; padding-top:20px; background:url(../img/bg-city.png) repeat-x bottom center; background-size: 100% auto; }
 .whatisit { background: #FFF; min-height:600px; padding: 100px 0}
 .whatisit img { margin:auto;}
+#site-featured{
+  background: url('../img/okidoc-no-mas-salas-de-espera.jpg') no-repeat center / cover; 
+  position: relative;
+}
+#site-featured h2, #site-promotion h2{
+  color: white;
+  font-size: 3em;
+}
+.featured-circles{
+  position: absolute;
+  top: -85px;
+  right: 4%;
+  display: table;
+}
+.featured-btn{
+  border-radius: 45px;
+  background-color: transparent;
+  color: white;
+  padding: 16px;
+  width: 46%;
+}
+.featured-circle{
+  width: 220px;
+  height: 220px;
+  display: inline-block;
+  background-color: #fff;
+  color: #3898F9;
+  border-radius: 50%;
+  padding: 45px 30px;
+  float: left;
+  margin-right: 80px;
+  overflow: hidden;
+}
+.featured-circle i{
+  font-size: 3em;
+}
+.featured-circle h4{
+  text-transform: uppercase;
+  font-size: 1.5em;
+}
+.featured-circle::before{
+  width: 85px;
+  height: 5px;
+  background-color: white;
+  position: absolute;
+  content: '';
+  top: 50%;
+  margin-left: 128px;
+
+}
+.featured-circle:last-child::before{
+  display: none;
+}
+
+#site-promotion{
+  background: url('../img/okidoc-mobile-app.jpg') #1AD8C1 no-repeat center / cover;
+  min-height: 600px;
+}
 .site-footer { background: }
 
 .site-head { 

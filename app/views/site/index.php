@@ -59,22 +59,39 @@
 		<div class="col-lg-1 col-md-1 col-sm-1 "></div>
 	</div>
 </div>
-<div class="container-fluid whatisit">
-	<div class="container">
-		<div class="col-lg-4 col-md-4 col-sm-4 text-center">
-			<img class="img-responsive" src="<?php echo IMG; ?>default-female.png">
-			<h3>Bondad del servicio</h3>
+<!-- Start featured section -->
+<section class="container-fluid whatisit" id="site-featured">
+	<div class="featured-circles text-center">
+		<div class="featured-circle">
+			<i class="glyphicon glyphicon-search"></i>
+			<h4>Busca <br> al medico</h4>
 		</div>
-		<div class="col-lg-4 col-md-4 col-sm-4 text-center">
-			<img class="img-responsive" src="<?php echo IMG; ?>default-male.png">
-			<h3>Bondad del servicio</h3>
+		<div class="featured-circle">
+			<i class="glyphicon glyphicon-ok"></i>
+			<h4 style="font-weight: 300;margin-bottom: 0;padding-bottom: 0;line-height: 0;margin-top: 17px;">Marca el</h4><h4>dia de la cita</h4>
 		</div>
-		<div class="col-lg-4 col-md-4 col-sm-4 text-center">
-			<img class="img-responsive" src="<?php echo IMG; ?>default-female.png">
-			<h3>Bondad del servicio</h3>
-		</div>	
+		<div class="featured-circle">
+			<i class="glyphicon glyphicon-heart-empty"></i>
+			<h4>Asiste a<br>la consulta</h4>
+		</div>
 	</div>
-</div>
+	<div class="col-md-1"></div>
+	<div class="col-md-5" style="margin-top:113px;font-weight:300;font-weight: 300;">
+		<h2> <span  style="line-height:0;font-weight:300;">LA FORMA MAS <br></span><span>RAPIDA Y FACIL</span></h2>
+		<button class="btn-default btn featured-btn">EMPIEZA AHORA</button>
+	</div>
+</section>	
+<section class="container-fluid" id="site-promotion">
+	<div class="col-md-6 text-right right" style="margin-top:150px;margin-right:150px;">
+		<h2><span style="line-height:0;font-weight:300;">Si eres medico <br></span>
+			<span>administra s tus <br></span>
+			<span style="line-height:0;font-weight:300;">pacientes de la forma mas <br></span>
+			<span>rapida y facil</span></h2>
+
+		<button class="btn-default btn featured-btn" style="border: solid 2px;">EMPIEZA AHORA</button>
+	</div>
+	<div class="col-md-1 right"></div>
+</section>
 
 <div id="templates">
 	<?php $this -> render('mockups/filters'); ?>
