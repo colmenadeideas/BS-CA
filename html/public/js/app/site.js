@@ -34,6 +34,8 @@ define(['globals', 'appassets/enhance', 'app/search', 'app/login'], function(glo
             var g1 = 152;
             var b1 = 249;
             var last_scroll;
+            var p;
+            var x;
 		    /* Every time the window is scrolled ... */
 		    $(window).scroll( function(e){
 		    
@@ -50,15 +52,20 @@ define(['globals', 'appassets/enhance', 'app/search', 'app/login'], function(glo
 	                	"position": "fixed",
 	                	"margin-top": "663px"
 	                });
+                	// scrolled percentage
+                	
+                	var p = ((bottom_of_window - top_of_section)/(bottom_of_section - bottom_of_window))*100;
+
+
 	                // Going up or down event
 	                if (st > last_scroll){
 
-	                	r = r - 20;
-	                	g = g - 10;
-	                	b = b - 5;
-	                	r1 = r1 + 20;
-	                	g1 = g1 + 10;
-	                	b1 = b1 + 5;
+	                	r = r - 100;
+	                	g = g - 100;
+	                	b = b - 100;
+	                	r1 = r1 + 100;
+	                	g1 = g1 + 100;
+	                	b1 = b1 + 100;
 	                	if (r < 54) { r = 54 };
 	                	if (g < 152) { g = 152 };
 	                	if (b < 249) { b = 249 };
@@ -68,12 +75,12 @@ define(['globals', 'appassets/enhance', 'app/search', 'app/login'], function(glo
 
 	                }else{
 
-	                	r1 = r1 - 20;
-	                	g1 = g1 - 10;
-	                	b1 = b1 - 5;
-	                	r = r + 20;
-	                	g = g + 10;
-	                	b = b + 5;
+	                	r1 = r1 - 100;
+	                	g1 = g1 - 100;
+	                	b1 = b1 - 100;
+	                	r = r + 100;
+	                	g = g + 100;
+	                	b = b + 100;
 	                	if (r > 255) { r = 255 };
 	                	if (g > 255) { g = 255 };
 	                	if (b > 255) { b = 255 };
@@ -89,7 +96,8 @@ define(['globals', 'appassets/enhance', 'app/search', 'app/login'], function(glo
 	            	$('.featured-circles').children('div').children().css({ 
 	            		"color": "rgb("+r1+","+g1+","+b1+")"
 	            	});       
-	                console.log(); // Police
+	                console.log(p); // cops
+	                // user left the section
 	            }else if( (bottom_of_section < bottom_of_window) || (top_of_section > bottom_of_window) ){
             		$('.featured-circles').css({ 
 	            		"position": "absolute",
