@@ -161,6 +161,16 @@ define(['globals', 'appassets/stepform', 'appassets/enhance'], function(globals,
 				'opacity':'1'
 			});
 		}
+
+		function he(){
+			var he = $('clinics-list').children('day-n').length;
+			var h = he * 40
+
+			$('clinics-list > clinic-name').css("height", "50px");
+			console.log(he);
+
+		}
+		he();
 		
 	}
 	

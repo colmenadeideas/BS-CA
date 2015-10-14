@@ -396,25 +396,70 @@ hr { border-top: 1px solid rgba(236, 240, 241,0.3) }
 
 #search-results{	height: 100%;	background-color: #19c600; }
 .item-card { min-height: 200px;  border-radius:10px;	padding:0 0 20px 0; background: #FFF; margin-bottom:25px; }
-.item-card .default-pic, .item-card .user-pic {	height:100px;	width: 100px;border-radius:10px 0px 0px 0px;	background-color: #9FC4CF; float: left }
+.item-card-header{
+  padding: 20px !important;
+  background-color: #3898F9;
+  height: 160px; 
+}
+.columna{
+  margin-bottom: 50px;
+}
+.item-card .default-pic, .item-card .user-pic {	height:100px;	width: 100px;border-radius:10px 0px 0px 0px;	 float: left }
 .item-card .info { /*height: 90px; overflow: hidden;*/ margin-bottom: 10px;  }
 .separate20 { height:20px; width:100%}
 .item-card img { padding:7px }
-.default-pic img { opacity: 0.3};
+.default-pic img { };
 .default-pic .gynecology { background: #FFB3B3 }
-.item-card .item-head { background:#9fB6BD; height: 100px; width: 250px; padding: 7px 5px 5px 10px; float: left; }
-.item-card .item-head h4 { font-size: 100%; color:#000; opacity: 0.5; text-transform: uppercase; margin: 0 5px 2px 0  }
-.item-card .item-head h1 { font-size: 200%; color:#FFF; margin:0 }
-.item-card .info { clear: both; padding-left: 20px;}
-.item-card ul.clinics-list { list-style: none; margin: 0; padding:0 }
+.item-card .item-head { height: 100px; width: 200px; padding: 25px 5px 5px 10px; float: left; }
+.item-card .item-head h4 { font-size: 100%; color:#fff; opacity: 0.5; text-transform: uppercase; margin: 0 5px 2px 0  }
 
+.item-card .clinics-list h4 { margin-bottom: 0;  font-size: 13px; text-align: center; font-weight: bolder;}
+.item-card .clinic-name h4 { text-transform: uppercase; padding-left: 13%; text-align: left;}
+.item-card .clinics-list p {     margin: -3px 0 0 0; font-size: 10px;  opacity: 0.5; text-align: center;}
+.item-card .item-head h1 { font-size: 160%;color: #FFF;margin: 0;text-transform: uppercase;letter-spacing: 1px; }
+.item-card .info { clear: both; padding: 20px;}
+.item-card .item-card-footer{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: white;
+    border-radius: 15px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.item-card-footer > a{
+  width: 50%;
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+.item-card-footer button{
+  width: 50%;
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
+.item-card ul.clinics-list { list-style: none; margin: 0; padding:0 }
+.fa-sun-o{
+  display: none !important;
+}
+.item-card div{
+  padding-left: 0;
+  padding-right: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.clinics-list > .day-n{margin-left: 41.66666667%;}
+.clinics-list > .day-n:nth-child(2){margin-left: 0;}
 /* TODO poner version para todos los tamaños del navegador */
 .cards-list .columna:nth-child(4n+4) { clear: both; }
 
 
-div.clinics-list .clinic-name { width:60%; float: left }
+/*div.clinics-list .clinic-name { width:60%; float: left }*/
 div.clinics-list .dates { width:40%;float: left }
-div.clinics-list{ margin-bottom:10px;}
+div.clinics-list{ margin-bottom:10px; border-bottom: solid 1px #dedede;}
+div.clinics-list:last-child{ margin-bottom:10px; border-bottom: solid 0px #dedede;}
 div.clinics-list:after{    clear: both;    content: "";    display: block; }
 
 div.clinics-list .dates { font-size: 80%; color:#1AD8C1; line-height:120%; }
@@ -426,18 +471,18 @@ div.clinics-list .dates { font-size: 80%; color:#1AD8C1; line-height:120%; }
 .item-card .clinics-list li, div.clinics-list {	font-size: 105%;	color:#565a5c;	line-height:150%; text-transform:capitalize }
 .rating-container .rating-stars { color:#FFE100; }
 .rating-xs { font-size: 130% }
-.item-card .rating-xs  { margin-top: 10px;}
+.item-card .rating-xs  { margin-top: 0px;}
 .rating-container, .rating-stars, .rating-container .rating-stars:before { text-shadow: none }
 
-.item-card .btn-moreinfo, .item-card .btn-book { /*background: #39BECD;*/
-background-color: #3898F9;
- width:80px; height: 45px; font-weight:600; text-transform: uppercase; color:#FFF; padding: 10px 2px;  }
-.item-card .btn-moreinfo { border-color: #3898F9;
-border-bottom: solid 2px #0073E6;}
+.item-card .btn-moreinfo, .item-card .btn-book { background: #39BECD;
+
+ height: 45px; font-weight:600; text-transform: uppercase; color:#FFF; padding: 10px 2px;  }
+.item-card .btn-moreinfo { border-color: #39BECD;
+border-bottom: solid 2px #39BECD;}
 .item-card .btn-book { background: #FFF; margin-left: -5px; border-radius: 0 5px 5px 0; white-space: normal; line-height: 100%; color: #565A5C; 
-border:solid 1px #DCE0E0;border-bottom: solid 2px #b5b5b5; }
-.item-card .btn-moreinfo:hover { color: rgba(255,255,255,0.9); background-color: #0073E6; border:solid 3px #0065C9; border-bottom: solid 1px #0073E6; border-right: solid 1px #0073E6; }
-.item-card .btn-book:hover { color: rgba(0,0,0,0.5); background-color: #DCE0E0; border:solid 3px #999; border-bottom: solid 1px #DCE0E0; border-right: solid 1px #DCE0E0; }
+border:solid 1px #DCE0E0;}
+.item-card .btn-moreinfo:hover { color: rgba(255,255,255,0.9); background-color: #39BECD; border:solid 3px #39BECD; border-bottom: solid 1px #39BECD; border-right: solid 1px #39BECD; }
+.item-card .btn-book:hover { border:solid 3px #999; }
 
 .button.btn.btn-filter {
 border: solid 1px #1AD8C1;
