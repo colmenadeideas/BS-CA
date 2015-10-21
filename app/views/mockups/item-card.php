@@ -70,9 +70,4 @@
 			{{/doctors}}
 		</div>
 	</div>
-	he();
-</script>
-
-<script> 
-he();
 </script>

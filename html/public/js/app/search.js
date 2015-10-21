@@ -157,20 +157,12 @@ define(['globals', 'appassets/stepform', 'appassets/enhance'], function(globals,
 			$('.site-home h1').fadeOut();
 
 			$('#results').css({
-				'margin-top': '250px',
-				'opacity':'1'
+				'margin-top': '0px',
+				'opacity':'1',
+				'display':'block'
 			});
+			$('#site-featured, #site-promotion').remove();
 		}
-
-		function he(){
-			var he = $('clinics-list').children('day-n').length;
-			var h = he * 40
-
-			$('clinics-list > clinic-name').css("height", "50px");
-			console.log(he);
-
-		}
-		he();
 		
 	}
 	

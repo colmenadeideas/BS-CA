@@ -27,7 +27,6 @@
 function bookingform() {	
 	//Step 1 
 	$('#reasons-loop').carouFredSel({
-		width: "100%",
 		height:500,
 		items: 3,
 		scroll: 1,

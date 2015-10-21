@@ -1,4 +1,4 @@
-/* Sticky footer styles
+  /* Sticky footer styles
 -------------------------------------------------- */
 html {
   position: relative;
@@ -395,7 +395,7 @@ hr { border-top: 1px solid rgba(236, 240, 241,0.3) }
 
 
 #search-results{	height: 100%;	background-color: #19c600; }
-.item-card { min-height: 200px;  border-radius:10px;	padding:0 0 20px 0; background: #FFF; margin-bottom:25px; }
+.item-card {     box-shadow: 3px 2px 5px #c1c1c1; min-height: 200px;  border-radius:10px;	padding:0 0 45px 0; background: #FFF; margin-bottom:25px; }
 .item-card-header{
   padding: 20px !important;
   background-color: #3898F9;
@@ -619,20 +619,19 @@ color: #7f8c8d;
 
 
 
-.looper .goback, .looper  .gofoward {	position: absolute;	top: 250px;		background: none !important;	color: #565A5C;
+.looper .goback, .looper  .gofoward {	position: absolute;	top: 200px;		background: none !important;	color: #565A5C;
 	text-shadow: none !important;
 	font-size: xx-large;
 	padding: 100px 0 0 0;
 }
-.looper .goback {left:100px}	
+.looper .goback {left:0px}	
 .looper .goback:hover {}	
-.looper .gofoward {right: 50px;}			
+.looper .gofoward {right: 0px;}			
 .looper .gofoward:hover {}	
 
 .site-head { height:10px !important; margin-top:0 !important; min-height:0;}
 		
 		
-		.menubar-action { background: #3898F9; padding: 15px; }
 		.img-profile { 	margin: 0 20px 20px;max-width: 93%;box-shadow: 0px 1px 10px rgba(0,0,0,0.25);padding: 5px;}
 		.menubar-action  .nav-tabs { border:none; transition: all ease 0.5s}
 		.menubar-action .nav-tabs>li.active>a, .menubar-action li a  { border: none;  color: rgba(255,255,255,0.5); text-transform: uppercase; background: none; font-weight: 400 }
@@ -645,10 +644,10 @@ color: #7f8c8d;
 		.title-profile h4, .title-profile h5 { text-transform: uppercase; opacity: 0.8 }
 		.title-profile h5, { /*color: #949494;*/ font-weight:200; opacity: 0.6}
 		.badge { padding:15px; border-radius: 20px }
-		.trophy { text-align: center; text-transform:uppercase; min-height:75px; font-size: 80%; background: #00B1C0; color: #FFF; padding: 20px 0; border-left: solid 2px #FFF;
-margin: 20px 0 ; font-weight:100; border-radius: 4px;}
-		.trophy span { font-size:120%; font-weight:400;}
-		#doc-details #inner { background:#F7F7F7; padding: 30px 20px; border-bottom: solid 1px #CCC }
+		.trophy { text-align: center;text-transform: uppercase;/* min-height: 50px; */font-size: 80%;color: #FFF;/* padding: 20px 0; */border-left: solid 2px #FFF;margin: 20px 0;font-weight: 100;/* border-radius: 4px; */max-height: 65px;margin-top: 75px;}
+		.trophy:last-child{border-left: none;}
+    .trophy span { font-size:35px; font-weight:400;}
+		#doc-details #inner { background:#F7F7F7; padding: 0; border-bottom: solid 1px #CCC; border-bottom: solid 4px #eee; border-right: solid 4px #eee;height: 580px;}
 		#doc-details {width: 100%;    height: 100%;  background: #FFF; padding-top: 40px }
 
 		.steps h2 { color:#1CD6BD; margin: 25px 0 40px;}
@@ -673,8 +672,10 @@ margin: 20px 0 ; font-weight:100; border-radius: 4px;}
 		.practice-item img { padding: 20px 30px 10px;}
     .khidden{width:0;visibility:hidden;}
 
-    #results {  position: absolute;    z-index: 10;    margin-top: 500px;    bottom: 0;    background-color: red; opacity: 0;    width: 100%; transition: all ease 1s;}
-
+    #results {  position: relative;z-index: 10;display: none;margin-top: 500px;bottom: 0;background-color: #eee; opacity: 0;width: 100%;transition: all ease 1s;}
+    .resume-fieldset{
+      padding: 25px 0;
+    }
     .resume-fieldset>div>form>div{
       padding-top: 10px;
     }
@@ -737,11 +738,12 @@ margin: 20px 0 ; font-weight:100; border-radius: 4px;}
       margin-bottom: 30px;
     }
     .resume{
-      position: relative;
+      position: absolute;
+      top: 0;
     }
     #resume-details > div{
-  padding: 0;
-  }
+      padding: 0;
+    }
   .amount-item{
     height: 140px;
     overflow: hidden;
@@ -788,3 +790,54 @@ margin: 20px 0 ; font-weight:100; border-radius: 4px;}
     z-index: 425;
     cursor: pointer;
   }
+
+.left-details{
+  background-color: #3898F9;
+  color: #fff;
+}
+.btn-book{
+  color: white;
+  background-color: #50d8c4;
+  margin: 24px auto 0;
+  display: table;
+  border-radius: 25px;
+  padding: 9px 60px;
+  font-size: 16px;
+  width: 50%;
+  text-align: center;
+}
+.btn-message{
+  color: white;
+  background-color: transparent;
+  margin: 24px auto;
+  display: table;
+  border: solid 2px white;  
+  border-radius: 25px;
+  padding: 9px 60px;
+  font-size: 16px;
+  width: 50%;
+  text-align: center;
+}
+.quit{
+  position: absolute;
+  font-size: 30px;
+  font-weight: bold;
+  top: 10px;
+  left: 15px;
+  color: white;
+  cursor: pointer;
+}
+.book-menu{
+  background-color: #eee;
+}
+.book-menu li{
+  width: 33.33333333%;
+  text-align: center;
+  border-right: solid 1px #ccc;
+}
+.book-menu li:last-child{
+  border-right: none;
+}
+.book-menu li > a{
+  color: #bbb;
+}
