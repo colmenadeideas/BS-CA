@@ -163,12 +163,18 @@ letter-spacing: 1px;
 #calendar-loop h4 { font-size:400%; font-weight:100}
 #calendar-loop h5 { color:white;font-weight: 100;font-size: 200%;letter-spacing: 1px;text-transform: uppercase;}
 .date-resume2 {
-    margin-left: 50px;
     display: inline-block;
-    padding: 10px;
+    padding: 10px 0px;
     color: white;
     background-color: #009EFC;
     border-radius: 20px;
+}
+.date-resume-item{
+   	float: left;
+    width: 30%;
+    margin-left: 3.333%;
+    margin-bottom: 20px;
+    padding: 10px 20px !important;
 }
 .hcontainer{
 	margin: auto;
@@ -183,9 +189,14 @@ letter-spacing: 1px;
 .looper .goback{
 	left: 0 !important;
 }
+
+h3{
+	letter-spacing: 1px;
+	color: #888;
+}
 		</style>
 		
-<div id="doc-details" style="height: 500px">
+<div id="doc-details" style="height: 700px">
 	
 	<script id="item-details" type="text/template">
 		{{doctors}}
@@ -221,16 +232,19 @@ letter-spacing: 1px;
 			</div>
 			<div class="col-lg-12">
 				<div class="col-lg-4 trophy pull-right">
-					<span>100</span><br>
-					Pacientes
+					<i class="glyphicon glyphicon-user"></i>
+					<span>Pacientes</span>
+					<span>100</span>
 				</div>
 				<div class="col-lg-4 trophy pull-right">
+				<i class="glyphicon glyphicon-heart-empty"></i>
+					<span>Atención</span>
 					<span>BUENA</span><br>
-					Atención
 				</div>
 				<div class="col-lg-4 trophy pull-right">
-					<span><i class="glyphicon glyphicon-time" style="font-size:35px"></i></span><br>
-					Poca espera
+					<i class="glyphicon glyphicon-time" style="font-size:35px"></i>
+					<span>Tiempo de espera</span>
+					<span>Poco</span>
 				</div>	
 			</div>
 			
@@ -256,10 +270,10 @@ letter-spacing: 1px;
 				<!-- Tab panes -->
 				<div class="tab-content">
 				<div class="col-md-10 col-md-offset-1">
-					<fieldset class="activestep step3 hidden">
-						<h2 class="text-center">¿Cuando deseas tu cita?</h2>
+					<fieldset class="activestep step3 hidden" style="margin-top: 125px">
+						<h3 class="text-center">¿CUANDO DESEAS TU CITA?</h3>
 						
-						<div id="wrapper" class="looper" style="padding-top: 150px;">
+						<div id="wrapper" class="looper">
 							<div id="calendar-loop">
 								<div class="column-steps calendar-item">
 									<h5>Viernes</h5>
@@ -282,7 +296,7 @@ letter-spacing: 1px;
 								<h4>Horarios disponibles</h4>
 								{{practice}}
 									{{schedule}}
-									 	<div class="text-center date-resume2">
+									 	<div class="text-center date-resume2 date-resume-item">
 									 		<div class=" hours-day">{{ini_schedule}}-{{end_schedule}}</div>
 									    </div>
 						       	  	{{/schedule}}
@@ -295,16 +309,16 @@ letter-spacing: 1px;
 						<div class="clearfix"></div>
 				</fieldset>
 				</div>	
-				<form class="text-center title-profile reason-book">
+				<form class="text-center title-profile reason-book" style="margin-top:150px">
 					<h4>INDIQUE LA RAZON DE LA CONSULTA</h4>
 					<button class="btn btn-register "> Primera vez </button>
 					<button class="btn btn-register "> Pre-operatorio</button>
 					<button class="btn btn-register "> Post-operatorio </button>
 			  	</form>
 			  	<div class="col-md-10 col-md-offset-1">
-			  		<fieldset class="text-center place-book hidden"  id="step2" >
+			  		<fieldset class="text-center place-book hidden"  id="step2" style="margin-top: 85px" >
 
-							<h2>¿DONDE QUIERES PEDIR TU CITA?</h2>
+							<h3>¿DONDE QUIERES PEDIR TU CITA?</h3>
 							   
 							<div id="wrapper" class="looper">
 								<div id="practices-loop">

@@ -164,7 +164,7 @@ function bookingSteps() {
 			$('#step2').removeClass('hidden').css('opacity', '0');
 			$('#practices-loop').carouFredSel({
 				width: "100%",
-				height:500,
+				height:300,
 				items: 3,
 				scroll: 1,
 				auto: {
@@ -173,7 +173,7 @@ function bookingSteps() {
 				prev: '#handler-back-practice',
 				next: '#handler-fowr-practice',
 			});
-			$('#step2').animate({opacity: 1, margin: '0'});
+			$('#step2').animate({opacity: 1, margin: '70px 0 0'});
 	 	}
 	 });
 	});
@@ -192,7 +192,7 @@ function bookingSteps() {
 				$('.step3').removeClass('hidden').css('opacity', '0');
 				$('#calendar-loop').carouFredSel({
 					width: "100%",
-					height:300,
+					height:200,
 					items: 3,
 					scroll: 1,
 					auto: {
@@ -202,7 +202,7 @@ function bookingSteps() {
 					prev: '#handler-back-cal',
 					next: '#handler-fowr-cal',
 				});
-				$('.step3').animate({opacity: 1, margin: '0'});
+				$('.step3').animate({opacity: 1, margin: '105px 0 0'});
 			}
 		})
 	});

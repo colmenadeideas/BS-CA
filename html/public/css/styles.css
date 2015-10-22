@@ -619,7 +619,7 @@ color: #7f8c8d;
 
 
 
-.looper .goback, .looper  .gofoward {	position: absolute;	top: 200px;		background: none !important;	color: #565A5C;
+.looper .goback, .looper  .gofoward {	position: absolute;	top: 155px;background: none !important;	color: #565A5C;
 	text-shadow: none !important;
 	font-size: xx-large;
 	padding: 100px 0 0 0;
@@ -644,9 +644,11 @@ color: #7f8c8d;
 		.title-profile h4, .title-profile h5 { text-transform: uppercase; opacity: 0.8 }
 		.title-profile h5, { /*color: #949494;*/ font-weight:200; opacity: 0.6}
 		.badge { padding:15px; border-radius: 20px }
-		.trophy { text-align: center;text-transform: uppercase;/* min-height: 50px; */font-size: 80%;color: #FFF;/* padding: 20px 0; */border-left: solid 2px #FFF;margin: 20px 0;font-weight: 100;/* border-radius: 4px; */max-height: 65px;margin-top: 75px;}
+		.trophy > span:nth-child(2){ font-weight: bold; color: #50d8c4;}
+    .trophy span{ text-align: center;text-transform: uppercase;font-size: 100%;color: #FFF;margin: 5px 0;font-weight: 100; width: 100%;display: block; }
+    .trophy { text-align: center;text-transform: uppercase;font-size: 80%;color: #FFF;border-left: solid 2px #FFF;margin: 20px 0;font-weight: 100;max-height: 65px;margin-top: 75px;}
 		.trophy:last-child{border-left: none;}
-    .trophy span { font-size:35px; font-weight:400;}
+    .trophy i { font-size:35px; font-weight:400; width: 100%;}
 		#doc-details #inner { background:#F7F7F7; padding: 0; border-bottom: solid 1px #CCC; border-bottom: solid 4px #eee; border-right: solid 4px #eee;height: 580px;}
 		#doc-details {width: 100%;    height: 100%;  background: #FFF; padding-top: 40px }
 
@@ -668,7 +670,7 @@ color: #7f8c8d;
 		
 		.carousel-control.right, .carousel-control.left {  background: none !important; color: #565A5C; text-shadow: none !important; font-size: xx-large;width: 50px; padding: 100px 0 0 0;}
 		.practice-item2 {border: 2px solid #E2E2E2;background: #FFF;border-radius: 15px;margin: 0 10px; }
-		.practice-item { background: #009EFC;color: #FFF;font-weight: 800 !important;border-radius: 15px;margin: 0 10px;padding: 20px 10px; text-align: center; margin-top:112px;}
+		.practice-item { max-height: 285px;overflow: auto; background: #009EFC;color: #FFF;font-weight: 800 !important;border-radius: 15px;margin: 0 10px;padding: 20px 10px; text-align: center;}
 		.practice-item img { padding: 20px 30px 10px;}
     .khidden{width:0;visibility:hidden;}
 
