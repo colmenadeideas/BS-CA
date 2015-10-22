@@ -21,6 +21,7 @@
 
     <script src="<?php echo JS; ?>config.js"></script>
     <script data-main="<?php echo JS;?>main-site" src="<?php echo JS; ?>assets/require.js"></script>
+    <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
     
     
     <!-- Register with Facebook-->
