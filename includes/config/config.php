@@ -44,6 +44,10 @@
 	define("HASH_PBKDF2_INDEX", 3);
 	
 	define("COUNTRY","ve");
+
+	// MercadoPago Constants
+	define("MP_CLIENT_ID", "7100520516880492");
+	define("MP_CLIENT_SECRET", "HAnfaUkcCtQkndVpaMsG7BT2QhkoZbBN");
 	
 	
 	//TODO	//String mix for password hash

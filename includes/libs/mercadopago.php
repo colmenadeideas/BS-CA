@@ -17,7 +17,7 @@ class MP {
     private $client_secret;
     private $ll_access_token;
     private $access_data;
-    private $sandbox = FALSE;
+    private $sandbox = TRUE;
 
     function __construct() {
         $i = func_num_args(); 
