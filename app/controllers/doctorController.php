@@ -19,6 +19,12 @@
 			//api search is done in JS
 			$this -> view -> render('doc/details');
 		}
+		public function preview() {
+			
+			//$appointments_time_matrix = $this->api->getPracticeIntervals();
+			//api search is done in JS
+			$this -> view -> render('doc/resume');
+		}
 		
 		
 		public function calendartest() {

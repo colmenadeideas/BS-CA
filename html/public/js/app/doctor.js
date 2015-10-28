@@ -215,8 +215,30 @@ function bookingSteps() {
 		$('#resume-clinic').children('h4').text(clinic);
 		$('#resume-date').children('h2:nth-child(2)').text(month.substring(0,3));
 		$('#resume-date').children('h2:first-child').text(day);
+
+		var data = [
+		    {
+	    	"clinic": clinic,
+	     	"reason": reason,
+		    "date": day + " " + dayName + " " + month
+			}
+		];
+
+		$.ajax({
+			type: 'POST',
+			data: data,
+			dataType: 'json',
+			url: 'payment/preview',
+			success: function (r){
+				if (r == true) {
+					alert('Se ha envieado el primer objeto con exito');
+				}else{	
+					alert('No ha habido respuesta del API');
+				};
+			}
+		});
 		
-		console.log(day + dayName + month)
+		console.log(data);
 		$('.resume').slideDown();
 	})
 
