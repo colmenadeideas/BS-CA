@@ -237,9 +237,13 @@ function bookingSteps() {
 				};
 			}
 		});
-		
+		$('#doc-details').fadeOut('slow', function () {
+			$(this).load('payment/preview', function(){
+				$(this).fadeIn('slow');
+			});
+		});
 		console.log(data);
-		$('.resume').slideDown();
+		
 	})
 
 	$('#resume-close, #resume-edit').click(function (e) {

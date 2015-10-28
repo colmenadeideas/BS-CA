@@ -1,4 +1,4 @@
-<div class="container-fluid resume" style="background-color: #f6f6f6;display:none;">	
+<div class="container-fluid resume" style="background-color: #f6f6f6;">	
 	<div class="" id="resume-close">X</div>
 	<div class="row resume-baner text-center">
 		<h4>¿Esta seguro que desea reservar esta cita?</h4>
