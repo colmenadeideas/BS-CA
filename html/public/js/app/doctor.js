@@ -228,7 +228,7 @@ function bookingSteps() {
 			type: 'POST',
 			data: data,
 			dataType: 'json',
-			url: 'payment/preview',
+			url: URL+'site/payment/preview',
 			success: function (r){
 				if (r == true) {
 					alert('Se ha envieado el primer objeto con exito');

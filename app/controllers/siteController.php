@@ -128,6 +128,7 @@
 			//Carge la info de pago
 			//Envie el json o array
 			//imprime la vista de resumen de pago
+			$this->view->render('doc/resume');
 		}
 		
 		
