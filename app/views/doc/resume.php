@@ -8,7 +8,9 @@
 		<div class="col-md-3 col-md-offset-2">
 			<div class="col-md-12 text-center">
 				<div class="col-md-12" id="amount">Total: BsF. 3000</div>
+				<a href="<?php echo $this->preference['response']['init_point']; ?>">Pay</a>
 			</div>
+
 			
 			<form clas="col-md-10">
 				<div class="form-group">
