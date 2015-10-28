@@ -1,5 +1,7 @@
 <?php
-	
+
+	require_once ( LIBS . 'MercadoPago.php');
+
 	class Helper {
 	
 		function __construct() {			

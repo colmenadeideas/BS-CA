@@ -9,7 +9,7 @@
  */
 $GLOBALS["LIB_LOCATION"] = dirname(__FILE__);
 
-class MP {
+class MP { 
 
     const version = "0.5.2";
 
