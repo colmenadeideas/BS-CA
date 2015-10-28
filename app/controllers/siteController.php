@@ -128,7 +128,27 @@
 			//Carge la info de pago
 			//Envie el json o array
 			//imprime la vista de resumen de pago
-			$this->view->render('doc/resume');
+			
+			//inicip MP
+			//armoar token
+			//variables
+
+
+			$mp = new MP (MP_CLIENT_ID, MP_CLIENT_SECRET);
+			$preference_data = array(
+				"items" => array(
+					array(
+						"title" => "Consulta medica",
+						"quantity" => 1,
+						"currency_id" => "VEF", // Available currencies at: https://api.mercadopago.com/currencies
+						"unit_price" => 500.00
+					)
+				)
+			);
+			$this->view->preference = $mp->create_preference($preference_data);
+			
+			$this->view->render('default/head');
+			$this->view->render('doc/resume');	
 		}
 		
 		
