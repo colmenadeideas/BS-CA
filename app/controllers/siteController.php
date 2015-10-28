@@ -123,6 +123,12 @@
 			$controller = 'doctor';
 			$this->redirect($controller, $method);							
 		}
+
+		function payment() {
+			//Carge la info de pago
+			//Envie el json o array
+			//imprime la vista de resumen de pago
+		}
 		
 		
 	}

@@ -22,9 +22,9 @@
 	  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
 	  <!-- <span class="caret"></span> --></button>
 	  <ul class="dropdown-menu addmenu">
-	    <li><a href="#panel/patient/add">Agregar Paciente</a></li>
-		<li><a href="#panel/practice/add">Agregar Práctica</a></li>
-		<li><a href="#panel/practice/intervals">Agregar Ausencia</a></li>
+	    <li><a href="#patient/add">Agregar Paciente</a></li>
+		<li><a href="#practice/add">Agregar Práctica</a></li>
+		<li><a href="#practice/intervals">Agregar Ausencia</a></li>
 	  </ul>
 	</div>
 

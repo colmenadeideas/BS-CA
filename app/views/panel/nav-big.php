@@ -10,19 +10,19 @@
 <div class="drawer_menu row col-lg-12">
    <ul id="menu-big" class="menu-content">
       <li class="col-md">
-         <a href="#panel/appointments/next">
+         <a href="#appointments/next">
         	   <i class="fa fa-calendar-o fa-lg"></i> &nbsp; Próximas Citas
          </a>
       </li>
 
       <li data-toggle="collapse" data-target="#products" class="collapsed active">
-         <a href="#panel/patient/list"><i class="fa fa-user fa-lg"></i> &nbsp; Pacientes <span class="arrow"></span></a>
+         <a href="#patient/list"><i class="fa fa-user fa-lg"></i> &nbsp; Pacientes <span class="arrow"></span></a>
       </li>
       <li data-toggle="collapse" data-target="#service" class="">
-         <a href="#panel/practice/list"><i class="fa fa-clock-o fa-lg"></i> &nbsp; Prácticas y Horarios <span class="arrow"></span></a>
+         <a href="#practice/list"><i class="fa fa-clock-o fa-lg"></i> &nbsp; Prácticas y Horarios <span class="arrow"></span></a>
       </li>  
         <ul class="sub-menu collapse in" id="service">
-         <a href="#panel/practice/intervals"><li>Ausencias</li></a>
+         <a href="#practice/intervals"><li>Ausencias</li></a>
         </ul>
       <li>
       	<a href="#">
