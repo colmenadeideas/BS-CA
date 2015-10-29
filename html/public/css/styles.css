@@ -843,3 +843,22 @@ color: #7f8c8d;
 .book-menu li > a{
   color: #bbb;
 }
+
+/* - - Start Success.php view - - - - - - */
+
+.success-resume{
+ background-color: #fefefe;
+ margin-top: 50px;
+ padding: 10px;
+ border-radius: 10px;
+}
+.success-item{
+  border-top: dashed 1px #555;
+  padding-bottom: 20px;
+}
+.success-item:first-child{
+  border-top: none;
+}
+.success-amount{
+  border-top: dashed 2px #555;
+}

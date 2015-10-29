@@ -150,7 +150,10 @@
 			$this->view->render('default/head');
 			$this->view->render('doc/resume');	
 		}
-		
+		function success() {
+			$this->view->render('default/head');
+			$this->view->render('doc/success');	
+		}		
 		
 	}
 		
