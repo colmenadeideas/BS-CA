@@ -848,9 +848,8 @@ color: #7f8c8d;
 
 .success-resume{
  background-color: #fefefe;
- margin-top: 50px;
  padding: 10px;
- border-radius: 10px;
+ border-radius: 10px; 
 }
 .success-item{
   border-top: dashed 1px #555;
