@@ -1,6 +1,6 @@
 // git event
 
-define(['globals', 'appassets/enhance' ], function(globals, enhance) {
+define(['globals', 'functions', 'appassets/enhance' ], function(globals, functions, enhance) {
 	
 	function run() {
 
@@ -16,7 +16,7 @@ define(['globals', 'appassets/enhance' ], function(globals, enhance) {
 		resizePanel();
 		autocomplete();
 
-		/*var currentLocation = getPage(4);
+		/*var currentLocation = functions.getPage(4);
 
 		switch(currentLocation) {
 			case "login":
@@ -43,7 +43,7 @@ define(['globals', 'appassets/enhance' ], function(globals, enhance) {
 				$('.sb-slidebar').removeClass("col-lg-3 col-md-3 col-sm-3").addClass("col-lg-1 col-md-1 col-sm-1", 500);
 				$('#panel-desktop').delay(200).removeClass("col-lg-9 col-md-9 col-sm-9").addClass("col-lg-11 col-md-11 col-sm-11", 500);
 				$('.sb-slidebar').delay(400).removeClass("col-xs-3").addClass("col-xs-1");
-				$('#panel-drawer').load("panel/nav/nav-small");
+				$('#panel-drawer').load(globals.URL+"panel/nav/nav-small");
 				$(this).fadeOut(400, function(){
 					$('.sb-button').css({
 					"top": "auto",
@@ -63,7 +63,7 @@ define(['globals', 'appassets/enhance' ], function(globals, enhance) {
 				$('.sb-slidebar').removeClass("col-lg-1 col-md-1 col-sm-1").addClass("col-lg-3 col-md-3 col-sm-3", 500);
 				$('#panel-desktop').delay(200).removeClass("col-lg-11 col-md-11 col-sm-11").addClass("col-lg-9 col-md-9 col-sm-9", 500);
 				$('.sb-slidebar').delay(400).removeClass("col-xs-1").addClass("col-xs-3");
-				$('#panel-drawer').load("panel/nav/nav-big");
+				$('#panel-drawer').load(globals.URL+"panel/nav/nav-big");
 				$('.drawer_menu').css("padding", "0");
 				$(this).fadeOut(400, function(){
 					$('.sb-button').css({

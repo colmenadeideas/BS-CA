@@ -1,4 +1,4 @@
-define(['globals'], function(globals) {
+define(['globals', 'functions'], function(globals, functions) {
 
 	function fieldsfor(form) {
 	
@@ -84,7 +84,7 @@ define(['globals'], function(globals) {
 
 		
 				$(".add-reason").click(function(e){
-					var newid = "reasonId_"+uniqId();
+					var newid = "reasonId_"+functions.uniqId();
 					$(".practice-format:last").clone().prop({ id: newid /*, name: "newName"*/ }).insertAfter('.practice-format:last');
 					$("#"+newid).find(".remove-action").css("display", "block");
 					$("#"+newid).find("input").val("");

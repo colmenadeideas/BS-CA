@@ -5,6 +5,19 @@ class Api extends ApiQuery {
 
 	}
 
+	//PRINT FORMAT FUNCTION
+	public function printResults($print = "json", $array_final) {
+		//print_r($array_final); exit;
+		if ($print == 'json') {
+			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+		} else {
+			//MODO "ARRAY"
+			return $array_final;
+		}
+	}
+
+
+
 	//Practices/arreglo/doctor/22
 	public function practices($print = "json", $parameter = "doctor", $id) {
 		
@@ -58,16 +71,8 @@ class Api extends ApiQuery {
 				$i++;
 			
 			}			
-			
-			
-			
-			
 					
-			if ($print == 'json') {
-				echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
-			} else {//modo "array"
-				return $array_final;
-			}
+			Api::printResults($print, $array_final);
 		}
 
 	}
@@ -105,11 +110,8 @@ class Api extends ApiQuery {
 				$a++;
 			}
 
-			if ($print == 'json') {
-				echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
-			} else {//modo "array"
-				return $array_final;
-			}
+			Api::printResults($print, $array_final);
+		
 		} else { //GET ALL PRACTICES DATES
 
 			$array_practices = ApiQuery::getDoctorPractices($id);
@@ -120,11 +122,7 @@ class Api extends ApiQuery {
 				$response["empty"] = 1;
 				$response["response"] = NO_PRACTICES_AVAILABLE;
 	
-				if ($print == 'json') {
-					echo json_encode($response, JSON_UNESCAPED_UNICODE);
-				} else {//modo "array"
-					return $response;
-				}
+				Api::printResults($print, $response);
 				
 			} else {
 				$practiceFields = DB::columnList('clinic');
@@ -142,11 +140,7 @@ class Api extends ApiQuery {
 	
 					//echo json_encode($response);
 	
-					if ($print == 'json') {
-						echo json_encode($response, JSON_UNESCAPED_UNICODE);
-					} else {//modo "array"
-						return $response;
-					}
+					Api::printResults($print, $response);
 	
 				} else {
 		
@@ -182,11 +176,7 @@ class Api extends ApiQuery {
 						$i++;
 					}
 	
-					if ($print == 'json') {
-						echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
-					} else {//modo "array"
-						return $array_final;
-					}
+					Api::printResults($print, $array_final);
 				}
 			} //end if doctor HAS practices
 		} //end if emtpy second parameter
@@ -208,11 +198,7 @@ class Api extends ApiQuery {
 		}*/
 		$query = ApiQuery::autocomplete($what, $string);
 		
-		if ($print == 'json') {
-			echo json_encode($query, JSON_UNESCAPED_UNICODE);
-		} else {//modo "array"
-			return $array_final;
-		}
+		Api::printResults($print, $query);
 
 	}
 
@@ -376,7 +362,29 @@ class Api extends ApiQuery {
 
 	
 	
-	//
+	//PATIENTS
+	public function patients($print = "json", $relation="doctor",$id) {
+		$relation = escape_value("id_".$relation);
+		$id = escape_value($id);
+
+		//get Relationships
+		$relationships =	ApiQuery::getPatientsByRelationship($relation, $id);
+		foreach ($relationships as $relationship) {
+			//get each patient
+			$patient = ApiQuery::getPatientBy('id', $relationship['id_patient']);
+			$array_final['patients'][] = $patient[0];
+		}
+		
+		//print_r($array_final); exit;
+		if ($print == 'json') {
+			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+		} else {
+			//MODO "ARRAY"
+			return $array_final;
+		}
+		
+	}
+
 	public function patient($print = "json", $id) {
 
 		$id = escape_value($id);
@@ -391,11 +399,8 @@ class Api extends ApiQuery {
 				$array_final['patient'][$i][$field] = $patient[$field];
 			}
 		}
-		if ($print == 'json') {
-			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
-		} else {//modo "array"
-			return $array_final;
-		}
+
+		Api::printResults($print, $array_final);
 
 	}
 	
@@ -414,12 +419,9 @@ class Api extends ApiQuery {
 		$array_final["days_in"] = $array_schedules;
 		$array_final["days_out"] = $array_schedules_exceptions;
 		
-		if ($print == 'json') {
-			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
-		} else {//modo "array"
-			return $array_final;
-		}
+		Api::printResults($print, $array_final);
 	}
+
 	public function appointment($print = "json", $by = "doctor", $id, $second_parameter = "", $practice_id = "", $for_date = "", $to_date = "") {
 
 		$id = escape_value($id);
@@ -447,11 +449,7 @@ class Api extends ApiQuery {
 			$array_final['dates'][0]['practice'][0]['appointments'][$a] = $appointment;
 			$a++;
 		}
-		if ($print == 'json') {
-			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
-		} else {//modo "array"
-			return $array_final;
-		}
+		Api::printResults($print, $array_final);
 
 	}
 
@@ -513,11 +511,8 @@ class Api extends ApiQuery {
 			}
 			$i++;
 		}
-		if ($print == 'json') {
-			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
-		} else {//modo "array"
-			return $array_final;
-		}
+
+		Api::printResults($print, $array_final);
 
 	}
 	
@@ -571,11 +566,7 @@ class Api extends ApiQuery {
 			}
 			$i++;
 		}
-		if ($print == 'json') {
-			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
-		} else {//modo "array"
-			return $array_final;
-		}
+		Api::printResults($print, $array_final);
 
 	}
 	//GET TEMP FORM DATA
@@ -583,11 +574,7 @@ class Api extends ApiQuery {
 
 		$array_final = ApiQuery::getTempRecordResult($user_id, $tempkey);
 		
-		if ($print == 'json') {
-			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
-		} else {//modo "array"
-			return $array_final;
-		}	
+		Api::printResults($print, $array_final);	
 	}
 
 }

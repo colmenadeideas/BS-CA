@@ -50,7 +50,7 @@ class panelController extends Controller {
 	}*/
 
 	
-	public function patient($action, $secondparameter , $tempkey) {	
+	public function patient($action, $secondparameter , $tempkey = "") {	
 
 		switch ($action) {
 			case 'get':
@@ -84,16 +84,14 @@ class panelController extends Controller {
 			default:
 				//list
 				
-				$this->view->practices = $this->api-> practices("array" , "doctor", $this->view->userdata['id']);
+				$this->view->patients = $this->api->patients("array" , "doctor", $this->view->userdata['id']);
 
-				if ($this->view->practices['empty'] != 1) {
-
+				//print_r($this->view->patients);
+				///exit;
+				if ($this->view->patients['empty'] != 1) {
 					$template = "list";
-
 				} else {
-
 					$template = "none";
-
 				}
 
 			break;
@@ -106,7 +104,7 @@ class panelController extends Controller {
 
 
 	public function nav($action) {
-		$this->view->username=array("id"=>"22");
+
 		switch ($action) {	
 			case 'nav-small':
 				$template = "nav-small";

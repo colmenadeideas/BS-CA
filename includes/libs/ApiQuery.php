@@ -73,6 +73,13 @@
 			$id = escape_value($id);
 			return DB::query("SELECT * FROM " . DB_PREFIX . "patient WHERE id=%s",$id);
 		}
+		public function getPatientsByRelationship($param = "id_doctor", $id){
+			
+			$param = escape_value($param);
+			$id = escape_value($id);
+			//get relationships
+			return DB::query("SELECT * FROM " . DB_PREFIX . "doctor_ispatient WHERE $param=%s",$id);
+		}
 	// ***** 
 		
 		public function checkFreeDay($practice_schedule,$date){

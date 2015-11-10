@@ -68,3 +68,14 @@
 }
 .btn-success.btn-confirm { background:#82CE34; border-color: #82CE34;   width: 100%;    border-radius: 0 0 35px 0 !important; font-size: 125%;}
 .btn-cancel  {    width: 100%;    border-radius: 0 !important; padding: 15px; text-transform: uppercase; }
+
+.patient-item {  transition: all ease 0.3s;  display: table;
+  table-layout: fixed; background: #FFF;    text-align: center;    padding: 20px 0 30px; border-right: solid 1px #CDD9DE; border-bottom: solid 1px #CDD9DE; }
+.patient-item img {    max-width: 120px;    margin: auto; }
+.patient-item h4 { color: #3898F9;    font-weight: 200;   margin-bottom: 20px;}
+.patient-item:hover {
+    box-shadow: 0px 0px 11px rgba(0,0,0,0.2);
+    border: none;
+    z-index: 99;
+    transform: scale(1.1);
+}

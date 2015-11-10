@@ -1,5 +1,5 @@
 require.config({
-  baseUrl: "http://localhost:8888/BS-OK/html/public/js",
+  baseUrl: "http://localhost/BS-OK/html/public/js",
   requireDefine:true,
   waitSeconds:7,
   paths: {
@@ -27,13 +27,12 @@ require.config({
           'assets/jquery.easing.min': ['jquery'],   
           //'assets/jquery.scrollTo.min': ['jquery'], 
           //'assets/jquery.backstretch.min': ['jquery'],
-          'functions': ['jquery', 'assets/jquery.validate.min'],
           'assets/fullcalendar.min': ['jquery'/*,'assets/fullcalendar-es'*/],
-         'assets/jquery.geocomplete.min' : ['jquery'],
-         'assets/bootstrap-datetimepicker':['jquery','assets/bootstrap.min'],
+          'assets/jquery.geocomplete.min' : ['jquery'],
+          'assets/bootstrap-datetimepicker':['jquery','assets/bootstrap.min'],
          
-         'common': ['jquery','assets/all','assets/jquery-ui.min','assets/bootstrap.min','assets/jquery.validate.min','assets/jquery.easing.min','assets/jquery.scrollTo.min','assets/jquery.backstretch.min','assets/bootstrap-datetimepicker','assets/jquery.geocomplete.min','assets/moment.min','assets/fullcalendar.min','functions','config'],
-         'app/settings': ['jquery','common', 'globals'],
+          'functions': ['jquery','assets/all','assets/jquery-ui.min','assets/bootstrap.min','assets/jquery.validate.min','assets/jquery.easing.min','assets/jquery.scrollTo.min','assets/jquery.backstretch.min','assets/bootstrap-datetimepicker','assets/jquery.geocomplete.min','assets/moment.min','assets/fullcalendar.min','config'],
+          'app/settings': ['jquery','functions', 'globals'],
          
        }
      });

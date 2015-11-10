@@ -88,10 +88,16 @@
 							$this->user->set('socialnetwork', true);	
 						}	
 						
+						//Check session in here
+						User::checkSession();
+						$redirection = User::gotoMainArea(TRUE); //redirection will be done via JavaScript
+
+
 						$response["tag"] = "login";
 						$response["success"] = 1;
 						$response["error"] = 0;	
-						$response["response"] = "welcome";		
+						$response["response"] = "welcome";
+						$response["redirection"] = $redirection."/#";		
 						$response["user"]["role"] = $role;
 						$response["user"]["uid"] = $validUser[0]['id'];
 						$response["user"]["name"] = $profile[0]['name'];

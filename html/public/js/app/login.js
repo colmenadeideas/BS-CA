@@ -10,7 +10,7 @@ define(['globals', 'appassets/stepform', 'appassets/enhance'], function(globals,
 				//prevent double send
 				$.ajax({
 					type : "POST",
-					url : URL + "account/login",
+					url : globals.URL + "account/login",
 					data : $(form).serialize(),
 					timeout : 12000,
 					success : function(response) {
@@ -19,7 +19,8 @@ define(['globals', 'appassets/stepform', 'appassets/enhance'], function(globals,
 							var responseDiv = "#response-login";
 							$('.send').removeAttr("disabled");
 							var mensaje = response.response;
-							console.log(mensaje);	
+							//console.log(response);	
+
 							switch (response.success) {						
 								case 0: //TODO ERROR
 									
@@ -31,7 +32,8 @@ define(['globals', 'appassets/stepform', 'appassets/enhance'], function(globals,
 									});
 									break;							
 								case 1: //if continue	
-								 	document.location = URL + 'account/identify';
+								 	//document.location = globals.URL + 'account/identify';
+									document.location = response.redirection;
 									break;
 							}
 							

@@ -19,9 +19,7 @@
 
     <script src="<?php echo JS; ?>config.js"></script>
     <script src="<?php echo JS; ?>assets/jquery.min.js"></script>
-    <script src="<?php echo JS; ?>assets/jquery.validate.min.js"></script>
-    <script src="<?php echo JS; ?>functions.js"></script>
-    
+    <script src="<?php echo JS; ?>assets/jquery.validate.min.js"></script>    
   
 </head>
 <style>

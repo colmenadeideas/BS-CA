@@ -287,11 +287,15 @@
 		}
 		
 		
- 		public static function gotoMainArea() {
+ 		public static function gotoMainArea($print = FALSE) {
 			$role = User::get('role');
 			$permisos =	DB::query("SELECT * FROM " . DB_PREFIX . "users_role_permissions WHERE role=%s", $role);
 
-			header('location: '.URL.$permisos[0]['area']);
+ 			if ($print === TRUE) {
+ 				return URL.$permisos[0]['area'];
+ 			} else {
+				header('location: '.URL.$permisos[0]['area']);
+			}
 		}
 		
 		

@@ -1,7 +1,5 @@
-// git event
-
 require.config({
-  baseUrl: "http://localhost:8888/BS-OK/html/public/js",
+  baseUrl: "http://localhost/BS-OK/html/public/js",
   requireDefine:true,
   waitSeconds:0,
   paths: {
@@ -29,7 +27,6 @@ require.config({
          'assets/jquery.easing.min': ['jquery'],   
          'assets/jquery.scrollTo.min': ['jquery'], 
          'assets/slidebars.min': ['jquery'], 
-         'functions': ['jquery', 'assets/jquery.validate.min'],
          'appassets/stepform' : ['jquery', 'globals', 'assets/jquery.validate.min'],
           //'assets/jquery.dataTables.min': ['jquery'],
          //'assets/jquery.maskedinput.min': ['jquery'],
@@ -40,26 +37,51 @@ require.config({
        	 'assets/bootstrap-datetimepicker-v4':['jquery','assets/bootstrap.min'],
        	 'assets/ jquery.carouFredSel-6.1.0-packed':['jquery','assets/easing.min'],
        	
-         'common': ['jquery','assets/all','assets/jquery-ui.min','assets/bootstrap.min','assets/jquery.validate.min','assets/jquery.easing.min','assets/jquery.scrollTo.min','assets/bootstrap-datetimepicker-v4','assets/jquery.geocomplete.min','assets/moment.min','assets/fullcalendar.min','assets/jsonsql','functions','config'],
-         'app/search': ['jquery','common', 'globals'],
-         'app/doctor': ['jquery','common', 'globals','app/search','assets/jquery.easing.min', 'assets/jquery.carouFredSel-6.1.0-packed'],
-         'app/panel': ['jquery','common', 'globals','assets/jquery.validate.min'],
-         'app/login': ['jquery','common', 'globals','assets/jquery.validate.min'],
-         'app/start-panel': ['common', 'app/search', 'app/panel', 'app/login'],
+         'functions': ['jquery','assets/all','assets/jquery-ui.min','assets/bootstrap.min','assets/jquery.validate.min','assets/jquery.easing.min','assets/jquery.scrollTo.min','assets/bootstrap-datetimepicker-v4','assets/jquery.geocomplete.min','assets/moment.min','assets/fullcalendar.min','assets/jsonsql','config'],
+         'app/search': ['jquery','globals', 'functions'],
+         'app/doctor': ['jquery','globals', 'functions','app/search','assets/jquery.easing.min', 'assets/jquery.carouFredSel-6.1.0-packed'],
+         'app/panel': ['jquery','globals', 'functions','assets/jquery.validate.min'],
+         'app/login': ['jquery','globals', 'functions','assets/jquery.validate.min'],
+         'app/start-panel': ['functions', 'app/search', 'app/panel', 'app/login'],
        
 	}
 });
 
 require([
         'jquery',
-        'globals', //would replace 'common' eventually
-        'async!https://maps.googleapis.com/maps/api/js?v=3&libraries=places&sensor=false',
+        'globals',
+/*        'async!https://maps.googleapis.com/maps/api/js?v=3&libraries=places&sensor=false',*/
         'app/start-panel',
         'app/panel'
     ],
-    function($, app, gmaps_ , start, panel ) { 
-        console.log("Loaded all"); 
+    function($, app,/* gmaps_ ,*/ start, panel ) { 
+
         panel.run();
+
+         var accessArray = window.location.pathname.split('/');
+         var accessHash = $.param.fragment();
+        
+        console.log("Access:" + accessArray[3] +" Hash:" + accessHash);
+
+        switch(accessArray[3]) {
+          case "app":  
+            break;
+
+          case "escuela":  
+            if (accessHash.length == 0) {
+              window.location.hash  = "#presidencia/welcome";  
+            }          
+            /*require(['app/app'], function(app) {              
+                switch(accessHash) {
+                  case 'posts':
+                    app.posts();
+                    break;
+                  default: 
+                    app.boards();                   
+                    break;
+                }                      
+            }); */
+            break;
         
     }
 );

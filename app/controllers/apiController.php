@@ -19,6 +19,9 @@
 		public function patient	( $print="json", $id) {
 			$this->api->patient($print, $id);
 		}
+		public function patients( $print="json", $relationship, $id) {
+			$this->api->patients($print, $relationship, $id);
+		}
 		
 		
 		//DOCTOR/$ID

@@ -1,7 +1,7 @@
-define(['globals', 'appassets/enhance', 'app/search', 'app/login'], function(globals, enhance, search, login ) {
+define(['globals', 'functions', 'appassets/enhance', 'app/search', 'app/login'], function(globals, functions, enhance, search, login ) {
 	
 	function run() {
-		var currentLocation = getPage(4);
+		var currentLocation = functions.getPage(4);
 		i = 4; //for animation
 		ii = 1; //for animation
 

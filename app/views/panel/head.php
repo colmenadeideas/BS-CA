@@ -22,7 +22,7 @@
 	<?php echo GOOGLE_ANALYTICS; ?>
 	
 	
-    <script src="<?php echo JS; ?>config.js"></script>
+    <!--script src="<?php //echo JS; ?>config.js"></script-->
     
     <script data-main="<?php echo JS;?>main-panel" src="<?php echo JS; ?>assets/require.js"></script>
     
