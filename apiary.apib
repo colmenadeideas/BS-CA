@@ -7,6 +7,13 @@ Esta es  la documentación para el uso del API en OKIDOC, por los momentos
 limitado a llamados dentro del sistema, iniciados por el sistema o el usuario
 
 
+## Group Notas
+# Sobre Panel
+En Panel, se agregó un input hidden para tener a mano el ID del usuario logeado. 
+Su {ID} es el current session y su {value} es el id del usuario y perfil propiamente 
+
+    name="OKey"
+
 ## Group Endpoints
 
 Las llamadas de datos se hacen a través del *apiController* para ser accesibles vía ULR (GET). 
@@ -365,9 +372,53 @@ Response 201
                 }]
             }
 
+## Availability [/availability/{print}/{doctor_id}/{practice_id}/{show} ]
+consulta las fechas disponibles y no disponibles para el calendario de Citas
+
+/availability toma los siguientes parametros
+
++ print (json or array)
++ doctor_id
++ practice_id
++ show
+
+    # Lista de Acciones
+
++ Listar todos los "dias" disponibles para solicitar citas
+
+    api/availability/json/patient/?term=jhon
+
+
+
++ Parameters
+    + print: json, array (required, String) - Cómo será retornada la respuesta
+    + object: all, practice, patient (required, String) - El objeto a ser buscado
+    + term: Cardiolo (optional, String) - El String de búsqueda. Debe ir precedido por "?term="
+
+### test availability [GET]
+
++ Response 200 (application/json)
+
+        [{
+            "label": "Nombre de Clínica",
+            "id_value": "1",
+            "type": "clinic_name"
+        }, {
+            "label": "Dirección de Clínica",
+            "id_value": "2",
+            "type": "clinic_address"
+        }, {
+            "label": "Nombre del Paciente",
+            "id_value": "3",
+            "type": "patient_name"
+        }, {
+            "label": "Nombre del Doctor",
+            "id_value": "4",
+            "type": "doctor_name"
+        }]
+        
 ## Questions Collection [/appointments{?page}]
 
 + Parameters
     + page: 1 (optional, number) - The page of questions to return
-    
     
