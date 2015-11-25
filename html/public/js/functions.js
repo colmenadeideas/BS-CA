@@ -1,4 +1,4 @@
-define(['globals'], function(globals) {
+define(['globals','assets/handlebars.min',], function(globals, Handlebars) {
 	
 	function getPage(position){
 		
@@ -10,6 +10,13 @@ define(['globals'], function(globals) {
 	}
 	function uniqId() {
 	  return Math.round(new Date().getTime() + (Math.random() * 100));
+	}
+
+	function handlebarsHelpers() {
+		Handlebars.registerHelper('formatTime', function(value) {
+		    var time = value.split(':');
+		    return time[0]+":"+time[1]+ " "+value.slice(-2);
+		});;
 	}
 
 
@@ -91,7 +98,8 @@ define(['globals'], function(globals) {
       closeModal: 	closeModal,
       pad: 			pad,
       getOnlyDate: 	getOnlyDate,
-      initForm: 	initForm
+      initForm: 	initForm,
+      handlebarsHelpers: handlebarsHelpers
 
 	}
 
@@ -184,6 +192,8 @@ var normalize = (function() {
 		return ret.join('');
 	}
 })();
+
+
 
 // Datatable vars
 language_emptytable = "No hay resultados";

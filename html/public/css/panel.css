@@ -19,8 +19,8 @@ body {
 	font-family: 'Lato', sans-serif !important; 
 }
 #loading{
-	position: fixed;
 	background: rgba(255,255,255,0.5) url('../img/loading.svg') no-repeat center / 80px;
+	position: fixed;
 	display: none;
 	top: 80px;
 	bottom: 0;
@@ -29,7 +29,11 @@ body {
 	z-index: 5555;
 }
 
-
+#pleasewait{ 
+	width 100%; height:200px;
+	background:  url('../img/loading.svg') no-repeat center / 80px;
+}
+	
 .row-centered {
     text-align:center;
 }
@@ -64,19 +68,21 @@ body {
 ul.menu-content, .nav-side-menu li {
   list-style: none;
   padding: 0px;
-  margin: 0px;
+  margin: 30px 0 0 20px;
   line-height: 35px;
   cursor: pointer;
 }
 
-.menu-content li {  list-style: none; margin: 0px; padding: 10px 10px 10px 40px;  border-bottom: 1px solid #5D687B; line-height: 35px; cursor: pointer;}
-.menu-content li a { color:rgba(255,255,255,0.6); font-weight:300; text-transform:uppercase }
-.menu-content li:hover a, .menu-content li:hover { background: #5D687B;color: rgba(255,255,255,1); text-decoration: none;}
+.menu-content li { border-radius: 25px; transition:all 0.3s ease;  list-style: none; margin: 0px; padding: 10px 0 10px 20px;  /*border-bottom: 1px solid #5D687B;*/ line-height: 35px; cursor: pointer;}
+.menu-content li a { transition: color 0.3s ease; color:rgba(255,255,255,0.5); font-weight:400; text-transform:uppercase; letter-spacing: 0.3px;}
+.menu-content li:hover, .menu-content li.active { background: #5D687B; }
+.menu-content li:hover a, .menu-content li.active a { color: rgba(255,255,255,1); text-decoration: none;
+}
 
+ul#menu-small.menu-content li:hover { background: none }
 
 .panel_menu {
-	  overflow: auto;
-	  
+	  overflow: auto;	  
 	  font-size: 12px;
 	  font-weight: 200;
 	  background-color: #2e353d;
@@ -205,6 +211,39 @@ text-align: center;  padding: 24px;  font-size: 45px;  }
 .light-form thead { color: #4E92F6;}
 
 
+
+
+/* Selector CAROUSEL DATA*/
+.btn-filter {
+    background: #FFF;
+    color: #44CCCD;
+    border: none;
+    box-shadow: 1px 2px 2px rgba(0,0,0,0.25);
+    border-radius: 20px;
+    padding: 10px 20px;
+    transition: all ease 0.3s;
+}
+.loop-item { background: #009EFC;color: #FFF; font-weight: 800 !important;border-radius: 25px;margin: 0 10px 10px; padding: 20px 10px; text-align: center}
+.loop-item img { margin: 0 auto;  max-width: 150px;}
+.loop-item h4 { font-size:400%; font-weight:400; color: #FFF}
+.loop-item h5 { color:white;font-weight: 100;font-size: 200%;letter-spacing: 1px;text-transform: uppercase;}
+.loop-item:focus { outline: none; background: #0081CE} /*claro 37B3FD*/
+
+.slick-prev:before, .slick-next:before { color:#333; font-size: 40px;}
+.slick-prev:before {
+    content:"<";     
+}
+.slick-next:before {
+    content:">";
+}
+.clickable {cursor: pointer;}
+
+.weekday {    font-weight: 600; }
+.hours-day {   opacity: 0.7; }
+/* Selector CAROUSEL DATA*/
+
+
+
 /* FORMS */
 
 .light-form .form-control {
@@ -290,8 +329,8 @@ input.time-lapse {
 }
 
 
-.field-wrapper span, .field-wrapper .text { font-size: 150%;color: #7A8181;  font-weight: 300; margin-bottom:15px}
-
+.field-wrapper span, .field-wrapper .text, h2.text { font-size: 150%;color: #7A8181;  font-weight: 300; margin-bottom:15px}
+h2.text { margin-bottom: 35px}
 
 /* ROUNDED ONE */ /* more at http://cssdeck.com/labs/css-checkbox-styles */
 .checkbox {
@@ -577,6 +616,29 @@ h3{
 	border-spacing: 0;
 	margin: auto;
 }
+
+/*Calendars in Appointments*/
+.datetimepicker { width: 100%; /*TODO remove this property for mobile adaptation*/}
+.dai { 
+    background: #4E92F6;
+    height: 45px;
+    width: 45px;
+    padding-top: 7px;
+    font-weight: 600;
+    font-size: 20px;
+    border-radius: 25px;
+    color: #FFF;
+    transition: all ease 0.5s;
+}
+.unavailable .dai{
+	background: #C3C3C3; /*A9A9A9*/
+    color: #F2F5F6;
+}
+
+.available:hover .dai {
+	transform: scale(1.25)
+}
+
 
 /* Calendar Wrapper */
 .ui-datepicker {
@@ -887,7 +949,12 @@ h3.division , h4.division {     text-transform: uppercase; border-bottom: solid 
 #cm-home{
 	box-shadow: 0 0 2px #555;
 }
-.sb-button{
+.sb-button:hover{ 
+	color: #FFF;
+	background: rgba(168, 173, 181, 0.6);
+}
+.sb-button {
+	transition: color,background 0.3s ease;
 	position: fixed;
 	left: 10.5%;
 	top: auto;
@@ -895,8 +962,8 @@ h3.division , h4.division {     text-transform: uppercase; border-bottom: solid 
 	margin: auto;
 	z-index: 564564654;
 	font-size: 25px;
-	color: #888;
-	background: white;
+	color: #A8ADB6;
+	background: rgba(168, 173, 181, 0.2);
 	border-radius: 50%;
 	padding: 10px;
 	cursor: pointer;
@@ -1019,7 +1086,7 @@ h3.division , h4.division {     text-transform: uppercase; border-bottom: solid 
 
 }
 #appointment-add div{
-	padding-left: 0 !important;
+/*	padding-left: 0 !important;*/
 }
 #appointment-add-calendar > div{
 	padding: 0;

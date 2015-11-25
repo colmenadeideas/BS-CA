@@ -9,7 +9,12 @@
 	<h1>No tienes próximas Citas</h1>
 	<h4>¡Agrega un paciente hoy mismo!</h4>
 	
-	<button class="btn btn-blue btn-lg" data-toggle="modal" data-target="#signin">Agregar Cita</button>
+
+	<a href="#appointments/add" class="btn btn-blue btn-lg">
+		Agregar Cita
+	</a>
+
+
 	<br><br>
 	<div class="tip text-center vcenter">
 		

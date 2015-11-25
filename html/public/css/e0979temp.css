@@ -79,3 +79,12 @@
     z-index: 99;
     transform: scale(1.1);
 }
+
+div.inner.center.text-center { width: 100% !important; }
+li.menu-item-type-custom {
+    font-size: 70% !important;
+    padding-top: 4px !important;
+   
+ }
+li.menu-item-type-custom a { color: #F36669 !important; }
+#masthead #logo { width: 130px !important; }

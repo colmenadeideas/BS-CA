@@ -29,11 +29,11 @@ define(function() {
 
 				var active_page = url.split('/');
 				
-				switch(active_page[1]) {
+				switch(active_page[0]) {
 					case "doctor":
 						require(['app/doctor'], function($) {
 							
-							switch(active_page[2]) {
+							switch(active_page[1]) {
 								case 'details':
 									doctorLoadDetails();
 									break;
@@ -48,7 +48,7 @@ define(function() {
 					case "patient":
 						require(['app/patient'], function(patient) {
 							
-							switch(active_page[2]) {
+							switch(active_page[1]) {
 								case 'add':
 									patient.add();
 									break;
@@ -66,15 +66,17 @@ define(function() {
 						break;	
 
 					case "appointments":
-						require(['app/appointments'], function(appointments) {
+					
+						require(['app/appointments'], function(Appointments) {
 
-							switch(active_page[2]) {
+							switch(active_page[1]) {
 								case 'add':	
-								//appointments.autocomplete();	
-								appointments.calendar();								
+									Appointments.add();
+									//appointments.autocomplete();	
+									//appointments.calendar();								
 									break;
 								default:
-									appointments.list();
+									Appointments.list();
 									break;
 							}																					
 

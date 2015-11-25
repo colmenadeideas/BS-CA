@@ -8,14 +8,15 @@ class panelController extends Controller {
 		
 		parent::__construct();
 		//Auth::handleLogin('panel');
-        $this->view->title = "Doctor PANEL";	 //Temporarly defined to avoid individual var
-       // $this->view->user = $this->user->getUserdata(); //TODO Change  $this->view->username por $this->view->user
-        $this->view->userdata  = array("id"=>"22", "username" => "dlarez", "role" => "doctor" 	);
-		
+        $this->view->title = SITE_NAME . " | Panel" ;	 //Temporarly defined to avoid individual var
+        //$this->view->userdata  = array("id"=>"22", "username" => "dlarez", "role" => "doctor" 	);
+        $this->view->userdata = $this->user->getUserdata();
+        $this->view->userdata = $this->view->userdata[0];
+        
 	}
 	
 	public function index(){
-        
+       
 		//$this->view->userdata = $this->user->getUserdata();		
 		$this->view->buildpage("panel/appointments/next", "doctor");
 	}
@@ -121,25 +122,6 @@ class panelController extends Controller {
 	}
 		
 
-	function pruebaparadavid() {
-
-		$array_practice['id_doctor'] 	= "22";
-		// paso 1 el ID del doctor
-		$reg = $this->model->getLastPractice("",$array_practice['id_doctor'], 'id_doctor');
-		 echo $reg[0]['id'] ;
-		 echo '<br>';
-		 $array_practice['max_days_ahead'] 	= "66";
-		
-		 // paso 2 actualizar los datos del doctor co el iD encontrado en el paso 1
-		$s = $this->helper->update('doctor_practice', $reg[0]['id'], $array_practice);		
-
-		$reg2 = $this->model->getLastPractice("",$array_practice['id_doctor'], 'id_doctor');
-		print_r($reg2);
-		// $reg = $this->model->getLastPractice("",$array_practice['id_doctor'], 'id_doctor');
-		
-
-	}
-
 	public function schedule($action="list") {
 
 		switch ($action) {
@@ -158,21 +140,51 @@ class panelController extends Controller {
 
 
 
-
-
-
-
-
 	// Métodos Listos
 
-	public function appointments($action = "next", $from_date="", $to_date="") {
+	public function appointments($action = "next", $from_date = "", $to_date = "") {
 
 		switch ($action) {
-			case 'next':
 
+			case 'add':
+				$secondparameter = $from_date; 
+				$tempkey = $to_date;
+				//has
+				//-- step 1
+				//---- step 2
+				//------ step 3
+				//-------- step 4
+
+				if (!empty($secondparameter)) {
+
+					//Get Previous
+					$tempdata = Api::getTempRecord("array", $this->view->userdata['id'], $tempkey);
+					$this->view->tempkey = $tempdata[0]['tempkey'];
+					$this->view->tempdata = json_decode($tempdata[0]['data'], TRUE);
+
+					switch ($secondparameter) {
+						case 'step2': 	$template = "add-date"; 			break;
+						case 'step3': 	$template = "add-time"; 			break;
+						case 'step4':	$template = "add-patient";			break;
+					//	case 'step5':	$template = "add-preview";			break;
+					}
+
+				} else {
+					$this->view->tempkey = generateTempKey($this->view->userdata["username"]);			
+					$template = "add";
+				}
+
+				$this->view->render("panel/appointments/".$template);
+			
+
+				
+				break;
+
+			case 'next':
 				//Get Next Appointments
 				//Appointments/arreglo/doctor/22/2014-02-09/2014-02-10/practice/11/
-				$this->view->appointments = $this->api-> appointments("array" , "doctor", $this->view->userdata['id'], $from_date, $to_date);
+				$this->view->appointments = Api::appointments("array" , "doctor", $this->view->userdata['id'], $from_date, $to_date);
+
 				if ($this->view->appointments['tag'] == 'practices' && $this->view->appointments['empty'] == 1) {
 					// Doctor hasn't add PRACTICES
 					//TODO: suggest add practices
@@ -189,10 +201,6 @@ class panelController extends Controller {
 
 				break;
 
-			case 'add':
-				$template = "add";
-				$this->view->render("panel/appointments/".$template);
-			break;
 
 			case 'date':
 				$this->view->appointments = $this->api-> appointments("array" , "doctor", $this->view->userdata['id'], $from_date, $from_date);
@@ -202,8 +210,8 @@ class panelController extends Controller {
 	
 	}
 
-	public function practice($action, $secondparameter , $tempkey) {	
-			
+	public function practice($action, $secondparameter, $tempkey="") {	
+		
 		switch ($action) {
 			case 'add':
 				//has
@@ -234,9 +242,8 @@ class panelController extends Controller {
 			
 			default:
 				//list
-				
 				$this->view->practices = $this->api-> practices("array" , "doctor", $this->view->userdata['id']);
-
+			
 				if ($this->view->practices['empty'] != 1) {
 
 					$template = "list";
@@ -246,7 +253,6 @@ class panelController extends Controller {
 					$template = "none";
 
 				}
-
 			break;
 		}
 
@@ -256,6 +262,44 @@ class panelController extends Controller {
 	function process ($what, $step="", $step_id="") {
 
 		switch ($what) {
+
+			case 'appointments':
+				
+				$array_data = array();	
+				
+				foreach ($_POST as $key => $value) {
+					$field = escape_value($key);
+					$field_data = escape_value($value);	
+					if ($field_data != "") { //only filled data?
+						$array_data[$field] = $field_data;
+					}
+				}
+				unset($array_data['submit']);
+				
+				if (!empty($step_id)){
+					$template = "appointments/add/step".($step_id+1);	
+					$this->temp("save", "noresponse");	
+					switch ($step_id) {
+						case 1: 							
+							break;
+						
+						default:
+							$previous = Api::getTempRecord("array", $array_data['id_doctor'], $array_data['tempkey']);
+							if (!empty($previous)){
+								$this->view->tempdata = json_decode($previous[0]['data'], TRUE);
+							}							
+							break;							
+					}
+					$response["tag"] = "process";
+					$response["success"] = 1;
+					$response["error"] = 0;	
+					$response["response"] = "saved";
+					$response["template"] = $template;
+					$response["tempkey"] = $array_data['tempkey'];
+					
+					echo json_encode($response);	
+				}
+				break;
 
 			case 'patient':
 				

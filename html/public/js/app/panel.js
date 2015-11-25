@@ -3,10 +3,18 @@
 define(['globals', 'functions', 'appassets/enhance' ], function(globals, functions, enhance) {
 	
 	function run() {
+		
+		//Menu Active
+		$('.menu-content li').click(function() {
+			$('.menu-content li.active').removeClass('active');
+			$(this).addClass('active');
+		});
+		//
 
 		$('.collapse').collapse();
 
 		enhance.floatinput();
+		
 		$("[id^=collapse]").on('shown', function(){
 		    $(this).parents('.accordion-group').find('.accordion-toggle')
 		         .prop('checked', true);
@@ -14,19 +22,7 @@ define(['globals', 'functions', 'appassets/enhance' ], function(globals, functio
 
 		//DEFINITIVAS
 		resizePanel();
-		autocomplete();
-
-		/*var currentLocation = functions.getPage(4);
-
-		switch(currentLocation) {
-			case "login":
-				login.signin();
-				break;
-
-			default:
-
-				break;
-		}*/
+		autocomplete();		
 		
 	}
 	//LEFT PANEL Resize

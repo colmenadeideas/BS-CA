@@ -150,11 +150,18 @@ define(['globals', 'appassets/stepform', 'appassets/enhance'], function(globals,
 		if (hashCheck[0] == '#search' || hashCheck[0] == '#doctor') {
 			//Set Minimum Form
 			$('.site-home').css({
-				'margin-top':'20px',
-				'min-height': '200px',
-				'background-size': 'auto 100%'
+				'margin-top':'10px',
+				'min-height': '100px',
+				'background-size': 'auto 100%',
+				'padding-top': '0'
 			});
-			$('.site-home h1').fadeOut();
+			$('.site-home h1').fadeOut('fast');
+			$('.site-home h3').fadeOut('fast');
+			$('#form-search-doctor').css({
+				'margin-top':'0',
+			});
+			$('.navbar').css({'padding-bottom':'0' });
+			
 
 			$('#results').css({
 				'margin-top': '0px',

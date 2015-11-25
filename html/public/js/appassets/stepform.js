@@ -21,7 +21,7 @@ define(['globals', 'appassets/enhance'], function(globals, enhance) {
 				$('.send').attr('disabled', 'disabled');				
 				$.ajax({
 					type : "POST",
-					url : URL + "panel/process/"+stepForm,
+					url : globals.URL + "panel/process/"+stepForm,
 					data : $(form).serialize()+ "&form="+stepForm+"&url="+currentUrl+"&tempkey="+stepform.data('tempkey'),
 					timeout : 12000,
 					success : function(response) {
@@ -67,9 +67,9 @@ define(['globals', 'appassets/enhance'], function(globals, enhance) {
 			//return;
 		} else {
 						
-			console.log("step "+step);	
+			console.log("form: "+stepForm+ " step: "+step);	
 			var updateArea = "#stepform";
-			var pleasewait = '<div id="pleasewait" style="background:red; width 100%; height:200px">please wait</div>';
+			var pleasewait = '<div id="pleasewait"></div>';
 			
 			//Validate
 			$("#"+stepForm).validate({
@@ -83,6 +83,7 @@ define(['globals', 'appassets/enhance'], function(globals, enhance) {
 						data : $(form).serialize()+ "&form="+stepForm+"&url="+currentUrl+"&tempkey="+stepform.data('tempkey'),
 						timeout : 12000,
 						success : function(response) {
+								
 							var response = JSON.parse(response);
 							console.log(response);	
 							switch (response.success) {						
@@ -94,7 +95,7 @@ define(['globals', 'appassets/enhance'], function(globals, enhance) {
 								 		response.template+"/"+response.tempkey, function () {	
 								 	})
 								 	.hide().html(response.template).fadeIn(500, function(){
-								 		enhance.fieldsfor(stepForm);
+								 		enhance.fieldsfor(stepForm, step);
 								 		run();
 								 	});							 	
 

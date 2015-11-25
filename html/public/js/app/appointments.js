@@ -1,11 +1,109 @@
-// git event
+define(['globals', 'assets/handlebars.min', 'appassets/stepform', 'appassets/enhance','functions'], function(globals, Handlebars, stepform, enhance,functions) {
 
-define(['globals'], function(globals) {
-	
 	function add() {
+		functions.handlebarsHelpers();
+		//1) Get Available Practices for me (doctor) //
+		var OKey = $('[name="OKey"]').val();
+		$.getJSON(globals.URL+"api/practices/json/doctor/"+OKey, function(data) {
+			
+			var TemplateScript = $("#Practice-Template").html(); 
+			var Template = Handlebars.compile(TemplateScript);
+
+			$(".all-practices").append(Template(data));
+
+			$('.practices-slider').slick({
+				dots: true,
+				infinite: true,
+				speed: 300						
+			});
+
+			//Trigger form Step 1
+			$('.practice').click(function(){
+				form = $(this).closest('form');
+				var selectedPracticeID = $(this).data('value');				
+				$('[name="practice"]').val(selectedPracticeID);
+				stepform.next(form);
+				form.submit();
+			});
+
+			$('.btn.next').click(function(){
+				form = $(this).closest('form');
+				//stepform.tempsave(form, currentUrl);
+				stepform.next(form);
+			});
+
+			console.log(data);
+		});
 		
 		
 	}
+	//Add-Date
+	function stepsCalendar(){
+		var form = $(this).closest('form');
+		var practiceID = $('[name="practice"]').val();
+		$('#calendar').calendar({
+			day_first: 0,
+			day_name: ['LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB', 'DOM'],
+          	month_name: [	'ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 
+          					'NOVIEMBRE', 'DICIEMBRE'],
+            adapter: globals.URL+'api/availability/json/'+globals.okey+'/'+practiceID+'/days',
+            onSelectDate: function(date, month, year){
+
+	          var notBookable = this.isAvailable(date, month, year);
+	          if (notBookable === false){
+				console.log("book me"+date+month+year);
+				$('[name="selectedDate"]').val([year, month, date].join('-'));
+				var form = $('#appointments');
+				stepform.next(form);
+				form.submit();
+	          }			         
+	        }		            
+		});
+	}
+	//Add-Time
+	function stepsTimeSlot(){
+		
+		var form = $(this).closest('form');
+		var practiceID = $('[name="practice"]').val();
+		var selectedDate = $('[name="selectedDate"]').val();
+		
+		functions.handlebarsHelpers();
+		//1) Get Available TimeSlots for Date  //
+		var OKey = $('[name="OKey"]').val();
+		$.getJSON(globals.URL+"api/availability/json/"+OKey+"/"+practiceID+"/hours/"+selectedDate, function(data) {
+			
+			var TemplateScript = $("#Timeslot-Template").html(); 
+			var Template = Handlebars.compile(TemplateScript);
+
+			$(".all-hours").append(Template(data));
+
+			$('.hours-slider').slick({
+				dots: true,
+				infinite: true,
+				vertical: true,
+				speed: 300						
+			});
+
+			//Trigger form Step 1
+			$('.timehour').click(function(){
+				form = $(this).closest('form');
+				var selectedTimeValue = $(this).data('value');				
+				$('[name="timehour"]').val(selectedTimeValue);
+				stepform.next(form);
+				form.submit();
+			});
+
+			$('.btn.next').click(function(){
+				form = $(this).closest('form');
+				//stepform.tempsave(form, currentUrl);
+				stepform.next(form);
+			});
+
+			console.log(data);
+		});
+	}
+
+	
 	
 	function list () {
 
@@ -124,7 +222,10 @@ define(['globals'], function(globals) {
 	return {
       add: add,
       list: list,
-      calendar: calendar
+      calendar: calendar,
+      stepsCalendar:stepsCalendar,
+      stepsTimeSlot: stepsTimeSlot
+
 	}
 
 

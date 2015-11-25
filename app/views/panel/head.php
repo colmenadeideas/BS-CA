@@ -21,13 +21,12 @@
 	<?php echo GOOGLE_FONTS; ?>
 	<?php echo GOOGLE_ANALYTICS; ?>
 	
-	
-    <!--script src="<?php //echo JS; ?>config.js"></script-->
+	<!--script src="<?php //echo JS; ?>config.js"></script-->
     
     <script data-main="<?php echo JS;?>main-panel" src="<?php echo JS; ?>assets/require.js"></script>
     
-    
 </head>
 <body>
+	<input type="hidden" name="OKey" id="<?php echo $_SESSION['randomkey']; ?>" value="<?php echo $_SESSION['OKey']; ?>">
 	<div class="container-fluid">
     		<div class="row">

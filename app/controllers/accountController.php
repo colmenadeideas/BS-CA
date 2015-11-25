@@ -83,6 +83,7 @@
 						$this->user->init();
 				        $this->user->set('role', $role);
 						$this->user->set('loggedIn', true);
+						$this->user->set('OKey', escape_value($validUser[0]['id'])); //This is user ID
 				        $this->user->set('username', $username);
 						if (isset($accesstoken)) {
 							$this->user->set('socialnetwork', true);	

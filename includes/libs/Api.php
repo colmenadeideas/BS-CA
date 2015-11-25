@@ -4,10 +4,9 @@ class Api extends ApiQuery {
 	public function __construct() {
 
 	}
-
 	//PRINT FORMAT FUNCTION
 	public function printResults($print = "json", $array_final) {
-		//print_r($array_final); exit;
+		
 		if ($print == 'json') {
 			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
 		} else {
@@ -15,7 +14,6 @@ class Api extends ApiQuery {
 			return $array_final;
 		}
 	}
-
 
 
 	//Practices/arreglo/doctor/22
@@ -58,21 +56,34 @@ class Api extends ApiQuery {
 					$ini_schedule = substr($schedule['ini_schedule'], 0, 2);
 
 					if ($ini_schedule > 01 && $ini_schedule < 13) {
-						$icon = '<i class="fa fa-sun-o"></i> ';
+						$icon = " AM";//'<i class="fa fa-sun-o"></i> ';
 					} else {
-						$icon = '<i class="fa fa-moon-o"></i> ';
+						$icon = "PM";//'<i class="fa fa-moon-o"></i> ';
 					}
 
-					$schedule['ini_schedule'] = $icon . $schedule['ini_schedule'];
+					if ($end_schedule > 01 && $end_schedule < 13) { $icon = " AM";	} else { $icon = " PM";	}
+
+
+					$schedule['ini_schedule'] =  $schedule['ini_schedule']. $icon;
+					$schedule['end_schedule'] =  $schedule['end_schedule']. $icon;
 					$array_final['practice'][$i]['schedule'][$s]['ini_schedule'] = $schedule['ini_schedule'];
+					$array_final['practice'][$i]['schedule'][$s]['end_schedule'] = $schedule['end_schedule'];
 
 					$s++;
 				}
 				$i++;
 			
 			}			
+			
+			
+			
+			
 					
-			Api::printResults($print, $array_final);
+			if ($print == 'json') {
+				echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+			} else {//modo "array"
+				return $array_final;
+			}
 		}
 
 	}
@@ -83,7 +94,7 @@ class Api extends ApiQuery {
 		$id = escape_value($id);
 		//Si no hay parametros de fecha, tomar fecha actual + 7 días
 		if($for_date == "") { $for_date = date("Y-m-d");	}
-		if($to_date == "") 	{ $to_date 	= date("Y-m-d", strtotime("+60 days"));	}
+		if($to_date == "") 	{ $to_date 	= date("Y-m-d", strtotime("+7 days"));	}
 
 		if (!empty($second_parameter)) {
 			$second_parameter = escape_value($second_parameter);
@@ -110,8 +121,11 @@ class Api extends ApiQuery {
 				$a++;
 			}
 
-			Api::printResults($print, $array_final);
-		
+			if ($print == 'json') {
+				echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+			} else {//modo "array"
+				return $array_final;
+			}
 		} else { //GET ALL PRACTICES DATES
 
 			$array_practices = ApiQuery::getDoctorPractices($id);
@@ -122,7 +136,11 @@ class Api extends ApiQuery {
 				$response["empty"] = 1;
 				$response["response"] = NO_PRACTICES_AVAILABLE;
 	
-				Api::printResults($print, $response);
+				if ($print == 'json') {
+					echo json_encode($response, JSON_UNESCAPED_UNICODE);
+				} else {//modo "array"
+					return $response;
+				}
 				
 			} else {
 				$practiceFields = DB::columnList('clinic');
@@ -140,7 +158,11 @@ class Api extends ApiQuery {
 	
 					//echo json_encode($response);
 	
-					Api::printResults($print, $response);
+					if ($print == 'json') {
+						echo json_encode($response, JSON_UNESCAPED_UNICODE);
+					} else {//modo "array"
+						return $response;
+					}
 	
 				} else {
 		
@@ -176,7 +198,11 @@ class Api extends ApiQuery {
 						$i++;
 					}
 	
-					Api::printResults($print, $array_final);
+					if ($print == 'json') {
+						echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+					} else {//modo "array"
+						return $array_final;
+					}
 				}
 			} //end if doctor HAS practices
 		} //end if emtpy second parameter
@@ -198,7 +224,11 @@ class Api extends ApiQuery {
 		}*/
 		$query = ApiQuery::autocomplete($what, $string);
 		
-		Api::printResults($print, $query);
+		if ($print == 'json') {
+			echo json_encode($query, JSON_UNESCAPED_UNICODE);
+		} else {//modo "array"
+			return $array_final;
+		}
 
 	}
 
@@ -361,14 +391,13 @@ class Api extends ApiQuery {
 	}
 
 	
-	
 	//PATIENTS
 	public function patients($print = "json", $relation="doctor",$id) {
 		$relation = escape_value("id_".$relation);
 		$id = escape_value($id);
-
 		//get Relationships
 		$relationships =	ApiQuery::getPatientsByRelationship($relation, $id);
+		
 		foreach ($relationships as $relationship) {
 			//get each patient
 			$patient = ApiQuery::getPatientBy('id', $relationship['id_patient']);
@@ -384,7 +413,8 @@ class Api extends ApiQuery {
 		}
 		
 	}
-
+	
+	//
 	public function patient($print = "json", $id) {
 
 		$id = escape_value($id);
@@ -399,14 +429,16 @@ class Api extends ApiQuery {
 				$array_final['patient'][$i][$field] = $patient[$field];
 			}
 		}
-
-		Api::printResults($print, $array_final);
+		if ($print == 'json') {
+			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+		} else {//modo "array"
+			return $array_final;
+		}
 
 	}
 	
 	//get Doctor's Matrix of available slots  and current unavailable
-	public function availability($print = "json", $id_practice) {
-		
+	public function availability_matrix($print = "json", $id_doctor, $id_practice) {
 		
 		$array_schedules = ApiQuery::getDoctorPracticesSchedule($id_practice);
 		$array_schedules_exceptions = ApiQuery::getDoctorPracticesScheduleExceptions($id_practice);
@@ -418,8 +450,116 @@ class Api extends ApiQuery {
 		$array_final["manage_time_slots"] = $array_practice[0]['manage_time_slots'];
 		$array_final["days_in"] = $array_schedules;
 		$array_final["days_out"] = $array_schedules_exceptions;
+				
 		
-		Api::printResults($print, $array_final);
+		if ($print == 'json') {
+			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+		} else {//modo "array"
+			return $array_final;
+		}
+	}
+
+	public function availability($print = "json", $id_doctor, $id_practice, $show = "days", $selecteddate="") {
+		
+		$available_dates_matrix = $this->availability_matrix("array",$id_doctor, $id_practice);
+		define (APPOINTMENTS_INTERVAL, 30);//30min  
+		// Build Dates ahead, based on Practice's limit max_days_ahead
+	 	$start = strtotime('today UTC');
+		$array_calendar = array();
+
+		for($i = 0; $i<=$available_dates_matrix['max_days_ahead']; $i++){					
+			$date_ahead = date ('Y-m-d', strtotime("+$i day", $start));
+			$array_calendar[$i]['day'] = $date_ahead;
+			$array_calendar[$i]['weekday'] = date( "D", strtotime($date_ahead)); // Mon, Fri
+			$array_calendar[$i]['manage_time_slots'] = $available_dates_matrix['manage_time_slots'];
+			$e=0;
+			
+			//Check if fits DAYS_IN matrix criteria
+			foreach ($available_dates_matrix['days_in'] as $day_in_matrix) {
+				
+				if ($array_calendar[$i]['weekday'] == $day_in_matrix['day']) {
+					//Block in case there's hours interrupting slots (breaks)
+					$array_calendar[$i]['day_in'] = '1';
+					$array_calendar[$i]['block'][$e]['max_quota'] = $day_in_matrix['quota'];
+					$array_calendar[$i]['block'][$e]['ini_schedule'] = $day_in_matrix['ini_schedule'];
+					$array_calendar[$i]['block'][$e]['end_schedule'] = $day_in_matrix['end_schedule'];
+					
+					//If Doctor wants OKIDOC to manage time slots (1)-->
+					if ($available_dates_matrix['manage_time_slots'] == 1){
+						//Create Hour Slots available
+						$ini = sscanf($day_in_matrix['ini_schedule'], "%d:%d:00", $hour_ini, $minutes_ini);
+						$ini__miliseconds_time = (($minutes_ini % 60) + ($hour_ini * 60)) *60;
+						$end = sscanf($day_in_matrix['end_schedule'], "%d:%d:00", $hour_end, $minutes_end);
+						$end__miliseconds_time = (($minutes_end % 60) + ($hour_end * 60)) *60;
+						
+						$range_slots = hoursRange( $ini__miliseconds_time, $end__miliseconds_time, 60 * APPOINTMENTS_INTERVAL, 'h:i a' );
+						
+//						$array_calendar[$i]['block'][$e]['slots'][] = $range_slots;
+
+						foreach ($range_slots as $key => $value) {
+							$array_calendar[$i]['block'][$e]['slots'][]['time'] = $value; 
+						}
+					}
+					//Setting for Calendar ADAPTER in JS
+					switch ($show) {
+						case 'days':
+							$array_calendar_daysONLY[] =  $array_calendar[$i]['day'];
+							break;
+						case 'hours':
+							//$array_calendar_hoursONLY[] =  $array_calendar[$i]['day'];
+							break;
+					}	
+					//end setting
+					$e++;
+				}
+									
+			}
+			
+			//Remove DAYS_OUT from matrix criteria, if match
+			$d = 0;
+			foreach ($array_calendar as $calendar_day) {
+				
+				foreach ($available_dates_matrix['days_out'] as $day_out) {
+					if ($calendar_day['day'] == $day_out['date']) {
+						//Remove from Calendar View
+						unset($array_calendar[$d]);
+					}						
+				}
+				
+				$d++;
+			}
+		}
+
+		
+
+		if ($show == "days") {
+			$array_calendar = $array_calendar_daysONLY;
+
+		} else if ($show == "hours") {
+			//work ONLY with given date, Remove everything else
+			$f = 0;
+			foreach ($array_calendar as $calendar_day_finals) {				
+				if($selecteddate != ""){
+					if ($calendar_day_finals['day'] != $selecteddate) {
+						//Remove from Calendar View
+						unset($array_calendar[$f]);
+					}
+				}
+				$f++;
+			}
+
+			$array_calendar_selecteddate = current($array_calendar); //TODO Check if "current" is the ideal function to clean the index of array_calendar
+			$array_calendar = "";
+			$array_calendar["empty"] = 0;
+			$array_calendar["date"][0] = $array_calendar_selecteddate;
+		}
+		
+
+		if ($print == 'json') {
+			echo json_encode($array_calendar, JSON_UNESCAPED_UNICODE);
+		} else {//modo "array"
+			return $array_calendar;
+		}
 	}
 
 	public function appointment($print = "json", $by = "doctor", $id, $second_parameter = "", $practice_id = "", $for_date = "", $to_date = "") {
@@ -449,7 +589,11 @@ class Api extends ApiQuery {
 			$array_final['dates'][0]['practice'][0]['appointments'][$a] = $appointment;
 			$a++;
 		}
-		Api::printResults($print, $array_final);
+		if ($print == 'json') {
+			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+		} else {//modo "array"
+			return $array_final;
+		}
 
 	}
 
@@ -511,8 +655,11 @@ class Api extends ApiQuery {
 			}
 			$i++;
 		}
-
-		Api::printResults($print, $array_final);
+		if ($print == 'json') {
+			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+		} else {//modo "array"
+			return $array_final;
+		}
 
 	}
 	
@@ -566,7 +713,11 @@ class Api extends ApiQuery {
 			}
 			$i++;
 		}
-		Api::printResults($print, $array_final);
+		if ($print == 'json') {
+			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+		} else {//modo "array"
+			return $array_final;
+		}
 
 	}
 	//GET TEMP FORM DATA
@@ -574,7 +725,11 @@ class Api extends ApiQuery {
 
 		$array_final = ApiQuery::getTempRecordResult($user_id, $tempkey);
 		
-		Api::printResults($print, $array_final);	
+		if ($print == 'json') {
+			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+		} else {//modo "array"
+			return $array_final;
+		}	
 	}
 
 }

@@ -1,10 +1,22 @@
 define(['globals', 'functions'], function(globals, functions) {
 
-	function fieldsfor(form) {
+	function fieldsfor(form, step) {
 	
 		floatinput();
 
 		switch (form) {
+			case "appointments":
+				require(['app/appointments'], function(appointments) {
+					if (step == 3) {
+						appointments.stepsTimeSlot();
+					} else {
+						appointments.stepsCalendar();
+					}
+				});	
+
+
+				break;
+
 			case "patient":
 				/*
 				yes = $('.yes');
