@@ -48,7 +48,7 @@
 					</div>
 					<div class="col-lg-12 col-md-12 text-center">
 							
-						<a class="btn btn-lg  btn-facebook more-margin" id="register_with_facebook" onclick="facebookLogin('doctor')">
+						<a class="btn btn-lg btn-facebook more-margin" id="register_with_facebook" data-role="doctor">
 							<i class="fa fa-facebook"></i> <?php echo SITE__SIGN_IN_WITH_FACEBOOK; ?>
 						</a>
 						<button id="registerGoogleDoctor" name="doctor"  class="btn btn-lg btn-google"><i class="fa fa-google-plus"></i><?php echo SITE__SIGN_IN_WITH_GOOGLE; ?></button>
@@ -76,7 +76,7 @@
 					</div>
 					<div class="col-lg-12 col-md-12 text-center">
 							
-						<a class="btn btn-lg  btn-facebook more-margin" id="register_with_facebook" onclick="facebookLogin('patient')">
+						<a class="btn btn-lg btn-facebook more-margin" id="register_with_facebook" data-role="patient">
 							<i class="fa fa-facebook"></i> <?php echo SITE__SIGN_IN_WITH_FACEBOOK; ?>
 						</a>
 						<button id="registerGooglePatient" name="patient"  class="btn btn-lg btn-google"><i class="fa fa-google-plus"></i><?php echo SITE__SIGN_IN_WITH_GOOGLE; ?></button>

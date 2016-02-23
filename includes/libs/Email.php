@@ -8,7 +8,7 @@ class Email extends PHPMailer{
 		
 		$this->IsSMTP(); 
 		$this->Host       = MAIL_HOST; 
-		$this->SMTPDebug  = 2;         
+		$this->SMTPDebug  = 0;         
 		$this->SMTPAuth   = true;      
 		$this->SMTPSecure = MAIL_SECURE;     
 		$this->Host       = MAIL_SERVER; 

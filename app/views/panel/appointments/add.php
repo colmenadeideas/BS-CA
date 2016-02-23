@@ -7,30 +7,11 @@
 			<!--extra data-->
 			<input type="hidden"  id="id_doctor" name="id_doctor" value="<?php echo $this->userdata['id']; ?>" required>
 			<input type="hidden"  name="tempkey" value="<?php echo $this->tempkey; ?>" required>
-			<h2 class="text-center text">¿Dónde deseas agregar la cita?</h2>
-			<div class="all-practices list">		
-				<script id="Practice-Template" type="text/x-handlebars-template">
-				{{#if practice.length}}
-					<div class="practices-slider" data-slick='{"slidesToShow": 3 }'>
-					
-					{{#practice}}
-						<div class="column-steps loop-item clickable practice"  id="practice-{{id}}" data-value="{{id}}">
-							<img src="<?php echo IMG; ?>icon-okidoc-hospital.png" class="img-responsive" alt="{{name}}">
-							<h5>{{name}}</h5>
-
-							<div class="hours-day">
-								{{#schedule}}
-						         <span class="weekday">{{day}}</span> {{formatTime ini_schedule}} - {{formatTime end_schedule}}
-						        {{/schedule}}
-							</div>
-						</div>
-				  	{{/practice}}
-				  	<input type="hidden"  name="practice" required>
-				  	</div>
-				{{else}}
-					<?php //$this -> render('app/board/empty'); ?>
-				{{/if}}
-				</script>				
+			<h2 class="text-center text">¿Dónde deseas crear la cita?</h2>
+			<div class="all-practices list">
+				<script id="Practice-Template" type="text/x-handlebars-template">		
+					<?php $this->render('panel/appointments/template-clinics'); ?>	
+				</script>			
 			</div>
 		</form>
 	</div>

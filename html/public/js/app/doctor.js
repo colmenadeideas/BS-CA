@@ -1,258 +1,338 @@
-	function doctorLoadDetails() {
+define(['globals', 'assets/handlebars.min', 'appassets/stepform', 'appassets/enhance', 'app/appointments','app/payment','functions' ], function(globals, Handlebars,  stepform, enhance, Appointments, Payment, functions) {
 
-	template = document.getElementById("item-details").firstChild.textContent;
-	var currentHash = window.location.hash;
-	var id = currentHash.split("/");
-	var context = $.getJSON(URL + "api/doctor/json/" + id[2], function(data) {
-		//console.log(data);
+	function profile() {
 
-		var context = data;
-		$('#doc-details').html(Mark.up(template, context));
+		var currentHash = window.location.hash;
+		var hashIs = currentHash.split("/");
 
-		//Activate Rating
-		$(".rating").rating();	
+		functions.handlebarsHelpers();
+
+		$.getJSON(globals.URL + "api/doctor/json/" + hashIs[2], function(data) {
+			console.log(data);
+			var TemplateScript = $("#Profile-Template").html(); 
+			var Template = Handlebars.compile(TemplateScript);
+			Handlebars.registerPartial("TabBookApointment", $("#BookAppointment-Template").html());
+			$("#doc-details").append(Template(data));
 			
-		bookingform();
-		bookingSteps();
-		day();
-		console.log(context['doctors']['0']['practice']['0']['schedule']['0']['quota']);
+			$(".rating").rating();	
+			//Get Tab to Open
+			$('a[href="#'+hashIs[3]+'"]').tab('show');			
 
-	});
-	
-	//Build Other views
-	
+			//Tab Appointment
+			appointment();	
 
-}
-
-function bookingform() {	
-	//Step 1 
-	$('#reasons-loop').carouFredSel({
-		height:500,
-		items: 3,
-		scroll: 1,
-		showOn: "button",
-
-		auto: {
-			play: false,
-		},		
-		prev: '#handler-back-reason',
-		next: '#handler-fowr-reason',
-	});
-
-	//Step3
-
-
+		});
+		
+	}
 
 	
-//jQuery time
-var current_fs, next_fs, previous_fs; //fieldsets
-var left, opacity, scale; //fieldset properties which we will animate
-var animating; //flag to prevent quick multi-click glitches
+	function run (){
+		
+		appointment();
+		reasons();
+		days();
+		patient();
+		payment();
+	}
 
-$(".next").click(function(){
-	if(animating) return false;
-	animating = true;
-	
-	current_fs = $(this).parent();
-	next_fs = $(this).parent().next();
-	
-	//activate next step on progressbar using the index of next_fs
-	$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-	
-	//show the next fieldset
-	next_fs.show(); 
-	current_fs.removeClass('activestep');
-	next_fs.addClass('activestep');
-	
-	//hide the current fieldset with style
-	current_fs.animate({opacity: 0}, {
-		step: function(now, mx) {
-			//as the opacity of current_fs reduces to 0 - stored in "now"
-			//1. scale current_fs down to 80%
-			//scale = 1 - (1 - now) * 0.2;
-			scale = 1;
-			//2. bring next_fs from the right(50%)
-			left = (now * 50)+"%";
-			//3. increase opacity of next_fs to 1 as it moves in
-			opacity = 1 - now;
-			current_fs.css({'transform': 'scale('+scale+')'});
-			//next_fs.css({'left': left, 'opacity': opacity});
-			next_fs.css({'opacity': opacity});
-		}, 
-		duration: 800, 
-		complete: function(){
-			current_fs.hide();
-			animating = false;
-		}, 
-		//this comes from the custom easing plugin
-		easing: 'easeInOutBack'
-	});
-});
+	function payment () {
 
-$(".previous").click(function(){
-	if(animating) return false;
-	animating = true;
-	
-	current_fs = $(this).parent();
-	previous_fs = $(this).parent().prev();
-	
-	//de-activate current step on progressbar
-	$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-	
-	//show the previous fieldset
-	previous_fs.show(); 
-	current_fs.removeClass('activestep');
-	previous_fs.addClass('activestep');
-	
-	//hide the current fieldset with style
-	current_fs.animate({opacity: 0}, {
-		step: function(now, mx) {
-			//as the opacity of current_fs reduces to 0 - stored in "now"
-			//1. scale previous_fs from 80% to 100%
-			scale = 0.8 + (1 - now) * 0.2;
-			//2. take current_fs to the right(50%) - from 0%
-			left = ((1-now) * 50)+"%";
-			//3. increase opacity of previous_fs to 1 as it moves in
-			opacity = 1 - now;
-			//current_fs.css({'left': left});
-			previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
-		}, 
-		duration: 800, 
-		complete: function(){
-			current_fs.hide();
-			animating = false;
-		}, 
-		//this comes from the custom easing plugin
-		easing: 'easeInOutBack'
-	});
-});
-
-$(".submit").click(function(){
-	return false;
-});
-
-}
-
-// I hate handlebars
-function bookingSteps() {
-	data = 'La data tiene que ser configurada';
-	var reason;
-	var clinic;
-	var dayName;
-	var day;
-	var month;
-	console.log(data);
-	$('#calendar').datepicker({
-		inline: true,
-		firstDay: 1,
-		showOtherMonths: true,
-		dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab' ],
-		timeFormat: 'yyy-dd-mm HH:MM:ss'
-	});
-
-	$('.reason-book').children('button').click(function (){
-		reason = $(this).text();
-		$('.reason-book').animate({
-			margin: "500px 0 0",
-			opacity: 0,
-		},
-		{
-	 	duration: 400,
-	 	complete: function(){
-	 		$(this).hide();
-	 		$(this).css('margin', "0")
-			$('#step2').removeClass('hidden').css('opacity', '0');
-			$('#practices-loop').carouFredSel({
-				width: "100%",
-				height:300,
-				items: 3,
-				scroll: 1,
-				auto: {
-					play: false,
-				},
-				prev: '#handler-back-practice',
-				next: '#handler-fowr-practice',
+		if ($('#step4').is(".active") == true || $('#step5').is(".active") == true){
+			
+			$('.startPayment').click( function(e){
+				var init_point = $(this).data("initpoint");
+				Payment.startPayment(init_point);
+				e.preventDefault();
 			});
-			$('#step2').animate({opacity: 1, margin: '70px 0 0'});
-	 	}
-	 });
-	});
+			$('#step4').css("background","#F3F3F3");
+			
+			$('.btn-edit-consult').click(function(){
+				slideBeginning();
+			});
+		}
+	}
 
-	$('.practice-item').click(function (){
-		clinic = $(this).children('h4').text();
-		$('#step2').animate({
-			height: "400px",
-			opacity:00,
-		},
-		{
-			duration: 400,
-			complete: function()
-			{
-				$(this).hide();
-				$('.step3').removeClass('hidden').css('opacity', '0');
-				$('#calendar-loop').carouFredSel({
-					width: "100%",
-					height:200,
-					items: 3,
-					scroll: 1,
-					auto: {
-						play: false,
-					},
-					
-					prev: '#handler-back-cal',
-					next: '#handler-fowr-cal',
+	function patient() {
+		if ($('#step4').is(".active") == true){
+			
+			$('#or-register-button').click(function(e){
+				$('#register-mask').animate({
+				    left: "-=100%",
+				  }, 1000, function() {
 				});
-				$('.step3').animate({opacity: 1, margin: '105px 0 0'});
-			}
-		})
-	});
-	$('.calendar-item').click(function(){
-		day = $(this).children('h4').text();
-		dayName = $(this).children('h5:first-child').text();
-		month = $(this).children('h5:last-child').text();
-		$('.hcontainer').removeClass('hidden').css('opacity', '0').animate({opacity: 1, margin: 'auto'});
-		
-		$('#resume-clinic').children('h4').text(clinic);
-		$('#resume-date').children('h2:nth-child(2)').text(month.substring(0,3));
-		$('#resume-date').children('h2:first-child').text(day);
-
-		var data = [
-		    {
-	    	"clinic": clinic,
-	     	"reason": reason,
-		    "date": day + " " + dayName + " " + month
-			}
-		];
-
-		$.ajax({
-			type: 'POST',
-			data: data,
-			dataType: 'json',
-			url: URL+'site/payment/preview',
-			success: function (r){
-				if (r == true) {
-					alert('Se ha envieado el primer objeto con exito');
-				}else{	
-					alert('No ha habido respuesta del API');
-				};
-			}
-		});
-		$('#doc-details').fadeOut('slow', function () {
-			$(this).load('payment/preview', function(){
-				$(this).fadeIn('slow');
+				e.preventDefault();
 			});
-		});
-		console.log(data);
+		}
+	}
+	
+	function days() {
+
+		if ($('#step3').is(".active") == true){
+
+			var doctor = $('[name="OKey"]').val();
+			var practice = $('[name="practice"]').val();
 		
-	})
+			$.when($.getJSON(globals.URL+"api/availability/json/"+doctor+"/"+practice+"/all/", function (data) {
+				console.log(data);
+			    var TemplateScript = $("#Available-Days-Template").html(); 
+			    var Template = Handlebars.compile(TemplateScript);
+				$("#step3").append(Template(data));
+			}, function () {
+			    
+			})).done( function(){
+				
+				$('.date-slider').slick({
+					dots: true,
+					infinite: false,
+					speed: 300						
+				});
+				//Trigger form Step 3
+				$('.timeslot').click(function(e){
+					form = $(this).closest('form');
 
-	$('#resume-close, #resume-edit').click(function (e) {
-		e.preventDefault;
-		//alert('¿Esta seguro que quiere volver al proceso de apartado de cita?');
-		$('.resume').slideUp();
-	})
-}
+					var selectedDateID = $(this).data('date');				
+					$('[name="date"]').val(selectedDateID);
+					var selectedTimeID = $(this).data('time');				
+					$('[name="time"]').val(selectedTimeID);
+					//stepform.next(form);
+					next(form);
+					form.submit();
+					e.preventDefault();
+				});
+			});
+		}
+	}
+
+	function reasons() {
+		if ($('#step2').is(".active") == true){
+			/*$('.reasons-slider').slick({
+				dots: true,
+				infinite: false,
+				speed: 300						
+			});*/
+
+			var doctor = $('[name="OKey"]').val();
+			var practice = $('[name="practice"]').val();
+		
+			$.when($.getJSON(globals.URL+"api/practice/json/"+practice+"/doctor/"+doctor+"/", function (data) {
+				console.log(data);
+			    var TemplateScript = $("#List-Reasons-Template").html(); 
+			    var Template = Handlebars.compile(TemplateScript);
+				$("#step2").append(Template(data));
+			}, function () {
+			    
+			})).done( function(){
+				
+				$('.reasons-slider').slick({
+					dots: true,
+					infinite: false,
+					speed: 300						
+				});
+				//Trigger form Step 3
+				$('.reason').click(function(e){
+					form = $(this).closest('form');
+
+					var selectedReason = $(this).data('reason');				
+					$('[name="consultation_reason"]').val(selectedReason);
+					var selectedInterval = $(this).data('initial_interval');				
+					$('[name="initial_interval"]').val(selectedInterval);
+					//stepform.next(form);
+					next(form);
+					form.submit();
+					e.preventDefault();
+				});
+			});
 
 
 
 
+
+
+
+		}
+	}
+
+	function appointment() {
+		if ($('#step1').is(".active") == true){
+			$('.practices-slider').slick({
+				dots: true,
+				infinite: false,
+				speed: 300						
+			});
+
+			//Trigger form Step 1
+			$('.practice').click(function(){
+				form = $("#appointments"); //$(this).closest('form');
+
+				var selectedPracticeID = $(this).data('value');				
+				$('[name="practice"]').val(selectedPracticeID);
+				//stepform.next(form);
+				next(form);
+				form.submit();
+			});
+		}
+	}
+	
+
+	function next(){
+		//TODO Necesita que el form no esté identificado?
+
+		//Identify Step
+		var current = $('.slide-step.active');
+		var step = current.data('stepfoward');
+		var stepForm = current.closest("form");
+		var currentUrl = window.location.href;
+		console.log("Step: "+step);
+		
+		if (step == 0) {
+			process(stepform);
+			//event.preventDefault();
+			//return;
+		} else {
+				
+			//Validate
+			$(stepForm).validate({
+				submitHandler : function(form) {
+					nextStep();				
+				}
+			});
+		} // end else
+	}
+
+	function nextStep(){
+
+		var pleasewait = '<div id="pleasewait"></div>';
+
+		var goTo = slideRight();
+
+		activeSlide = $( ".book-steps .slide-step.active" ).prev();	
+		nextSlide = $(activeSlide).data('stepfoward');
+		previousSlide  = nextSlide-1;
+
+		var updateArea = "#step"+nextSlide;
+
+		$(updateArea).hide().html(pleasewait).fadeIn(300);
+			$.ajax({
+				url : globals.URL + "appointments/add/step"+nextSlide, 
+				timeout : 50000,
+				success : function(response) {	
+					console.log("appointments/add/step"+nextSlide);
+					$(updateArea).hide().html(response)
+					 	.fadeIn(200, function(){
+					 	run();
+					});	
+
+				},
+				error : function(obj, errorText, exception) {
+					console.log(errorText);
+				}
+		});
+
+	}
+
+
+	function profileMARKUP() {
+
+		template = document.getElementById("item-details").firstChild.textContent;
+		//Tabs Templates
+		Mark.includes.TabBookApointment = document.getElementById("template-BookAppointment").firstChild.textContent;
+
+
+		var currentHash = window.location.hash;
+		var id = currentHash.split("/");
+
+		var context = $.getJSON(URL + "api/doctor/json/" + id[2], function(data) {
+			console.log(data);
+			var context = data;
+			$('#doc-details').html(Mark.up(template, context));
+			//Activate Rating
+			$(".rating").rating();					
+			/*bookingform();
+			bookingSteps();
+			day();*/
+
+			console.log(context['doctors']['0']['practice']['0']['schedule']['0']['quota']);
+
+		});
+		//Build Other views	
+	}
+
+	function slideRight() {
+		$('.book-steps').animate({
+		    left: "-=100%",
+		    //height: "toggle"
+		  }, 1000, function() {
+		    // Animation complete.
+		});
+		currentSlide = $( ".book-steps .slide-step.active" );
+		$( currentSlide ).removeClass( "active");
+		$( currentSlide ).addClass( "semihidden");
+
+		var stepName 	= $( currentSlide ).attr( "id");
+		var stepNumber 	= stepName.split("step");
+
+		currentStepsy = $("#stepsy"+stepNumber[1]);
+ 		$( currentStepsy).removeClass( "active");
+		$( currentStepsy ).addClass( "complete");
+
+		$( currentSlide ).next().addClass( "active");
+		$( currentSlide ).next().removeClass( "semihidden");
+
+		$(currentStepsy).next().removeClass( "disabled");
+		$(currentStepsy).next().addClass( "active");
+	}
+	function slideLeft() {
+		$('.book-steps').animate({
+		    left: "+=100%",
+		  }, 1000, function() {
+		});
+		currentSlide = $( ".book-steps .slide-step.active" );
+		$( currentSlide ).removeClass( "active");
+		$( currentSlide ).addClass( "semihidden");
+
+
+		var stepName 	= $( currentSlide ).attr( "id");
+		var stepNumber 	= stepName.split("step");
+
+		currentStepsy = $("#stepsy"+stepNumber[1]);
+ 		$( currentStepsy).removeClass( "active");
+		$( currentStepsy).addClass( "disabled");
+
+		$( currentSlide ).prev().addClass( "active");
+		$( currentSlide ).prev().removeClass( "semihidden");
+
+		$(currentStepsy).prev().removeClass( "complete");
+		$(currentStepsy).prev().addClass( "active");
+
+
+	}
+
+	function slideBeginning() {
+		
+		currentSlide = $( ".book-steps .slide-step.active" );
+		$( currentSlide ).removeClass( "active");
+		$("#step1").addClass( "active");
+		$("#step1").removeClass( "semihidden");
+
+		$(".stepsy-step").removeClass( "active complete");
+		$(".stepsy-step").addClass( "disabled");
+		$("#stepsy1").addClass( "active");
+		$("#stepsy1").removeClass( "disabled");
+
+		$('.book-steps').animate({
+		    left: 0,
+		  }, 1500, function() {
+		});
+		
+
+	}
+
+	//template-Appointment
+	
+	return {
+		profile: 	profile,
+		next: 		next,
+		nextStep: nextStep
+	}
+
+});

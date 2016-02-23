@@ -1,104 +1,114 @@
-//Show hide evreything else
-$('#signin').on('shown.bs.modal', function (e) {
-	//$('.site-head .temporaryfademe').css('opacity','0');
-	/*$('.modal-backdrop').css('opacity','1');
-	$('.modal-backdrop').css('background','#3898f9');
-	*/ $('.modal-backdrop').addClass('backdrop-signin');
-	//Floatlabel
- 	//$('input, textarea').jvFloat();
- 	floatinput();
+define(['globals', 'functions', 'appassets/enhance', 'app/facebook'], function(globals, Functions, Enhance, Facebook ) {
 	
+	function run(){
+
+		$('.btn-facebook').click(function(){
+			var role =	$(this).data('role');
+			Facebook.checkLoginState(role);
+		});
+
+		//Show hide evreything else
+		/*$('#signin').on('shown.bs.modal', function (e) {
+			$('.modal-backdrop').addClass('backdrop-signin');
+			//Floatlabel
+		 	Enhance.floatinput();			
+		});
+
+		$('#signin').on('hide.bs.modal', function (e) {
+			$('.site-head .temporaryfademe').css('opacity','1');
+		});*/
+
+
+
+/*
+		
+
+		$('#signin .close').click(function(e) {
+		});
+		*/
+		$('.register_with_email').click(function(e) {
+			var destination = $(this).attr('href');
+			$('#registration-panels').scrollTo($(destination), 500);
+			register(destination);	
+			e.preventDefault();
+		});
+		
+		//Approved
+		$('#register_who_doctor, #register_who_patient').click(function(e) {
+			var destination = $(this).attr('href');
+			$('#registration-panels').scrollTo($(destination), 500);	
+			e.preventDefault();			
+		});
+
+		$('#signin .back').click(function(e) {
+			var destination = $(this).attr('href');
+			$('#registration-panels').scrollTo($(destination), 500);	
+			e.preventDefault();
+		});
+	}
+	function register(parent) {
+		$('.datetimepicker').datetimepicker({});
+		var form = parent + " form";
+		$(form).validate({
+			rules : {
+				"email": {
+		        	required: true,
+		            email: true,
+		            remote: {
+		            	url: URL+'account/checkregistered/username/',
+		                type: 'post'
+		            }
+		       	},
+		       	"birth": { 
+		       		required: true, check_age: true,
+		       	}	       
+			},
+			messages: {
+				email: { remote:jQuery.format("Ya existe un usuario registrado con este correo. Si eres tu, puedes probar recuperando tu contraseña") },
+			},
+			//onkeyup: false,
+			//onfocusout: false,
+			//onclick: false,
+			submitHandler : function(form) {
+				$('.register-send').attr('disabled', 'disabled');//prevent double send
+				$.ajax({
+					type : "POST",
+					url : URL + "account/process/",
+					data : $(form).serialize(),
+					timeout : 15000,
+					success : function(response) {
+						$('.form-register').empty();
+						$('#response-registration').html(response).fadeIn('fast');
+					},
+					error : function(response) {
+						console.log(response);
+						 $('.register-send').removeAttr("disabled");
+						 $('#response-registration').html(response).fadeIn('fast');
+					}
+				});
+				return false;
+			}
+		});
+	}
+
+	return {
+      run: run,
+      register: register
+	}
+
 });
 
-$('#signin').on('hide.bs.modal', function (e) {
-	$('.site-head .temporaryfademe').css('opacity','1');
-});
+	
 
 
 
 
-$('.register_with_email').click(function(e) {
-	var destination = $(this).attr('href');
-	$('#registration-panels').scrollTo($(destination), 500);
-	registerWithEmail(destination);	
-	e.preventDefault();
-});
 
-
-
-
-$('#signin .close').click(function(e) {
-});
-//Approved
-$('#register_who_doctor, #register_who_patient').click(function(e) {
-	var destination = $(this).attr('href');
-	$('#registration-panels').scrollTo($(destination), 500);	
-	e.preventDefault();			
-});
-
-$('#signin .back').click(function(e) {
-	var destination = $(this).attr('href');
-	$('#registration-panels').scrollTo($(destination), 500);	
-	e.preventDefault();
-});
-
-
-
-function registerL(parent) {
-
-	$('.datetimepicker').datetimepicker({});	 
-	 
-	var form = parent + " form";
-	//Validate Registry Form
-	$(form).validate({
-		rules : {
-			"email": {
-	        	required: true,
-	            email: true,
-	            remote: {
-	            	url: URL+'account/checkregistered/username/',
-	                type: 'post'
-	            }
-	       	},
-	       	"birth": { 
-	       		required: true,
-	       		check_age: true ,
-	       	}	       
-		},
-		messages: {
-			email: { remote:jQuery.format("Ya existe un usuario registrado con este correo") },
-		},
-		//onkeyup: false,
-		//onfocusout: false,
-		//onclick: false,
-		submitHandler : function(form) {
-			$('.register-send').attr('disabled', 'disabled');//prevent double send
-			$.ajax({
-				type : "POST",
-				url : URL + "account/process/",
-				data : $(form).serialize(),
-				timeout : 15000,
-				success : function(response) {
-					console.log('works' + response);
-					$('.form-register').empty();
-					$('#response-registration').html(response).fadeIn('fast');
-				},
-				error : function(response) {
-					console.log(response);
-					 $('.register-send').removeAttr("disabled");
-					 $('#response-registration').html(response).fadeIn('fast');
-				}
-			});
-			return false;
-		}
-	});
-
-}
 
 // REGISTRATION WITH SOCIAL NETWORKS ( Facebook, Google)
 function processSocialRegistration(userobject) {
 	
-	/*if (userobject.socialnetwork == 'facebook') {
+	if (userobject.socialnetwork == 'facebook') {
 		//Check if already logged in in facebook
 		FB.getLoginStatus(function(response) {
 		  if (response.status === 'connected') {
@@ -130,70 +140,13 @@ function processSocialRegistration(userobject) {
 		
 	} else if (userobject.socialnetwork == 'google') {
 	
-	}*/
+	}
 	
     registrationSocial();
     
-	function registrationSocial() {
 	
-		$.ajax({
-			type : "post",
-			url : URL + "account/checkregistered/username/",
-			data : userobject,
-			timeout : 15000,
-			success : function(response) {
-				console.log("Is Registered empty?: "+response);
-				//console.log(userobject);
-					switch(response) {									
-						case 'true': //Usuario nuevo, registrar de modo normal
-							processSocial();
-						break;
-											
-						case 'false': //Si esta registrado, actualizar datos de perfil facebook
-							$.ajax({
-								type : "post",
-								url : URL + "account/update/data/",
-								data : userobject,
-								timeout : 15000,
-								success : function(response) {
-									console.log('Datos de Redes Actualizados:  ' + response);	
-									console.log(userobject);											
-									// recibir un true/ false
-									loginSocial();
-									//TODO Pendiente definir si se cierra la ventana o que ocurre despues de ese paso
-									$('#registration-patient').remove();
-									$('#response-registration').html(response).fadeIn('fast');
-								},
-								error : function(response) {
-									console.log(response);
-									$('.register-send').removeAttr("disabled");
-									$('#response-registration').html(response).fadeIn('fast');
-								}
-							});
-						break;
-					}
-				}
-			});
-	}
 	
-	function processSocial(){
-		$.ajax({
-			type : "post",
-			url : URL + "account/process/",
-			data : userobject,
-			timeout : 15000,
-			success : function(response) {
-				console.log('Registrado exitosamente via Facebook: ' + response );
-				$('#response-registration').html(response).fadeIn('fast');
-			},
-			error : function(response) {
-				console.log(response);
-				$('.register-send').removeAttr("disabled");
-				$('#response-registration').html(response).fadeIn('fast');
-			}
-		});
-	}
-		
+			
 	function loginSocial(accesstokn) {
 
 		userobject.accesstoken = accesstokn; //to approve social login
@@ -253,36 +206,7 @@ function processSocialRegistration(userobject) {
 	
 }
 
-function facebookLogin(role) {
-	
-	FB.login(function(response) {
-		if (response.authResponse) {
-			console.log('Fetching your information.... ');
-			access_token = response.authResponse.accessToken;
-			user_id = response.authResponse.userID;
-					
-			//get FB UID
-			console.log(response);
-			FB.api('/me', function(userobject) {
-						
-				FB.api('/me/picture?width=300&height=300', function(fbpicture) {
-					user_email = userobject.email;
-					userobject.role = role;
-					userobject.fbpicture = fbpicture;
-					userobject.socialnetwork = 'facebook'; 	
-					userobject.accesstoken = access_token;		
-					email = userobject.email;	
-					
-					processSocialRegistration(userobject);
-				});
-			});
-					
-		} else {
-			//TODO anotar si cierra la ventana
-		}
-	},{
-	scope : 'publish_stream,email,user_birthday,user_location'
-	});
+
 }
 
 

@@ -6,7 +6,7 @@
 	<form id="form-login" role="form" method="post">
 		<div class="field-wrapper ">
 			<label for="email" class="placeholder"><?php echo SITE__FORM_USERNAME; ?></label>		
-			<input type="email" name="email" id="email" class="form-control input-lg signinput" placeholder="<?php echo SITE__FORM_USERNAME; ?>" required="required"  autofocus>
+			<input type="email" name="email" id="email" class="form-control input-lg signinput" placeholder="<?php echo SITE__FORM_USERNAME; ?>" required="required">
 		</div>
 		<div class="field-wrapper ">
 			<label for="name" class="placeholder"><?php echo SITE__FORM_PASSWORD; ?></label>
@@ -21,25 +21,21 @@
 	</form>
 	<div id="response-login"></div>
 </div>
+<div class="col-lg-12 col-xs-12 text-center">
+	<a href="" class="btn btn-link"><?php echo SITE__FORM_PASSWORD_FORGOT; ?></a>
+</div>
 
 <div class="clearfix"></div>
 
-<p>&nbsp;</p>
-
-
 <div class="text-center">
-	<hr><br>
-	<div class="col-lg-6 col-xs-6">
-		<a class="btn btn-sm btn-facebook btn-full" id="login_with_facebook"><i class="fa fa-facebook"></i> <?php echo SITE__LOG_IN_WITH_FACEBOOK; ?></a>
+	<hr>
+	
+	<div class="col-lg-8 col-lg-push-2">
+		<a class="btn btn-sm btn-facebook btn-full" id="login_with_facebook"><i class="fa fa-facebook"></i> <?php echo SITE__LOG_IN_WITH_FACEBOOK; ?></a><p></p>
 	</div>
-	<div class="col-lg-6 col-xs-6">
+	<div class="col-lg-8 col-lg-push-2">
 		<a class="btn btn-sm btn-google btn-full" id="login_with_google"><i class="fa fa-google-plus"></i> <?php echo SITE__LOG_IN_WITH_GOOGLE; ?></a>
-	</div>
-	<div class="col-lg-12 col-xs-12 padding-20 text-center">
-		<a href="" class="btn btn-link"><?php echo SITE__FORM_PASSWORD_FORGOT; ?></a>
 	</div>
 	
 	
 </div>
-
- 

@@ -1,8 +1,9 @@
-define(['globals', 'appassets/stepform', 'appassets/enhance'], function(globals, stepform, enhance) {
+define(['globals', 'appassets/stepform', 'appassets/enhance' , 'app/doctor'], function(globals, stepform, enhance , Doctor) {
 	
 	function signin() {
 		console.log("Login");
 		enhance.fieldsfor("form-login");
+
 		$('#form-login').validate({
 
 			submitHandler : function(form) {
@@ -12,7 +13,7 @@ define(['globals', 'appassets/stepform', 'appassets/enhance'], function(globals,
 					type : "POST",
 					url : globals.URL + "account/login",
 					data : $(form).serialize(),
-					timeout : 12000,
+					timeout : 25000,
 					success : function(response) {
 							//console.log(response); return;
 							var response = JSON.parse(response);
@@ -32,8 +33,17 @@ define(['globals', 'appassets/stepform', 'appassets/enhance'], function(globals,
 									});
 									break;							
 								case 1: //if continue	
-								 	//document.location = globals.URL + 'account/identify';
-									document.location = response.redirection;
+								 	if ($("#LoginRegisterPatient").is(":visible")){
+								 		//form is in Booking
+								 		console.log("form is in Booking");
+								 		Doctor.nextStep();
+								 		
+								 		$('#LoginRegisterPatient').modal('hide')
+
+								 	} else {
+								 		//Form is in  site/login
+								 		document.location = response.redirection;
+								 	}								
 									break;
 							}
 							

@@ -1,3 +1,3 @@
-<div id="preloader">
+<div id="preloader" class="preloader">
    <div class="spinner"></div>
 </div>

@@ -29,7 +29,7 @@
 				$this->view->title = SITE_NAME. " | " .SITE_NAME__SIGN_IN ;						
 				$this->view->render('login/index');
 				
-			} else {
+			} else {	
 				//Redirect		
 				$this->identify();
 			}
@@ -480,14 +480,23 @@
 						$field_data = escape_value($value);				
 						$array_datos[$field] = $field_data;
 					}
+					//DB::debugMode(true);
+					$current_user = $this->model->getAccount($array_user['role'], $array_datos['email'], 'username');
+					
+					//get previous stored field 'data'
+					$data = $current_user[0]['data'];
+					$data_temp = json_decode($data,true);
+					//use as array
+					foreach ($data_temp as $key => $value) {
+						$array_fb['data'][$key] = $value;
+					}
 					
 					//UPDATE Facebook					
-					//if (isset($array_datos['facebook'])){
 					if ($array_datos['socialnetwork'] == 'facebook'){						
 						
 						$array_user['name'] 			= $array_datos['first_name'];
 						$array_user['lastname'] 		= $array_datos['last_name'];
-						$array_user['gender'] 			= strtoupper( substr($array_data['gender'], 0, 1));
+						$array_user['gender'] 			= strtoupper( substr($array_datos['gender'], 0, 1));
 						
 						//Location Facebook
 						$array_fb['data']['timezone']	= $array_datos['timezone'];
@@ -495,10 +504,9 @@
 						$array_fb['data']['location'] 	= $array_datos['location']['name'];
 						
 						//Picture
-						$image_data=file_get_contents($array_datos['fbpicture']['data']['url']);
-						$encoded_image=base64_encode($image_data);
-						//print_r($encoded_image);
-						$array_user['avatar'] 		= $encoded_image;
+						$image_data						=	file_get_contents($array_datos['data']['url']);
+						//$encoded_image					=	base64_encode($image_data);
+						$array_user['avatar'] 			= $encoded_image;
 						
 						$role 								= $array_datos['role']; 
 						
@@ -507,7 +515,6 @@
 					}
 					
 					//UPDATE Google
-					//if (isset($array_datos['google'])){
 					if ($array_datos['socialnetwork'] == 'google'){							
 						
 						$array_user['name'] 			= $array_datos['given_name'];
@@ -529,15 +536,6 @@
 						$array_fb['data']['lastupdatedata'] 	= date("Y-m-d h:i:s");
 					}
 					
-					$current_user = $this->model->getAccount($array_user['role'], $array_datos['email'], 'username');
-					
-					//get previous stored field 'data'
-					$data = $current_user[0]['data'];
-					$data_temp = json_decode($data,true);
-					//use as array
-					foreach ($data_temp as $key => $value) {
-						$array_fb['data'][$key] = $value;
-					}
 										
 					$array_user['data'] 	= json_encode($array_fb['data'] );
 					
@@ -548,7 +546,7 @@
 					if ($updated_data > 0){
 						echo "true"; // updated
 					} else {
-						echo "false"; /// Maybe they were the same, no nothing changed.
+						echo "false"; /// Maybe they were the same, nothing changed.
 					}
 					
 					break;

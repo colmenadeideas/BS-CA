@@ -12,17 +12,15 @@
 		}
 	
 		// DETAILS:  Loads Doctor's View in Search with every related detail
-		public function details($id) {
-			
-			//$appointments_time_matrix = $this->api->getPracticeIntervals();
+		public function profile($id) {
 			//api search is done in JS
-			$this -> view -> render('doc/details');
+			$this->view-> render('doctor/profile');
 		}
 		public function preview() {
 			
 			//$appointments_time_matrix = $this->api->getPracticeIntervals();
 			//api search is done in JS
-			$this -> view -> render('doc/resume');
+			$this->view-> render('doctor/resume');
 		}
 		
 		

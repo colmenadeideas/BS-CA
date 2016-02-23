@@ -1,10 +1,8 @@
-// git event
-
-define(['globals', 'appassets/stepform', 'appassets/enhance'], function(globals, stepform, enhance) {
+define(['globals', 'assets/handlebars.min', 'appassets/stepform', 'appassets/enhance','functions'], function(globals, Handlebars, stepform, enhance, Functions) {
 	
 	function run() {
 
-		//searchLocation();
+		searchLocation();
 		autocomplete();
 		checkSearchView();
 
@@ -17,32 +15,17 @@ define(['globals', 'appassets/stepform', 'appassets/enhance'], function(globals,
 		//Home  Main form Validate and send
 		$('#form-search-doctor').validate({
 			submitHandler : function(form) {
-				//sendbutton.attr('disabled', 'disabled');
-				
+				//sendbutton.attr('disabled', 'disabled');				
 				//Get Form Vars
-				location_f = $('input[name=city_value]').val();
+				place = $('input[name=city_value]').val();
 				value = $("input[name=search_term]").val();
 				type = $("input[name=type]").val();
+
+				if (!type) { type = 'all'; } 
 				
-				searchDoctor(type, value, location_f);
-				
-				/*$.ajax({
-					type : "POST",
-					url : URL + "account/process/",
-					data : $(form).serialize(),
-					success : function(response) {
-						console.log('works' + response);
-						$('#registration-patient').remove();
-						$('#response-registration').html(response).fadeIn('fast');
-					},
-					error : function(response) {
-						console.log(response);
-						sendbutton.removeAttr("disabled");
-						$('#response-registration').html(response).fadeIn('fast');
-					}
-					
-				});*/
-				
+				window.location.hash = '#search/'+type+'/'+value+'/'+place;	
+				searchDoctor();		
+							
 				return false;
 			}
 		});
@@ -69,7 +52,6 @@ define(['globals', 'appassets/stepform', 'appassets/enhance'], function(globals,
 		      	// optional (if other layers overlap autocomplete list)
 		        open: function(event, ui) {
 		            $(".ui-autocomplete").css("z-index", 1000);
-		           //$(".ui-autocomplete").css("background", 'red');
 		        },
 		        /*close : function (event, ui) {
 		        val = $("input[name=search_term]").val();
@@ -105,46 +87,58 @@ define(['globals', 'appassets/stepform', 'appassets/enhance'], function(globals,
 	}
 
 
+	function searchDoctor() {
+		
+		Functions.handlebarsHelpers();
+		var getSearch = window.location.hash;
+		var searchSplit = getSearch.split("/");
+		var type  		= searchSplit[1];
+		var value 		= searchSplit[2];
+		var place 	= searchSplit[3];
 
-	//TODO Revise this two methods "searchDoctor" && "checkSearchView"
-	function searchDoctor(type, value, location_f) {
-		
-		window.location.hash = '#search'; //for binding to back state TODO could add to url params for refreshing maybe
-		
-		Mark.includes.template_cards = document.getElementById("template-search-filters").firstChild.textContent;
-		Mark.includes.template_items = document.getElementById("item-card-list").firstChild.textContent;
-		template = "{{template_cards}}{{template_items}}";
 		var searchterms = value.match(/\S+/g); //value.split(/\b\s+(?!$)/);
-
-		if (!type) { type = 'all'; } 
 		
-		var context = $.getJSON(URL+"api/search/"+type+"/"+searchterms ,function(data) { 
-			console.log(data);
+		$.getJSON(globals.URL+"api/search/"+type+"/"+searchterms ,function(data) { 
+
+			var TemplateScriptSearch = $("#Search-Filters-Template").html();
+			var TemplateSearch = Handlebars.compile(TemplateScriptSearch);
+			$("#searchfilters").html(TemplateSearch(data));
+
+			var TemplateScript = $("#Items-Card-Template").html(); 
+			var Template = Handlebars.compile(TemplateScript);
+			$("#results").html(Template(data));
 			
-			var context = data;
-			$('#results').html(Mark.up(template, context));
-					
-			//transform or not the Main Form if in details View
 			checkSearchView();
-			
+
 			//fade each result
-			$('.item-card').css('opacity','0');
+			$('.item-card').css('opacity','0');	
 			$('.item-card').each(function(i) {
 				$(this).delay((i++) * 300).fadeTo(500, 1); 
 			});	
 			//Activate Rating	
-			$(".rating").rating(); 	
+			$(".rating").rating();
+
+			$(".btn-filter").click(function(){				
+				var term = $(this).data("term");
+				$(this).remove();
+				var actualHash 	= window.location.hash
+				var newHash 	= actualHash.replace(term, "");
+				var newHash 	= newHash.replace(" /", "/");
+				var newHash 	= newHash.replace("//", "/");
+				window.location.hash = newHash;
+				//window.history.pushState({"html":response.html,"pageTitle":response.pageTitle},"", urlPath); 				
+			});
 		});
-		
+
 		return false;
 	}
+	//TODO Revise this two methods "searchDoctor" && "checkSearchView"
+	
 
 	function checkSearchView() {
 		
 		var currentHash= window.location.hash;
 		var hashCheck = currentHash.split('/');
-		console.log("Hash check:" +currentHash);
-		
 		
 		//TODO Check for something else in case of #search, otherwise it will trigger the miniform with no results
 		if (hashCheck[0] == '#search' || hashCheck[0] == '#doctor') {
@@ -178,25 +172,8 @@ define(['globals', 'appassets/stepform', 'appassets/enhance'], function(globals,
 	return {
       run: run,
       autocomplete: autocomplete,
-      searchLocation: searchLocation
+      searchLocation: searchLocation,
+      searchDoctor: searchDoctor
 	}
 
 });
-
-
-
-
-
-/*
- 
- * jQuery('.servicios').on('show.bs.modal', function (e) {		 	
-		 		jQuery('.blurme').toggleClass('blured');		 	
-		 	});
-		 	jQuery('.servicios').on('hidden.bs.modal', function (e) {		 	
-		 		jQuery('.blurme').removeClass('blured');
-		 	});
- * 
- * */
-
-
-

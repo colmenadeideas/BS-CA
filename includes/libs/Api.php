@@ -58,7 +58,7 @@ class Api extends ApiQuery {
 					if ($ini_schedule > 01 && $ini_schedule < 13) {
 						$icon = " AM";//'<i class="fa fa-sun-o"></i> ';
 					} else {
-						$icon = "PM";//'<i class="fa fa-moon-o"></i> ';
+						$icon = " PM";//'<i class="fa fa-moon-o"></i> ';
 					}
 
 					if ($end_schedule > 01 && $end_schedule < 13) { $icon = " AM";	} else { $icon = " PM";	}
@@ -71,6 +71,79 @@ class Api extends ApiQuery {
 
 					$s++;
 				}
+				$i++;
+			
+			}			
+			
+			
+			
+			
+					
+			if ($print == 'json') {
+				echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+			} else {//modo "array"
+				return $array_final;
+			}
+		}
+
+	}
+
+	public function practice($print = "json", $practice_id, $parameter = "doctor", $id) {
+		
+		$practice_id = escape_value($practice_id);
+
+		$array_practices = ApiQuery::getPractice($practice_id);		
+
+		//No Practices
+		if (empty($array_practices)) {
+			$response["tag"] = "practices";
+			$response["empty"] = 1;
+			$response["response"] = NO_PRACTICES_AVAILABLE;
+
+			if ($print == 'json') {
+				echo json_encode($response, JSON_UNESCAPED_UNICODE);
+			} else {//modo "array"
+				return $response;
+			}
+		} else {
+			
+			$practiceFields = DB::columnList('clinic');
+			$i = 0;
+			$array_final["empty"] = 0;
+			
+			foreach ($array_practices as $practice) {
+				foreach ($practiceFields as $field) {
+					@$array_final['practice'][$i][$field] = $practice[$field];
+				}
+				
+				$array_consultation_reasons = ApiQuery::getDoctorPracticesReasons($practice["id"]);
+
+				$array_schedules = ApiQuery::getDoctorPracticesSchedule($practice["id"]);
+				$s = 0;
+				foreach ($array_schedules as $schedule) {
+
+					$array_final['practice'][$i]['schedule'][$s] = $schedule;
+					$schedule['day'] = substr($schedule['day'], 0, -2);
+					$array_final['practice'][$i]['schedule'][$s]['day'] = $schedule['day'];
+					$ini_schedule = substr($schedule['ini_schedule'], 0, 2);
+
+					if ($ini_schedule > 01 && $ini_schedule < 13) {
+						$icon = " AM";//'<i class="fa fa-sun-o"></i> ';
+					} else {
+						$icon = " PM";//'<i class="fa fa-moon-o"></i> ';
+					}
+
+					if ($end_schedule > 01 && $end_schedule < 13) { $icon = " AM";	} else { $icon = " PM";	}
+
+
+					$schedule['ini_schedule'] =  $schedule['ini_schedule']. $icon;
+					$schedule['end_schedule'] =  $schedule['end_schedule']. $icon;
+					$array_final['practice'][$i]['schedule'][$s]['ini_schedule'] = $schedule['ini_schedule'];
+					$array_final['practice'][$i]['schedule'][$s]['end_schedule'] = $schedule['end_schedule'];
+
+					$s++;
+				}
+				$array_final['practice'][$i]['consultation_reasons'] = $array_consultation_reasons;
 				$i++;
 			
 			}			
@@ -371,13 +444,20 @@ class Api extends ApiQuery {
 					$ini_schedule = substr($schedule['ini_schedule'], 0, 2);
 
 					if ($ini_schedule > 01 && $ini_schedule < 13) {
-						$icon = '<i class="fa fa-sun-o"></i> ';
+						$icon = " AM";//'<i class="fa fa-sun-o"></i> ';
 					} else {
-						$icon = '<i class="fa fa-moon-o"></i> ';
+						$icon = " PM";//'<i class="fa fa-moon-o"></i> ';
 					}
 
-					$schedule['ini_schedule'] = $icon . $schedule['ini_schedule'];
+					//delete this if change to ICON
+						$end_schedule = substr($schedule['end_schedule'], 0, 2);
+						if ($end_schedule > 01 && $end_schedule < 13) { $icon = " AM";	} else { $icon = " PM";	}
+
+						$schedule['ini_schedule'] = substr($schedule['ini_schedule'], 0, -3).$icon;//$icon . $schedule['ini_schedule'];
+						$schedule['end_schedule'] = substr($schedule['end_schedule'], 0, -3).$icon;
+
 					$array_final['doctors'][$i]['practice'][$p]['schedule'][$s]['ini_schedule'] = $schedule['ini_schedule'];
+					$array_final['doctors'][$i]['practice'][$p]['schedule'][$s]['end_schedule'] = $schedule['end_schedule'];
 
 					$s++;
 				}
@@ -462,6 +542,7 @@ class Api extends ApiQuery {
 	public function availability($print = "json", $id_doctor, $id_practice, $show = "days", $selecteddate="") {
 		
 		$available_dates_matrix = $this->availability_matrix("array",$id_doctor, $id_practice);
+
 		define (APPOINTMENTS_INTERVAL, 30);//30min  
 		// Build Dates ahead, based on Practice's limit max_days_ahead
 	 	$start = strtotime('today UTC');
@@ -472,6 +553,7 @@ class Api extends ApiQuery {
 			$array_calendar[$i]['day'] = $date_ahead;
 			$array_calendar[$i]['weekday'] = date( "D", strtotime($date_ahead)); // Mon, Fri
 			$array_calendar[$i]['manage_time_slots'] = $available_dates_matrix['manage_time_slots'];
+			
 			$e=0;
 			
 			//Check if fits DAYS_IN matrix criteria
@@ -551,7 +633,19 @@ class Api extends ApiQuery {
 			$array_calendar_selecteddate = current($array_calendar); //TODO Check if "current" is the ideal function to clean the index of array_calendar
 			$array_calendar = "";
 			$array_calendar["empty"] = 0;
+			$array_calendar["doctor"] = $id_doctor;
+			$array_calendar["practice"] = $id_practice;
 			$array_calendar["date"][0] = $array_calendar_selecteddate;
+			
+		} else if ($show == "all"){
+			//TODO revisar todo este armado, me parece repetitivo
+			foreach ($array_calendar as $calendar_day_finals) {				
+				$array_calendar_temp["dates"][] = $calendar_day_finals;
+			}
+			$array_calendar = $array_calendar_temp;
+			$array_calendar["doctor"] = $id_doctor;
+			$array_calendar["practice"] = $id_practice;
+			$array_calendar["empty"] = 0;
 		}
 		
 
@@ -608,52 +702,68 @@ class Api extends ApiQuery {
 		$practiceFields = DB::columnList('clinic');
 
 		$i = 0;
-		foreach ($array_doctors as $doctor) {
+		if (empty($array_doctors)) {
+			$response["tag"] = "doctor";
+			$response["empty"] = 1;
+			$response["response"] = NO_DOCTOR_AVAILABLE;
 
-			foreach ($profileFields as $field) {
-				$array_final['doctors'][$i][$field] = $doctor[$field];
+			if ($print == 'json') {
+				echo json_encode($response, JSON_UNESCAPED_UNICODE);
+			} else {//modo "array"
+				return $response;
 			}
-			$array_practices = ApiQuery::getDoctorPractices($doctor["id"]);
+		} else {
+			
+			$array_final["empty"] = 0;
+			foreach ($array_doctors as $doctor) {
 
-			$p = 0;
-			foreach ($array_practices as $practice) {
-
-				foreach ($practiceFields as $practicefield) {
-					$array_final['doctors'][$i]['practice'][$p][$practicefield] = $practice[$practicefield];
+				foreach ($profileFields as $field) {
+					$array_final['doctors'][$i][$field] = $doctor[$field];
 				}
-				$array_schedules = ApiQuery::getDoctorPracticesSchedule($practice["id"]);
-				//$array_final['doctors'][$i]['practice'][$p]	= $practice;
-				$s = 0;
-				foreach ($array_schedules as $schedule) {
+				$array_practices = ApiQuery::getDoctorPractices($doctor["id"]);
 
-					$array_final['doctors'][$i]['practice'][$p]['schedule'][$s] = $schedule;
-					$schedule['day'] = substr($schedule['day'], 0, -2);
-					$array_final['doctors'][$i]['practice'][$p]['schedule'][$s]['day'] = $schedule['day'];
+				$p = 0;
+				foreach ($array_practices as $practice) {
 
-					$ini_schedule = substr($schedule['ini_schedule'], 0, 2);
-
-					if ($ini_schedule > 01 && $ini_schedule < 13) {
-						//$icon = '<i class="fa fa-sun-o"></i> ';
-						$icon = " AM ";
-					} else {
-						$icon = " PM";
-						//$icon = '<i class="fa fa-moon-o"></i> ';
+					foreach ($practiceFields as $practicefield) {
+						$array_final['doctors'][$i]['practice'][$p][$practicefield] = $practice[$practicefield];
 					}
-					
-					//delete this if change to ICON
-					$end_schedule = substr($schedule['end_schedule'], 0, 2);
-					if ($end_schedule > 01 && $end_schedule < 13) { $icon = " AM";	} else { $icon = " PM";	}
+					$array_schedules = ApiQuery::getDoctorPracticesSchedule($practice["id"]);
+					$array_consultation_reasons = ApiQuery::getDoctorPracticesReasons($practice["id"]);
+					//$array_final['doctors'][$i]['practice'][$p]	= $practice;
+					$s = 0;
+					foreach ($array_schedules as $schedule) {
 
-					$schedule['ini_schedule'] = substr($schedule['ini_schedule'], 0, -3).$icon;//$icon . $schedule['ini_schedule'];
-					$schedule['end_schedule'] = substr($schedule['end_schedule'], 0, -3).$icon;
-					$array_final['doctors'][$i]['practice'][$p]['schedule'][$s]['ini_schedule'] = $schedule['ini_schedule'];
-					$array_final['doctors'][$i]['practice'][$p]['schedule'][$s]['end_schedule'] = $schedule['end_schedule'];
+						$array_final['doctors'][$i]['practice'][$p]['schedule'][$s] = $schedule;
+						$schedule['day'] = substr($schedule['day'], 0, -2);
+						$array_final['doctors'][$i]['practice'][$p]['schedule'][$s]['day'] = $schedule['day'];
 
-					$s++;
+						$ini_schedule = substr($schedule['ini_schedule'], 0, 2);
+
+						if ($ini_schedule > 01 && $ini_schedule < 13) {
+							//$icon = '<i class="fa fa-sun-o"></i> ';
+							$icon = " AM ";
+						} else {
+							$icon = " PM";
+							//$icon = '<i class="fa fa-moon-o"></i> ';
+						}
+						
+						//delete this if change to ICON
+						$end_schedule = substr($schedule['end_schedule'], 0, 2);
+						if ($end_schedule > 01 && $end_schedule < 13) { $icon = " AM";	} else { $icon = " PM";	}
+
+						$schedule['ini_schedule'] = substr($schedule['ini_schedule'], 0, -3).$icon;//$icon . $schedule['ini_schedule'];
+						$schedule['end_schedule'] = substr($schedule['end_schedule'], 0, -3).$icon;
+						$array_final['doctors'][$i]['practice'][$p]['schedule'][$s]['ini_schedule'] = $schedule['ini_schedule'];
+						$array_final['doctors'][$i]['practice'][$p]['schedule'][$s]['end_schedule'] = $schedule['end_schedule'];
+
+						$s++;
+					}
+					$array_final['doctors'][$i]['practice'][$p]['consultation_reasons'] = $array_consultation_reasons;
+					$p++;
 				}
-				$p++;
+				$i++;
 			}
-			$i++;
 		}
 		if ($print == 'json') {
 			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
@@ -699,12 +809,19 @@ class Api extends ApiQuery {
 					$ini_schedule = substr($schedule['ini_schedule'], 0, 2);
 
 					if ($ini_schedule > 01 && $ini_schedule < 13) {
-						$icon = '<i class="fa fa-sun-o"></i> ';
+						$icon = " AM";//'<i class="fa fa-sun-o"></i> ';
 					} else {
-						$icon = '<i class="fa fa-moon-o"></i> ';
+						$icon = " PM";//'<i class="fa fa-moon-o"></i> ';
 					}
 
-					$schedule['ini_schedule'] = $icon . $schedule['ini_schedule'];
+					//delete this if change to ICON
+						$end_schedule = substr($schedule['end_schedule'], 0, 2);
+						if ($end_schedule > 01 && $end_schedule < 13) { $icon = " AM";	} else { $icon = " PM";	}
+
+						$schedule['ini_schedule'] = substr($schedule['ini_schedule'], 0, -3).$icon;//$icon . $schedule['ini_schedule'];
+						$schedule['end_schedule'] = substr($schedule['end_schedule'], 0, -3).$icon;
+
+
 					$array_final['doctors'][$i]['practice'][$p]['schedule'][$s]['ini_schedule'] = $schedule['ini_schedule'];
 
 					$s++;

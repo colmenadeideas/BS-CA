@@ -141,11 +141,11 @@ class panelController extends Controller {
 
 
 	// Métodos Listos
-
+	// TODO revisar si lo podemos unificar en AppointmentsController, para que asi lado paciente y lado Panel usen 1 sola funcion
 	public function appointments($action = "next", $from_date = "", $to_date = "") {
 
 		switch ($action) {
-
+			// TODO chack if we can use this lines that were duplicated into appointmentsController.php
 			case 'add':
 				$secondparameter = $from_date; 
 				$tempkey = $to_date;
@@ -258,7 +258,7 @@ class panelController extends Controller {
 
 		$this->view->render("panel/practices/".$template);
 	}
-
+	//TODO me lleve process appointments a ApointmentsController
 	function process ($what, $step="", $step_id="") {
 
 		switch ($what) {

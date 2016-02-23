@@ -12,11 +12,45 @@ define(['globals','assets/handlebars.min',], function(globals, Handlebars) {
 	  return Math.round(new Date().getTime() + (Math.random() * 100));
 	}
 
-	function handlebarsHelpers() {
+	function handlebarsHelpers() {	
+
 		Handlebars.registerHelper('formatTime', function(value) {
 		    var time = value.split(':');
-		    return time[0]+":"+time[1]+ " "+value.slice(-2);
-		});;
+		    return time[0]+":"+time[1]+ " ";
+		});
+		Handlebars.registerHelper('scheduleFormat', function(value, value2) {
+		    var timeINI = value.split(' ');
+		    var timeEND = value2.split(' ');
+		    if (timeINI[1] == timeEND[1]) {
+		    	return timeINI[0]+"-"+value2;
+		    } else {
+				return value+"-"+value2;
+		    }
+		});		
+
+		Handlebars.registerHelper('getOnlyDate', function(value) {
+		    var fulldate = value.split('-');
+		    return fulldate[2]+"/"+fulldate[1]+ "/"+fulldate[0];
+		});
+		Handlebars.registerHelper('getDay', function(value) {
+		    var fulldate = value.split('-');
+		    return fulldate[2];
+		});
+		Handlebars.registerHelper('getMMYY', function(value) {
+		    var fulldate = value.split('-');
+		    return fulldate[1]+"/"+fulldate[0][2]+fulldate[0][3];
+		});
+		Handlebars.registerHelper('getMMYYYY', function(value) {
+		    var fulldate = value.split('-');
+		    return fulldate[1]+"/"+fulldate[0];
+		});
+
+		Handlebars.registerHelper('ifEquals', function(a, b, options) {
+		  if (a === b) {
+		  	return options.fn(this);
+		  }
+		  return options.inverse(this);		  
+		});
 	}
 
 

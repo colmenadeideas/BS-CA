@@ -1,13 +1,15 @@
-define(['globals', 'functions', 'appassets/enhance', 'app/search', 'app/login'], function(globals, functions, enhance, search, login ) {
+define(['globals', 'functions', 'appassets/enhance', 'app/search', 'app/login', 'app/registration'], function(globals, Functions, enhance, search, Login, Registration ) {
 	
 	function run() {
-		var currentLocation = functions.getPage(4);
+		circlesAnimation();
+
+		var currentLocation = Functions.getPage(4);
 		i = 4; //for animation
 		ii = 1; //for animation
 
 		switch(currentLocation) {
 			case "login":
-				login.signin();
+				Login.signin();
 				break;
 
 			default:
@@ -24,126 +26,12 @@ define(['globals', 'functions', 'appassets/enhance', 'app/search', 'app/login'],
 
 				search.run();
 				//animateBackground();
-
+				Registration.run();
 				break;
 		}
-            var r = 255;
-            var g = 255;
-            var b = 255;
-            var r1 = 54;
-            var g1 = 152;
-            var b1 = 249;
-            var last_scroll;
-            var p;
-            var x;
-		    /* Every time the window is scrolled ... */
-		    $(window).scroll( function(e){
-		    
-		        /* Check the location of each desired element */     
-	        	var st = $(this).scrollTop();
-	            var top_of_section = $('#site-featured').offset().top;
-	            var bottom_of_window = $(window).scrollTop() + $(window).height() ;
-	            var bottom_of_section = $('#site-featured').offset().top + $('#site-featured').outerHeight();
-
-	            
-	            /* user entered */
-	            if( (top_of_section < bottom_of_window) && (bottom_of_section > bottom_of_window) ) {
-	                $('.featured-circles').css({ 
-	                	"position": "fixed",
-	                	"margin-top": "663px"
-	                });
-                	// scrolled percentage
-                	
-                	var p = ((bottom_of_window - top_of_section)/(bottom_of_section - bottom_of_window))*100;
-
-
-	                // Going up or down event
-	                if (st > last_scroll){
-
-	                	r = r - 100;
-	                	g = g - 100;
-	                	b = b - 100;
-	                	r1 = r1 + 100;
-	                	g1 = g1 + 100;
-	                	b1 = b1 + 100;
-	                	if (r < 54) { r = 54 };
-	                	if (g < 152) { g = 152 };
-	                	if (b < 249) { b = 249 };
-	                	if (r1 > 255) { r1 = 255 };
-	                	if (g1 > 255) { g1 = 255 };
-	                	if (b1 > 255) { b1 = 255 };
-
-	                }else{
-
-	                	r1 = r1 - 100;
-	                	g1 = g1 - 100;
-	                	b1 = b1 - 100;
-	                	r = r + 100;
-	                	g = g + 100;
-	                	b = b + 100;
-	                	if (r > 255) { r = 255 };
-	                	if (g > 255) { g = 255 };
-	                	if (b > 255) { b = 255 };
-	                	if (r1 < 54) { r1 = 54 };
-	                	if (g1 < 152) { g1 = 152 };
-	                	if (b1 < 249) { b1 = 249 };
-
-	                }
-                	// Change color of circles
-	                $('.featured-circles').children('div').css({ 
-	            		"background": "rgb("+r+","+g+","+b+")"
-	            	});
-	            	$('.featured-circles').children('div').children().css({ 
-	            		"color": "rgb("+r1+","+g1+","+b1+")"
-	            	});       
-	                console.log(p); // cops
-	                // user left the section
-	            }else if( (bottom_of_section < bottom_of_window) || (top_of_section > bottom_of_window) ){
-            		$('.featured-circles').css({ 
-	            		"position": "absolute",
-            		    "margin-top": "530px"
-	            	});
-                 	
-	                $('.featured-circles').children('div').css({ 
-	            		"background": "rgb("+r+","+g+","+b+")"
-	            	});       
-
-	            }
-	  			// Set last scroll
-            	last_scroll = st;
-		    });
-		
+	
 	}
-	function list () {
-
-		var list = $('.appointments-list');	
-		var i = 0;
-		$.each(list, function(){
-			var l = $(this).children('.patient-pic').length;
-		    var c = this.children;
-	    	var i;
-	    	for (i = 0; i < c.length; i++) {
-	    		if (i > 3) {
-	    			c[3].className = "hidden-patient";
-					c[i].className = "hidden-patient";
-				};
-	   		}	
-		var t = $(this).find('.hidden-patient').length;
-		if (t >= 1) {
-			$(this).append('<div class="col-lg-2 col-xs-2 extra-patients-circle text-center"></div>');
-			p = t-3
-			$(this).find('.extra-patients-circle').text('+'+p);
-		};
-	 	});
-	 	$('.extra-patients-circle').click(function(){
-	 		//var day = $(this).parent().parent().parent().attr('id').replace(/-/g, '/');
-	 		var day = $(this).parent().parent().parent().attr('id');
-	 		var clinic = $(this).parent().parent().find('h1').text();
-	 		var did = '22';
-	 		document.location.href = "#panel/appointments/"+clinic+"/22/"+day;	 		
-	 	});
-	}
-
+	
 	function animateBackground() {
 		
 		var $c = $('.flow-container'),
@@ -200,9 +88,50 @@ define(['globals', 'functions', 'appassets/enhance', 'app/search', 'app/login'],
 		console.log(ii + " --> "+i)
 	}
 
+	function circlesAnimation() {
+		var scroll_pos = 0;
+	    var animation_begin_pos = 0; //where you want the animation to begin
+	    var animation_end_pos = 500; //where you want the animation to stop
+	    var beginning_color = new $.Color( 'rgb(255,255,255)' ); //we can set this here, but it'd probably be better to get it from the CSS; for the example we're setting it here.
+	    var ending_color = new $.Color( 'rgb(56,152,249)' ); ;//what color we want to use in the end
+	    
+	    $(document).scroll(function() {
+	        scroll_pos = $(this).scrollTop(); 
+	        if(scroll_pos >= animation_begin_pos && scroll_pos <= animation_end_pos ) { 	           
+	           
+	            var percentScrolled = scroll_pos / ( animation_end_pos - animation_begin_pos );
+	            var newRed = beginning_color.red() + ( ( ending_color.red() - beginning_color.red() ) * percentScrolled );
+	            var newGreen = beginning_color.green() + ( ( ending_color.green() - beginning_color.green() ) * percentScrolled );
+	            var newBlue = beginning_color.blue() + ( ( ending_color.blue() - beginning_color.blue() ) * percentScrolled );
+	            var newColor = new $.Color( newRed, newGreen, newBlue );
+
+	            var percentScrolledColor = scroll_pos / ( animation_begin_pos - animation_end_pos );
+	            var newRedColor = ending_color.red() + ( ( beginning_color.red() - ending_color.red() ) * percentScrolledColor );
+	            var newGreenColor = ending_color.green() + ( ( beginning_color.green() - ending_color.green() ) * percentScrolledColor );
+	            var newBlueColor = ending_color.blue() + ( ( beginning_color.blue() - ending_color.blue() ) * percentScrolledColor );
+	            var newColorColor = new $.Color( newRedColor, newGreenColor, newBlueColor );
+
+
+	            var secondaryPos = scroll_pos - 85;
+	            
+	            $('.featured-circle').animate({ backgroundColor: newColor, color: newColorColor }, 0);
+	            $('.featured-circles').animate({ top: secondaryPos }, 0);
+
+	        } else if ( scroll_pos > animation_end_pos ) {
+	             $('.featured-circle').animate({ backgroundColor: ending_color, color: beginning_color }, 0);
+
+	             $('.featured-circles').animate({ top: '500px' }, 0);
+
+	        } else if ( scroll_pos < animation_begin_pos ) {
+	             $('.featured-circle').animate({ backgroundColor: beginning_color, color: ending_color }, 0);
+
+	             $('.featured-circles').animate({ top: '-85px' }, 0);
+	        } else { }
+	    });
+	}
+
 	return {
       run: run,
-      list: list,
       animateBackground: animateBackground
 	}
 

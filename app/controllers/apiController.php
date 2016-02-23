@@ -37,6 +37,10 @@
 		public function practices ($print = "json", $parameter = "doctor", $id) {
 			$this->api->practices ($print, $parameter, $id);
 		}
+		
+		public function practice ($print = "json", $practice_id, $parameter = "doctor", $id) {
+			$this->api->practice ($print, $practice_id, $parameter , $id);
+		}
 				
 		
 		public function appointments($print="json", $by = "doctor", $id, $for_date = "", $to_date = "", $second_parameter = "", $practice_id = ""){
