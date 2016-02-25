@@ -9,9 +9,9 @@ class panelController extends Controller {
 		parent::__construct();
 		//Auth::handleLogin('panel');
         $this->view->title = SITE_NAME . " | Panel" ;	 //Temporarly defined to avoid individual var
-        //$this->view->userdata  = array("id"=>"22", "username" => "dlarez", "role" => "doctor" 	);
-        $this->view->userdata = $this->user->getUserdata();
-        $this->view->userdata = $this->view->userdata[0];
+        $this->view->userdata  = array("id"=>"22", "username" => "adlarez@besign.com.ve", "role" => "doctor" 	);
+        //$this->view->userdata = $this->user->getUserdata();
+        //$this->view->userdata = $this->view->userdata[0];
         
 	}
 	
@@ -54,6 +54,16 @@ class panelController extends Controller {
 	public function patient($action, $secondparameter , $tempkey = "") {	
 
 		switch ($action) {
+			
+			case 'profile':
+				
+				$id = $secondparameter;
+				
+				$this->view->patient = $this->api->patient($id);
+				//$this->api->patient("json" , $id);
+				$template = "perfil";
+				break;
+				
 			case 'get':
 				$template = "id";
 				break;
@@ -94,7 +104,8 @@ class panelController extends Controller {
 				} else {
 					$template = "none";
 				}
-
+				
+				
 			break;
 		}
 
@@ -183,6 +194,7 @@ class panelController extends Controller {
 			case 'next':
 				//Get Next Appointments
 				//Appointments/arreglo/doctor/22/2014-02-09/2014-02-10/practice/11/
+				
 				$this->view->appointments = Api::appointments("array" , "doctor", $this->view->userdata['id'], $from_date, $to_date);
 
 				if ($this->view->appointments['tag'] == 'practices' && $this->view->appointments['empty'] == 1) {

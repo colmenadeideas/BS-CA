@@ -207,6 +207,4 @@ function processSocialRegistration(userobject) {
 }
 
 
-}
-
 
