@@ -30,9 +30,13 @@
 								foreach ($practice['appointments'] as $appointment) { 
 								?>					
 									<div class="col-lg-3 col-xs-3 patient-pic text-center">
+										<a href="#patient/profile/<?php print_r($appointment['patient_data'][0]['id']); ?>" class="wrap-action">
+										<!--span class="button-action">Ver Perfil Paciente</span--> 
+										
 										<img  src="<?php echo IMG;?>default-male.png" class="img-responsive img-circle" />
 										<h4><?php echo $appointment['patient_data'][0]['name'] . " ". $appointment['patient_data'][0]['lastname']; ?></h4>
 										<h6><?php echo $appointment['suggested_time_appointment']; ?></h6>
+										</a>
 									</div>
 								
 							<?php $p++; } ?>

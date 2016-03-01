@@ -59,7 +59,10 @@ class panelController extends Controller {
 				
 				$id = $secondparameter;
 				
-				$this->view->patient = $this->api->patient($id);
+				$this->view->patient = $this->api->patient($arreglo="array",$id);
+				
+				$this->view->appointments = Api::appointments("array" , "doctor", $this->view->userdata['id'], $from_date, $to_date);
+				
 				//$this->api->patient("json" , $id);
 				$template = "perfil";
 				break;

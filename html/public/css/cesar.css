@@ -1,0 +1,38 @@
+.pestana{
+	height:100px;
+	color:white;	
+	
+	 content: "";
+	  display: inline-block;
+	  vertical-align: middle;
+	 height: 100%;
+	 font-size:large;
+}
+
+.pestanac{
+	line-height: 50px;
+	}
+
+.pestanamenu{
+	height:100px;
+	display: inline-block;
+}
+
+.no-padding{
+	padding:0px
+}
+#datospatien{
+	background-color: #0DE6C9;
+	height: 100px;
+}
+
+#desktop{
+	background-color:white;
+	padding-top: 10px;
+}
+
+
+.timeline-profile{
+    margin: 0 40%;
+    
+}
