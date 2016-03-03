@@ -22,7 +22,9 @@
 	<div id="response-login"></div>
 </div>
 <div class="col-lg-12 col-xs-12 text-center">
-	<a href="" class="btn btn-link"><?php echo SITE__FORM_PASSWORD_FORGOT; ?></a>
+	<a class="btn btn-link" href="#password-recovery" data-dismiss="modal" data-toggle="modal" data-target="#password-recovery">
+		<?php echo SITE__FORM_PASSWORD_FORGOT; ?>
+	</a>
 </div>
 
 <div class="clearfix"></div>

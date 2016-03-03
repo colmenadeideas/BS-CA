@@ -378,7 +378,9 @@
 			
 			$username = escape_value($_POST['recover-password']);
 			//Check for username in Database
-			$already_registered =	$this->model->getAccount($username, 'username');
+			
+			$already_registered =	$this->model->getAccount('',$username, 'username');
+			
 			
 			if (empty($already_registered)) {
 				echo SYSTEM_USERNAME_NOT_EXISTS;

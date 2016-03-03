@@ -6,3 +6,4 @@
 <div id="login" class="col-lg-4 col-sm-4 col-lg-push-4 col-sm-push-4">
 	<?php $this -> render('login/loginbox'); ?>
 </div>
+<?php $this -> render('login/recover-password-modal'); ?>

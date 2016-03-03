@@ -74,10 +74,50 @@ define(['globals', 'appassets/stepform', 'appassets/enhance' , 'app/doctor'], fu
 			}
 		});
 
+		recover();
+
+		$('#signin').on('hidden.bs.modal', function (e) {
+			console.log('hidden');
+			functions.showModal('password-recovery');
+		});
+
+	}
+	function recover() {
+		$('#password-recovery form').validate({
+			submitHandler : function(form) {
+				$('.recovery-send').attr('disabled', 'disabled');
+				$('#recovery-response').html('');
+				$.ajax({
+					type : "POST",
+					url : URL + "account/recover/",
+					data : $(form).serialize(),
+					timeout : 12000,
+					success : function(response) {
+						console.log('(' + response + ')');
+						$('.recovery-send').removeAttr('disabled');
+						$('#recovery-response').html(response).fadeIn('fast');
+					},
+					error : function(obj, errorText, exception) {
+						$('.recovery-send').removeAttr('disabled');
+						console.log(errorText);	
+					}
+				});
+				return false;
+			}
+		});
 	}
 
+	/*function showrecovery() {
+		functions.closeModal('signin');
+		$('#signin').on('hidden.bs.modal', function (e) {
+			console.log('hidden');
+			functions.showModal('password-recovery');
+		});
+	}*/
+
 	return {
-      signin: signin
+      signin: signin,
+      recover: recover    
 	}
 
 });

@@ -35,6 +35,7 @@ define ('CONTACT_PHONENUMBER','');  //TODO define
 	define('SYSTEM_EMAIL__USER_ACTIVATION_MESSAGE_PART3', '</td></tr></table>');
 	
 	
+	define('PASSWORD_RECOVERY_SUCCESS_RESPONSE', 'Hemos enviado un link a tu correo con instrucciones. Revisa tu bandeja de correo ');
 	
 	//EMAIL PASSWORD CHANGE				
 	define('SYSTEM_EMAIL__PASSWORD_CHANGE', 'Este email es para notificarte que hubo un cambio en tu contraseña.<br><br>
