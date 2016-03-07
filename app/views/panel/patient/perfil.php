@@ -1,10 +1,13 @@
 <?php  
 
-//$patient=$this->patient['patient'];
+$patient=$this->patient['patient'];
 //print_r($patient[0]['data']);
 //$patientdata=$patient[0]['data'];
 //print_r($patientdata[peso]);
 //echo $patientdata->peso;
+
+print_r($this->PatientHistoryID);
+//print_r($this->PacientHistoryByDate);
 
 ?>
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " id="patientprofilemain">

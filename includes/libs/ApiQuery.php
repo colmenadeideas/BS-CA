@@ -104,6 +104,17 @@
 		public function getAppointmentsByDate($id, $date, $id_clinic) {
 			return DB::query("SELECT * FROM ". DB_PREFIX . "appointments WHERE id_doctor = $id AND date = '".$date."' AND id_clinic ='".$id_clinic."'  ORDER BY id ASC" );
 		}
+		/*inicio agregado 04032016******************************/
+		public function getPacientHistoryID($id) {
+						return DB::query("SELECT * FROM ".DB_PREFIX." patient_history WHERE id_patient ='".$id."'" );
+		}
+		
+		public function getPacientHistoryByDate($id_patient_history ) {
+						return DB::query("SELECT * FROM ". DB_PREFIX . "patient_history_detail WHERE id_patient_history ='".$id_patient_history."' ORDER BY ". DB_PREFIX . "patient_history_detail.date ASC" );
+		}
+		
+		/*fin agregado 04032016******************************/
+		
 		public function getAppointment($id) {
 			return DB::query("SELECT * FROM ". DB_PREFIX . "appointments WHERE id='$id'");
 		}

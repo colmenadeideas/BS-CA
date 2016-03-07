@@ -2,7 +2,7 @@
 	<div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1">
 		<h2 class="text-center text">¿Cuál es el motivo de su consulta?</h2>
 		<div class="all-reasons list">		
-			
+		
 
 				{{#if practice.length}}
 				<div class="reasons-slider" data-slick='{"slidesToShow": 3 }'>
@@ -18,6 +18,7 @@
 				<input type="hidden"  name="consultation_reason" required>
 			</div>
 			{{else}}
+	
 				<?php //$this -> render('app/board/empty'); ?>
 			{{/if}}
 

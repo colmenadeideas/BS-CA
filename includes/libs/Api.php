@@ -517,6 +517,31 @@ class Api extends ApiQuery {
 
 	}
 	
+		public function patienthistorydetail($print = "json", $id) {
+
+		$id = escape_value($id);
+		$PacientHistoryID = ApiQuery::getPacientHistoryID($id);
+		/*revisar este linea quizas el atributo no se esta pasando bien********************************/
+		$PacientHistoryDetails = ApiQuery::getPacientHistoryByDate($PacientHistoryID);
+		//$array_patients = ApiQuery::getPatientBy('id', $id);
+		//$array_patients = $this->getPatientBy('id', $id);
+		//get all columns from Table
+		$profileFields = DB::columnList('historydetail');
+		$i = 0;
+		foreach ($PacientHistoryDetails as $PacientHistoryDetail) {
+			foreach ($profileFields as $field) {
+				$array_final['patient'][$i][$field] = $patient[$field];
+			}
+		}
+		if ($print == 'json') {
+			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+		} else {//modo "array"
+			return $array_final;
+		}
+
+	}
+	
+	
 	//get Doctor's Matrix of available slots  and current unavailable
 	public function availability_matrix($print = "json", $id_doctor, $id_practice) {
 		
