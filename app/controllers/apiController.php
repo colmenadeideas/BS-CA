@@ -52,5 +52,11 @@
 			$this -> api -> availability($print, $doctor_id, $practice_id, $show, $givendate);
 		}
 		
+		
+		////PATIENT/$ID
+		public function patienthistorydetail($print="json", $id) {
+			$this->api->patienthistorydetail($print, $id);
+		}
+		
 	}
 ?>

@@ -106,11 +106,11 @@
 		}
 		/*inicio agregado 04032016******************************/
 		public function getPacientHistoryID($id) {
-						return DB::query("SELECT * FROM ".DB_PREFIX." patient_history WHERE id_patient ='".$id."'" );
+						return DB::query("SELECT * FROM ".DB_PREFIX." patient_history WHERE ".DB_PREFIX.".patient_history.id_patient ='".$id."'" );
 		}
 		
-		public function getPacientHistoryByDate($id_patient_history ) {
-						return DB::query("SELECT * FROM ". DB_PREFIX . "patient_history_detail WHERE id_patient_history ='".$id_patient_history."' ORDER BY ". DB_PREFIX . "patient_history_detail.date ASC" );
+		public function getPacientHistorydetail($id_patient_history ) {
+						return DB::query("SELECT * FROM ". DB_PREFIX . "patient_history_detail WHERE ".DB_PREFIX.".patient_history_detail.id_patient_history ='".$id_patient_history."' ORDER BY ". DB_PREFIX . "patient_history_detail.date ASC" );
 		}
 		
 		/*fin agregado 04032016******************************/

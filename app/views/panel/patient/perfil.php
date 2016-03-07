@@ -6,7 +6,8 @@ $patient=$this->patient['patient'];
 //print_r($patientdata[peso]);
 //echo $patientdata->peso;
 
-print_r($this->PatientHistoryID);
+print_r($this->patienthistorydetail['patienthistorydetail']);
+
 //print_r($this->PacientHistoryByDate);
 
 ?>

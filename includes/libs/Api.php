@@ -518,19 +518,17 @@ class Api extends ApiQuery {
 	}
 	
 		public function patienthistorydetail($print = "json", $id) {
-
 		$id = escape_value($id);
 		$PacientHistoryID = ApiQuery::getPacientHistoryID($id);
+		$PacientHistoryID = 27;
 		/*revisar este linea quizas el atributo no se esta pasando bien********************************/
-		$PacientHistoryDetails = ApiQuery::getPacientHistoryByDate($PacientHistoryID);
-		//$array_patients = ApiQuery::getPatientBy('id', $id);
-		//$array_patients = $this->getPatientBy('id', $id);
+		$PacientHistoryDetails = ApiQuery::getPacientHistorydetail($PacientHistoryID);
 		//get all columns from Table
-		$profileFields = DB::columnList('historydetail');
+		$profileFields = DB::columnList('patient_history_detail');
 		$i = 0;
-		foreach ($PacientHistoryDetails as $PacientHistoryDetail) {
+		foreach ($PacientHistoryDetails as $Detail) {
 			foreach ($profileFields as $field) {
-				$array_final['patient'][$i][$field] = $patient[$field];
+				$array_final['Detail'][$i][$field] = $Detail[$field];
 			}
 		}
 		if ($print == 'json') {
@@ -540,6 +538,10 @@ class Api extends ApiQuery {
 		}
 
 	}
+		
+
+
+		
 	
 	
 	//get Doctor's Matrix of available slots  and current unavailable
@@ -563,6 +565,9 @@ class Api extends ApiQuery {
 			return $array_final;
 		}
 	}
+	
+	
+	
 
 	public function availability($print = "json", $id_doctor, $id_practice, $show = "days", $selecteddate="") {
 		

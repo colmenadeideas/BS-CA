@@ -65,11 +65,11 @@ class panelController extends Controller {
 				
 				//$PacientHistoryID = Api::getPacientHistoryID($id);
 				
-				$PacientHistoryID= Api::getPacientHistoryID($id);
+				//$PacientHistoryID= Api::getPacientHistoryID($arreglo="array",$id);
 				
-				$this->view->PatientHistoryID==$PacientHistoryID;
+				$this->view->patienthistorydetail==Api::patienthistorydetail($arreglo="array" ,$id);
 				
-				$this->view->PacientHistoryByDate=Api::getPacientHistoryByDate($PacientHistoryID[0]['id']);
+				//$this->view->PacientHistoryByDate=Api::getPacientHistoryByDate($PacientHistoryID[0]['id']);
 				
 				$this->view->appointments = Api::appointments("array" , "doctor", $this->view->userdata['id'], $from_date, $to_date);
 				
