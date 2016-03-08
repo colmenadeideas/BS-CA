@@ -56,6 +56,7 @@
 		////PATIENT/$ID
 		public function patienthistorydetail($print="json", $id) {
 			$this->api->patienthistorydetail($print, $id);
+			
 		}
 		
 	}

@@ -11,10 +11,6 @@ $patient=$this->patient['patient'];
 
 //print_r($this->patienthistorydetail['Detail']);
 
-$details=$this->patienthistorydetail['Detail'];
-
-//print_r($details);
-
 ?>
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " id="patientprofilemain">
 	<center><h1>Perfil de Paciente:<br></h1>
@@ -76,18 +72,12 @@ $details=$this->patienthistorydetail['Detail'];
 						<?php 
 							//print_r($this->appointments);
 							$i = 0;
-							foreach($details as $date){
-								print_r($date['date']);
-							$i++;	
-							}
-							
-							$i = 0;
-							foreach($details as $date){ ?>	
-							<div id="date-<?php print_r($date['date']); ?>">
+							foreach($this->appointments ['dates'] as $date){ ?>	
+							<div id="date-<?php echo $date['date_string']; ?>">
 								<div class="col-lg-2 col-sm-2">
-									<div class="date-circle"><?php echo substr(print_r($date['date']), -2);  ?> 
-										<div class="month"><?php $dt = DateTime::createFromFormat('!m', substr(print_r($date['date']), 5, -3));
-															echo $dt->format('M')." '". substr(print_r($date['date']), 2,-6); ?>
+									<div class="date-circle"><?php echo substr($date['date_string'], -2);  ?> 
+										<div class="month"><?php $dt = DateTime::createFromFormat('!m', substr($date['date_string'], 5, -3));
+															echo $dt->format('M')." '". substr($date['date_string'], 2,-6); ?>
 							 			</div>
 									</div>
 								</div>
@@ -96,7 +86,7 @@ $details=$this->patienthistorydetail['Detail'];
 								</div>
 							
 							</div>		
-							<div id="<?php echo $i."-".print_r($date['date']); ?>" class="col-lg-12 col-xs-12 dates-practices">
+							<div id="<?php echo $i."-".$date['date_string']; ?>" class="col-lg-12 col-xs-12 dates-practices">
 								<?php foreach ($date['practice'] as $practice) { 
 										if (!empty($practice['appointments'])) { ?>
 										<!--Practice -->

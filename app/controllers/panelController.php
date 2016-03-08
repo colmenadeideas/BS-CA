@@ -58,16 +58,21 @@ class panelController extends Controller {
 			case 'profile':
 				
 				$id = $secondparameter;
+				
 				/*04032016************************************************************************/
 				//$this->view->patient = $this->api->patient($arreglo="array",$id);
 				
 				$this->view->patient =Api::patient($arreglo="array",$id);
 				
+				
+				
 				//$PacientHistoryID = Api::getPacientHistoryID($id);
 				
 				//$PacientHistoryID= Api::getPacientHistoryID($arreglo="array",$id);
 				
-				$this->view->patienthistorydetail==Api::patienthistorydetail($arreglo="array" ,$id);
+				$this->view->patienthistorydetail=Api::patienthistorydetail($arreglo="array" ,$id);
+				
+				//print_r($this->view->patienthistorydetail['Detail'][0]);
 				
 				//$this->view->PacientHistoryByDate=Api::getPacientHistoryByDate($PacientHistoryID[0]['id']);
 				

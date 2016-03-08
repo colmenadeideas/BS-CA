@@ -110,7 +110,9 @@
 		}
 		
 		public function getPacientHistorydetail($id_patient_history ) {
-						return DB::query("SELECT * FROM ". DB_PREFIX . "patient_history_detail WHERE ".DB_PREFIX.".patient_history_detail.id_patient_history ='".$id_patient_history."' ORDER BY ". DB_PREFIX . "patient_history_detail.date ASC" );
+			
+						//return DB::query("SELECT * FROM ". DB_PREFIX . "patient_history_detail WHERE ".DB_PREFIX.".patient_history_detail.id_patient_history ='".$id_patient_history."' ORDER BY ". DB_PREFIX . "patient_history_detail.date ASC" );
+						return DB::query("SELECT * FROM ". DB_PREFIX . "patient_history_detail WHERE ".DB_PREFIX.".patient_history_detail.id_patient_history ='".$id_patient_history."'" );
 		}
 		
 		/*fin agregado 04032016******************************/

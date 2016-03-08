@@ -520,17 +520,37 @@ class Api extends ApiQuery {
 		public function patienthistorydetail($print = "json", $id) {
 		$id = escape_value($id);
 		$PacientHistoryID = ApiQuery::getPacientHistoryID($id);
-		$PacientHistoryID = 27;
+		
+		//print_r($PacientHistoryID[0]["id"]);
+		
 		/*revisar este linea quizas el atributo no se esta pasando bien********************************/
-		$PacientHistoryDetails = ApiQuery::getPacientHistorydetail($PacientHistoryID);
+		
+		//foreach ($PacientHistoryID as $ID) {
+			
+		$PacientHistoryDetails = ApiQuery::getPacientHistorydetail($PacientHistoryID[0]["id"]);
+		
+		//print_r($PacientHistoryDetails);
+		
 		//get all columns from Table
 		$profileFields = DB::columnList('patient_history_detail');
+		
+		//print_r($profileFields);
+
 		$i = 0;
 		foreach ($PacientHistoryDetails as $Detail) {
+		
 			foreach ($profileFields as $field) {
+				
 				$array_final['Detail'][$i][$field] = $Detail[$field];
+				//print_r($array_final['Detail'][$i]['id']);
+				$i++;
 			}
 		}
+		
+		//}
+		
+		//print_r($array_final['Detail'][0]['id']);
+		
 		if ($print == 'json') {
 			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
 		} else {//modo "array"
