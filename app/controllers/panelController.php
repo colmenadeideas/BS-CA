@@ -241,54 +241,32 @@ class panelController extends Controller {
 	
 	}
 
-	public function practice($action, $secondparameter, $tempkey="") {	
-		
+	/* TODO Igualar este concepto: PanelController solo tiene los build, y la lógica de cada proceso vive en otros controladores*/
+	public function practice($action = '') {
 		switch ($action) {
 			case 'add':
-				//has
-				//-- step 1
-				//---- step 2
-				//------ step 3
-				//-------- step 4
-				if (!empty($secondparameter)) {
+				
+				$this->view->tempkey = generateTempKey($this->view->userdata["username"]);					
+				$this->view->render("practices/add");
 
-					//Get Previous
-					$tempdata = Api::getTempRecord("array", $this->view->userdata['id'], $tempkey);
-					$this->view->tempkey = $tempdata[0]['tempkey'];
-					$this->view->tempdata = json_decode($tempdata[0]['data'], TRUE);
+				break;				
 
-					switch ($secondparameter) {
-						case 'step2': 	$template = "add-days"; 			break;
-						case 'step3':	$template = "add-quote";	break;
-						case 'step4':	$template = "add-cost";				break;
-						case 'step5':	$template = "add-preview";			break;
-					}
-				} else {
-					$this->view->tempkey = generateTempKey($this->view->userdata["username"]);			
-					$template = "add";
-				}
-			
-				break;
-
-			
 			default:
 				//list
 				$this->view->practices = $this->api-> practices("array" , "doctor", $this->view->userdata['id']);
 			
 				if ($this->view->practices['empty'] != 1) {
-
-					$template = "list";
-
+					$this->view->render("panel/practices/list");
 				} else {
-
-					$template = "none";
-
+					$this->view->render("panel/practices/none");
 				}
-			break;
+				
+				break;
 		}
-
-		$this->view->render("panel/practices/".$template);
 	}
+	
+
+
 	//TODO me lleve process appointments a ApointmentsController
 	function process ($what, $step="", $step_id="") {
 

@@ -20,7 +20,7 @@ define(['globals', 'appassets/stepform', 'appassets/enhance' , 'app/doctor'], fu
 							var responseDiv = "#response-login";
 							$('.send').removeAttr("disabled");
 							var mensaje = response.response;
-							//console.log(response);	
+							console.log(response);	
 
 							switch (response.success) {						
 								case 0: //TODO ERROR
@@ -61,8 +61,7 @@ define(['globals', 'appassets/stepform', 'appassets/enhance' , 'app/doctor'], fu
 								});
 
 								break;*/
-
-							
+						
 
 					},
 					error : function(obj, errorText, exception) {
@@ -107,13 +106,6 @@ define(['globals', 'appassets/stepform', 'appassets/enhance' , 'app/doctor'], fu
 		});
 	}
 
-	/*function showrecovery() {
-		functions.closeModal('signin');
-		$('#signin').on('hidden.bs.modal', function (e) {
-			console.log('hidden');
-			functions.showModal('password-recovery');
-		});
-	}*/
 
 	return {
       signin: signin,

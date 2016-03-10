@@ -1,12 +1,44 @@
-define(['globals', 'appassets/stepform', 'appassets/enhance'], function(globals, stepform, enhance) {
+define(['globals', 'appassets/stepform', 'appassets/enhance', 'appassets/steps'], function(globals, stepform, enhance, steps) {
 	
+	function run() {
+		
+		/*stepform.run();
+		enhance.fieldsfor("practice");
+		autocomplete();*/
+		console.log("runi Pr");
+		
+	}
 	function add() {
 		
-		stepform.run();
+		/*stepform.run();
 		enhance.fieldsfor("practice");
-		autocomplete();
+		autocomplete();*/
+		step1();
+		
 	}
 
+	function step1() {
+		
+		if ($('#step1').is(".active") == true){
+			steps.run();
+			enhance.fieldsfor("practice");
+			//autocomplete();
+		}
+	}
+	function step2() {
+		
+		if ($('#step2').is(".active") == true){
+			steps.run();
+			enhance.fieldsfor("practice");
+			//autocomplete();
+		}
+	}
+
+
+
+
+
+/*PREVIO a 070316 */
 	
 	function autocomplete() {
 	
@@ -60,9 +92,9 @@ define(['globals', 'appassets/stepform', 'appassets/enhance'], function(globals,
 	}
 
 	return {
-      add: add,
-      autocomplete: autocomplete,
-      searchLocation: searchLocation
+		add: add,
+      	autocomplete: autocomplete,
+      	searchLocation: searchLocation
 	}
 
 });

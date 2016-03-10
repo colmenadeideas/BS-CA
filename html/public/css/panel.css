@@ -28,6 +28,19 @@ body {
 	right: 0;
 	z-index: 5555;
 }
+/* Profile  Appointments */
+#steps-wrapper {
+  position:relative; width:100%; height:100%; margin:auto; padding: 20px 0; overflow-x: hidden; float: left
+}
+.form-steps {
+  width:400%; /*acording to amount of steps, in this case 3*/
+  position:relative; 
+}
+.slide-step {
+  width:25%;/*acording to amount of steps, in this case 3*/
+   border: solid 1px white; float: left
+}
+.slide-step h2 { margin: 10px 0 30px }
 
 #pleasewait{ 
 	width 100%; height:200px;
