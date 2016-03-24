@@ -26,6 +26,6 @@
 	placeholder="Dirección" required="required" autocomplete="off" ></textarea>
 	<input name="address_location" type="hidden"><input name="address_url" type="hidden">					 	
 </div>
-<div class="text-right col-sm-12 col-lg-12 button-area">
+<!-- <div class="text-right col-sm-12 col-lg-12 button-area">
 	<input type="submit" name="submit" class="next btn btn-info btn-lg" value="Continuar" > 
-</div>
+</div> -->

@@ -2,9 +2,11 @@
 <div class="col-lg-8 col-sm-8">
 	<h2 class="text-center forms">Agregar Práctica</h2>
 
+	
+
 	<div id="steps-wrapper">
 		<form id="practice" data-tempkey="<?php echo $this->tempkey; ?>" data-action="add" action="" novalidate="novalidate" method="post" class="light-form stepform1" data-controller="practice">
-			<div class="form-steps">
+			<div class="form-steps 5steps">
 				<!--Step 1-->
 				<div id="step1" class="slide-step active" data-stepback="0" data-stepfoward="2">
 					
@@ -17,18 +19,21 @@
 					
 				</div>
 				<!--Step 2-->
-				<div id="step2" class="slide-step" data-stepback="1" data-stepfoward="3">
-					Step2
+				<div id="step2" class="slide-step" data-stepback="1" data-stepfoward="3">					
 				</div>
 				<!--Step 3-->
-				<div id="step3" class="slide-step" data-stepback="2" data-stepfoward="4">
-					Step3
+				<div id="step3" class="slide-step" data-stepback="2" data-stepfoward="4">					
 				</div>
 				<!--Step 4-->
 				<div id="step4" class="slide-step" data-stepback="3" data-stepfoward="5">
-					Step4
+				</div>
+				<div id="step5" class="slide-step" data-stepback="4" data-stepfoward="0">
 				</div>
 			</div><!--end form-steps -->
+			<div class="text-right col-sm-12 col-lg-12 button-area">
+				<input type="submit" name="previous" class="previous btn hideme" value="Anterior">
+				<input type="submit" name="next" class="next btn btn-info btn-lg" value="Continuar" > 
+			</div>
 		</form>		
 		
 	</div><!--end steps-wrapper -->

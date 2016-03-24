@@ -1,39 +1,56 @@
 define(['globals', 'appassets/stepform', 'appassets/enhance', 'appassets/steps'], function(globals, stepform, enhance, steps) {
 	
-	function run() {
-		
-		/*stepform.run();
-		enhance.fieldsfor("practice");
-		autocomplete();*/
-		console.log("runi Pr");
-		
-	}
 	function add() {
-		
-		/*stepform.run();
-		enhance.fieldsfor("practice");
-		autocomplete();*/
+		steps.run();
+		runSteps();
+	}
+
+	function runSteps() {
 		step1();
-		
+		step2();
+		step3();
+		step4();
+		step5();
 	}
 
 	function step1() {
 		
-		if ($('#step1').is(".active") == true){
-			steps.run();
+		if ($('#step1').is(".active") == true){			
 			enhance.fieldsfor("practice");
-			//autocomplete();
-		}
+			autocomplete();
+		}		
 	}
 	function step2() {
 		
 		if ($('#step2').is(".active") == true){
-			steps.run();
 			enhance.fieldsfor("practice");
-			//autocomplete();
 		}
 	}
 
+	function step3() {
+		
+		if ($('#step3').is(".active") == true){
+			enhance.fieldsfor("practice");
+		}
+	}
+
+	function step4() {		
+		if ($('#step4').is(".active") == true){
+			enhance.fieldsfor("practice");
+		}
+	}
+
+	function step5() {		
+		if ($('#step5').is(".active") == true){
+			enhance.fieldsfor("practice");
+			$('.goAndEdit').click(function(e) {
+				var destination = $(this).data('goandedit');
+				var step = destination.split("step");
+				steps.prevStep(step[1]);
+				e.preventDefault();						
+			});
+		}
+	}
 
 
 
@@ -93,6 +110,7 @@ define(['globals', 'appassets/stepform', 'appassets/enhance', 'appassets/steps']
 
 	return {
 		add: add,
+		runSteps: runSteps,
       	autocomplete: autocomplete,
       	searchLocation: searchLocation
 	}

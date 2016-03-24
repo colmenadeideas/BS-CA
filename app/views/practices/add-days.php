@@ -157,7 +157,7 @@
 
 		</table>
 	</div>
-	<div class="text-right col-sm-12 col-lg-12 button-area">
+	<!-- <div class="text-right col-sm-12 col-lg-12 button-area">
 		<input type="submit" name="previous" class="previous btn" value="Anterior">
 		<input type="submit" name="next" class="next btn btn-info btn-lg" value="Continuar" > 
-	</div>
+	</div> -->

@@ -8,10 +8,10 @@ class panelController extends Controller {
 		
 		parent::__construct();
 		//Auth::handleLogin('panel');
-        $this->view->title = SITE_NAME . " | Panel" ;	 //Temporarly defined to avoid individual var
-        $this->view->userdata  = array("id"=>"22", "username" => "adlarez@besign.com.ve", "role" => "doctor" 	);
-        //$this->view->userdata = $this->user->getUserdata();
-        //$this->view->userdata = $this->view->userdata[0];
+       // $this->view->title = SITE_NAME . " | Panel" ;	 //Temporarly defined to avoid individual var
+       // $this->view->userdata  = array("id"=>"22", "username" => "adlarez@besign.com.ve", "role" => "doctor" 	);
+        $this->view->userdata = $this->user->getUserdata();
+        $this->view->userdata = $this->view->userdata[0];
         
 	}
 	

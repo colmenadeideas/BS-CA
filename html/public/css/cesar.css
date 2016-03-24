@@ -26,10 +26,13 @@
 	height: 100px;
 }
 
+/*
+	DELIA DICE: Cambia este css a otro selector porque #desktop afecta a todo ;)
+	
 #desktop{
 	background-color:white;
 	padding-top: 10px;
-}
+}*/
 
 
 .timeline-profile{

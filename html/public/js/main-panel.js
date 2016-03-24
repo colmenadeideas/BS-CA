@@ -27,7 +27,7 @@ require.config({
          'assets/jquery.easing.min': ['jquery'],   
          'assets/jquery.scrollTo.min': ['jquery'], 
          'assets/slidebars.min': ['jquery'], 
-         'appassets/stepform' : ['jquery', 'globals', 'assets/jquery.validate.min'],
+         'appassets/steps' : ['jquery', 'globals', 'assets/jquery.validate.min'],
          'assets/handlebars.min' :['jquery'],
           //'assets/jquery.dataTables.min': ['jquery'],
          //'assets/jquery.maskedinput.min': ['jquery'],
