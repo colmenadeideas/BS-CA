@@ -495,20 +495,40 @@ class Api extends ApiQuery {
 	}
 	
 	//
-	public function patient($print = "json", $id) {
-
+	public function patient($print = "json", $id, $events = "", $id_doctor="",$for_date = "", $to_date = "") {
 		$id = escape_value($id);
 
 		$array_patients = ApiQuery::getPatientBy('id', $id);
-		//$array_patients = $this->getPatientBy('id', $id);
 		//get all columns from Table
 		$profileFields = DB::columnList('patient');
 		$i = 0;
 		foreach ($array_patients as $patient) {
 			foreach ($profileFields as $field) {
-				$array_final['patient'][$i][$field] = $patient[$field];
+				$array_final['patient'][$field] = $patient[$field];
 			}
 		}
+
+		// IF EVENTS is not empty, query is asking for Medical History
+		if($events == "events"){
+			//Si no hay parametros de fecha, tomar fecha actual - 60 dias  previos
+			if($for_date == "") { $for_date = date("Y-m-d");	}
+			if($to_date == "") 	{ $to_date 	= date("Y-m-d", strtotime("-60 days")); }
+
+			$patientHistory = ApiQuery::getPacientHistory($id);
+			
+			if(!empty($patientHistory)) {
+				
+				$e=0;
+				$PacientHistoryEvents = ApiQuery::getPacientHistoryEvents($patientHistory[0]["id"], $id_doctor);
+				foreach ($PacientHistoryEvents as $Event) {
+					$array_final['patient']['history']['events'][$e] = $Event;
+					$e++;
+				}
+				$array_final['patient']['history']['id'] = $patientHistory[0]['id'];
+			}
+			
+		}
+
 		if ($print == 'json') {
 			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
 		} else {//modo "array"
@@ -517,19 +537,12 @@ class Api extends ApiQuery {
 
 	}
 	
-		public function patienthistorydetail($print = "json", $id) {
-		$id = escape_value($id);
-		$PacientHistoryID = ApiQuery::getPacientHistoryID($id);
-		
-		//print_r($PacientHistoryID[0]["id"]);
-		
-		/*revisar este linea quizas el atributo no se esta pasando bien********************************/
+	public function patienthistory($print = "json", $id, $for_date = "" , $to_date = "" ){
+
+		/*
 		
 		//foreach ($PacientHistoryID as $ID) {
 			
-		$PacientHistoryDetails = ApiQuery::getPacientHistorydetail($PacientHistoryID[0]["id"]);
-		
-		//print_r($PacientHistoryDetails);
 		
 		//get all columns from Table
 		$profileFields = DB::columnList('patient_history_detail');
@@ -545,7 +558,7 @@ class Api extends ApiQuery {
 				//print_r($array_final['Detail'][$i]['id']);
 				$i++;
 			}
-		}
+		}*/
 		
 		//}
 		

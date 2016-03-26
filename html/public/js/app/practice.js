@@ -1,4 +1,4 @@
-define(['globals', 'appassets/stepform', 'appassets/enhance', 'appassets/steps'], function(globals, stepform, enhance, steps) {
+define(['globals', 'appassets/enhance', 'appassets/steps'], function(globals, enhance, steps) {
 	
 	function add() {
 		steps.run();

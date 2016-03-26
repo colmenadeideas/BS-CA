@@ -53,13 +53,22 @@
 		return $valid;
 	}
 	
-	function stringDate($date)
-	{	if (required($date)){
+	function stringDate($date){	
+		if (required($date)){
 	    	$d = DateTime::createFromFormat('Y-m-d', $date);
 	    	return $d && $d->format('Y-m-d') == $date;
 		}else{
 			return false;
 		 }
+	}
+	
+	function getPage() {
+		$current = explode("/",$_SERVER['REQUEST_URI']);
+		if (end($current) == "") {
+			return "home";
+		} else {
+			return end($current);	
+		}
 	}
 
 	/*
@@ -97,6 +106,10 @@
 			
 		return $username.uniqid(rand(), true);
 			
+	}
+
+	function moneyFormat($data) {
+		return money_format('%.2n', $data);
 	}
 
 	

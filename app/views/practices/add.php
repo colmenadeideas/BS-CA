@@ -34,7 +34,23 @@
 				<input type="submit" name="previous" class="previous btn hideme" value="Anterior">
 				<input type="submit" name="next" class="next btn btn-info btn-lg" value="Continuar" > 
 			</div>
-		</form>		
+		</form>	
+		
+		<!--Notification -->
+		<div class="hidden-message">
+			<div class="process-notification">
+				<div class="circle-icon">
+					<i class="glyphicon glyphicon-ok"></i>
+				</div>
+				<div class="content-area">
+					<h4 class="text-center forms">Su práctica se ha guardado con éxito</h4>
+					<div class="button-group">
+						<a href="#practice/add" class="btn btn-alt-choice">Agregar otra</a>
+						<a href="#practice/list" class="btn btn-first-choice">Volver a inicio</a>
+					</div>
+				</div>
+			</div>
+		</div>	
 		
 	</div><!--end steps-wrapper -->
 

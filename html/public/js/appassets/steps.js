@@ -11,40 +11,41 @@ define(['globals', 'appassets/enhance'], function(globals, enhance) {
 				var currentID = $(form).attr('id');
 				var currentID = $('#'+currentID+' .slide-step.active');
 				var step = currentID.data('stepfoward')-1;
-				
+
+				$('.send').attr('disabled', 'disabled');
+
 				$.ajax({
 					type : "POST",
 					url : globals.URL + controller + "/process/step/"+step,
 					data : $(form).serialize()+ "&form="+controller+"&url="+currentUrl+"&tempkey="+$(form).data('tempkey'),
 					timeout : 12000,
 					success : function(response) {
-						var response = JSON.parse(response);
-						//console.log(response);	
+						
+						var response = JSON.parse(response);						
 						switch (response.success) {						
 							case 0: //TODO ERROR	
 								break;							
 							case 1: //if continue	
-							 	//console.log(response.template);
-							 	/*$(updateArea).load(
-							 		response.template+"/"+response.tempkey, function () {	
-							 	})
-							 	.hide().html(response.template).fadeIn(500, function(){
-							 		enhance.fieldsfor(stepForm, step);
-							 		run();
-							 	});*/
-							 	nextStep(controller);							 	
+							 	
+								if (step < 0) {
+									$('.send').removeAttr("disabled");
+									//process(currentID);
+									$(form).slideUp(300)
+									$('.hidden-message').delay(350).fadeIn(300);
+									
+								} else {
+								 	nextStep(controller);							 	
+								}
 
 								break;
 						}
 					},
 					error : function(obj, errorText, exception) {
+						$('.send').removeAttr("disabled");
 						console.log(errorText);
 					}
 				});
-				
 
-				//2) Then Load Next
-				//nextStep(controller);
 			}
 		});
 
@@ -79,7 +80,8 @@ define(['globals', 'appassets/enhance'], function(globals, enhance) {
 			case "next":
 				//console.log(controller+" > "+step);
 				if (step == 0) {
-					process(stepForm);
+					console.log("Am I getting over here?");// TODO pasa por acá en algun punto?
+					//process(stepForm); 
 					//event.preventDefault();
 					//return;
 				} else {
@@ -204,56 +206,7 @@ define(['globals', 'appassets/enhance'], function(globals, enhance) {
 		    
 		});		
 	}
-
-
-	function process(stepform) {
-
-		var stepForm = stepform.attr('id');	
-		var currentUrl = window.location.href;
-
-		$("#"+stepForm).validate({
-			submitHandler : function(form) {
-				//Loading
-				//TODO show loading
-				$('.send').attr('disabled', 'disabled');	
-				var controller = $(form).data('controller');			
-				$.ajax({
-					type : "POST",
-					url : globals.URL + controller + "/process/step/"+step,
-					data : $(form).serialize()+ "&form="+controller+"&url="+currentUrl+"&tempkey="+$(form).data('tempkey'),
-					data : $(form).serialize()+ "&form="+stepForm+"&url="+currentUrl+"&tempkey="+$(form).data('tempkey'),
-					timeout : 12000,
-					success : function(response) {
-						//$('.send').removeAttr("disabled");
-						var response = JSON.parse(response);
-						console.log(response.response);	
-						
-						switch (response.success) {						
-							case 0: //TODO ERROR	
-								break;							
-							case 1: //if continue	
-							 	//console.log(response.template);
-							 	/*$(updateArea).load(
-							 		response.template+"/"+response.tempkey, function () {	
-							 	})
-							 	.hide().html(response.template).fadeIn(500, function(){						 		
-							 	});*/
-							 	$('#response-'+stepform).last().modal('show'); 							 	
-
-						 		$(form).slideUp(300)
-								$('.hidden-message').delay(350).fadeIn(300);
-								break;
-						}
-					},
-					error : function(obj, errorText, exception) {
-						$('.send').removeAttr("disabled");
-						console.log(errorText);
-					}
-				});
-				//return false;
-			}
-		});
-	}
+	
 
 	return {
 		run: 		run,

@@ -1,5 +1,36 @@
-define(['globals', 'appassets/stepform', 'appassets/enhance'], function(globals, stepform, enhance) {
-	
+define(['globals', 'assets/handlebars.min', 'appassets/steps', 'appassets/enhance', 'functions' ], function(globals, Handlebars,  steps, enhance, functions) {
+
+	function profile() {
+
+		var currentHash = window.location.hash;
+		var hashIs = currentHash.split("/");
+		var OKey = $('[name="OKey"]').val();
+		
+		functions.handlebarsHelpers();
+
+		$.getJSON(globals.URL + "api/patient/json/" + hashIs[2]+"/events/"+OKey, function(data) {
+			console.log(data);
+			var TemplateScript = $("#Patient-Profile-Template").html(); 
+			var Template = Handlebars.compile(TemplateScript);
+			//Handlebars.registerPartial("TabBookApointment", $("#BookAppointment-Template").html());
+			$(".patient-profile").append(Template(data));
+			
+			
+			$('.data-slider').slick({
+				dots: false,
+				infinite: false,
+				speed: 300						
+			});
+			
+		});
+		
+
+		
+	}
+
+
+	/*PREVIO a 250316 */
+
 	function add() {
 		//var step;		
 		stepform.run();
@@ -51,6 +82,7 @@ define(['globals', 'appassets/stepform', 'appassets/enhance'], function(globals,
 	}
 
 	return {
+		profile: profile,
 		add: add
 	}
 

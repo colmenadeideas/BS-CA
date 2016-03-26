@@ -15,13 +15,16 @@
 
 			$this -> api -> search($type, $terms, $location);
 		}
+
 		//PATIENT/$ID
-		public function patient	( $print="json", $id) {
-			$this->api->patient($print, $id);
+		//PATIENT/$ID/EVENTS/$DOCTOR_ID/FROM/TO
+		public function patient	( $print="json", $id, $events = "", $id_doctor="",$for_date = "", $to_date = "") {
+			$this->api->patient($print, $id, $events, $id_doctor,$for_date, $to_date);			
 		}
 		public function patients( $print="json", $relationship, $id) {
 			$this->api->patients($print, $relationship, $id);
 		}
+		
 		
 		
 		//DOCTOR/$ID
@@ -52,12 +55,6 @@
 			$this -> api -> availability($print, $doctor_id, $practice_id, $show, $givendate);
 		}
 		
-		
-		////PATIENT/$ID
-		public function patienthistorydetail($print="json", $id) {
-			$this->api->patienthistorydetail($print, $id);
-			
-		}
 		
 	}
 ?>

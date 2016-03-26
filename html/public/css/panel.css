@@ -28,6 +28,36 @@ body {
 	right: 0;
 	z-index: 5555;
 }
+/**Patient Profile**/
+.patient-profile { background: url(../img/timeline_green_2.png) top center repeat-y; }
+.patient-profile h1 { padding: 10px;    background: #F0F4F4; margin-bottom: 40px;}
+.patient-profile img.profile-pic {max-width: 15%; margin: auto}
+.patient-profile .physical-data { background: #0DE6C9; min-height: 100px; padding: 25px auto }
+.patient-profile .physical-data .data-slider { padding: 30px 0 0 0;}
+.patient-profile .physical-data h4 { color: #FFF; text-transform: uppercase; font-size: 20px; font-weight: 600;}
+.patient-profile .physical-data h4 small {font-size: 65%; text-transform: uppercase; color: rgba(255,255,255,0.75)}
+.patient-profile .profile-nav li {background-color:#4E92F6; color:#FFF; min-height: 80px}
+
+.patient-profile .profile-nav li.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 45%;
+    border-width: 0 15px 15px 15px;
+    border-style: solid;
+    border-color: #F9FAFB transparent;
+    display: block;
+    width: 0;
+}
+.patient-profile .nav-tabs>li a:hover, .patient-profile .nav-tabs>li a:hover::after { background: none; border: none}
+.patient-profile .nav-tabs>li a  { font-size: 125%; text-transform: uppercase; color: #FFF; padding-top: 25px; }
+
+.patient-profile .nav-tabs>li.active>a, .patient-profile .nav-tabs>li.active>a:focus, .patient-profile .profile-nav li.active {
+    color: #FFF;
+    font-weight: 600;
+    background: #4E92F6;
+    border: none;
+}
 /* Profile  Appointments */
 #steps-wrapper {
   position:relative; width:100%; height:100%; margin:auto; padding: 20px 0; overflow-x: hidden; float: left
@@ -167,7 +197,7 @@ ul#menu-small.menu-content li:hover { background: none }
 	color: white;
 }
 
-#desktop { padding-top: 40px; position: relative;}
+#desktop { padding: 40px 0 0; position: relative;}
 
 .tip { padding: 20px 15px 15px 15px;  border-radius: 10px;  border: solid 1px #1AD8C1;  color: #1AD8C1;  min-width: 300px;  font-size: 17px;  margin: 50px auto;}
 .tip, .tip a { color: #1AD8C1 }
@@ -905,7 +935,7 @@ h3{
 
 
 
-.btn.next, .btn.previous  {     
+.btn.next, .btn.previous, .btn.success  {     
 	text-transform: uppercase;	
     padding: 15px;
     font-size: 115%;
@@ -955,9 +985,10 @@ input.form-control.input-lg.time-lapse{ max-width: 130px;}
 .practice-sheet .light-form .form-control { font-size: 130%; font-weight: 700; color: #2C3E50; border-color: #BDC3C7 }
 .practice-sheet  .input-lg {   height: 36px;}
 .practice-sheet input.form-control.input-lg.time-lapse {   max-width: 60px; }
-h3.division , h4.division {     text-transform: uppercase; border-bottom: solid 1px rgba(0,0,0,0.15);    color: #C3C8CA;    padding: 5px 0 10px;  margin: 40px 0 30px; }
+h3.division , h4.division {     text-transform: uppercase; border-bottom: solid 1px rgba(0,0,0,0.15);
+    color: #C3C8CA;    padding: 5px 0 10px;  margin:   25px 0 20px /*40px 0 30px*/; }
 .sidetext { display: inline; }
-.previewtext {    text-transform: uppercase;    text-align: right;    margin-top: 5px; }
+.previewtext {    text-transform: uppercase;    text-align: right; /*   margin-top: 5px; */}
 
 /* hola esto es nuevo */
 
@@ -1019,7 +1050,6 @@ h3.division , h4.division {     text-transform: uppercase; border-bottom: solid 
     cursor: pointer;
     width: 50px;
 }
-
 #notifications-icon{
 	position: absolute;
     top: 36.666666666%;
@@ -1099,6 +1129,58 @@ h3.division , h4.division {     text-transform: uppercase; border-bottom: solid 
 	color: #777;
 }
 
+
+/**Notifications for Process **/
+.process-notification {}
+.process-notification .circle-icon {
+	width: 150px; height: 150px; border-radius: 75px; 
+	padding-top: 25px;
+	background: #0FDA9B; 
+	background: -moz-linear-gradient(top,  #0FDA9B 0%, #3db1e6 100%); 
+	background: -webkit-linear-gradient(top,  #0FDA9B 0%,#3db1e6 100%); 
+	background: linear-gradient(to bottom,  #0FDA9B 0%,#3db1e6 100%); 
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0FDA9B', endColorstr='#3db1e6',GradientType=0 );
+
+	margin: auto;
+    font-size: 500%;
+    color: #FFF;
+    text-align: center;
+
+    z-index: 99;
+    box-shadow: 0px 3px 4px rgba(0,0,0,0.3);
+    position: relative;
+
+}
+.process-notification .button-group {
+	display:table;
+	margin:auto;
+    width: 100%;
+}
+.process-notification .content-area {
+    background: #FFF;
+    width: 350px;
+    margin: -75px auto auto auto;
+    min-height: 100px;
+    padding-top: 70px;
+
+}
+.process-notification h4 {padding: 20px; color: #525C6D}
+.process-notification .button-group .btn {
+	border: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #FFF;
+    padding: 20px 15px;
+    min-width: 50%;
+    
+}
+.btn-first-choice { background-color: #39BECD; border-radius: 0 0 20px; }
+.btn-alt-choice {
+	background-color: #8090ab; border-radius: 0 0 0 20px;
+}
+.btn-first-choice:hover, .btn-alt-choice:hover {
+	box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+}
 /********** Appointments add view ***********/
 
 #appointment-add input{

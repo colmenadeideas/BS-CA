@@ -53,7 +53,7 @@ define(function() {
 									patient.add();
 									break;
 								default:
-									//doctorLoadDetails();
+									patient.profile(active_page[2]);
 									break;
 							}															
 						});						
