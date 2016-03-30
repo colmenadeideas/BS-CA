@@ -169,7 +169,7 @@ define(['globals', 'appassets/enhance'], function(globals, enhance) {
 			var cleanClass 	= getClass.replace('form-steps','');
 			cleanClass 	= cleanClass.split("step");
 			var howFarGo = cleanClass[0] - howFar; 
-			console.log(cleanClass[0] +" "+howFar+" "+howFarGo);			
+			console.log(cleanClass[0] +" DELIA"+howFar+" "+howFarGo);			
 		}
 
 		$('.form-steps').animate({

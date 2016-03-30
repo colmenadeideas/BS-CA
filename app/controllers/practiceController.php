@@ -128,7 +128,7 @@
 				$response["tag"] = "process";
 				$response["success"] = 1;
 				$response["error"] = 0;	
-				$response["response"] = "saved";
+				$response["response"] = "created";
 
 				echo json_encode($response);
 

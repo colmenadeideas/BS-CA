@@ -24,7 +24,7 @@
 	  <ul class="dropdown-menu addmenu">
 	    <li><a href="#patient/add">Agregar Paciente</a></li>
 		<li><a href="#practice/add">Agregar Práctica</a></li>
-		<li><a href="#practice/intervals">Agregar Ausencia</a></li>
+		<li><a href="#practice/intervals/add">Agregar Ausencia</a></li>
 	  </ul>
 	</div>
 

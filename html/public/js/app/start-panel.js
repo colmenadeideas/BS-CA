@@ -61,7 +61,15 @@ define(function() {
 
 					case "practice":
 						require(['app/practice'], function(practice) {
-							practice.add();								
+							
+							switch(active_page[1]) {
+								case "add":
+									practice.add();	
+									break;
+								case "intervals":	
+									practice.intervals();
+									break;
+							}						
 						});						
 						break;	
 
@@ -83,13 +91,6 @@ define(function() {
 						});						
 						break;
 
-					case "schedule":
-						require(['app/schedule'], function(schedule) {
-							schedule.add();
-														
-						});						
-						break;
-					
 					default:					
 						break;
 				}

@@ -32,11 +32,41 @@ define(['globals', 'assets/handlebars.min', 'appassets/steps', 'appassets/enhanc
 	/*PREVIO a 250316 */
 
 	function add() {
-		//var step;		
-		stepform.run();
-		enhance.fieldsfor("patient");
-		autocomplete();
+		
+		steps.run();
+		runSteps();
 	}
+
+	function runSteps() {
+		
+		if ($('#step1').is(".active") == true){			
+			enhance.fieldsfor("patient");
+			autocomplete();
+		} else		
+			
+		if ($('#step2').is(".active") == true){
+			enhance.fieldsfor("patient");
+		} else
+			
+		if ($('#step3').is(".active") == true){
+			enhance.fieldsfor("patient");
+		} else
+	
+		if ($('#step4').is(".active") == true){
+			enhance.fieldsfor("patient");
+		} else
+		
+		if ($('#step5').is(".active") == true){
+			enhance.fieldsfor("patient");
+			$('.goAndEdit').click(function(e) {
+				var destination = $(this).data('goandedit');
+				var step = destination.split("step");
+				steps.prevStep(step[1]);
+				e.preventDefault();						
+			});
+		}
+	}
+
 
 	function autocomplete() {
 	
@@ -75,11 +105,11 @@ define(['globals', 'assets/handlebars.min', 'appassets/steps', 'appassets/enhanc
 	}
 	
 
-	function progressbar(){
+	/*function progressbar(){
 		// Defining variables
 		var step = $('.step').attr('step');
 		$(".progressbar li:nth-child("+step+")").attr('class','active');
-	}
+	}*/
 
 	return {
 		profile: profile,

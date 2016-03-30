@@ -26,7 +26,7 @@ class panelController extends Controller {
 		switch ($action) {
 			case 'add':				
 				$this->view->tempkey = generateTempKey($this->view->userdata["username"]);					
-				$this->view->render("practices/add");
+				$this->view->render("patient/add");
 
 				break;	
 
@@ -36,6 +36,7 @@ class panelController extends Controller {
 				//$this->view->patient = $this->view->patient['patient'][0];
 				$this->view->render("patient/profile");
 				break;
+				
 				/*
 			case 'profile':
 				
@@ -94,23 +95,7 @@ class panelController extends Controller {
 	}
 		
 
-	public function schedule($action="list") {
-
-		switch ($action) {
-			case 'intervals':
-				$template = "add-interval";
-				break;	
-			case 'settings':
-				$template = "settings";
-				break;								
-		}
-
-		$this->view->render("panel/schedule/".$template);
-	}
 	
-
-
-
 
 	// Métodos Listos
 	// TODO revisar si lo podemos unificar en AppointmentsController, para que asi lado paciente y lado Panel usen 1 sola funcion
@@ -184,14 +169,28 @@ class panelController extends Controller {
 	}
 
 	/* TODO Igualar este concepto: PanelController solo tiene los build, y la lógica de cada proceso vive en otros controladores*/
-	public function practice($action = '') {
+	public function practice($action = '', $secondparameter = "") {
 		switch ($action) {
 			case 'add':
 				
 				$this->view->tempkey = generateTempKey($this->view->userdata["username"]);					
 				$this->view->render("practices/add");
 
-				break;				
+				break;	
+			case 'intervals':
+
+				switch ($secondparameter) {
+					case 'add':
+						//TODO: es para todas las clinicas? o para una sola por vez
+						$this->view->render("practices/add-intervals");
+						break;
+					
+					default:
+						//list
+						$this->view->render("practices/list-intervals");
+						break;
+				}
+				break;			
 
 			default:
 				//list
@@ -250,94 +249,7 @@ class panelController extends Controller {
 					
 					echo json_encode($response);	
 				}
-				break;
-
-			case 'patient':
-				
-				$array_data = array();	
-				
-				foreach ($_POST as $key => $value) {
-					$field = escape_value($key);
-					$field_data = escape_value($value);	
-					if ($field_data != "") { //only filled data?
-						$array_data[$field] = $field_data;
-					}
-				}
-				unset($array_data['submit']);
-			
-				if (!empty($step_id)){
-
-					$template = "panel/patient/add/step".($step_id+1);	
-
-					$this->temp("save", "noresponse");			
-
-					switch ($step_id) {
-						case 1: 							
-							break;
-						
-						default:
-							$previous = Api::getTempRecord("array", $array_data['id_doctor'], $array_data['tempkey']);
-							if (!empty($previous)){
-								$this->view->tempdata = json_decode($previous[0]['data'], TRUE);
-							}							
-							break;							
-					}					
-				
-					$response["tag"] = "process";
-					$response["success"] = 1;
-					$response["error"] = 0;	
-					$response["response"] = "saved";
-					$response["template"] = $template;
-					$response["tempkey"] = $array_data['tempkey'];
-					
-					echo json_encode($response);
-
-				//PROCESS/PATIENT ------
-				} else { // IS SINGLE RECORD
-
-					$array_patient['username'] 	= $array_data['email'];
-					$array_patient['name']		= $array_data['name'];
-					$array_patient['lastname']	= $array_data['lastname'];
-					$array_patient['email']		= $array_data['email'];
-					$array_patient['id_card']	= $array_data['id_card'];
-					$array_patient['birth']		= $array_data['manage_time_slots'];
-					$array_patient['gender']	= $array_data['gender'];
-					$array_patient['phone']		= $array_data['phone'];
-					$array_patient['data']		= json_encode($array_data);
-					$array_patient['avatar']	= $array_data['avatar'];					
-
-					//Create the patient
-					$array_patient['role'] = 'patient';
-					$array_patient['status'] = 'sleep';//Doctor is creating the patient, there for is 'sleep' for user
-					//Register User				
-					require_once('usersController.php');	
-					$users = new usersController;	
-					$create_user = $users->create($array_patient);	
-					
-					if ($create_user > 0) {
-						
-						
-						//DELETE TEMP DATA
-						$this->helper->delete('temporal_data', $array_data['tempkey'], 'tempkey');
-
-						$response["tag"] = "process";
-						$response["success"] = 1;
-						$response["error"] = 0;	
-						$response["response"] = "created";
-						//$response["template"] = $template;
-						//$response["tempkey"] = $array_data['tempkey'];
-
-						echo json_encode($response);
-
-					} else {
-						//error
-						echo "error";
-					}
-					
-				}
-
-				break;
-			
+				break;		
 		}
 	}
 	
