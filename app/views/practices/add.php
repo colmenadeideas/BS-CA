@@ -6,17 +6,16 @@
 
 	<div id="steps-wrapper">
 		<form id="practice" data-tempkey="<?php echo $this->tempkey; ?>" data-action="add" action="" novalidate="novalidate" method="post" class="light-form stepform1" data-controller="practice">
-			<div class="form-steps 5steps">
+			<div class="form-steps steps5">
 				<!--Step 1-->
 				<div id="step1" class="slide-step active" data-stepback="0" data-stepfoward="2">
-					
 					<!--<input type="hidden"  id="OKey" name="OKey" value="{{id}}" required> -->
 					<!--extra data-->
 					<input type="hidden"  id="id_doctor" name="id_doctor" value="<?php echo $this->userdata['id']; ?>" required>
 					<input type="hidden"  name="tempkey" value="<?php echo $this->tempkey; ?>" required>
 					
 					<?php $this->render('practices/add-clinic'); ?>	
-					
+										
 				</div>
 				<!--Step 2-->
 				<div id="step2" class="slide-step" data-stepback="1" data-stepfoward="3">					

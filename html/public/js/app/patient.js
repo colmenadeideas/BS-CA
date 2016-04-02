@@ -113,7 +113,8 @@ define(['globals', 'assets/handlebars.min', 'appassets/steps', 'appassets/enhanc
 
 	return {
 		profile: profile,
-		add: add
+		add: add,
+		runSteps: runSteps
 	}
 
 

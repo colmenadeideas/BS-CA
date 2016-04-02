@@ -1,207 +1,112 @@
-		<style>
-.progressbar { 
-    -webkit-animation-name: fadeOutUp; 
-    animation-name: fadeOutUp; 
-}
-</style>
-<form id="patient" data-tempkey="<?php echo $this->tempkey; ?>" data-action="add" data-stepback="4" data-stepfoward="4" action="" novalidate="novalidate" method="post" class="light-form stepform1 animated fadeInUp">
-
-	<div class="practice-sheet">
-
-		<input type="hidden"  id="id_doctor" name="id_doctor" value="<?php echo $this->userdata['id']; ?>" required>
-		<input type="hidden"  name="tempkey" value="<?php echo $this->tempkey; ?>" required >
-		<div class="col-sm-12 col-lg-12">
-			<div class="col-lg-5 col-md-5 nopadding">
-				<div class="field-wrapper col-sm-12 col-lg-12">
-					<img src="<?php echo IMG;?>default-male.png" class="img-responsive img-circle">  
-				</div>
-				<div class="field-wrapper col-sm-4 col-lg-4">
-					<label style="display:block" for="age" class="placeholder"></label>
-					<input  style="width:100px; display:inline;" type="number" min="1" max="100" maxlength="3" name="age" value="<?php echo $this->tempdata['age']; ?>" size="3" required="required" class="form-control bfh-number">
-					<span class="sidetext">años</span>
-				</div>
-				<div class="field-wrapper col-sm-4 col-lg-4 form-inline">
-					<label style="display:block" for="height" class="placeholder"></label>
-					
-					<input  style="width:100px; display:inline;" type="text"  maxlength="4" name="height" value="<?php echo $this->tempdata['height']; ?>" size="3" required="required" class="form-control bfh-number">
-					<span class="sidetext">mts</span>
-				</div>
-				<div class="field-wrapper col-sm-4 col-lg-4 form-inline">		
-					<input  style="width:100px; display:inline;" type="number" min="1" max="300" maxlength="3" name="weight" value="<?php echo $this->tempdata['weight']; ?>" size="3" required="required" class="form-control bfh-number">
-					<span class="sidetext">Kg</span>
-				</div>
-
-				
-
-				<div class="field-wrapper col-sm-12 col-lg-12 inlineradio">
-					<!-- <span class="sidetext">Sexo</span> -->
-					<input name="gender" type="radio" class="gender" id="gender1" required 
-					<?php if ($this->tempdata['gender'] == "M") { echo ' checked ="checked"'; } ?> value="M"  />
-					<label for="gender1"><span></span>Hombre</label>
-
-					<input name="gender" type="radio" class="gender" id="gender2" required 
-					<?php if ($this->tempdata['gender'] == "F") { echo ' checked ="checked"'; } ?> value="F" />
-					<label for="gender2"><span></span>Mujer</label>
-				</div>
-				<div class="field-wrapper col-sm-12 col-lg-12 inlineradio">
-					<span class="sidetext">Tipo de Sangre</span><br>
-					<input name="blood-type" type="radio" class="blood-type" id="blood-type1" required 
-					<?php if ($this->tempdata['blood-type'] == "A") { echo ' checked ="checked"'; } ?> value="A"  />
-					<label for="blood-type1"><span></span>A</label>		
-					
-					<input name="blood-type" type="radio" class="blood-type" id="blood-type2" required 
-					<?php if ($this->tempdata['blood-type'] == "B") { echo ' checked ="checked"'; } ?> value="B" />
-					<label for="blood-type2"><span></span>B</label>
-
-					<input name="blood-type" type="radio" class="blood-type" id="blood-type3" required 
-					<?php if ($this->tempdata['blood-type'] == "AB") { echo ' checked ="checked"'; } ?> value="AB" />
-					<label for="blood-type3"><span></span>AB</label>		
-					
-					<input name="blood-type" type="radio" class="blood-type" id="blood-type4" required 
-					<?php if ($this->tempdata['blood-type'] == "O") { echo ' checked ="checked"'; } ?> value="O" />
-					<label for="blood-type4"><span></span>O</label>
-					<div class="clearfix"></div>
-					<div class="inlineradio">
-						<input name="blood-symbol" type="radio" class="blood-symbol" id="blood-symbol1" required 
-						<?php if ($this->tempdata['blood-symbol'] == "+") { echo ' checked ="checked"'; } ?> value="+"  />
-						<label for="blood-symbol1"><span></span>+</label>
-						
-						<input name="blood-symbol" type="radio" class="blood-symbol" id="blood-symbol3" required 
-						<?php if ($this->tempdata['blood-symbol'] == "-") { echo ' checked ="checked"'; } ?> value="-" />
-						<label for="blood-symbol3"><span></span>-</label>
-					</div>			
-				</div>
-
-
-
-
-			</div>
-			<div id="right-side-card" class="col-lg-7 col-md-7 nopadding">
-				
-				<!--Step2 (add-physical-data) -->			
-				<h4 class="division text-right">Datos Físicos</h4>
-				<div class="col-sm-6 col-lg-6">
-					<input name="name" type="text" value="<?php echo $this->tempdata['name']; ?>" class="form-control input-lg input-home-doctor" placeholder="Nombres" >
-				</div>
-				<div class="col-sm-6 col-lg-6">
-					<input name="lastname" type="text" value="<?php echo $this->tempdata['lastname']; ?>" class="form-control input-lg input-home-doctor" placeholder="Apellidos" >
-				</div>
-				<div class="col-sm-6 col-lg-6">
-					<input name="cedula" type="text" value="<?php echo $this->tempdata['cedula']; ?>" class="form-control input-lg input-home-doctor" placeholder="Cédula" >
-				</div>
-				<div class="col-sm-6 col-lg-6">
-					<input name="birth" type="text" value="<?php echo $this->tempdata['birth']; ?>" class="form-control input-lg input-home-doctor" placeholder="Fecha de Nacimiento" >
-				</div>	
-				<div class="col-sm-6 col-lg-6">					
-					<input name="cellphone" type="text" value="<?php echo $this->tempdata['cellphone']; ?>"class="form-control input-lg input-home-doctor" placeholder="Teléfono Móvil" >
-				</div>
-				<div class="col-sm-6 col-lg-6">
-					<input name="phone" type="text" value="<?php echo $this->tempdata['phone']; ?>" class="form-control input-lg input-home-doctor" placeholder="Teléfono Habitación" >
-				</div>
-				<div class="col-sm-12 col-lg-12">
-					<input name="email" type="text" value="<?php echo $this->tempdata['email']; ?>" class="form-control input-lg input-home-doctor" placeholder="Email" >
-				</div>
-
-				<textarea name="address" id="address"  class="form-control input-lg input-home-location" 
-				placeholder="Dirección" autocomplete="off"></textarea>
-				<input name="address_location" type="hidden"><input name="address_url" type="hidden">
-
-
-				<h4 class="division text-right">Horario</h4>
-				<div class="field-wrapper form-inline col-sm-12 col-lg-12">
-					<div class="col-sm-6 col-lg-6 text text-right">
-						¿Ha sido operado alguna vez?
-					</div>
-					<div class="col-sm-6 col-lg-6 inlineradio">
-						<input name="extra1" type="radio" class="extra1" id="extra1_1" required 
-						<?php if ($this->tempdata['extra1'] == "1") { echo ' checked ="checked"'; } ?> value="1"  />
-						<label for="extra1_1"><span></span>Si</label>			
-
-						<input name="extra1" type="radio" class="extra1" id="extra1_2" required 
-						<?php if ($this->tempdata['extra1'] == "0") { echo ' checked ="checked"'; } ?> value="0" />
-						<label for="extra1_2"><span></span>No</label>
-					</div>			
-				</div>
-				<div class="field-wrapper form-inline col-sm-12 col-lg-12">
-					<div class="col-sm-6 col-lg-6 text text-right">
-						¿Toma algún medicamento?
-					</div>
-					<div class="col-sm-6 col-lg-6 inlineradio">
-						<input name="extra2" type="radio" class="extra2" id="extra2_1" required 
-						<?php if ($this->tempdata['extra2'] == "1") { echo ' checked ="checked"'; } ?> value="1"  />
-						<label for="extra2_1"><span></span>Si</label>			
-
-						<input name="extra2" type="radio" class="extra2" id="extra2_2" required 
-						<?php if ($this->tempdata['extra2'] == "0") { echo ' checked ="checked"'; } ?> value="0" />
-						<label for="extra2_2"><span></span>No</label>
-					</div>			
-				</div>
-
-				<div class="clearfix"></div>
-			
-
-			</div>
-		</div>
-
-
-		
+<div class="col-sm-12 col-lg-12 nopadding">
+	<div class="col-sm-8 col-lg-8 nopadding">
+		<h3 class="text-center">Esta será la información de su práctica
+		</h3>
 	</div>
-	<div>
-		<div class="col-sm-6 col-lg-6 nopadding">
-			<input type="button" name="cancel" value="cancel" class="btn btn-lg btn-cancel" onClick="window.location='#'" />
-
-		</div>
-		<div class="col-sm-6 col-lg-6 nopadding">
-			<button type="submit" name="next" class="next btn btn-success btn-confirm btn-lg"><i class="fa fa-check"></i> Crear</button>
-			<input type="submit" name="next" class="next btn btn-success btn-lg" value="Crear" > 
-			<!-- <input type="submit" name="next" class="next btn btn-success btn-confirm btn-lg" value="Crear" >  -->
-		</div>
+	<div class="col-sm-4 col-lg-4 nopadding">
+		<input type="submit" name="next" class="btn btn-success btn-lg" value="Crear" > 	
 	</div>
-
-
-
-	<!-- <div class=" col-sm-12 col-lg-12 button-area text-right">
-		<input type="submit" name="next" class="next btn btn-success btn-lg" value="Crear" > 
-	</div> -->
 </div>
-</form>
+<div class="practice-sheet">
+	<div class="col-sm-12 col-lg-12 text">
+								
+		<input name="isclinic" type="radio" class="isclinic" id="isclinic1" required 
+			<?php if ($this->tempdata['isclinic'] == "1") { echo ' checked ="checked"'; } ?> value="1" />
+		<input name="isclinic" type="radio" class="isclinic" id="isclinic2" required 
+			<?php if ($this->tempdata['isclinic'] == "0") { echo ' selected ="selected"'; } ?>value="0" />
+		<h4 class="division text-right">
+			<a href="#" class="goAndEdit" data-goAndEdit="step1">Ubicación <i class="fa fa-pencil fa-2"></i></a>
+		</h4>
+		<div class="col-sm-3 col-lg-3 previewtext">
+			Nombre
+		</div>
+		<div class="col-sm-9 col-lg-9">
+			<?php 	if ($this->tempdata['isclinic'] == "1") { 
+						echo $this->tempdata['clinic']; 
+					 	echo $this->tempdata['clinic_details']; ?>
+			<?php 	} ?>
+		</div>
+		
+		<div class="col-sm-3 col-lg-3 previewtext">
+			Dirección
+		</div>
+		<div class="col-sm-9 coxl-lg-9">
+			<?php echo $this->tempdata['address']; ?>				
+		</div>
+								
+		<div class="clearfix"></div>
 
+		<!--days-->
+		<h4 class="division text-right">
+			<a href="#" class="goAndEdit" data-goAndEdit="step2">Horario <i class="fa fa-pencil fa-2"></i></a>
+		</h4>
+		<?php 
+		
+			for ($i=1; $i < 8; $i++) { 
+				if ($this->tempdata['day_'.$i] != ""){
+			?>	
+			<div class="col-sm-2 col-lg-2">		
+				<h4><?php echo $this->tempdata['day_'.$i]; ?></h4>
+				<?php echo $this->tempdata['ini_schedule_'.$i]; ?><br>
+				<?php echo $this->tempdata['end_schedule_'.$i]; ?>
+			</div>
+		<?php 
+				} 
+			} 
+		?>
+		<div class="clearfix"></div>
+		
+		<!--quote-->
+		<h4 class="division text-right">
+			<a href="#" class="goAndEdit" data-goAndEdit="step3">Cupos <i class="fa fa-pencil fa-2"></i></a>
+		</h4>
+		<div class="col-lg-4 col-md-4 col-sm-4  previewtext">Días máximos para reservar consulta</div>
+		<div class="col-lg-2 col-md-2 col-sm-2 text-left"><?php echo $this->tempdata['max_days_ahead']; ?>
+		</div>
 
-<script type="text/javascript">
-	$('#myModal').modal('show');
-</script>
-<style>
-.modal-footer { padding: 0 0 0px; text-align: center; border:none; }
-.modal img {margin:auto;}
-</style>
-<div class="modal fadeq" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document" style="margin-top:150px;">
-    <div class="modal-content">
-      <div class="modal-body">
-      		<div style="height:170px"></div>
-      		<div class="col-sm-12 col-lg-12" style="position:absolute;top:-115px;">
-        		<div class="col-sm-3 col-lg-3">
-        		</div>
-        		<div class="col-sm-6 col-lg-6 text-center">
-					<img src="<?php echo IMG;?>default-male.png" class="img-responsive img-circle" style="border:solid 2px #4E92F6;">  
+		<div class="col-lg-4 col-md-4 col-sm-4  previewtext">Administrar cupos automáticamente</div>
+		<div class="col-lg-2 col-md-2 col-sm-2 text-left">
+			<?php if ($this->tempdata['manage_time_slots'] == "1") { echo "SI"; } else { echo "NO"; } ?>				
+		</div>
+		<div class="clearfix"></div>
+		<?php if ($this->tempdata['manage_time_slots'] == "0") { ?>
+				<br>
+			<div id="days-list" class="collapse in">
+				<div class="col-lg-4 col-md-4 col-sm-4  previewtext">
+					Cantidad máxima de pacientes por día
 				</div>
-				<div class="col-sm-3 col-lg-3">
-        		</div>
-       		</div>
-				<h2 class="text-center">¡PACIENTE AGREGADO!</h2>
-				<h4 class="text-center">Ahora Carlos Hernandez esta en el sistema</h4>
-				<div class="clearfix"></div>
-      </div>
-      <div class="modal-footer">
-      	<div class="row">
-	      	<div class="col-sm-6 col-lg-6" style="padding-right:0;">
-	        	<button type="button" class="btn btn-lg col-md-12" style="border-radius:0;">VOLVER</button>
-	        </div>
-	        <div class="col-sm-6 col-lg-6" style="padding-left:0;color:white;">
-	        	<button type="button" class="btn btn-lg btn-add col-md-12" style="border-radius:0;">AGREGAR CITA</button>
-	        </div>
-      	</div>	
-      </div>
-    </div>
-  </div>
+				<div class="col-lg-8 col-md-8 col-sm-8 text-left">								
+				
+				<?php 
+					for ($i=1; $i < 8; $i++) { 
+						if ($this->tempdata['day_'.$i] != ""){
+						$this->tempdata['day'][] = $this->tempdata['day_'.$i];	
+				?>
+							<div class="col-sm-2 col-lg-2">
+								<h4><?php echo $this->tempdata['day_'.$i]; ?></h4>
+								<?php echo $this->tempdata['day_quote_'.$i]; ?>
+							</div>
+				<?php 	} 
+					}
+				?>
+				</div>
+			
+			</div>
+		<?php } ?>
+		<div class="clearfix"></div>
+		
+		<!--cost-->
+		<h4 class="division text-right">
+			<a href="#" class="goAndEdit" data-goAndEdit="step4">Servicios <i class="fa fa-pencil fa-2"></i></a>
+		</h4>
+		<?php foreach ($this->tempdata['reason'] as $key => $value) { ?>
+			<div class="col-sm-4 col-lg-4">	
+				<h4><?php echo $value; ?></h4>
+
+				<span class="sidetext">Bs F</span> <?php echo moneyFormat($this->tempdata['price'][$key]); ?><br>				
+				<?php echo $this->tempdata['time'][$key]; ?> <span class="sidetext">min</span> 
+		</div>
+		<?php } ?>
+
+	</div>
 </div>

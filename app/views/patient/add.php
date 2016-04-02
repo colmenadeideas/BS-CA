@@ -14,7 +14,8 @@
 
 	<div id="steps-wrapper">
 		<form id="patient" data-tempkey="<?php echo $this->tempkey; ?>" data-action="add" action="" novalidate="novalidate" method="post" class="light-form stepform1" data-controller="patient">
-			<div class="form-steps 3steps">
+			<div class="form-steps steps4">
+
 				<!--Step 1-->
 				<div id="step1" class="slide-step active" data-stepback="0" data-stepfoward="2">
 					
@@ -31,9 +32,7 @@
 				<div id="step3" class="slide-step" data-stepback="2" data-stepfoward="4">					
 				</div>
 				<!--Step 4-->
-				<div id="step4" class="slide-step" data-stepback="3" data-stepfoward="5">
-				</div>
-				<div id="step5" class="slide-step" data-stepback="4" data-stepfoward="0">
+				<div id="step4" class="slide-step" data-stepback="3" data-stepfoward="0">
 				</div>
 			</div><!--end form-steps -->
 			<div class="text-right col-sm-12 col-lg-12 button-area">
