@@ -50,8 +50,8 @@
 				<div class="content-area">
 					<h4 class="text-center forms">Paciente agregado con éxito</h4>
 					<div class="button-group">
-						<a href="#practice/add" class="btn btn-alt-choice">Agregar otro paciente</a>
-						<a href="#practice/list" class="btn btn-first-choice">Volver a inicio</a>
+						<a href="#patient/add" class="btn btn-alt-choice">Agregar otro paciente</a>
+						<a href="#appointments/add/" class="btn btn-first-choice">Agregar Cita</a>
 					</div>
 				</div>
 			</div>

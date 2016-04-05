@@ -28,6 +28,7 @@ body {
 	right: 0;
 	z-index: 5555;
 }
+
 /**Patient Profile**/
 .patient-profile { background: url(../img/timeline_green_2.png) top center repeat-y; }
 .patient-profile h1 { padding: 10px;    background: #F0F4F4; margin-bottom: 40px;}
@@ -1158,6 +1159,7 @@ h3.division , h4.division {     text-transform: uppercase; border-bottom: solid 
 	margin:auto;
     width: 100%;
 }
+.process-notification .button-group a { max-width: 175px;   display: inline;}
 .process-notification .content-area {
     background: #FFF;
     width: 350px;
