@@ -6,7 +6,7 @@
 			parent::__construct();
 	
 		}
-	
+
 		function process ($step="", $step_id="") {
 
 			$array_data = array();	
