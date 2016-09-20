@@ -112,6 +112,62 @@
 		return money_format('%.2n', $data);
 	}
 
+	function dayTranslate($data) {
+		$data = strtoupper($data);
+		switch ($data) {
+			case 'LUN':
+				$data = "MON";
+				break;
+			case 'MAR':
+				$data = "TUE";
+				break;
+			case 'MIE':
+				$data = "WEN";
+				break;
+			case 'JUE':
+				$data = "THU";
+				break;
+			case 'VIE':
+				$data = "FRI";
+				break;
+			case 'SAB':
+				$data = "SAT";
+				break;
+			case 'DOM':
+				$data = "SUN";
+				break;			
+		}
+		return $data;
+	}
+
+	function dayTranslateEN($data) {
+		$data = strtoupper($data);
+		switch ($data) {
+			case 'MON':
+				$data = "LUN";
+				break;
+			case 'TUE':
+				$data = "MAR";
+				break;
+			case 'WEN':
+				$data = "MIE";
+				break;
+			case 'THU':
+				$data = "JUE";
+				break;
+			case 'FRI':
+				$data = "VIE";
+				break;
+			case 'SAT':
+				$data = "SAB";
+				break;
+			case 'SUN':
+				$data = "DOM";
+				break;			
+		}
+		return $data;
+	}
+
 	
 
 ?>

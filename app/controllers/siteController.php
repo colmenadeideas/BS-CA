@@ -15,7 +15,7 @@
 		public function mailbetalist() { //register in pre beta			
 			
 			$array_data['email'] = escape_value($_POST['email']);
-			//$array_data['name'] = escape_value($_POST['name']);
+			$array_data['name'] = escape_value($_POST['name']);
 			$array_data['whoami'] = escape_value($_POST['whoami']);
 			$array_data['ip_address'] = $this->helper->getIpAddress();
 			

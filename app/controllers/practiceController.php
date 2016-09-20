@@ -37,6 +37,7 @@
 					$array_data[$field] = $field_data;
 				}
 			}
+
 			if (!empty($step_id) && $step_id > 0){
 
 				//Invocar TEMP				
@@ -51,6 +52,7 @@
 					default:
 						$previous = Api::getTempRecord("array", $array_data['id_doctor'], $array_data['tempkey']);
 						if (!empty($previous)){
+							//$this->view->tempdata = json_decode($previous[0]['data'], TRUE);
 							$this->view->tempdata = json_decode($previous[0]['data'], TRUE);
 						}							
 						break;							
@@ -61,6 +63,7 @@
 				$response["error"] = 0;	
 				$response["response"] = "saved";
 				$response["tempkey"] = $array_data['tempkey'];
+
 				
 				echo json_encode($response);
 			} else {
@@ -70,12 +73,13 @@
 
 		//Processes Single Record. TODO Make this function only accesible from Process
 		function processSingle($array_data) {
-			
+
 			if ($array_data['isclinic'] == 1){
-				if($array_data['clinic_id'] == "") { 
+				
+				if($array_data['clinic_id'] == "" || !isset($array_data['clinic_id'])) { 
 					$array_clinic['name'] 			= $array_data['clinic'];
 					$array_clinic['address'] 		= $array_data['address'];
-					//Create the clinic
+					//Create the clinic_id
 					$insert_clinic = $this->helper->insert('clinic', $array_clinic);
 					if ($insert_clinic > 0) {
 						$array_data['clinic_id'] = DB::insertId();
@@ -86,10 +90,14 @@
 
 				$array_practice['id_clinic'] 		= $array_data['clinic_id'];
 				$array_practice['address_details'] 	= $array_data['clinic_details']; //address_details
+				
 			}
+			
 			elseif ($array_data['isclinic'] == 0){			
 				$array_practice['address_details'] 	= $array_data['address'];
 			}
+
+
 			$array_practice['id_doctor'] 			= $array_data['id_doctor'];
 			$array_practice['max_days_ahead']		= $array_data['max_days_ahead'];
 			$array_practice['manage_time_slots']	= $array_data['manage_time_slots'];
@@ -101,7 +109,7 @@
 
 				for ($i=1; $i < 8; $i++) { 
 					if ($array_data['day_'.$i] != ""){								
-						$array_practice_schedule['day']				= $array_data['day_'.$i];
+						$array_practice_schedule['day']				= dayTranslate($array_data['day_'.$i]);
 						$array_practice_schedule['ini_schedule']	= $array_data['ini_schedule_'.$i];
 						$array_practice_schedule['end_schedule']	= $array_data['end_schedule_'.$i];
 						if ($array_data['manage_time_slots'] == 1) {
@@ -115,12 +123,14 @@
 				}
 				//Create Reasons Matrix
 				$array_intervals_matrix['id_practice'] 			= $array_practice_schedule['id_practice'];
-				foreach ($array_data['reason'] as $key => $value) {
-					$array_intervals_matrix['consultation_reason'] 	= $value;
-					$array_intervals_matrix['initial_interval'] 	= $array_data['time'][$key];
-					$array_intervals_matrix['price'] 				= $array_data['price'][$key];
+				if (is_array($array_data['reason']) || !empty($array_data['reason'])) {
+					foreach ($array_data['reason'] as $key => $value) {
+						$array_intervals_matrix['consultation_reason'] 	= $value;
+						$array_intervals_matrix['initial_interval'] 	= $array_data['time'][$key];
+						$array_intervals_matrix['price'] 				= $array_data['price'][$key];
 
-					$insert_intervals_matrix = $this->helper->insert('doctor_practice_schedule_intervals_matrix', $array_intervals_matrix);
+						$insert_intervals_matrix = $this->helper->insert('doctor_practice_schedule_intervals_matrix', $array_intervals_matrix);
+					}
 				}
 				//DELETE TEMP DATA
 				$this->helper->delete('temporal_data', $array_data['tempkey'], 'tempkey');
@@ -136,6 +146,38 @@
 				echo "error";
 			}
 		}
+
+
+		//Fuction to save each step
+		function update($practice_id) {
+
+			$array_data = array();
+			foreach ($_POST as $key => $value) {
+				$field = escape_value($key);
+				$field_data = escape_value($value);	
+				if ($field_data != "") { //only filled data?
+					$array_data[$field] = $field_data;
+				}
+			}
+
+
+			$response["data"] = $array_data;
+
+			//if ($insert_practice > 0) {
+
+				$response["tag"] = "update";
+				$response["success"] = 1;
+				$response["error"] = 0;	
+				$response["response"] = "updated";
+
+				echo json_encode($response);
+
+			/*} else {
+				$response["success"] = 0;
+				echo json_encode($response);
+			}*/
+		}
+
 
 		
 

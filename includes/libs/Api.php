@@ -8,7 +8,7 @@ class Api extends ApiQuery {
 	public function printResults($print = "json", $array_final) {
 		
 		if ($print == 'json') {
-			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+			echo json_encode($array_final);
 		} else {
 			//MODO "ARRAY"
 			return $array_final;
@@ -30,20 +30,40 @@ class Api extends ApiQuery {
 			$response["response"] = NO_PRACTICES_AVAILABLE;
 
 			if ($print == 'json') {
-				echo json_encode($response, JSON_UNESCAPED_UNICODE);
+				echo json_encode($response);
 			} else {//modo "array"
 				return $response;
 			}
 		} else {
 			
 			$practiceFields = DB::columnList('clinic');
+			$practiceFields = DB::columnList('doctor_practice');
 			$i = 0;
 			$array_final["empty"] = 0;
+		
 			
 			foreach ($array_practices as $practice) {
+				
 				foreach ($practiceFields as $field) {
 					@$array_final['practice'][$i][$field] = $practice[$field];
 				}
+
+				if (!empty($practice['id_clinic']) || $practice['id_clinic'] != NULL){
+					$clinic_byId = ApiQuery::listCenterName($practice['id_clinic']);
+
+					foreach ($clinic_byId as $key => $value) {
+						if ($key == 'id'){
+							//skip
+						} else {
+							@$array_final['practice'][$i][$key] = $value;
+						}
+					}				
+				} else{
+					//Not Clinic, is Address
+					$array_final['practice'][$i]['name'] 	= $practice['address_details'];
+					$array_final['practice'][$i]['address'] = $practice['address_details'];
+				}
+
 				
 			
 				$array_schedules = ApiQuery::getDoctorPracticesSchedule($practice["id"]);
@@ -51,7 +71,9 @@ class Api extends ApiQuery {
 				foreach ($array_schedules as $schedule) {
 
 					$array_final['practice'][$i]['schedule'][$s] = $schedule;
+					$schedule['day'] = dayTranslateEN($schedule['day']);
 					$schedule['day'] = substr($schedule['day'], 0, -2);
+
 					$array_final['practice'][$i]['schedule'][$s]['day'] = $schedule['day'];
 					$ini_schedule = substr($schedule['ini_schedule'], 0, 2);
 
@@ -80,7 +102,7 @@ class Api extends ApiQuery {
 			
 					
 			if ($print == 'json') {
-				echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+				echo json_encode($array_final);
 			} else {//modo "array"
 				return $array_final;
 			}
@@ -101,20 +123,36 @@ class Api extends ApiQuery {
 			$response["response"] = NO_PRACTICES_AVAILABLE;
 
 			if ($print == 'json') {
-				echo json_encode($response, JSON_UNESCAPED_UNICODE);
+				echo json_encode($response);
 			} else {//modo "array"
 				return $response;
 			}
 		} else {
+
+			if (!empty($array_practices[0]['id_clinic'])){
+				$clinic_byId = ApiQuery::listCenterName($array_practices[0]['id_clinic']);				
+			}
 			
 			$practiceFields = DB::columnList('clinic');
 			$i = 0;
 			$array_final["empty"] = 0;
 			
 			foreach ($array_practices as $practice) {
+				foreach ($array_practices as $key => $value) {
+					@$array_final['practice'][$key] = $value;
+				}
 				foreach ($practiceFields as $field) {
 					@$array_final['practice'][$i][$field] = $practice[$field];
 				}
+				
+				foreach ($clinic_byId as $key => $value) {
+					if ($key == 'id'){
+						//skip
+					} else {
+						@$array_final['practice'][$i][$key] = $value;
+					}
+				}
+				
 				
 				$array_consultation_reasons = ApiQuery::getDoctorPracticesReasons($practice["id"]);
 
@@ -153,7 +191,7 @@ class Api extends ApiQuery {
 			
 					
 			if ($print == 'json') {
-				echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+				echo json_encode($array_final);
 			} else {//modo "array"
 				return $array_final;
 			}
@@ -195,7 +233,7 @@ class Api extends ApiQuery {
 			}
 
 			if ($print == 'json') {
-				echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+				echo json_encode($array_final);
 			} else {//modo "array"
 				return $array_final;
 			}
@@ -210,7 +248,9 @@ class Api extends ApiQuery {
 				$response["response"] = NO_PRACTICES_AVAILABLE;
 	
 				if ($print == 'json') {
-					echo json_encode($response, JSON_UNESCAPED_UNICODE);
+					echo json_encode($response);
+					//echo json_encode($response, JSON_UNESCAPED_UNICODE); 
+					//TODO En Android salen bien si no se pasa el UNESCAPE UNICODE
 				} else {//modo "array"
 					return $response;
 				}
@@ -232,7 +272,7 @@ class Api extends ApiQuery {
 					//echo json_encode($response);
 	
 					if ($print == 'json') {
-						echo json_encode($response, JSON_UNESCAPED_UNICODE);
+						echo json_encode($response);
 					} else {//modo "array"
 						return $response;
 					}
@@ -254,6 +294,16 @@ class Api extends ApiQuery {
 								$array_final['dates'][$i]['practice'][$p][$practicefield] = $practice[$practicefield];
 								//$array_final['appointments'][$i]['date']['practice'][$p][$practicefield] = $practice[$practicefield];
 							}
+							if (!empty($practice['id_clinic']) || $practice['id_clinic'] != NULL){
+								$clinic_byId = ApiQuery::listCenterName($practice['id_clinic']);
+								foreach ($clinic_byId as $key => $value) {
+									@$array_final['dates'][$i]['practice'][$p][$key] = $value;
+								}				
+							} else{
+								//Not Clinic, is Address
+								$array_final['dates'][$i]['practice'][$p]['name'] 	= $practice['address_details'];
+								$array_final['dates'][$i]['practice'][$p]['address'] = $practice['address_details'];
+							}
 
 							//	$array_final['appointments'][$i]['date']['practice'][$p]['practice_id'] = $practice['id'];
 							//$array_final['appointments'][$i]['date'][$date["date"]]['practice'][$practice['id']] = $date["date"];
@@ -272,7 +322,7 @@ class Api extends ApiQuery {
 					}
 	
 					if ($print == 'json') {
-						echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+						echo json_encode($array_final);
 					} else {//modo "array"
 						return $array_final;
 					}
@@ -298,7 +348,7 @@ class Api extends ApiQuery {
 		$query = ApiQuery::autocomplete($what, $string);
 		
 		if ($print == 'json') {
-			echo json_encode($query, JSON_UNESCAPED_UNICODE);
+			echo json_encode($query);
 		} else {//modo "array"
 			return $array_final;
 		}
@@ -466,27 +516,65 @@ class Api extends ApiQuery {
 			$i++;
 		}
 
-		echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+		echo json_encode($array_final);
 
 	}
+	//CLINICS 
 
-	
-	//PATIENTS
-	public function patients($print = "json", $relation="doctor",$id) {
-		$relation = escape_value("id_".$relation);
-		$id = escape_value($id);
-		//get Relationships
-		$relationships =	ApiQuery::getPatientsByRelationship($relation, $id);
-		
-		foreach ($relationships as $relationship) {
-			//get each patient
-			$patient = ApiQuery::getPatientBy('id', $relationship['id_patient']);
-			$array_final['patients'][] = $patient[0];
+	//TODO ADAPT TO COUNTRY
+	public function clinics($print = "json", $relation="", $id) {
+		if ($relation == "open") {
+			$id = escape_value($id);
+			$array_final['clinics'] =	ApiQuery::listCenterNameAll();
+			
+		} else {
+			/*$relation = escape_value("id_".$relation);
+			$id = escape_value($id);
+			//get Relationships
+			$relationships =	ApiQuery::getPatientsByRelationship($relation, $id);
+			
+			foreach ($relationships as $relationship) {
+				//get each patient
+				$patient = ApiQuery::getPatientBy('id', $relationship['id_patient']);
+				$array_final['patients'][] = $patient[0];
+			}*/
 		}
+		
+		
 		
 		//print_r($array_final); exit;
 		if ($print == 'json') {
-			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+			echo json_encode($array_final);
+		} else {
+			//MODO "ARRAY"
+			return $array_final;
+		}
+		
+	}
+	
+	//PATIENTS
+	public function patients($print = "json", $relation="doctor", $id) {
+		if ($relation == "open") {
+			$id = escape_value($id);
+			$array_final['patients'] =	ApiQuery::getPatients();
+		} else {
+			$relation = escape_value("id_".$relation);
+			$id = escape_value($id);
+			//get Relationships
+			$relationships =	ApiQuery::getPatientsByRelationship($relation, $id);
+			
+			foreach ($relationships as $relationship) {
+				//get each patient
+				$patient = ApiQuery::getPatientBy('id', $relationship['id_patient']);
+				$array_final['patients'][] = $patient[0];
+			}
+		}
+		
+		
+		
+		//print_r($array_final); exit;
+		if ($print == 'json') {
+			echo json_encode($array_final);
 		} else {
 			//MODO "ARRAY"
 			return $array_final;
@@ -530,7 +618,7 @@ class Api extends ApiQuery {
 		}
 
 		if ($print == 'json') {
-			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+			echo json_encode($array_final);
 		} else {//modo "array"
 			return $array_final;
 		}
@@ -565,7 +653,7 @@ class Api extends ApiQuery {
 		//print_r($array_final['Detail'][0]['id']);
 		
 		if ($print == 'json') {
-			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+			echo json_encode($array_final);
 		} else {//modo "array"
 			return $array_final;
 		}
@@ -593,7 +681,7 @@ class Api extends ApiQuery {
 				
 		
 		if ($print == 'json') {
-			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+			echo json_encode($array_final);
 		} else {//modo "array"
 			return $array_final;
 		}
@@ -713,7 +801,7 @@ class Api extends ApiQuery {
 		
 
 		if ($print == 'json') {
-			echo json_encode($array_calendar, JSON_UNESCAPED_UNICODE);
+			echo json_encode($array_calendar);
 		} else {//modo "array"
 			return $array_calendar;
 		}
@@ -747,7 +835,7 @@ class Api extends ApiQuery {
 			$a++;
 		}
 		if ($print == 'json') {
-			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+			echo json_encode($array_final);
 		} else {//modo "array"
 			return $array_final;
 		}
@@ -771,7 +859,7 @@ class Api extends ApiQuery {
 			$response["response"] = NO_DOCTOR_AVAILABLE;
 
 			if ($print == 'json') {
-				echo json_encode($response, JSON_UNESCAPED_UNICODE);
+				echo json_encode($response);
 			} else {//modo "array"
 				return $response;
 			}
@@ -829,7 +917,7 @@ class Api extends ApiQuery {
 			}
 		}
 		if ($print == 'json') {
-			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+			echo json_encode($array_final);
 		} else {//modo "array"
 			return $array_final;
 		}
@@ -894,19 +982,37 @@ class Api extends ApiQuery {
 			$i++;
 		}
 		if ($print == 'json') {
-			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+			echo json_encode($array_final);
 		} else {//modo "array"
 			return $array_final;
 		}
 
 	}
 	//GET TEMP FORM DATA
-	public function getTempRecord($print = "json", $user_id, $tempkey) {
+	//ORIGINAL
+	public function getTempRecordOld($print = "json", $user_id, $tempkey) {
 
 		$array_final = ApiQuery::getTempRecordResult($user_id, $tempkey);
 		
 		if ($print == 'json') {
-			echo json_encode($array_final, JSON_UNESCAPED_UNICODE);
+			echo json_encode($array_final);
+		} else {//modo "array"
+			return $array_final;
+		}	
+	}
+	public function getTempRecord($print = "json", $user_id, $tempkey) {
+
+		$array_final = ApiQuery::getTempRecordResult($user_id, $tempkey);
+
+		if (!empty($array_final)){
+			$array_final = $array_final[0];
+			$data['data'][] = json_decode($array_final['data'], TRUE);
+			$array_final['data'] = $data['data'];
+		}
+
+		
+		if ($print == 'json') {
+			echo json_encode($array_final);
 		} else {//modo "array"
 			return $array_final;
 		}	

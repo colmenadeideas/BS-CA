@@ -1,6 +1,6 @@
 <?php
 		//Path Info
-		define ('URL', "http://192.168.0.115"); 
+		define ('URL', "http://okidoctor.com/"); 
 
 		//Server Info
 		define ( 'DB_SERVER', 'internal-db.s23550.gridserver.com');
@@ -36,5 +36,5 @@
 		define ( 'DB_PASS', 'SbejaA1220#');
 		define ( 'DB_NAME', 'db23550_okidoc'); //
 		define ( 'DB_PREFIX', '');
-		define ( 'URL_EMAIL', 'http://');
+		define ( 'URL_EMAIL', 'http://okidoctor.com/');
 ?>

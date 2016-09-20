@@ -67,6 +67,10 @@
 	
 		
 		//************ PATIENT ///
+		public function getPatients(){
+			
+			return DB::query("SELECT * FROM " . DB_PREFIX . "patient");
+		}
 		public function getPatientBy($param = "id", $id){
 			
 			$param = escape_value($param);
@@ -101,8 +105,8 @@
 			return DB::query("SELECT date FROM ". DB_PREFIX . "appointments WHERE ".escape_value($by)."=".escape_value($param)." $extra_for $extra_to GROUP BY date ORDER BY date ".escape_value($order));
 	
 		}
-		public function getAppointmentsByDate($id, $date, $id_clinic) {
-			return DB::query("SELECT * FROM ". DB_PREFIX . "appointments WHERE id_doctor = $id AND date = '".$date."' AND id_clinic ='".$id_clinic."'  ORDER BY id ASC" );
+		public function getAppointmentsByDate($id, $date, $id_practice) {
+			return DB::query("SELECT * FROM ". DB_PREFIX . "appointments WHERE id_doctor = $id AND date = '".$date."' AND id_practice ='".$id_practice."'  ORDER BY id ASC" );
 		}
 		
 		public function getPacientHistory($id) {
@@ -132,11 +136,15 @@
 		}	
 		public function listCenterName($id) {
 			
-			return DB::queryFirstRow("select name,address from  " . DB_PREFIX . "clinic where id=%i",$id);
+			return DB::queryFirstRow("SELECT id, name,address FROM  " . DB_PREFIX . "clinic WHERE id=%i",$id);
+		}
+		public function listCenterNameAll() {
+			
+			return DB::query("SELECT id, name,address FROM  " . DB_PREFIX . "clinic");
 		}
 		
 		public function getPractice($id_practice) {
-			return DB::query("SELECT * FROM " . DB_PREFIX . "doctor_practice WHERE id=%i", $id_practice);
+			return DB::query("SELECT * FROM " . DB_PREFIX . "doctor_practice WHERE id=%i", $id_practice);			
 		}
 		//***************************//		
 		//Reformuladas:
@@ -150,15 +158,26 @@
 		}
 		  
 		public function getDoctorPractices($id) {
+			/*return DB::query("SELECT doctor_practice.id, 
+							doctor_practice.id_doctor, 
+							doctor_practice.id_clinic, 
+							clinic.name, 
+							clinic.address FROM " . DB_PREFIX . "doctor_practice 
+							INNER JOIN clinic ON id_clinic=clinic.id WHERE doctor_practice.id_doctor=%i", $id);*/
+			return DB::query("SELECT *, doctor_practice.id, 
+							doctor_practice.id_doctor, 
+							doctor_practice.id_clinic 
+							FROM " . DB_PREFIX . "doctor_practice 
+							WHERE doctor_practice.id_doctor=%i", $id);
+		}
+		public function getDoctorPractice($id, $id_clinic) {
 			return DB::query("SELECT doctor_practice.id, 
 							doctor_practice.id_doctor, 
 							doctor_practice.id_clinic, 
 							clinic.name, 
 							clinic.address FROM " . DB_PREFIX . "doctor_practice 
-							INNER JOIN clinic ON id_clinic=clinic.id WHERE doctor_practice.id_doctor=%i", $id);
-		}
-		public function getDoctorPractice($id, $id_clinic) {
-			return DB::query("SELECT doctor_practice.id, doctor_practice.id_doctor, doctor_practice.id_clinic, clinic.name, clinic.address FROM " . DB_PREFIX . "doctor_practice INNER JOIN clinic ON id_clinic=clinic.id WHERE doctor_practice.id_doctor=%i AND doctor_practice.id_clinic=%i", $id, $id_clinic);
+							INNER JOIN clinic ON id_clinic=clinic.id WHERE doctor_practice.id_doctor=%i 
+							AND doctor_practice.id_clinic=%i", $id, $id_clinic);
 		}
 		
 		public function getDoctorPracticesSchedule($id_practice) {

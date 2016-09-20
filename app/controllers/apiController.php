@@ -24,6 +24,10 @@
 		public function patients( $print="json", $relationship, $id) {
 			$this->api->patients($print, $relationship, $id);
 		}
+
+		public function clinics( $print="json", $relationship, $id) {
+			$this->api->clinics($print, $relationship, $id);
+		}
 		
 		
 		
@@ -53,6 +57,11 @@
 		//AVAILABILITY/$doctor_id/$practice_id/DAYS
 		public function availability($print="json", $doctor_id, $practice_id, $show="all", $givendate=""){
 			$this -> api -> availability($print, $doctor_id, $practice_id, $show, $givendate);
+		}
+
+		//TODO colocar llave a este metodo para que solo sea invocado por los autorizados
+		public function temp($print = "json", $user_id, $tempkey) {
+			$th = $this->api->getTempRecord($print, $user_id, $tempkey);			
 		}
 		
 		

@@ -86,35 +86,56 @@
 			$array_patient['lastname']	= $array_data['lastname'];
 			$array_patient['email']		= $array_data['email'];
 			$array_patient['id_card']	= $array_data['id_card'];
-			$array_patient['birth']		= $array_data['manage_time_slots'];
+			$array_patient['birth']		= $array_data['birth'];
 			$array_patient['gender']	= $array_data['gender'];
 			$array_patient['phone']		= $array_data['phone'];
-			$array_patient['data']		= json_encode($array_data);
-			$array_patient['avatar']	= $array_data['avatar'];					
+			$array_patient['avatar']	= $array_data['avatar'];
+			$array_patient['data']		= json_encode($array_data + $array_patient);
+
 
 			//Create the patient
 			$array_patient['role'] = 'patient';
 			$array_patient['status'] = 'sleep'; //Doctor is creating the patient, there for is 'sleep' for user
-			//Register User				
-			require_once('usersController.php');	
-			$users = new usersController;	
-			$create_user = $users->create($array_patient);	
 			
-			if ($create_user > 0) {				
-				
-				//DELETE TEMP DATA
-				$this->helper->delete('temporal_data', $array_data['tempkey'], 'tempkey');
+			//Register User			
+			//Check if exists
+			$account = $this->loadModel('account');	
+			$already_registered =	$this->model->getAccount("patient", $array_data['email'], 'username');
+
+			if (!empty($already_registered)){
 
 				$response["tag"] = "process";
-				$response["success"] = 1;
-				$response["error"] = 0;	
-				$response["response"] = "created";
-
+				$response["success"] = 0;
+				$response["error"] = 1;	
+				$response["response"] = "El usuario ya existe, no se puede registrar";
 				echo json_encode($response);
 
 			} else {
-				//error
-				echo "error";
+				require_once('usersController.php');	
+				$users = new usersController;	
+				$create_user = $users->create($array_patient);	
+
+				if ($create_user > 0) {				
+				
+					//DELETE TEMP DATA
+					$this->helper->delete('temporal_data', $array_data['tempkey'], 'tempkey');
+
+					$response["tag"] = "process";
+					$response["success"] = 1;
+					$response["error"] = 0;	
+					$response["response"] = "created";
+
+					echo json_encode($response);
+
+				} else {
+					//error
+					$response["tag"] = "process";
+					$response["success"] = 0;
+					$response["error"] = 1;	
+					$response["response"] = "error creando usuario";
+					echo json_encode($response);
+				}
+				
 			}
 
 		}

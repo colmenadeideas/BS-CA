@@ -111,6 +111,9 @@
 					//TEST echo "<h4>Case: 6 Param </h4>";
 					$this->_controller->{$this->_url[1]}($this->_url[2], $this->_url[3], $this->_url[4], $this->_url[5], $this->_url[6], $this->_url[7]);
 					break;
+					case 9: 
+					$this->_controller->{$this->_url[1]}($this->_url[2], $this->_url[3], $this->_url[4], $this->_url[5], $this->_url[6], $this->_url[7], $this->_url[8]);
+					break;
 									
 					default:
 					//Controller -> Method  IF NO MATCHING PARAMETER -> INDEX? o ERROR

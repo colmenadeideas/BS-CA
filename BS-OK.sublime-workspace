@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"ar",
+				"array_data"
+			],
+			[
 				"bo",
 				"bottom"
 			],
@@ -308,10 +312,6 @@
 				"approve"
 			],
 			[
-				"ar",
-				"array_calendar"
-			],
-			[
 				"arra",
 				"array_calendar"
 			],
@@ -520,26 +520,10 @@
 	"buffers":
 	[
 		{
-			"file": "html/public/js/functions.js",
+			"file": "app/controllers/practiceController.php",
 			"settings":
 			{
-				"buffer_size": 7089,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "html/public/js/app/site.js",
-			"settings":
-			{
-				"buffer_size": 4315,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "html/public/js/app/login.js",
-			"settings":
-			{
-				"buffer_size": 2323,
+				"buffer_size": 7628,
 				"line_ending": "Unix"
 			}
 		}
@@ -568,6 +552,9 @@
 	},
 	"file_history":
 	[
+		"/Users/dlarez/Delia-E-Larez/Trabajos/BS-OK/html/public/js/functions.js",
+		"/Users/dlarez/Delia-E-Larez/Trabajos/BS-OK/html/public/js/app/site.js",
+		"/Users/dlarez/Delia-E-Larez/Trabajos/BS-OK/html/public/js/app/login.js",
 		"/Users/dlarez/Library/Caches/Cleanup At Startup/Transmit/CDB0BED1-F1DA-43F9-8AC3-3105B0FD8FEB/style.css",
 		"/Users/dlarez/Library/Caches/Cleanup At Startup/Transmit/01DE9FCD-9721-4973-980D-8DBEC7536B11/style_290216.css",
 		"/Users/dlarez/Delia-E-Larez/Trabajos/BS-MVG/html/public/css/modelsview.css",
@@ -692,10 +679,7 @@
 		"/Users/dlarez/Delia-E-Larez/Trabajos/BLUPineapple/Brigade/brigadebkk/css/editor-style.css",
 		"/Users/dlarez/Delia-E-Larez/Trabajos/BLUPineapple/Brigade/brigadebkk/css/ie.css",
 		"/Users/dlarez/Delia-E-Larez/Trabajos/BLUPineapple/Brigade/brigadebkk/css/ie7.css",
-		"/Users/dlarez/Delia-E-Larez/Trabajos/BLUPineapple/Brigade/brigadebkk/css/ie8.css",
-		"/Users/dlarez/Delia-E-Larez/Trabajos/BLUPineapple/Brigade/brigadebkk/footer.php",
-		"/Users/dlarez/Delia-E-Larez/Trabajos/BLUPineapple/Brigade/brigadebkk/functions.php",
-		"/Users/dlarez/Delia-E-Larez/Trabajos/BLUPineapple/Brigade/brigadebkk/header.php"
+		"/Users/dlarez/Delia-E-Larez/Trabajos/BLUPineapple/Brigade/brigadebkk/css/ie8.css"
 	],
 	"find":
 	{
@@ -706,6 +690,7 @@
 		"height": 0.0,
 		"where_history":
 		[
+			"/Users/dlarez/Delia-E-Larez/Trabajos/BS-MVG",
 			"/Users/dlarez/Delia-E-Larez/Trabajos/BellezaparaLlevar/Web2",
 			"/Users/dlarez/Delia-E-Larez/Trabajos/BS-MVG",
 			"/Users/dlarez/Delia-E-Larez/Trabajos/BS-OK",
@@ -832,8 +817,7 @@
 			"/Users/dlarez/Delia-E-Larez/Trabajos/BEEAPPS/LIKES/Web/app",
 			"/Users/dlarez/Delia-E-Larez/Trabajos/BEEAPPS/LIKES/Web/DAVID",
 			"/Users/dlarez/Delia-E-Larez/Trabajos/BEEAPPS/LIKES/Web",
-			"/Users/dlarez/Delia-E-Larez/",
-			"/Users/dlarez/Delia-E-Larez/Trabajos/BS-OK"
+			"/Users/dlarez/Delia-E-Larez/"
 		]
 	},
 	"find_state":
@@ -841,6 +825,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"cross",
 			"loadWorkArea",
 			"clientsWrap1work",
 			"gold",
@@ -967,8 +952,7 @@
 			"large-7 medium-7 small-12 featured-article hidemes columns",
 			"waitSeconds",
 			"loadform",
-			"yeseflores.com",
-			" class=\"fadein\" style=\"opacity: 1;\""
+			"yeseflores.com"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1018,86 +1002,32 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "html/public/js/functions.js",
+					"file": "app/controllers/practiceController.php",
 					"settings":
 					{
-						"buffer_size": 7089,
+						"buffer_size": 7628,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3172,
-								3172
+								4263,
+								4263
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1569.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "html/public/js/app/site.js",
-					"settings":
-					{
-						"buffer_size": 4315,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "html/public/js/app/login.js",
-					"settings":
-					{
-						"buffer_size": 2323,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								767,
-								767
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 99.0,
+						"translation.y": 2047.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
