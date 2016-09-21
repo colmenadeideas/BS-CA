@@ -150,6 +150,7 @@
 
 		//Fuction to save each step
 		function update($practice_id) {
+			$practice_id = 14;
 
 			$array_data = array();
 			foreach ($_POST as $key => $value) {
@@ -158,8 +159,124 @@
 				if ($field_data != "") { //only filled data?
 					$array_data[$field] = $field_data;
 				}
+				if(strpos($field, 'day_') or strpos($field, 'ini_schedule_') or strpos($field, 'end_schedule_'))
+				{
+					$week[$field]= $field_data;
+				}
 			}
 
+
+			//$this->helper->delete('temporal_data', $array_data['tempkey'], 'tempkey');
+			$array_data['id'] = 14;
+			$array_data['id_doctor'] = 1;
+			$array_data['id_clinic'];
+			$array_data['address_details'] = 'called 152';
+			$array_data['max_days_ahead'] = 90;
+			$array_data['manage_time_slots'];
+			$array_data['timestamp'];
+			
+			$array_data['day_1'] =  'LUN';
+			$array_data['ini_schedule_1'] =  '05:00 PM';
+			$array_data['end_schedule_1'] =  '07:00 PM';
+
+			$array_data['day_2'] =  'MAR';
+			$array_data['ini_schedule_2'] =  '05:00 PM';
+			$array_data['end_schedule_2'] =  '07:00 PM';
+
+			$array_data['day_3'] =  'MIE';
+			$array_data['ini_schedule_3'] =  '05:00 PM';
+			$array_data['end_schedule_3'] =  '07:00 PM';
+
+			$array_data['day_4'] =  'JUE';
+			$array_data['ini_schedule_4'] =  '05:00 PM';
+			$array_data['end_schedule_4'] =  '07:00 PM';
+
+			$array_data['day_5'] =  'VIE';
+			$array_data['ini_schedule_5'] =  '05:00 PM';
+			$array_data['end_schedule_5'] =  '07:00 PM';
+
+			$array_data['day_6'] =  'SAB';
+			$array_data['ini_schedule_6'] =  '05:00 PM';
+			$array_data['end_schedule_6'] =  '07:00 PM';
+
+			$array_data['day_7'] =  'DOM';
+			$array_data['ini_schedule_7'] =  '05:00 PM';
+			$array_data['end_schedule_7'] =  '07:00 PM';
+
+
+			$array_update_dp['address_details']   = $array_data['addressDetails'];
+			$array_update_dp['max_days_ahead']    = $array_data['max_days_ahead'];
+			$array_update_dp['manage_time_slots'] = $array_data['manage_time_slots'];
+			
+			//$this->helper->update('doctor_practice', $practice_id , $array_update_dp); //update doctor_practice
+			
+			$day['day_1'] = 'Mon';
+			$day['day_2'] = 'Tue';
+			$day['day_3'] = 'Wed';
+			$day['day_4'] = 'Thu';
+			$day['day_5'] = 'Fri';
+			$day['day_6'] = 'Sat';
+			$day['day_7'] = 'Sun';
+			
+
+			/*foreach ($array_data as $field => $field_data) {
+				var_dump((strpos($field, 'day_') or strpos($field, 'ini_schedule_') or strpos($field, 'end_schedule_')));
+				echo
+				if((strpos($field, 'day_')!==FALSE) or (strpos($field, 'ini_schedule_')!==FALSE) or (strpos($field, 'end_schedule_')!==FALSE))
+				{
+					$week[$field]= $field_data;
+					echo 'jjjjj';
+				}
+			}*/
+			print_r($week);
+			exit;
+			foreach ($array_data as $data => $value) {
+
+				
+				switch ($value) {
+
+											
+						case 'day_1':
+							
+						break;
+
+						case 'day_2':
+						# code...
+						break;						
+
+						case 'day_3':
+						# code...
+						break;
+
+						case 'day_4':
+						# code...
+						break;
+
+						case 'day_5':
+						# code...
+						break;
+
+						case 'day_6':
+						# code...
+						break;
+
+						case 'day_7':
+						# code...
+						break;
+
+
+
+
+					
+
+					default:
+						# code...
+						break;
+				}
+			}
+
+			//$this->helper->update('doctor_practice', $practice_id , $array_update_dp);
+			//$this->helper->delete('doctor_practice_schedule', $practice_id, 'id_practice');
 
 			$response["data"] = $array_data;
 
@@ -170,7 +287,7 @@
 				$response["error"] = 0;	
 				$response["response"] = "updated";
 
-				echo json_encode($response);
+				//echo json_encode($response);
 
 			/*} else {
 				$response["success"] = 0;
